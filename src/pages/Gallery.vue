@@ -90,21 +90,7 @@ const setupGalleryAnimations = () => {
     if (!galleryRoot.value) return;
     columnRefs.value = columnRefs.value.filter(Boolean);
     galleryAnimContext = gsap.context(() => {
-        mediaMatcher = gsap.matchMedia();
-        mediaMatcher.add('(prefers-reduced-motion: reduce)', () => {
-            gsap.set('.gallery-column', { clearProps: 'all' });
-        });
-        mediaMatcher.add('(min-width: 1024px) and (prefers-reduced-motion: no-preference)', () => {
-            const speedOffsets = [48, 86, 62];
-            columnRefs.value.forEach((column, index) => {
-                gsap.fromTo(column, { y: -speedOffsets[index] }, {
-                    y: speedOffsets[index],
-                    ease: 'none',
-                    force3D: true,
-                    scrollTrigger: { trigger: galleryRoot.value, start: 'top bottom', end: 'bottom top', scrub: 0.8 }
-                });
-            });
-        });
+        gsap.set('.gallery-column', { clearProps: 'all' });
     }, galleryRoot.value);
 };
 

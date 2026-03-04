@@ -327,25 +327,6 @@ const setupHomepageAnimations = () => {
         });
         mediaMatcher.add('(prefers-reduced-motion: no-preference)', () => {
             gsap.from('.hero-copy > *', { autoAlpha: 0, y: 24, duration: 0.85, ease: 'power2.out', stagger: 0.1 });
-            gsap.utils.toArray('[data-reveal]').forEach((section) => {
-                gsap.from(section, {
-                    autoAlpha: 0,
-                    y: 44,
-                    duration: 0.85,
-                    ease: 'power2.out',
-                    overwrite: 'auto',
-                    immediateRender: false,
-                    scrollTrigger: { trigger: section, start: 'top 84%', toggleActions: 'play none none none', once: true }
-                });
-            });
-            if (experienceGrid.value) {
-                gsap.from(experienceGrid.value.querySelectorAll('.experience-card'), {
-                    autoAlpha: 0, y: 26, duration: 0.65, ease: 'power2.out', stagger: 0.12,
-                    overwrite: 'auto',
-                    immediateRender: false,
-                    scrollTrigger: { trigger: experienceGrid.value, start: 'top 78%', toggleActions: 'play none none none', once: true }
-                });
-            }
         });
     }, homepageRoot.value);
 };

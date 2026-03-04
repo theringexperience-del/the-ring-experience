@@ -2,7 +2,11 @@
   <GlobalBackground />
   <Navbar />
   <main class="relative z-10">
-    <router-view />
+    <router-view v-slot="{ Component }">
+      <transition name="page-fade" mode="out-in">
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </main>
   <Footer />
   <AnalyticsManager />
@@ -61,3 +65,16 @@ useHead(() => ({
   link: [{ rel: 'canonical', href: canonicalUrl.value }],
 }))
 </script>
+
+<style scoped>
+.page-fade-enter-active,
+.page-fade-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.page-fade-enter-from,
+.page-fade-leave-to {
+  opacity: 0;
+  transform: translateY(8px);
+}
+</style>
