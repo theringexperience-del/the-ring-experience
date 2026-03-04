@@ -1,7 +1,12 @@
 <template>
+  <GlobalBackground />
   <Navbar />
-  <main>
-    <router-view />
+  <main class="relative z-10">
+    <router-view v-slot="{ Component }">
+      <transition name="page-fade" mode="out-in">
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </main>
   <Footer />
   <AnalyticsManager />
@@ -15,6 +20,7 @@ import { useHead } from '@unhead/vue'
 import AnalyticsManager from './components/AnalyticsManager.vue'
 import CookieBanner from './components/CookieBanner.vue'
 import Footer from './components/Footer.vue'
+import GlobalBackground from './components/GlobalBackground.vue'
 import Navbar from './components/Navbar.vue'
 
 const route = useRoute()
@@ -59,3 +65,16 @@ useHead(() => ({
   link: [{ rel: 'canonical', href: canonicalUrl.value }],
 }))
 </script>
+
+<style scoped>
+.page-fade-enter-active,
+.page-fade-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.page-fade-enter-from,
+.page-fade-leave-to {
+  opacity: 0;
+  transform: translateY(8px);
+}
+</style>

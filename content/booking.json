@@ -1,0 +1,15 @@
+{
+  "hero": {
+    "eyebrow": "Book",
+    "title": "Reserve your ring experience",
+    "description": "Use the form or pick a slot directly from Calendly.",
+    "backgroundImage": "/uploads/pexels-goran-vrakela-64248-230289.jpg"
+  },
+  "calendly": {
+    "enabled": true,
+    "eyebrow": "Direct booking",
+    "heading": "Choose your date instantly",
+    "description": "Select the time that fits your travel schedule.",
+    "link": "https://calendly.com"
+  }
+}

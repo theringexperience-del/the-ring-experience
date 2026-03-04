@@ -1,0 +1,17 @@
+{
+  "name": "the-ring-experience-studio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "sanity dev",
+    "build": "sanity build && node scripts/ensure-admin-basepath.mjs"
+  },
+  "dependencies": {
+    "react": "^19.2.2",
+    "react-dom": "^19.2.2",
+    "sanity": "^5.12.0",
+    "styled-components": "^6.1.15",
+    "the-ring-experience": "file:.."
+  }
+}

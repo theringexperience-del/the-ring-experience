@@ -1,0 +1,71 @@
+{
+  "hero": {
+    "eyebrow": "Our Offers",
+    "title": "Choose your perfect ring-making package",
+    "description": "Each package follows the same artisanal method with different timing and depth.",
+    "backgroundImage": "/uploads/whatsapp-image-2026-02-24-at-10.43.29-1-.jpeg"
+  },
+  "packagesSection": {
+    "eyebrow": "Packages",
+    "heading": "All offers in detail",
+    "description": "Browse every package and choose the one that matches your trip and your pace."
+  },
+  "packages": [
+    {
+      "key": "essential",
+      "isVisible": true,
+      "tag": "Starter",
+      "name": "Essential",
+      "duration": "90 minutes",
+      "summary": "A compact format to create one handcrafted ring from start to finish.",
+      "fullDescription": "A guided introduction to ring making where you design, shape, solder, and polish your piece with our team at every step.",
+      "idealFor": "Solo travelers and first-time makers",
+      "highlights": [
+        "Hands-on craft session",
+        "Sterling silver base",
+        "Final polish included"
+      ],
+      "buttonLabel": "Book this offer"
+    },
+    {
+      "key": "couple-ritual",
+      "isVisible": true,
+      "tag": "For couples",
+      "name": "Couple Ritual",
+      "duration": "2 hours",
+      "summary": "A shared format designed for two people creating rings together.",
+      "fullDescription": "A full couple experience with personalized guidance for both rings, synchronized steps, and optional engraving for a shared memory.",
+      "idealFor": "Couples and honeymoon travelers",
+      "highlights": [
+        "Two participants",
+        "Personalized support",
+        "Optional engraving"
+      ],
+      "buttonLabel": "Book this offer"
+    },
+    {
+      "key": "signature",
+      "isVisible": true,
+      "tag": "Tailored",
+      "name": "Signature",
+      "duration": "2.5 hours",
+      "summary": "Extended session with premium customization and slower creative flow.",
+      "fullDescription": "Our most complete package with expanded design time, deeper technical support, and advanced customization options for a truly personal result.",
+      "idealFor": "Travelers seeking a fully custom keepsake",
+      "highlights": [
+        "Extended design consultation",
+        "Premium customization",
+        "Extra finishing time"
+      ],
+      "buttonLabel": "Book this offer"
+    }
+  ],
+  "gemstonesLink": {
+    "enabled": true,
+    "eyebrow": "Natural stones",
+    "heading": "Discover our gemstones",
+    "description": "See the currently available stones and choose the one that best fits your ring.",
+    "buttonLabel": "Explore gemstones",
+    "buttonLink": "/gemstones"
+  }
+}

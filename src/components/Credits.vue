@@ -37,13 +37,24 @@
 
 <script setup>
 import { RouterLink } from 'vue-router'
-import footerContent from '../../content/footer.json'
+import { computed } from 'vue'
 
 const year = new Date().getFullYear()
-const footerData = {
+const props = defineProps({
+  footerData: {
+    type: Object,
+    default: () => ({})
+  }
+})
+
+const fallbackData = {
   phone: '+94-00-000-0000',
   phoneLabel: '+94 00 000 0000',
   email: 'hello@the-ring-experience.com',
-  ...(footerContent ?? {}),
 }
+
+const footerData = computed(() => ({
+  ...fallbackData,
+  ...(props.footerData ?? {})
+}))
 </script>

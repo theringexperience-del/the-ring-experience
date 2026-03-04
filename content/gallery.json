@@ -1,0 +1,63 @@
+{
+  "hero": {
+    "eyebrow": "Client Gallery",
+    "title": "Moments created at the table",
+    "description": "Real photos from our guests during and after the ring-making experience.",
+    "backgroundImage": "/uploads/pexels-goran-vrakela-64248-230289.jpg"
+  },
+  "intro": {
+    "eyebrow": "From our guests",
+    "heading": "Stories made by hand",
+    "description": "A growing archive of rings, smiles, and shared memories."
+  },
+  "photos": [
+    {
+      "image": "/uploads/the-experience-3-.png",
+      "isVisible": true,
+      "displaySize": "tall",
+      "caption": "Silver shaping session",
+      "story": "First-time makers learning heat, pressure, and form together.",
+      "dateLabel": "February 2026"
+    },
+    {
+      "image": "/uploads/the-experience-2-.png",
+      "isVisible": true,
+      "displaySize": "standard",
+      "caption": "Couple ritual",
+      "story": "A pair of matching rings engraved with a private symbol.",
+      "dateLabel": "February 2026"
+    },
+    {
+      "image": "/uploads/the-experience-1-.png",
+      "isVisible": true,
+      "displaySize": "wide",
+      "caption": "Final polish",
+      "story": "Last details before wearing the ring for the first time.",
+      "dateLabel": "January 2026"
+    },
+    {
+      "image": "/uploads/the-experience.png",
+      "isVisible": true,
+      "displaySize": "standard",
+      "caption": "Ready to wear",
+      "story": "A handcrafted finish with natural stone centerpiece.",
+      "dateLabel": "January 2026"
+    },
+    {
+      "image": "/uploads/the-experience-3-.png",
+      "isVisible": true,
+      "displaySize": "standard",
+      "caption": "Torch and texture",
+      "story": "Heating and reshaping silver to match the final design.",
+      "dateLabel": "December 2025"
+    },
+    {
+      "image": "/uploads/the-experience-2-.png",
+      "isVisible": true,
+      "displaySize": "standard",
+      "caption": "Stone selection moment",
+      "story": "Guests comparing tones and cuts before setting the gemstone.",
+      "dateLabel": "December 2025"
+    }
+  ]
+}

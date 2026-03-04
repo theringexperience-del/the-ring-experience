@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import Homepage from './pages/Homepage.vue'
 import AboutUs from './pages/AboutUs.vue'
+import OurOffers from './pages/OurOffers.vue'
+import Gemstones from './pages/Gemstones.vue'
+import Gallery from './pages/Gallery.vue'
 import BookExperience from './pages/BookExperience.vue'
 import PrivacyPolicy from './pages/PrivacyPolicy.vue'
 import CookiePolicy from './pages/CookiePolicy.vue'
@@ -18,12 +21,42 @@ const routes = [
         }
     },
     {
+        path: '/ouroffers',
+        component: OurOffers,
+        meta: {
+            seo: {
+                title: 'Our Offers | The Ring Experience Sri Lanka',
+                description: 'Scopri tutti i pacchetti disponibili di The Ring Experience e scegli il formato più adatto al tuo viaggio in Sri Lanka.'
+            }
+        }
+    },
+    {
         path: '/aboutus',
         component: AboutUs,
         meta: {
             seo: {
                 title: 'Chi Siamo | The Ring Experience Sri Lanka',
                 description: 'Scopri la storia di The Ring Experience e la nostra missione: offrire ai turisti un ricordo significativo, non il solito souvenir.'
+            }
+        }
+    },
+    {
+        path: '/gemstones',
+        component: Gemstones,
+        meta: {
+            seo: {
+                title: 'Gemstones | The Ring Experience Sri Lanka',
+                description: 'Discover our latest curated gemstones available for handcrafted ring experiences in Sri Lanka.'
+            }
+        }
+    },
+    {
+        path: '/gallery',
+        component: Gallery,
+        meta: {
+            seo: {
+                title: 'Client Gallery | The Ring Experience Sri Lanka',
+                description: 'Explore real moments and handcrafted rings created by our guests during The Ring Experience.'
             }
         }
     },

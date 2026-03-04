@@ -7,7 +7,7 @@
 
 :root {
   --color-base: #E6DDD1;
-  --color-lightbeige: #F4EFE8;
+  --color-lightbeige: #fff5e8;
   --color-brown: #4B2F1D;
   --color-noisette: #B08942;
   --color-darkbrown: #2A1E17;
@@ -53,3 +53,8 @@ body {
   font-size: 18px;
   font-weight: 350;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+

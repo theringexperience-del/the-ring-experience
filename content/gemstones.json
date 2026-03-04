@@ -1,0 +1,75 @@
+{
+  "hero": {
+    "eyebrow": "Gemstones",
+    "title": "The latest stones selected for this season",
+    "description": "A curated list of natural gemstones currently available for your ring experience in Sri Lanka.",
+    "backgroundImage": "/uploads/whatsapp-image-2026-02-24-at-10.43.29-1-.jpeg"
+  },
+  "intro": {
+    "eyebrow": "New arrivals",
+    "heading": "Fresh picks, ready for new stories",
+    "description": "Each gemstone is selected for color, texture, and character. Inventory rotates often."
+  },
+  "gemstones": [
+    {
+      "key": "moonstone",
+      "name": "Rainbow Moonstone",
+      "isVisible": true,
+      "origin": "Sri Lanka",
+      "tone": "Milky white with blue flash",
+      "cut": "Oval cabochon",
+      "description": "Soft iridescence and a calm glow, ideal for minimal or vintage-inspired rings.",
+      "image": "/uploads/the-experience.png"
+    },
+    {
+      "key": "sapphire",
+      "name": "Ceylon Sapphire",
+      "isVisible": true,
+      "origin": "Sri Lanka",
+      "tone": "Royal blue",
+      "cut": "Round faceted",
+      "description": "Classic and brilliant, with crisp reflections and a timeless premium look.",
+      "image": "/uploads/the-experience-1-.png"
+    },
+    {
+      "key": "garnet",
+      "name": "Rhodolite Garnet",
+      "isVisible": true,
+      "origin": "Madagascar",
+      "tone": "Berry red",
+      "cut": "Pear faceted",
+      "description": "Warm, deep color that works beautifully on polished sterling silver settings.",
+      "image": "/uploads/the-experience-2-.png"
+    },
+    {
+      "key": "amethyst",
+      "name": "Lavender Amethyst",
+      "isVisible": true,
+      "origin": "Brazil",
+      "tone": "Violet",
+      "cut": "Cushion faceted",
+      "description": "Bright and fresh color with a contemporary look for statement rings.",
+      "image": "/uploads/the-experience-3-.png"
+    },
+    {
+      "key": "aquamarine",
+      "name": "Aquamarine",
+      "isVisible": true,
+      "origin": "Mozambique",
+      "tone": "Sea blue",
+      "cut": "Emerald cut",
+      "description": "Cool, transparent tones that pair perfectly with brushed silver textures.",
+      "image": "/uploads/the-experience.png"
+    },
+    {
+      "key": "peridot",
+      "name": "Peridot",
+      "isVisible": true,
+      "origin": "Pakistan",
+      "tone": "Olive green",
+      "cut": "Oval faceted",
+      "description": "Lively green highlights with a vibrant, playful character.",
+      "image": "/uploads/the-experience-1-.png"
+    }
+  ]
+}
