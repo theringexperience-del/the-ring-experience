@@ -32,6 +32,12 @@ npx vite build
 npm run preview
 ```
 
+Build frontend + embedded `/admin` studio bundle:
+
+```bash
+npm run build:with-studio
+```
+
 ## Environment Variables
 
 Create `.env` from `.env.example` and set:
