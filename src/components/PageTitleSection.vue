@@ -26,14 +26,9 @@ const props = defineProps({
     }
 });
 
-const fallback = {
-    eyebrow: '',
-    title: '',
-    description: ''
-};
-
 const mergedContent = computed(() => ({
-    ...fallback,
-    ...(props.content ?? {})
+    eyebrow: props.content?.eyebrow ?? '',
+    title: props.content?.title ?? '',
+    description: props.content?.description ?? ''
 }));
 </script>

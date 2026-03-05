@@ -11,7 +11,7 @@
                 </div>
                 <div class="mx-auto mt-8 h-px w-24 bg-(--color-noisette)"></div>
                 <div data-reveal class="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
-                    <div v-for="(columnItems, columnIndex) in galleryColumns" :key="`gallery-col-${columnIndex}`" :ref="setColumnRef"
+                    <div v-for="(columnItems, columnIndex) in galleryColumns" :key="`gallery-col-${columnIndex}`"
                         class="gallery-column flex flex-col gap-6">
                         <article v-for="photo in columnItems" :key="`${photo.caption}-${photo.dateLabel}`"
                             class="gallery-card reveal-card overflow-hidden border bg-white/74"
@@ -37,28 +37,20 @@
 </template>
 
 <script setup>
-import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { computed, nextTick, onMounted, ref } from 'vue';
 import GemstonesOffersCallout from '../components/GemstonesOffersCallout.vue';
 import SocialSection from '../components/SocialSection.vue';
 import { useRevealAnimations } from '../composables/useRevealAnimations';
-import localGalleryContent from '../../content/gallery.json';
-import localSocialContent from '../../content/social.json';
 import { fetchClientGalleryContentFromSanity, fetchSocialContentFromSanity, toWebImage } from '../utils/sanity';
 
-gsap.registerPlugin(ScrollTrigger);
+const cmsGalleryContent = ref({});
+const cmsSocialContent = ref({});
 
-const introFallback = {
-    eyebrow: 'From our guests',
-    heading: 'Stories made by hand',
-    description: 'A growing archive of rings, smiles, and shared memories.'
-};
-
-const cmsGalleryContent = ref(localGalleryContent);
-const cmsSocialContent = ref(localSocialContent);
-
-const introContent = computed(() => ({ ...introFallback, ...(cmsGalleryContent.value?.intro ?? {}) }));
+const introContent = computed(() => ({
+    eyebrow: cmsGalleryContent.value?.intro?.eyebrow ?? '',
+    heading: cmsGalleryContent.value?.intro?.heading ?? '',
+    description: cmsGalleryContent.value?.intro?.description ?? ''
+}));
 const photos = computed(() => (
     (Array.isArray(cmsGalleryContent.value?.photos) ? cmsGalleryContent.value.photos : []).filter((photo) => photo?.isVisible !== false)
 ));
@@ -76,39 +68,16 @@ const offersCalloutContent = computed(() => ({
 }));
 
 const galleryRoot = ref(null);
-const columnRefs = ref([]);
 const { setupRevealAnimations } = useRevealAnimations(galleryRoot, { selectors: ['[data-reveal]', '.reveal-card'], start: 'top 88%' });
-let galleryAnimContext = null;
-let mediaMatcher = null;
-
-const setColumnRef = (el) => {
-    if (!el) return;
-    if (!columnRefs.value.includes(el)) columnRefs.value.push(el);
-};
-
-const setupGalleryAnimations = () => {
-    if (!galleryRoot.value) return;
-    columnRefs.value = columnRefs.value.filter(Boolean);
-    galleryAnimContext = gsap.context(() => {
-        gsap.set('.gallery-column', { clearProps: 'all' });
-    }, galleryRoot.value);
-};
-
 onMounted(async () => {
     const [sanityGallery, sanitySocial] = await Promise.all([
         fetchClientGalleryContentFromSanity(),
         fetchSocialContentFromSanity()
     ]);
-    if (sanityGallery) cmsGalleryContent.value = sanityGallery;
-    if (sanitySocial) cmsSocialContent.value = sanitySocial;
+    cmsGalleryContent.value = sanityGallery ?? {};
+    cmsSocialContent.value = sanitySocial ?? {};
     await nextTick();
     setupRevealAnimations();
-    setupGalleryAnimations();
-});
-
-onBeforeUnmount(() => {
-    mediaMatcher?.revert();
-    galleryAnimContext?.revert();
 });
 </script>
 

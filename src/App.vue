@@ -28,7 +28,7 @@ const siteUrl = 'https://the-ring-experience.com'
 
 const defaultTitle = 'The Ring Experience - Sri Lanka'
 const defaultDescription =
-  'Esperienze autentiche in Sri Lanka: crea un anello in argento sterling con pietre naturali, un ricordo significativo oltre il solito souvenir.'
+  'Create your own sterling silver ring in Sri Lanka with natural gemstones and local craftsmanship.'
 
 const seo = computed(() => route.meta?.seo ?? {})
 const canonicalPath = computed(() => (route.path === '/' ? '' : route.path))
@@ -52,7 +52,7 @@ useHead(() => ({
     { property: 'og:image', content: `${siteUrl}/social/og-instagram.svg` },
     {
       property: 'og:image:alt',
-      content: 'Esperienza di creazione anello in argento sterling in Sri Lanka',
+      content: 'Sterling silver ring-making experience in Sri Lanka',
     },
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: seo.value.title || defaultTitle },

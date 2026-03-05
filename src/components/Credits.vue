@@ -47,14 +47,9 @@ const props = defineProps({
   }
 })
 
-const fallbackData = {
-  phone: '+94-00-000-0000',
-  phoneLabel: '+94 00 000 0000',
-  email: 'hello@the-ring-experience.com',
-}
-
 const footerData = computed(() => ({
-  ...fallbackData,
-  ...(props.footerData ?? {})
+  phone: props.footerData?.phone ?? '+94-00-000-0000',
+  phoneLabel: props.footerData?.phoneLabel ?? '+94 00 000 0000',
+  email: props.footerData?.email ?? 'hello@the-ring-experience.com',
 }))
 </script>

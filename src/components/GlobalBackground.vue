@@ -8,24 +8,21 @@
 
 <script setup>
 import { computed, onMounted, ref } from 'vue';
-import localSiteAppearance from '../../content/site-appearance.json';
-import fallbackBackgroundWebp from '../assets/pexels-dav-h-58867999-7952409.webp';
+import defaultBackgroundWebp from '../assets/pexels-dav-h-58867999-7952409.webp';
 import { fetchSiteAppearanceContentFromSanity, toWebImage } from '../utils/sanity';
 
-const cmsAppearance = ref(localSiteAppearance);
+const cmsAppearance = ref({});
 
 const resolvedImage = computed(() => {
     const cmsImage = cmsAppearance.value?.globalBackgroundImage;
     if (cmsImage) {
         return toWebImage(cmsImage, { width: 2200, quality: 76 });
     }
-    return fallbackBackgroundWebp;
+    return defaultBackgroundWebp;
 });
 
 onMounted(async () => {
     const sanityAppearance = await fetchSiteAppearanceContentFromSanity();
-    if (sanityAppearance) {
-        cmsAppearance.value = sanityAppearance;
-    }
+    cmsAppearance.value = sanityAppearance ?? {};
 });
 </script>

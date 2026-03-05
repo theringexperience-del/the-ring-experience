@@ -105,9 +105,6 @@ import { useRoute } from 'vue-router';
 import Button from '../components/Button.vue';
 import GemstonesOffersCallout from '../components/GemstonesOffersCallout.vue';
 import SocialSection from '../components/SocialSection.vue';
-import localFormContent from '../../content/contact-form.json';
-import localOffersContent from '../../content/offers.json';
-import localSocialContent from '../../content/social.json';
 import { useRevealAnimations } from '../composables/useRevealAnimations';
 import { saveLeadToSheet } from '../utils/leads';
 import { fetchContactFormContentFromSanity, fetchOffersPageContentFromSanity, fetchSocialContentFromSanity } from '../utils/sanity';
@@ -117,39 +114,32 @@ const packageField = ref(null);
 const offersRoot = ref(null);
 const { setupRevealAnimations } = useRevealAnimations(offersRoot, { selectors: ['[data-reveal]', '.offer-card'], start: 'top 86%' });
 
-const formFallback = {
-    enabled: true,
-    eyebrow: 'Request details',
-    heading: 'Tell us which offer you are interested in',
-    description: 'Select a package and send your request. We will reply quickly with all info.',
-    recipientEmail: 'hello@the-ring-experience.com',
-    sheetWebhookUrl: '',
-    subjectPrefix: 'Offer Request',
-    submitLabel: 'Send request',
-    privacyNote: 'By sending this form, you consent to be contacted regarding your request.',
-    newsletterConsentLabel: 'I consent to store my email and phone for newsletter and updates.'
-};
-
-const cmsOffersContent = ref(localOffersContent);
-const cmsFormContent = ref(localFormContent);
-const cmsSocialContent = ref(localSocialContent);
-
-const packagesSectionFallback = {
-    eyebrow: 'Our Offers',
-    heading: 'Choose your perfect ring-making package',
-    description: 'Each package follows the same artisanal method with different timing and depth.'
-};
+const cmsOffersContent = ref({});
+const cmsFormContent = ref({});
+const cmsSocialContent = ref({});
 
 const packagesSectionContent = computed(() => ({
-    ...packagesSectionFallback,
-    ...(cmsOffersContent.value?.packagesSection ?? {})
+    eyebrow: cmsOffersContent.value?.packagesSection?.eyebrow ?? '',
+    heading: cmsOffersContent.value?.packagesSection?.heading ?? '',
+    description: cmsOffersContent.value?.packagesSection?.description ?? ''
 }));
 
 const packagesContent = computed(() => (
     (Array.isArray(cmsOffersContent.value?.packages) ? cmsOffersContent.value.packages : []).filter((pkg) => pkg?.isVisible !== false)
 ));
 const packageOptions = computed(() => packagesContent.value.map((pkg) => pkg.name).filter(Boolean));
-const mergedFormContent = computed(() => ({ ...formFallback, ...(cmsFormContent.value ?? {}) }));
+const mergedFormContent = computed(() => ({
+    enabled: cmsFormContent.value?.enabled ?? true,
+    eyebrow: cmsFormContent.value?.eyebrow ?? '',
+    heading: cmsFormContent.value?.heading ?? '',
+    description: cmsFormContent.value?.description ?? '',
+    recipientEmail: cmsFormContent.value?.recipientEmail ?? 'hello@the-ring-experience.com',
+    sheetWebhookUrl: cmsFormContent.value?.sheetWebhookUrl ?? '',
+    subjectPrefix: cmsFormContent.value?.subjectPrefix ?? 'Offer Request',
+    submitLabel: cmsFormContent.value?.submitLabel ?? 'Send request',
+    privacyNote: cmsFormContent.value?.privacyNote ?? 'By sending this form, you consent to be contacted regarding your request.',
+    newsletterConsentLabel: cmsFormContent.value?.newsletterConsentLabel ?? 'I consent to store my email and phone for newsletter and updates.'
+}));
 const gemstonesCalloutContent = computed(() => ({
     eyebrow: cmsOffersContent.value?.gemstonesLink?.eyebrow || 'Gemstones',
     heading: cmsOffersContent.value?.gemstonesLink?.heading || 'Discover our gemstones',
@@ -227,9 +217,9 @@ onMounted(async () => {
         fetchSocialContentFromSanity()
     ]);
 
-    if (sanityOffers) cmsOffersContent.value = sanityOffers;
-    if (sanityForm) cmsFormContent.value = sanityForm;
-    if (sanitySocial) cmsSocialContent.value = sanitySocial;
+    cmsOffersContent.value = sanityOffers ?? {};
+    cmsFormContent.value = sanityForm ?? {};
+    cmsSocialContent.value = sanitySocial ?? {};
 
     await applyPackageFromRoute();
     await nextTick();

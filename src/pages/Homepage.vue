@@ -208,68 +208,76 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Button from '../components/Button.vue';
 import Card from '../components/Card.vue';
 import SocialSection from '../components/SocialSection.vue';
-import heroFallbackImage from '../assets/herocover.jpeg';
-import localHomepageContent from '../../content/homepage.json';
-import localOffersContent from '../../content/offers.json';
-import localSocialContent from '../../content/social.json';
+import defaultHeroImage from '../assets/herocover.jpeg';
 import { fetchGooglePlaceReviews, fetchHomepageContentFromSanity, fetchOffersPageContentFromSanity, fetchSocialContentFromSanity } from '../utils/sanity';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const heroFallback = {
-    headline: 'Every ring begins with a choice',
-    subheadline: 'A meaningful travel memory beyond the usual',
-    mediaType: 'image',
-    image: heroFallbackImage,
-    video: '',
-    buttonLabel: 'Book your experience',
-    buttonLink: '/bookexperience',
-    secondaryButtonLabel: 'Discover our offers',
-    secondaryButtonLink: '/ouroffers'
-};
-
-const aMomentFallback = {
-    eyebrow: 'A shared ritual',
-    title: 'Not a store. A memory you create together.',
-    paragraphOne: 'Two seats, one table, raw silver, open flame.',
-    paragraphTwo: 'You do not buy a ring. You craft it, side by side, together.',
-    image: heroFallbackImage
-};
-
-const fallbackCards = [
-    { key: 'design', title: 'Design', lineOne: 'You sketch it', lineTwo: 'You shape the story', image: '/the-ring-experience-logo.svg' },
-    { key: 'craft', title: 'Craft', lineOne: 'You forge it', lineTwo: 'You feel every spark', image: '/the-ring-experience-logo.svg' },
-    { key: 'seal', title: 'Seal', lineOne: 'You wear it', lineTwo: 'You keep the memory', image: '/the-ring-experience-logo.svg' }
-];
-
-const cmsHomepageContent = ref(localHomepageContent);
-const cmsOffersContent = ref(localOffersContent);
-const cmsSocialContent = ref(localSocialContent);
+const cmsHomepageContent = ref({});
+const cmsOffersContent = ref({});
+const cmsSocialContent = ref({});
 const googleReviews = ref([]);
 const reviewSlideIndex = ref(0);
 
-const reviewsFallback = { enabled: true, sourceType: 'manual', embedUrl: '', items: [] };
-const theExperienceFallback = { eyebrow: 'The Experience', title: 'Crafted by your hands, not picked from a shelf' };
-const packagesPreviewFallback = { enabled: true, eyebrow: 'Our offers', heading: 'Choose your package before booking', description: '', ctaLabel: 'Discover all offers', ctaLink: '/ouroffers' };
-const valuesFallback = { heading: 'Our Values', backgroundImage: heroFallbackImage, items: [] };
-
-const heroContent = computed(() => ({ ...heroFallback, ...(cmsHomepageContent.value?.hero ?? {}) }));
+const heroContent = computed(() => ({
+    headline: cmsHomepageContent.value?.hero?.headline ?? '',
+    subheadline: cmsHomepageContent.value?.hero?.subheadline ?? '',
+    mediaType: cmsHomepageContent.value?.hero?.mediaType ?? 'image',
+    image: cmsHomepageContent.value?.hero?.image ?? defaultHeroImage,
+    video: cmsHomepageContent.value?.hero?.video ?? '',
+    buttonLabel: cmsHomepageContent.value?.hero?.buttonLabel ?? 'Book your experience',
+    buttonLink: cmsHomepageContent.value?.hero?.buttonLink ?? '/bookexperience',
+    secondaryButtonLabel: cmsHomepageContent.value?.hero?.secondaryButtonLabel ?? 'Discover our offers',
+    secondaryButtonLink: cmsHomepageContent.value?.hero?.secondaryButtonLink ?? '/ouroffers'
+}));
 const heroMediaType = computed(() => (heroContent.value.mediaType === 'video' ? 'video' : 'image'));
-const aMomentContent = computed(() => ({ ...aMomentFallback, ...(cmsHomepageContent.value?.aMoment ?? {}) }));
-const theExperienceContent = computed(() => ({ ...theExperienceFallback, ...(cmsHomepageContent.value?.theExperience ?? {}) }));
+const aMomentContent = computed(() => ({
+    eyebrow: cmsHomepageContent.value?.aMoment?.eyebrow ?? '',
+    title: cmsHomepageContent.value?.aMoment?.title ?? '',
+    paragraphOne: cmsHomepageContent.value?.aMoment?.paragraphOne ?? '',
+    paragraphTwo: cmsHomepageContent.value?.aMoment?.paragraphTwo ?? '',
+    image: cmsHomepageContent.value?.aMoment?.image ?? defaultHeroImage
+}));
+const theExperienceContent = computed(() => ({
+    eyebrow: cmsHomepageContent.value?.theExperience?.eyebrow ?? '',
+    title: cmsHomepageContent.value?.theExperience?.title ?? ''
+}));
 const experienceCards = computed(() => (
     Array.isArray(cmsHomepageContent.value?.experienceCards) && cmsHomepageContent.value.experienceCards.length
         ? cmsHomepageContent.value.experienceCards
-        : fallbackCards
+        : []
 ));
-const packagesPreviewContent = computed(() => ({ ...packagesPreviewFallback, ...(cmsHomepageContent.value?.packagesPreview ?? {}) }));
+const packagesPreviewContent = computed(() => ({
+    enabled: cmsHomepageContent.value?.packagesPreview?.enabled ?? true,
+    eyebrow: cmsHomepageContent.value?.packagesPreview?.eyebrow ?? '',
+    heading: cmsHomepageContent.value?.packagesPreview?.heading ?? '',
+    description: cmsHomepageContent.value?.packagesPreview?.description ?? '',
+    ctaLabel: cmsHomepageContent.value?.packagesPreview?.ctaLabel ?? 'Discover all offers',
+    ctaLink: cmsHomepageContent.value?.packagesPreview?.ctaLink ?? '/ouroffers'
+}));
 const homepagePackages = computed(() => (
     (Array.isArray(cmsOffersContent.value?.packages) ? cmsOffersContent.value.packages : []).filter((pkg) => pkg?.isVisible !== false)
 ));
-const valuesContent = computed(() => ({ ...valuesFallback, ...(cmsHomepageContent.value?.values ?? {}) }));
+const valuesContent = computed(() => ({
+    heading: cmsHomepageContent.value?.values?.heading ?? '',
+    backgroundImage: cmsHomepageContent.value?.values?.backgroundImage ?? defaultHeroImage,
+    items: Array.isArray(cmsHomepageContent.value?.values?.items) ? cmsHomepageContent.value.values.items : []
+}));
 const valuesItems = computed(() => (Array.isArray(valuesContent.value.items) ? valuesContent.value.items : []));
 const valuesBgStyle = computed(() => ({ backgroundImage: `url(${valuesContent.value.backgroundImage})` }));
-const reviewsContent = computed(() => ({ ...reviewsFallback, ...(cmsHomepageContent.value?.reviews ?? {}) }));
+const reviewsContent = computed(() => ({
+    enabled: cmsHomepageContent.value?.reviews?.enabled ?? true,
+    eyebrow: cmsHomepageContent.value?.reviews?.eyebrow ?? '',
+    heading: cmsHomepageContent.value?.reviews?.heading ?? '',
+    description: cmsHomepageContent.value?.reviews?.description ?? '',
+    sourceLabel: cmsHomepageContent.value?.reviews?.sourceLabel ?? '',
+    sourceUrl: cmsHomepageContent.value?.reviews?.sourceUrl ?? '',
+    embedUrl: cmsHomepageContent.value?.reviews?.embedUrl ?? '',
+    sourceType: cmsHomepageContent.value?.reviews?.sourceType ?? 'manual',
+    googlePlaceId: cmsHomepageContent.value?.reviews?.googlePlaceId ?? '',
+    maxItems: cmsHomepageContent.value?.reviews?.maxItems,
+    items: Array.isArray(cmsHomepageContent.value?.reviews?.items) ? cmsHomepageContent.value.reviews.items : []
+}));
 const reviewsItems = computed(() => {
     const manualItems = Array.isArray(reviewsContent.value.items) ? reviewsContent.value.items : [];
     if (reviewsContent.value.sourceType === 'google' && googleReviews.value.length) return googleReviews.value;
@@ -382,9 +390,9 @@ onMounted(async () => {
         fetchOffersPageContentFromSanity(),
         fetchSocialContentFromSanity()
     ]);
-    if (sanityHomepage) cmsHomepageContent.value = sanityHomepage;
-    if (sanityOffers) cmsOffersContent.value = sanityOffers;
-    if (sanitySocial) cmsSocialContent.value = sanitySocial;
+    cmsHomepageContent.value = sanityHomepage ?? {};
+    cmsOffersContent.value = sanityOffers ?? {};
+    cmsSocialContent.value = sanitySocial ?? {};
     await nextTick();
     setupHomepageAnimations();
 });

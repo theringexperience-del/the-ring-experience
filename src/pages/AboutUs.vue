@@ -71,51 +71,42 @@
 import { computed, nextTick, onMounted, ref } from 'vue';
 import PageTitleSection from '../components/PageTitleSection.vue';
 import SocialSection from '../components/SocialSection.vue';
-import heroFallbackImage from '../assets/herocover.jpeg';
 import { useRevealAnimations } from '../composables/useRevealAnimations';
-import localAboutContent from '../../content/about.json';
-import localSocialContent from '../../content/social.json';
 import { fetchAboutUsContentFromSanity, fetchSocialContentFromSanity } from '../utils/sanity';
 
-const heroFallback = {
-    eyebrow: 'About Us',
-    title: 'How The Ring Experience was born',
-    description: 'A story of craft, travel, and meaningful memories.',
-    backgroundImage: heroFallbackImage
-};
-
-const approachFallback = {
-    eyebrow: 'Our vision',
-    title: 'A quiet alternative to mass tourism',
-    paragraphOne: 'We designed a format where visitors create something meaningful, guided by real artisanship.',
-    paragraphTwo: 'The focus is not selling products, but shaping a memory that lasts.',
-    image: heroFallbackImage
-};
-
-const originFallback = {
-    eyebrow: 'How it started',
-    title: 'From idea to shared ritual',
-    paragraphOne: 'The project started with one simple question: can a traveler leave with something that truly belongs to their story?',
-    paragraphTwo: 'The answer became this experience: a small table, real tools, and a moment people remember.',
-    image: heroFallbackImage
-};
-
-const cmsAboutContent = ref(localAboutContent);
-const cmsSocialContent = ref(localSocialContent);
+const cmsAboutContent = ref({});
+const cmsSocialContent = ref({});
 const aboutRoot = ref(null);
 const { setupRevealAnimations } = useRevealAnimations(aboutRoot);
 
-const heroContent = computed(() => ({ ...heroFallback, ...(cmsAboutContent.value?.hero ?? {}) }));
-const approachContent = computed(() => ({ ...approachFallback, ...(cmsAboutContent.value?.approach ?? {}) }));
-const originContent = computed(() => ({ ...originFallback, ...(cmsAboutContent.value?.origin ?? {}) }));
+const heroContent = computed(() => ({
+    eyebrow: cmsAboutContent.value?.hero?.eyebrow ?? '',
+    title: cmsAboutContent.value?.hero?.title ?? '',
+    description: cmsAboutContent.value?.hero?.description ?? '',
+    backgroundImage: cmsAboutContent.value?.hero?.backgroundImage ?? ''
+}));
+const approachContent = computed(() => ({
+    eyebrow: cmsAboutContent.value?.approach?.eyebrow ?? '',
+    title: cmsAboutContent.value?.approach?.title ?? '',
+    paragraphOne: cmsAboutContent.value?.approach?.paragraphOne ?? '',
+    paragraphTwo: cmsAboutContent.value?.approach?.paragraphTwo ?? '',
+    image: cmsAboutContent.value?.approach?.image ?? ''
+}));
+const originContent = computed(() => ({
+    eyebrow: cmsAboutContent.value?.origin?.eyebrow ?? '',
+    title: cmsAboutContent.value?.origin?.title ?? '',
+    paragraphOne: cmsAboutContent.value?.origin?.paragraphOne ?? '',
+    paragraphTwo: cmsAboutContent.value?.origin?.paragraphTwo ?? '',
+    image: cmsAboutContent.value?.origin?.image ?? ''
+}));
 
 onMounted(async () => {
     const [sanityAbout, sanitySocial] = await Promise.all([
         fetchAboutUsContentFromSanity(),
         fetchSocialContentFromSanity()
     ]);
-    if (sanityAbout) cmsAboutContent.value = sanityAbout;
-    if (sanitySocial) cmsSocialContent.value = sanitySocial;
+    cmsAboutContent.value = sanityAbout ?? {};
+    cmsSocialContent.value = sanitySocial ?? {};
     await nextTick();
     setupRevealAnimations();
 });

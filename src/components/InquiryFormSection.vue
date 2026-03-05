@@ -71,22 +71,17 @@ const props = defineProps({
     }
 });
 
-const fallback = {
-    enabled: true,
-    eyebrow: 'Plan your session',
-    heading: 'Tell us what you have in mind',
-    description: 'Send your request and we will confirm details shortly.',
-    recipientEmail: 'hello@the-ring-experience.com',
-    sheetWebhookUrl: '',
-    subjectPrefix: 'New Inquiry',
-    submitLabel: 'Send request',
-    privacyNote: 'By sending this form you consent to be contacted about your booking request.',
-    newsletterConsentLabel: 'I consent to store my email and phone for newsletter and updates.'
-};
-
 const mergedContent = computed(() => ({
-    ...fallback,
-    ...(props.content ?? {})
+    enabled: props.content?.enabled ?? true,
+    eyebrow: props.content?.eyebrow ?? 'Plan your session',
+    heading: props.content?.heading ?? 'Tell us what you have in mind',
+    description: props.content?.description ?? 'Send your request and we will confirm details shortly.',
+    recipientEmail: props.content?.recipientEmail ?? 'hello@the-ring-experience.com',
+    sheetWebhookUrl: props.content?.sheetWebhookUrl ?? '',
+    subjectPrefix: props.content?.subjectPrefix ?? 'New Inquiry',
+    submitLabel: props.content?.submitLabel ?? 'Send request',
+    privacyNote: props.content?.privacyNote ?? 'By sending this form you consent to be contacted about your booking request.',
+    newsletterConsentLabel: props.content?.newsletterConsentLabel ?? 'I consent to store my email and phone for newsletter and updates.'
 }));
 
 const form = reactive({

@@ -44,22 +44,18 @@ import { computed, nextTick, onMounted, ref } from 'vue';
 import GemstonesOffersCallout from '../components/GemstonesOffersCallout.vue';
 import SocialSection from '../components/SocialSection.vue';
 import { useRevealAnimations } from '../composables/useRevealAnimations';
-import localGemstonesContent from '../../content/gemstones.json';
-import localSocialContent from '../../content/social.json';
 import { fetchGemstonesPageContentFromSanity, fetchSocialContentFromSanity, toWebImage } from '../utils/sanity';
 
-const introFallback = {
-    eyebrow: 'New arrivals',
-    heading: 'Fresh picks, ready for new stories',
-    description: 'Each gemstone is selected for color, texture, and character. Inventory rotates often.'
-};
-
-const cmsGemstonesContent = ref(localGemstonesContent);
-const cmsSocialContent = ref(localSocialContent);
+const cmsGemstonesContent = ref({});
+const cmsSocialContent = ref({});
 const gemstonesRoot = ref(null);
 const { setupRevealAnimations } = useRevealAnimations(gemstonesRoot, { selectors: ['[data-reveal]', '.gem-card'], start: 'top 88%' });
 
-const introContent = computed(() => ({ ...introFallback, ...(cmsGemstonesContent.value?.intro ?? {}) }));
+const introContent = computed(() => ({
+    eyebrow: cmsGemstonesContent.value?.intro?.eyebrow ?? '',
+    heading: cmsGemstonesContent.value?.intro?.heading ?? '',
+    description: cmsGemstonesContent.value?.intro?.description ?? ''
+}));
 const gemstones = computed(() => (
     (Array.isArray(cmsGemstonesContent.value?.gemstones) ? cmsGemstonesContent.value.gemstones : []).filter((stone) => stone?.isVisible !== false)
 ));
@@ -76,8 +72,8 @@ onMounted(async () => {
         fetchGemstonesPageContentFromSanity(),
         fetchSocialContentFromSanity()
     ]);
-    if (sanityGemstones) cmsGemstonesContent.value = sanityGemstones;
-    if (sanitySocial) cmsSocialContent.value = sanitySocial;
+    cmsGemstonesContent.value = sanityGemstones ?? {};
+    cmsSocialContent.value = sanitySocial ?? {};
     await nextTick();
     setupRevealAnimations();
 });

@@ -30,26 +30,24 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import Credits from './Credits.vue'
-import footerContent from '../../content/footer.json'
 import { fetchFooterContentFromSanity } from '../utils/sanity'
 
-const footerFallback = {
+const defaultFooterData = {
   subtitle: 'Sri Lanka',
   title: 'The Ring Experience',
   text: 'Handcrafted memories, sterling silver, and stories you carry forever.',
   phone: '+94-00-000-0000',
   phoneLabel: '+94 00 000 0000',
   email: 'hello@the-ring-experience.com',
-  ...(footerContent ?? {}),
 }
 
-const footerData = ref(footerFallback)
+const footerData = ref(defaultFooterData)
 
 onMounted(async () => {
   const sanityFooter = await fetchFooterContentFromSanity()
   if (sanityFooter) {
     footerData.value = {
-      ...footerFallback,
+      ...defaultFooterData,
       ...sanityFooter,
     }
   }

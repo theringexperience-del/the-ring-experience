@@ -352,7 +352,7 @@ const GOOGLE_PLACES_API_KEY = import.meta.env.VITE_GOOGLE_PLACES_API_KEY;
 
 async function fetchFromSanity(query) {
     if (!SANITY_PROJECT_ID || !SANITY_DATASET) {
-        console.warn('[sanity] Missing VITE_SANITY_PROJECT_ID or VITE_SANITY_DATASET. Using local fallback content.');
+        console.warn('[sanity] Missing VITE_SANITY_PROJECT_ID or VITE_SANITY_DATASET. CMS content cannot be loaded.');
         return null;
     }
 
@@ -410,14 +410,14 @@ export async function fetchGooglePlaceReviews(config = {}) {
     const sourceType = config.sourceType === 'google' ? 'google' : 'manual';
     if (sourceType !== 'google' || !GOOGLE_PLACES_API_KEY) return [];
 
-    const fallbackManual = Array.isArray(config.items) ? config.items : [];
+    const manualItems = Array.isArray(config.items) ? config.items : [];
     const maxItems = Number.isFinite(config.maxItems) ? Math.max(3, Math.min(20, config.maxItems)) : 9;
 
     const placeId = (config.googlePlaceId && config.googlePlaceId.trim())
         ? config.googlePlaceId.trim()
         : await resolvePlaceIdFromGoogleUrl(config.sourceUrl);
 
-    if (!placeId) return fallbackManual;
+    if (!placeId) return manualItems;
 
     try {
         const response = await fetch(`https://places.googleapis.com/v1/places/${placeId}`, {
@@ -428,7 +428,7 @@ export async function fetchGooglePlaceReviews(config = {}) {
             }
         });
 
-        if (!response.ok) return fallbackManual;
+        if (!response.ok) return manualItems;
         const payload = await response.json();
         const reviews = Array.isArray(payload?.reviews) ? payload.reviews : [];
 
@@ -442,7 +442,7 @@ export async function fetchGooglePlaceReviews(config = {}) {
             }))
             .filter((item) => item.text);
     } catch {
-        return fallbackManual;
+        return manualItems;
     }
 }
 

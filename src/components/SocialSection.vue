@@ -29,7 +29,7 @@
 
 <script setup>
 import { computed } from 'vue';
-import heroFallbackImage from '../assets/herocover.jpeg';
+import defaultHeroImage from '../assets/herocover.jpeg';
 import { toWebImage } from '../utils/sanity';
 
 const props = defineProps({
@@ -39,24 +39,18 @@ const props = defineProps({
     }
 });
 
-const fallback = {
-    eyebrow: 'Follow Us',
-    heading: 'Follow our journey',
-    description: 'Behind the scenes, new stories, and handcrafted moments from Sri Lanka.',
-    backgroundImage: heroFallbackImage,
-    links: [
-        { label: 'Instagram', href: 'https://instagram.com' },
-        { label: 'TikTok', href: 'https://tiktok.com' },
-        { label: 'Pinterest', href: 'https://pinterest.com' }
-    ]
-};
+const defaultLinks = [
+    { label: 'Instagram', href: 'https://instagram.com' },
+    { label: 'TikTok', href: 'https://tiktok.com' },
+    { label: 'Pinterest', href: 'https://pinterest.com' }
+];
 
 const mergedContent = computed(() => ({
-    ...fallback,
-    ...(props.content ?? {}),
-    links: Array.isArray(props.content?.links) && props.content.links.length
-        ? props.content.links
-        : fallback.links
+    eyebrow: props.content?.eyebrow ?? 'Follow Us',
+    heading: props.content?.heading ?? 'Follow our journey',
+    description: props.content?.description ?? 'Behind the scenes, new stories, and handcrafted moments from Sri Lanka.',
+    backgroundImage: props.content?.backgroundImage ?? defaultHeroImage,
+    links: Array.isArray(props.content?.links) && props.content.links.length ? props.content.links : defaultLinks
 }));
 
 const backgroundStyle = computed(() => ({

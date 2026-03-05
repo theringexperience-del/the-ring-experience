@@ -76,7 +76,6 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
-import footerContent from '../../content/footer.json'
 import { useRevealAnimations } from '../composables/useRevealAnimations'
 
 const LEGAL_NAME = 'The Ring Experience'
@@ -85,7 +84,6 @@ const { setupRevealAnimations } = useRevealAnimations(cookieRoot, { start: 'top 
 
 const footerData = {
   email: 'hello@the-ring-experience.com',
-  ...(footerContent ?? {}),
 }
 
 onMounted(() => {

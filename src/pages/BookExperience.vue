@@ -75,39 +75,31 @@ import Button from '../components/Button.vue';
 import SocialSection from '../components/SocialSection.vue';
 import { useRevealAnimations } from '../composables/useRevealAnimations';
 import { saveLeadToSheet } from '../utils/leads';
-import localBookingContent from '../../content/booking.json';
-import localFormContent from '../../content/contact-form.json';
-import localOffersContent from '../../content/offers.json';
-import localSocialContent from '../../content/social.json';
 import { fetchBookingPageContentFromSanity, fetchContactFormContentFromSanity, fetchOffersPageContentFromSanity, fetchSocialContentFromSanity } from '../utils/sanity';
 
 const route = useRoute();
 const bookRoot = ref(null);
 const { setupRevealAnimations } = useRevealAnimations(bookRoot, { selectors: ['[data-reveal]', '.book-card'], start: 'top 88%' });
 
-const calendlyFallback = {
-    enabled: true,
-    eyebrow: 'Direct booking',
-    heading: 'Choose your date instantly',
-    description: 'Select the time that fits your travel schedule.',
-    link: ''
-};
+const cmsBookingContent = ref({});
+const cmsFormContent = ref({});
+const cmsOffersContent = ref({});
+const cmsSocialContent = ref({});
 
-const formFallback = {
-    recipientEmail: 'hello@the-ring-experience.com',
-    sheetWebhookUrl: '',
-    subjectPrefix: 'Booking Request',
-    submitLabel: 'Send request',
-    newsletterConsentLabel: 'I consent to store my email and phone for newsletter and updates.'
-};
-
-const cmsBookingContent = ref(localBookingContent);
-const cmsFormContent = ref(localFormContent);
-const cmsOffersContent = ref(localOffersContent);
-const cmsSocialContent = ref(localSocialContent);
-
-const calendlyContent = computed(() => ({ ...calendlyFallback, ...(cmsBookingContent.value?.calendly ?? {}) }));
-const mergedFormContent = computed(() => ({ ...formFallback, ...(cmsFormContent.value ?? {}) }));
+const calendlyContent = computed(() => ({
+    enabled: cmsBookingContent.value?.calendly?.enabled ?? true,
+    eyebrow: cmsBookingContent.value?.calendly?.eyebrow ?? '',
+    heading: cmsBookingContent.value?.calendly?.heading ?? '',
+    description: cmsBookingContent.value?.calendly?.description ?? '',
+    link: cmsBookingContent.value?.calendly?.link ?? ''
+}));
+const mergedFormContent = computed(() => ({
+    recipientEmail: cmsFormContent.value?.recipientEmail ?? 'hello@the-ring-experience.com',
+    sheetWebhookUrl: cmsFormContent.value?.sheetWebhookUrl ?? '',
+    subjectPrefix: cmsFormContent.value?.subjectPrefix ?? 'Booking Request',
+    submitLabel: cmsFormContent.value?.submitLabel ?? 'Send request',
+    newsletterConsentLabel: cmsFormContent.value?.newsletterConsentLabel ?? 'I consent to store my email and phone for newsletter and updates.'
+}));
 const packageOptions = computed(() => (
     (Array.isArray(cmsOffersContent.value?.packages) ? cmsOffersContent.value.packages : [])
         .filter((pkg) => pkg?.isVisible !== false)
@@ -167,10 +159,10 @@ onMounted(async () => {
         fetchSocialContentFromSanity()
     ]);
 
-    if (sanityBooking) cmsBookingContent.value = sanityBooking;
-    if (sanityForm) cmsFormContent.value = sanityForm;
-    if (sanityOffers) cmsOffersContent.value = sanityOffers;
-    if (sanitySocial) cmsSocialContent.value = sanitySocial;
+    cmsBookingContent.value = sanityBooking ?? {};
+    cmsFormContent.value = sanityForm ?? {};
+    cmsOffersContent.value = sanityOffers ?? {};
+    cmsSocialContent.value = sanitySocial ?? {};
 
     const packageFromQuery = typeof route.query.package === 'string' ? route.query.package : '';
     if (packageFromQuery && packageOptions.value.includes(packageFromQuery)) {

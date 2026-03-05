@@ -25,7 +25,7 @@
 
 <script setup>
 import { computed } from 'vue';
-import heroFallbackImage from '../assets/herocover.jpeg';
+import defaultHeroImage from '../assets/herocover.jpeg';
 import { toWebImage } from '../utils/sanity';
 
 const props = defineProps({
@@ -35,16 +35,11 @@ const props = defineProps({
     }
 });
 
-const fallback = {
-    eyebrow: 'Our Story',
-    title: 'Crafted memories, shaped by your hands.',
-    description: 'A quieter and more meaningful way to carry a piece of your travel story.',
-    backgroundImage: heroFallbackImage
-};
-
 const mergedContent = computed(() => ({
-    ...fallback,
-    ...(props.content ?? {})
+    eyebrow: props.content?.eyebrow ?? 'Our Story',
+    title: props.content?.title ?? 'Crafted memories, shaped by your hands.',
+    description: props.content?.description ?? 'A quieter and more meaningful way to carry a piece of your travel story.',
+    backgroundImage: props.content?.backgroundImage ?? defaultHeroImage
 }));
 
 const heroBackgroundStyle = computed(() => ({

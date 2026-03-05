@@ -35,7 +35,7 @@
 <script setup>
 import { computed } from 'vue';
 import Button from './Button.vue';
-import heroFallbackImage from '../assets/herocover.jpeg';
+import defaultHeroImage from '../assets/herocover.jpeg';
 import { toWebImage } from '../utils/sanity';
 
 const props = defineProps({
@@ -45,19 +45,14 @@ const props = defineProps({
     }
 });
 
-const fallback = {
-    enabled: true,
-    eyebrow: 'Ready to begin',
-    heading: 'Book your ring experience',
-    description: 'Choose your date and create something that stays with you.',
-    buttonLabel: 'Book now',
-    buttonLink: '/bookexperience',
-    backgroundImage: heroFallbackImage
-};
-
 const mergedContent = computed(() => ({
-    ...fallback,
-    ...(props.content ?? {})
+    enabled: props.content?.enabled ?? true,
+    eyebrow: props.content?.eyebrow ?? 'Ready to begin',
+    heading: props.content?.heading ?? 'Book your ring experience',
+    description: props.content?.description ?? 'Choose your date and create something that stays with you.',
+    buttonLabel: props.content?.buttonLabel ?? 'Book now',
+    buttonLink: props.content?.buttonLink ?? '/bookexperience',
+    backgroundImage: props.content?.backgroundImage ?? defaultHeroImage
 }));
 
 const backgroundStyle = computed(() => ({
