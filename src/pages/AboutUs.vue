@@ -7,7 +7,7 @@
                 <figure class="overflow-hidden border bg-white/75 p-2 sm:p-3"
                     style="border-color: color-mix(in srgb, var(--color-darkbrown) 18%, transparent);">
                     <img :src="heroContent.backgroundImage" alt="The Ring Experience story"
-                        class="h-[28rem] w-full object-cover object-center sm:h-[36rem]">
+                        class="h-[24rem] w-full object-cover object-center sm:h-[34rem] lg:h-[40rem] xl:h-[44rem] 2xl:h-[48rem]">
                 </figure>
             </div>
         </section>
@@ -17,7 +17,7 @@
             <div class="mx-auto grid w-11/12 grid-cols-1 items-center gap-8 sm:w-10/12 lg:grid-cols-12 lg:gap-14">
                 <figure class="lg:col-span-7">
                     <img :src="approachContent.image || heroContent.backgroundImage" alt="Our vision"
-                        class="h-[24rem] w-full rounded-xs object-cover object-center sm:h-[30rem]">
+                        class="h-[22rem] w-full rounded-xs object-cover object-center sm:h-[30rem] lg:h-[36rem] xl:h-[40rem]">
                 </figure>
                 <div class="lg:col-span-5">
                     <p class="text-xs tracking-[0.2em] text-(--color-mutedbrown) uppercase">{{ approachContent.eyebrow }}</p>
@@ -37,7 +37,7 @@
             <div class="mx-auto grid w-11/12 grid-cols-1 items-center gap-8 sm:w-10/12 lg:grid-cols-12 lg:gap-14">
                 <div class="lg:order-2 lg:col-span-7">
                     <img :src="originContent.image || heroContent.backgroundImage" alt="How it started"
-                        class="h-[24rem] w-full rounded-xs object-cover object-center sm:h-[30rem]">
+                        class="h-[22rem] w-full rounded-xs object-cover object-center sm:h-[30rem] lg:h-[36rem] xl:h-[40rem]">
                 </div>
                 <div class="lg:order-1 lg:col-span-5">
                     <p class="text-xs tracking-[0.2em] uppercase" style="opacity: 0.74;">{{ originContent.eyebrow }}</p>
