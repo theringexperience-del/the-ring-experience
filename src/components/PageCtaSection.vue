@@ -21,8 +21,8 @@
                     </p>
                 </div>
                 <div class="flex items-end lg:col-span-4 lg:justify-end">
-                    <router-link :to="mergedContent.buttonLink" class="w-full sm:w-auto">
-                        <Button class="w-full sm:w-auto" variant="outline">
+                    <router-link :to="mergedContent.buttonLink" class="w-auto">
+                        <Button class="w-auto min-w-[11rem]" variant="outline">
                             {{ mergedContent.buttonLabel }}
                         </Button>
                     </router-link>

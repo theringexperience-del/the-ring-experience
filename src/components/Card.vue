@@ -4,7 +4,7 @@
             class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 ease-out md:group-hover:scale-105">
 
         <div
-            class="absolute inset-x-0 bottom-0 h-[48%] bg-[#C8B49C]/95 opacity-100 sm:h-[52%] md:inset-0 md:h-full md:opacity-0 md:transition-opacity md:duration-500 md:ease-out md:group-hover:opacity-100">
+            class="absolute inset-x-0 bottom-0 h-[48%] bg-[#D8C9B6]/58 backdrop-blur-[2px] opacity-100 sm:h-[52%] md:inset-0 md:h-full md:opacity-0 md:transition-opacity md:duration-500 md:ease-out md:group-hover:opacity-100">
         </div>
 
         <div

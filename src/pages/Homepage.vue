@@ -20,12 +20,12 @@
                         {{ heroContent.subheadline }}
                     </p>
                     <div class="mt-6 h-px w-20 bg-(--color-noisette) sm:w-24"></div>
-                    <div class="mt-7 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+                    <div class="mt-7 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:items-start">
                         <router-link :to="heroContent.buttonLink">
-                            <Button class="w-full sm:w-auto">{{ heroContent.buttonLabel }}</Button>
+                            <Button class="w-auto min-w-[11rem]">{{ heroContent.buttonLabel }}</Button>
                         </router-link>
                         <router-link :to="heroContent.secondaryButtonLink">
-                            <Button class="w-full sm:w-auto" variant="outline">{{ heroContent.secondaryButtonLabel }}</Button>
+                            <Button class="w-auto min-w-[11rem]" variant="outline">{{ heroContent.secondaryButtonLabel }}</Button>
                         </router-link>
                     </div>
                 </div>

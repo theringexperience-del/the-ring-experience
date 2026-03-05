@@ -52,15 +52,18 @@
 
                 <div class="md:col-span-2 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <p class="text-xs text-(--color-mutedbrown)">{{ mergedContent.privacyNote }}</p>
-                    <Button type="submit">{{ mergedContent.submitLabel }}</Button>
+                    <Button type="submit" :disabled="isSubmitting">{{ isSubmitting ? 'Sending...' : mergedContent.submitLabel }}</Button>
                 </div>
+                <p v-if="submitMessage" class="md:col-span-2 text-sm" :class="submitState === 'error' ? 'text-red-700' : 'text-(--color-brown)'">
+                    {{ submitMessage }}
+                </p>
             </form>
         </div>
     </section>
 </template>
 
 <script setup>
-import { computed, reactive } from 'vue';
+import { computed, reactive, ref } from 'vue';
 import Button from './Button.vue';
 import { saveLeadToSheet } from '../utils/leads';
 
@@ -92,33 +95,53 @@ const form = reactive({
     message: '',
     newsletterConsent: false
 });
+const isSubmitting = ref(false);
+const submitState = ref('idle');
+const submitMessage = ref('');
 
 const submitByEmail = async () => {
-    const subject = `${mergedContent.value.subjectPrefix} - ${form.name}`.trim();
-    const bodyLines = [
-        `Name: ${form.name}`,
-        `Email: ${form.email}`,
-        `Phone: ${form.phone || '-'}`,
-        `Preferred date: ${form.preferredDate || '-'}`,
-        `Newsletter consent: ${form.newsletterConsent ? 'Yes' : 'No'}`,
-        '',
-        'Message:',
-        form.message || '-'
-    ];
+    if (isSubmitting.value) return;
+    isSubmitting.value = true;
+    submitState.value = 'idle';
+    submitMessage.value = '';
 
+    const webhookUrl = (mergedContent.value.sheetWebhookUrl || '').trim();
+    if (!webhookUrl) {
+        submitState.value = 'error';
+        submitMessage.value = 'Form endpoint is not configured yet.';
+        isSubmitting.value = false;
+        return;
+    }
+
+    let saved = true;
     if (form.newsletterConsent) {
-        await saveLeadToSheet(mergedContent.value.sheetWebhookUrl, {
+        saved = await saveLeadToSheet(webhookUrl, {
             source: 'inquiry-form-section',
             name: form.name,
             email: form.email,
             phone: form.phone || '',
             preferredDate: form.preferredDate || '',
             message: form.message || '',
-            newsletterConsent: true
+            newsletterConsent: true,
+            recipientEmail: mergedContent.value.recipientEmail
         });
     }
 
-    const mailtoUrl = `mailto:${encodeURIComponent(mergedContent.value.recipientEmail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
-    window.location.href = mailtoUrl;
+    if (!saved) {
+        submitState.value = 'error';
+        submitMessage.value = 'Request not sent. Please try again.';
+        isSubmitting.value = false;
+        return;
+    }
+
+    submitState.value = 'success';
+    submitMessage.value = 'Request sent successfully.';
+    form.name = '';
+    form.email = '';
+    form.phone = '';
+    form.preferredDate = '';
+    form.message = '';
+    form.newsletterConsent = false;
+    isSubmitting.value = false;
 };
 </script>

@@ -88,8 +88,11 @@
                     </label>
                     <div class="md:col-span-2 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
                         <p class="text-xs text-(--color-mutedbrown)">{{ mergedFormContent.privacyNote }}</p>
-                        <Button type="submit">{{ mergedFormContent.submitLabel }}</Button>
+                        <Button type="submit" :disabled="isSubmitting">{{ isSubmitting ? 'Sending...' : mergedFormContent.submitLabel }}</Button>
                     </div>
+                    <p v-if="submitMessage" class="md:col-span-2 text-sm" :class="submitState === 'error' ? 'text-red-700' : 'text-(--color-brown)'">
+                        {{ submitMessage }}
+                    </p>
                 </form>
             </div>
         </section>
@@ -156,6 +159,9 @@ const form = reactive({
     message: '',
     newsletterConsent: false
 });
+const isSubmitting = ref(false);
+const submitState = ref('idle');
+const submitMessage = ref('');
 
 const scrollToOffersForm = ({ behavior = 'smooth' } = {}) => {
     const formSection = document.getElementById('offers-form');
@@ -182,32 +188,48 @@ const focusFormForPackage = async (packageName) => {
 };
 
 const submitByEmail = async () => {
-    const subject = `${mergedFormContent.value.subjectPrefix} - ${form.packageName}`.trim();
-    const bodyLines = [
-        `Package: ${form.packageName}`,
-        `Name: ${form.name}`,
-        `Email: ${form.email}`,
-        `Phone: ${form.phone || '-'}`,
-        `Newsletter consent: ${form.newsletterConsent ? 'Yes' : 'No'}`,
-        '',
-        'Message:',
-        form.message || '-'
-    ];
+    if (isSubmitting.value) return;
+    isSubmitting.value = true;
+    submitState.value = 'idle';
+    submitMessage.value = '';
 
+    const webhookUrl = (mergedFormContent.value.sheetWebhookUrl || '').trim();
+    if (!webhookUrl) {
+        submitState.value = 'error';
+        submitMessage.value = 'Form endpoint is not configured yet.';
+        isSubmitting.value = false;
+        return;
+    }
+
+    let saved = true;
     if (form.newsletterConsent) {
-        await saveLeadToSheet(mergedFormContent.value.sheetWebhookUrl, {
+        saved = await saveLeadToSheet(webhookUrl, {
             source: 'our-offers',
             packageName: form.packageName,
             name: form.name,
             email: form.email,
             phone: form.phone || '',
             message: form.message || '',
-            newsletterConsent: true
+            newsletterConsent: true,
+            recipientEmail: mergedFormContent.value.recipientEmail
         });
     }
 
-    const mailtoUrl = `mailto:${encodeURIComponent(mergedFormContent.value.recipientEmail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
-    window.location.href = mailtoUrl;
+    if (!saved) {
+        submitState.value = 'error';
+        submitMessage.value = 'Request not sent. Please try again.';
+        isSubmitting.value = false;
+        return;
+    }
+
+    submitState.value = 'success';
+    submitMessage.value = 'Request sent successfully.';
+    form.name = '';
+    form.email = '';
+    form.phone = '';
+    form.message = '';
+    form.newsletterConsent = false;
+    isSubmitting.value = false;
 };
 
 onMounted(async () => {
