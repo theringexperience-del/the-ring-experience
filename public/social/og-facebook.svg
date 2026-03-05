@@ -1,7 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="The Ring Experience Facebook preview">
-  <rect width="1200" height="630" fill="#0f172a" />
-  <circle cx="220" cy="170" r="80" fill="#f59e0b" />
-  <text x="120" y="320" fill="#f8fafc" font-size="64" font-family="Arial, sans-serif" font-weight="700">The Ring Experience</text>
-  <text x="120" y="390" fill="#cbd5e1" font-size="34" font-family="Arial, sans-serif">Create a sterling silver ring in Sri Lanka</text>
-  <text x="120" y="450" fill="#94a3b8" font-size="28" font-family="Arial, sans-serif">A meaningful memory beyond the usual souvenir</text>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff5e8"/>
+      <stop offset="100%" stop-color="#E6DDD1"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="54" y="54" width="1092" height="522" rx="14" fill="none" stroke="#B08942" stroke-width="2"/>
+  <image href="/the-ring-experience-logo.svg" x="88" y="90" width="120" height="120" preserveAspectRatio="xMidYMid meet"/>
+  <text x="230" y="150" fill="#4B2F1D" font-size="70" font-family="'Playfair Display', serif" font-weight="700">The Ring Experience</text>
+  <text x="230" y="205" fill="#6F5644" font-size="28" font-family="'Playfair Display', serif">Sri Lanka</text>
+  <line x1="88" y1="250" x2="1112" y2="250" stroke="#CFC7BB" stroke-width="2"/>
+  <text x="88" y="340" fill="#2A1E17" font-size="54" font-family="'Playfair Display', serif" font-weight="600">Craft your ring by hand</text>
+  <text x="88" y="396" fill="#6F5644" font-size="32" font-family="'Playfair Display', serif">Sterling silver, natural gemstones, unforgettable memories.</text>
+  <rect x="88" y="450" width="350" height="56" rx="28" fill="#B08942"/>
+  <text x="263" y="486" text-anchor="middle" fill="#fff5e8" font-size="24" font-family="'Playfair Display', serif" letter-spacing="1">BOOK EXPERIENCE</text>
 </svg>

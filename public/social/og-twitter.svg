@@ -1,7 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="The Ring Experience Twitter preview">
-  <rect width="1200" height="675" fill="#111827" />
-  <circle cx="170" cy="150" r="70" fill="#f59e0b" />
-  <text x="100" y="310" fill="#f8fafc" font-size="62" font-family="Arial, sans-serif" font-weight="700">The Ring Experience</text>
-  <text x="100" y="375" fill="#e5e7eb" font-size="32" font-family="Arial, sans-serif">Sri Lanka • Sterling Silver • Natural Gemstones</text>
-  <text x="100" y="430" fill="#9ca3af" font-size="28" font-family="Arial, sans-serif">Book your handcrafted ring-making experience</text>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff5e8"/>
+      <stop offset="100%" stop-color="#E6DDD1"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect x="56" y="56" width="1088" height="563" rx="14" fill="none" stroke="#B08942" stroke-width="2"/>
+  <image href="/the-ring-experience-logo.svg" x="90" y="95" width="120" height="120" preserveAspectRatio="xMidYMid meet"/>
+  <text x="230" y="155" fill="#4B2F1D" font-size="70" font-family="'Playfair Display', serif" font-weight="700">The Ring Experience</text>
+  <text x="230" y="210" fill="#6F5644" font-size="28" font-family="'Playfair Display', serif">Sri Lanka</text>
+  <line x1="90" y1="258" x2="1110" y2="258" stroke="#CFC7BB" stroke-width="2"/>
+  <text x="90" y="350" fill="#2A1E17" font-size="50" font-family="'Playfair Display', serif" font-weight="600">Handcrafted memories in sterling silver</text>
+  <text x="90" y="404" fill="#6F5644" font-size="32" font-family="'Playfair Display', serif">Create a personal symbol during your Sri Lanka journey.</text>
+  <rect x="90" y="464" width="364" height="58" rx="29" fill="#B08942"/>
+  <text x="272" y="502" text-anchor="middle" fill="#fff5e8" font-size="24" font-family="'Playfair Display', serif" letter-spacing="1">BOOK NOW</text>
 </svg>
