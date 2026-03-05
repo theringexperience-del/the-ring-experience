@@ -129,19 +129,6 @@ const ABOUT_US_QUERY = `
     eyebrow,
     heading,
     description
-  },
-  packagesSection{
-    eyebrow,
-    heading,
-    description,
-    ctaLabel
-  },
-  packages[]{
-    tag,
-    name,
-    duration,
-    description,
-    price
   }
 }
 `;

@@ -47,35 +47,6 @@ export default {
                 { name: 'heading', title: 'Heading', type: 'string' },
                 { name: 'description', title: 'Description', type: 'text', rows: 3 }
             ]
-        },
-        {
-            name: 'packagesSection',
-            title: 'Packages Section',
-            type: 'object',
-            fields: [
-                { name: 'eyebrow', title: 'Subtitle', type: 'string' },
-                { name: 'heading', title: 'Heading', type: 'string' },
-                { name: 'description', title: 'Description', type: 'text', rows: 3 },
-                { name: 'ctaLabel', title: 'CTA Label', type: 'string', initialValue: 'Book this package' }
-            ]
-        },
-        {
-            name: 'packages',
-            title: 'Packages',
-            type: 'array',
-            of: [{
-                type: 'object',
-                fields: [
-                    { name: 'tag', title: 'Tag', type: 'string' },
-                    { name: 'name', title: 'Name', type: 'string' },
-                    { name: 'duration', title: 'Duration', type: 'string' },
-                    { name: 'description', title: 'Description', type: 'text', rows: 3 },
-                    { name: 'price', title: 'Price (Optional)', type: 'string' }
-                ]
-            }],
-            options: {
-                disableActions: ['duplicate', 'copy']
-            }
         }
     ],
     preview: {
