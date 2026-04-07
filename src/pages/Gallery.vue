@@ -17,6 +17,7 @@
                             class="gallery-card reveal-card overflow-hidden border bg-white/74"
                             style="border-color: color-mix(in srgb, var(--color-darkbrown) 14%, transparent);">
                             <img :src="toWebImage(photo.image, { width: 1100, quality: 78 })" :alt="photo.caption"
+                                width="1100" height="1375" loading="lazy" decoding="async"
                                 class="gallery-image aspect-[4/5] w-full object-cover">
                             <div class="p-5">
                                 <p class="text-sm tracking-[0.1em] text-(--color-mutedbrown) uppercase">{{ photo.dateLabel }}</p>

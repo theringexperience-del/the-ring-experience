@@ -1,13 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import Homepage from './pages/Homepage.vue'
-import AboutUs from './pages/AboutUs.vue'
-import OurOffers from './pages/OurOffers.vue'
-import Gemstones from './pages/Gemstones.vue'
-import Gallery from './pages/Gallery.vue'
-import BookExperience from './pages/BookExperience.vue'
-import PrivacyPolicy from './pages/PrivacyPolicy.vue'
-import CookiePolicy from './pages/CookiePolicy.vue'
+const Homepage = () => import('./pages/Homepage.vue')
+const AboutUs = () => import('./pages/AboutUs.vue')
+const OurOffers = () => import('./pages/OurOffers.vue')
+const Gemstones = () => import('./pages/Gemstones.vue')
+const Gallery = () => import('./pages/Gallery.vue')
+const BookExperience = () => import('./pages/BookExperience.vue')
+const PrivacyPolicy = () => import('./pages/PrivacyPolicy.vue')
+const CookiePolicy = () => import('./pages/CookiePolicy.vue')
 
 const routes = [
   {

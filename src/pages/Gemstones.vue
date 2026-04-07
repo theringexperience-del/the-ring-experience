@@ -17,6 +17,7 @@
                         class="gem-card w-full overflow-hidden border bg-(--color-lightbeige)"
                         style="border-color: color-mix(in srgb, var(--color-darkbrown) 16%, transparent);">
                         <img :src="toWebImage(stone.image, { width: 900, quality: 78 })" :alt="stone.name"
+                            width="900" height="900" loading="lazy" decoding="async"
                             class="gem-card-image h-64 w-full object-cover object-center">
                         <div class="p-6 sm:p-7">
                             <p class="text-xs tracking-[0.14em] text-(--color-mutedbrown) uppercase">{{ stone.origin }}</p>

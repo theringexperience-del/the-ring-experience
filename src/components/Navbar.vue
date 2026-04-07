@@ -10,7 +10,7 @@
       <RouterLink
         to="/"
         class="flex items-center justify-center font-display text-xl leading-none font-bold tracking-[0.01em] sm:text-[1.6rem]"
-      > <img id="logo" :src="logoSrc" alt="" class="w-14">
+      > <img id="logo" :src="logoSrc" alt="" width="56" height="56" decoding="async" class="w-14">
         The Ring Experience
       </RouterLink>
 

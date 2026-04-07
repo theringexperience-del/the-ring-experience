@@ -6,7 +6,8 @@
             <div class="mx-auto w-11/12 sm:w-10/12">
                 <figure class="overflow-hidden border bg-white/75 p-2 sm:p-3"
                     style="border-color: color-mix(in srgb, var(--color-darkbrown) 18%, transparent);">
-                    <img :src="heroContent.backgroundImage" alt="The Ring Experience story"
+                    <img :src="heroImage" alt="The Ring Experience story" width="1600" height="1000" loading="eager"
+                        decoding="async"
                         class="h-[24rem] w-full object-cover object-center sm:h-[34rem] lg:h-[40rem] xl:h-[44rem] 2xl:h-[48rem]">
                 </figure>
             </div>
@@ -16,7 +17,7 @@
         <section data-reveal class="w-full py-16 sm:py-20 lg:py-24">
             <div class="mx-auto grid w-11/12 grid-cols-1 items-center gap-8 sm:w-10/12 lg:grid-cols-12 lg:gap-14">
                 <figure class="lg:col-span-7">
-                    <img :src="approachContent.image || heroContent.backgroundImage" alt="Our vision"
+                    <img :src="approachImage" alt="Our vision" width="1200" height="1600" loading="lazy" decoding="async"
                         class="h-[22rem] w-full rounded-xs object-cover object-center sm:h-[30rem] lg:h-[36rem] xl:h-[40rem]">
                 </figure>
                 <div class="lg:col-span-5">
@@ -36,7 +37,7 @@
         <section data-reveal class="w-full bg-black py-16 text-(--color-lightbeige) sm:py-20 lg:py-24">
             <div class="mx-auto grid w-11/12 grid-cols-1 items-center gap-8 sm:w-10/12 lg:grid-cols-12 lg:gap-14">
                 <div class="lg:order-2 lg:col-span-7">
-                    <img :src="originContent.image || heroContent.backgroundImage" alt="How it started"
+                    <img :src="originImage" alt="How it started" width="1200" height="1600" loading="lazy" decoding="async"
                         class="h-[22rem] w-full rounded-xs object-cover object-center sm:h-[30rem] lg:h-[36rem] xl:h-[40rem]">
                 </div>
                 <div class="lg:order-1 lg:col-span-5">
@@ -72,7 +73,7 @@ import { computed, nextTick, onMounted, ref } from 'vue';
 import PageTitleSection from '../components/PageTitleSection.vue';
 import SocialSection from '../components/SocialSection.vue';
 import { useRevealAnimations } from '../composables/useRevealAnimations';
-import { fetchAboutUsContentFromSanity, fetchSocialContentFromSanity } from '../utils/sanity';
+import { fetchAboutUsContentFromSanity, fetchSocialContentFromSanity, optimizeImageSource } from '../utils/sanity';
 
 const cmsAboutContent = ref({});
 const cmsSocialContent = ref({});
@@ -104,6 +105,9 @@ const reasonContent = computed(() => ({
     heading: cmsAboutContent.value?.reasonToExist?.heading ?? '',
     description: cmsAboutContent.value?.reasonToExist?.description ?? ''
 }));
+const heroImage = computed(() => optimizeImageSource(heroContent.value.backgroundImage, { width: 1600, quality: 76 }));
+const approachImage = computed(() => optimizeImageSource(approachContent.value.image || heroContent.value.backgroundImage, { width: 1200, quality: 76 }));
+const originImage = computed(() => optimizeImageSource(originContent.value.image || heroContent.value.backgroundImage, { width: 1200, quality: 76 }));
 
 onMounted(async () => {
     const [sanityAbout, sanitySocial] = await Promise.all([

@@ -3,8 +3,9 @@
         <section id="hero"
             class="relative flex min-h-svh w-full items-end overflow-hidden bg-black pb-40 pt-28 sm:pt-32 lg:h-screen lg:min-h-0">
             <video v-if="heroMediaType === 'video' && heroContent.video" :src="heroContent.video" autoplay muted loop
-                playsinline class="absolute inset-0 h-full w-full object-cover object-center opacity-72"></video>
-            <img v-else :src="heroContent.image" alt="Hero Cover Image"
+                playsinline preload="metadata" class="absolute inset-0 h-full w-full object-cover object-center opacity-72"></video>
+            <img v-else :src="heroImage.src" :srcset="heroImage.srcSet || undefined"
+                sizes="100vw" alt="Hero Cover Image" width="1920" height="1080" fetchpriority="high" decoding="async"
                 class="absolute inset-0 h-full w-full object-cover object-center opacity-72">
             <div class="hero-orb hero-orb-left"></div>
             <div class="hero-orb hero-orb-right"></div>
@@ -32,7 +33,7 @@
             </div>
         </section>
 
-        <section v-if="reviewsContent.enabled !== false" id="reviews" data-reveal
+        <section v-if="reviewsContent.enabled !== false" id="reviews" ref="reviewsSection" data-reveal
             class="w-full py-20 sm:py-24 lg:py-28">
             <div class="mx-auto w-11/12 sm:w-10/12">
                 <div class="mx-auto max-w-3xl text-center">
@@ -54,7 +55,7 @@
 
                 <div v-if="reviewsContent.embedUrl" class="mt-10 overflow-hidden border bg-white/70 p-3"
                     style="border-color: color-mix(in srgb, var(--color-darkbrown) 20%, transparent);">
-                    <iframe :src="reviewsContent.embedUrl" title="Reviews embed"
+                    <iframe :src="shouldLoadReviewsEmbed ? reviewsContent.embedUrl : undefined" loading="lazy" title="Reviews embed"
                         class="h-[520px] w-full border-0"></iframe>
                 </div>
                 <div v-else-if="reviewsItems.length" class="mt-8">
@@ -94,7 +95,9 @@
         <section id="aMoment" data-reveal class="authentic-vintage w-full py-20 sm:py-24 md:py-28 lg:py-36">
             <div class="mx-auto grid w-11/12 grid-cols-1 items-center gap-10 sm:w-10/12 sm:gap-12 lg:grid-cols-12 lg:gap-16">
                 <figure class="flex items-center justify-center lg:col-span-6">
-                    <img :src="aMomentContent.image" alt="A Moment Image"
+                    <img :src="aMomentImage.src" :srcset="aMomentImage.srcSet || undefined"
+                        sizes="(min-width: 1024px) 42vw, 92vw" alt="A Moment Image" width="1200" height="1600"
+                        loading="lazy" decoding="async"
                         class="h-[25rem] w-full rounded-xs object-cover object-center sm:h-[32rem] lg:h-[42rem]">
                 </figure>
                 <div class="flex flex-col justify-center lg:col-span-6 lg:pl-4 xl:pl-8">
@@ -200,15 +203,18 @@
 
 <script setup>
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Button from '../components/Button.vue';
 import Card from '../components/Card.vue';
 import SocialSection from '../components/SocialSection.vue';
 import defaultHeroImage from '../assets/herocover.jpeg';
-import { fetchGooglePlaceReviews, fetchHomepageContentFromSanity, fetchOffersPageContentFromSanity, fetchSocialContentFromSanity } from '../utils/sanity';
-
-gsap.registerPlugin(ScrollTrigger);
+import {
+    fetchGooglePlaceReviews,
+    fetchHomepageContentFromSanity,
+    fetchOffersPageContentFromSanity,
+    fetchSocialContentFromSanity,
+    optimizeImageSource,
+    toImageSrcSet
+} from '../utils/sanity';
 
 const cmsHomepageContent = ref({});
 const cmsOffersContent = ref({});
@@ -261,7 +267,15 @@ const valuesContent = computed(() => ({
     items: Array.isArray(cmsHomepageContent.value?.values?.items) ? cmsHomepageContent.value.values.items : []
 }));
 const valuesItems = computed(() => (Array.isArray(valuesContent.value.items) ? valuesContent.value.items : []));
-const valuesBgStyle = computed(() => ({ backgroundImage: `url(${valuesContent.value.backgroundImage})` }));
+const valuesBgStyle = computed(() => ({ backgroundImage: `url(${optimizeImageSource(valuesContent.value.backgroundImage, { width: 1600, quality: 74 })})` }));
+const heroImage = computed(() => ({
+    src: optimizeImageSource(heroContent.value.image, { width: 1800, quality: 76 }),
+    srcSet: toImageSrcSet(heroContent.value.image, [640, 960, 1280, 1800], { quality: 76 })
+}));
+const aMomentImage = computed(() => ({
+    src: optimizeImageSource(aMomentContent.value.image, { width: 1200, quality: 76 }),
+    srcSet: toImageSrcSet(aMomentContent.value.image, [480, 768, 1024, 1200], { quality: 76 })
+}));
 const reviewsContent = computed(() => ({
     enabled: cmsHomepageContent.value?.reviews?.enabled ?? true,
     eyebrow: cmsHomepageContent.value?.reviews?.eyebrow ?? '',
@@ -288,10 +302,29 @@ const visibleReviews = computed(() => {
 
 const homepageRoot = ref(null);
 const experienceGrid = ref(null);
+const reviewsSection = ref(null);
 let animationContext = null;
 let mediaMatcher = null;
 let reviewSliderInterval = null;
 let reviewsRequestId = 0;
+let reviewsObserver = null;
+let animationFrameId = null;
+let idleCallbackId = null;
+let isDisposed = false;
+let gsapLoader = null;
+const shouldLoadReviewsEmbed = ref(false);
+
+const loadGsap = async () => {
+    if (!gsapLoader) {
+        gsapLoader = Promise.all([import('gsap'), import('gsap/ScrollTrigger')]).then(([gsapModule, scrollTriggerModule]) => {
+            const { gsap } = gsapModule;
+            gsap.registerPlugin(scrollTriggerModule.ScrollTrigger);
+            return gsap;
+        });
+    }
+
+    return gsapLoader;
+};
 
 const nextReviewSlide = () => {
     if (!reviewsItems.value.length) return;
@@ -337,8 +370,26 @@ watch(
     { immediate: true }
 );
 
-const setupHomepageAnimations = () => {
+const observeReviewsEmbed = () => {
+    reviewsObserver?.disconnect();
+
+    if (!reviewsSection.value || !reviewsContent.value.embedUrl || shouldLoadReviewsEmbed.value) return;
+
+    reviewsObserver = new IntersectionObserver((entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        shouldLoadReviewsEmbed.value = true;
+        reviewsObserver?.disconnect();
+        reviewsObserver = null;
+    }, { rootMargin: '280px 0px' });
+
+    reviewsObserver.observe(reviewsSection.value);
+};
+
+const setupHomepageAnimations = async () => {
     if (!homepageRoot.value) return;
+    const gsap = await loadGsap();
+    if (isDisposed || !homepageRoot.value) return;
+
     animationContext = gsap.context(() => {
         mediaMatcher = gsap.matchMedia();
         mediaMatcher.add('(prefers-reduced-motion: reduce)', () => {
@@ -381,6 +432,21 @@ const setupHomepageAnimations = () => {
     }, homepageRoot.value);
 };
 
+const scheduleHomepageAnimations = () => {
+    const runAnimations = () => {
+        animationFrameId = window.requestAnimationFrame(() => {
+            setupHomepageAnimations();
+        });
+    };
+
+    if ('requestIdleCallback' in window) {
+        idleCallbackId = window.requestIdleCallback(runAnimations, { timeout: 400 });
+        return;
+    }
+
+    idleCallbackId = window.setTimeout(runAnimations, 1);
+};
+
 onMounted(async () => {
     const [sanityHomepage, sanityOffers, sanitySocial] = await Promise.all([
         fetchHomepageContentFromSanity(),
@@ -391,13 +457,22 @@ onMounted(async () => {
     cmsOffersContent.value = sanityOffers ?? {};
     cmsSocialContent.value = sanitySocial ?? {};
     await nextTick();
-    setupHomepageAnimations();
+    observeReviewsEmbed();
+    scheduleHomepageAnimations();
 });
 
 onBeforeUnmount(() => {
+    isDisposed = true;
     clearReviewInterval();
+    reviewsObserver?.disconnect();
     mediaMatcher?.revert();
     animationContext?.revert();
+    if (animationFrameId) window.cancelAnimationFrame(animationFrameId);
+    if (idleCallbackId && 'cancelIdleCallback' in window) {
+        window.cancelIdleCallback(idleCallbackId);
+    } else if (idleCallbackId) {
+        window.clearTimeout(idleCallbackId);
+    }
 });
 </script>
 

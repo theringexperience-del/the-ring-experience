@@ -1,8 +1,18 @@
 import { onBeforeUnmount } from 'vue';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
+let gsapLoader = null;
+
+async function loadGsap() {
+    if (!gsapLoader) {
+        gsapLoader = Promise.all([import('gsap'), import('gsap/ScrollTrigger')]).then(([gsapModule, scrollTriggerModule]) => {
+            const { gsap } = gsapModule;
+            gsap.registerPlugin(scrollTriggerModule.ScrollTrigger);
+            return gsap;
+        });
+    }
+
+    return gsapLoader;
+}
 
 export function useRevealAnimations(rootRef, options = {}) {
     const selectors = Array.isArray(options.selectors) && options.selectors.length
@@ -15,11 +25,15 @@ export function useRevealAnimations(rootRef, options = {}) {
 
     let animationContext = null;
     let mediaMatcher = null;
+    let isDisposed = false;
 
-    const setupRevealAnimations = () => {
+    const setupRevealAnimations = async () => {
         if (!rootRef.value) return;
         mediaMatcher?.revert();
         animationContext?.revert();
+
+        const gsap = await loadGsap();
+        if (isDisposed || !rootRef.value) return;
 
         animationContext = gsap.context(() => {
             mediaMatcher = gsap.matchMedia();
@@ -50,6 +64,7 @@ export function useRevealAnimations(rootRef, options = {}) {
     };
 
     onBeforeUnmount(() => {
+        isDisposed = true;
         mediaMatcher?.revert();
         animationContext?.revert();
     });

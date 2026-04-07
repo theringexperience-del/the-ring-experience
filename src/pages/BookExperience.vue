@@ -78,7 +78,7 @@
                                 {{ calendlyContent.description }}
                             </p>
                         </div>
-                        <iframe v-if="calendlyEmbedUrl" :src="calendlyEmbedUrl" title="Calendly booking"
+                        <iframe v-if="calendlyEmbedUrl" :src="calendlyEmbedUrl" loading="lazy" title="Calendly booking"
                             class="h-[700px] w-full border-0 sm:h-[740px] lg:h-[680px] xl:h-[720px]"></iframe>
                     </article>
                 </div>

@@ -22,6 +22,20 @@ export function toWebImage(url, options = {}) {
     return `${url}${separator}auto=format&fit=max&w=${width}&q=${quality}`;
 }
 
+export function optimizeImageSource(url, options = {}) {
+    if (!url || typeof url !== 'string') return '';
+    return /^https?:\/\//i.test(url) ? toWebImage(url, options) : url;
+}
+
+export function toImageSrcSet(url, widths = [], options = {}) {
+    if (!url || typeof url !== 'string' || !/^https?:\/\//i.test(url)) return '';
+
+    return widths
+        .filter((width) => Number.isFinite(width) && width > 0)
+        .map((width) => `${toWebImage(url, { ...options, width })} ${width}w`)
+        .join(', ');
+}
+
 const HOMEPAGE_QUERY = `
 *[_type == "homepage"][0]{
   hero{

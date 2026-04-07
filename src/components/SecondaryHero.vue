@@ -43,6 +43,6 @@ const mergedContent = computed(() => ({
 }));
 
 const heroBackgroundStyle = computed(() => ({
-    backgroundImage: `url(${toWebImage(mergedContent.value.backgroundImage, { width: 2200, quality: 80 })})`
+    backgroundImage: `url(${toWebImage(mergedContent.value.backgroundImage, { width: 1600, quality: 74 })})`
 }));
 </script>

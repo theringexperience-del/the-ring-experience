@@ -20,7 +20,7 @@
                 <a v-for="social in mergedContent.links" :key="social.label" :href="social.href" target="_blank"
                     rel="noopener noreferrer" class="group text-base tracking-[0.08em] uppercase sm:text-lg">
                     <span class="transition-all duration-300 ease-out group-hover:italic">{{ social.label }}</span>
-                    <span class="mt-1 block h-px w-0 bg-(--color-noisette) transition-all duration-300 group-hover:w-full"></span>
+                    <span class="mt-1 block h-px origin-left scale-x-0 bg-(--color-noisette) transition-transform duration-300 group-hover:scale-x-100"></span>
                 </a>
             </div>
         </div>
@@ -52,6 +52,6 @@ const hasContent = computed(() => (
 ));
 
 const backgroundStyle = computed(() => ({
-    backgroundImage: `url(${toWebImage(mergedContent.value.backgroundImage, { width: 2200, quality: 80 })})`
+    backgroundImage: `url(${toWebImage(mergedContent.value.backgroundImage, { width: 1600, quality: 74 })})`
 }));
 </script>

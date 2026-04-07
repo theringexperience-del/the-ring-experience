@@ -1,6 +1,7 @@
 <template>
     <article class="group experience-card relative h-96 w-full overflow-hidden sm:h-112 lg:h-136">
-        <img :src="image" :alt="title"
+        <img :src="optimizedImage" :srcset="imageSrcSet || undefined" :alt="title" loading="lazy" decoding="async"
+            width="900" height="1200" sizes="(min-width: 1280px) 30vw, (min-width: 768px) 44vw, 92vw"
             class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 ease-out md:group-hover:scale-105">
 
         <div
@@ -17,7 +18,10 @@
 </template>
 
 <script setup>
-defineProps({
+import { computed } from 'vue'
+import { optimizeImageSource, toImageSrcSet } from '../utils/sanity'
+
+const props = defineProps({
     title: {
         type: String,
         required: true
@@ -35,4 +39,7 @@ defineProps({
         default: '/the-ring-experience-logo.svg'
     }
 })
+
+const optimizedImage = computed(() => optimizeImageSource(props.image, { width: 900, quality: 76 }))
+const imageSrcSet = computed(() => toImageSrcSet(props.image, [480, 720, 900, 1200], { quality: 76 }))
 </script>

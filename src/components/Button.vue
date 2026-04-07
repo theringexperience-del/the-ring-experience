@@ -1,7 +1,7 @@
 <template>
     <button :type="props.type" :disabled="props.disabled"
         :class="[baseClasses, sizeClasses[props.size], variantClasses[props.variant]]">
-        <span class="transition-all duration-300 ease-out group-hover:italic group-hover:tracking-[0.12em]">
+        <span class="transition-opacity duration-300 ease-out group-hover:italic group-hover:tracking-[0.12em]">
             <slot />
         </span>
     </button>
