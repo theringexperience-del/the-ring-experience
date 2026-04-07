@@ -213,8 +213,7 @@ const BOOKING_PAGE_QUERY = `
   hero{
     eyebrow,
     title,
-    description,
-    "backgroundImage": backgroundImage.asset->url
+    description
   },
   calendly{
     enabled,

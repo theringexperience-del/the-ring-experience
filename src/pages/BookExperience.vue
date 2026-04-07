@@ -1,8 +1,22 @@
 <template>
     <main id="bookExperience" ref="bookRoot" class="w-full">
-        <SecondaryHero :content="heroContent" />
+        <section data-reveal class="w-full pt-28 pb-12 sm:pt-32 sm:pb-14 lg:pt-36 lg:pb-16">
+            <div class="mx-auto w-11/12 sm:w-10/12">
+                <div class="mx-auto max-w-4xl text-center">
+                    <p class="text-xs tracking-[0.2em] text-(--color-mutedbrown) uppercase">{{ heroContent.eyebrow }}</p>
+                    <h1 class="mt-3 font-display text-5xl leading-[1.02] text-(--color-brown) sm:text-6xl lg:text-7xl">
+                        {{ heroContent.title }}
+                    </h1>
+                    <p v-if="heroContent.description" class="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-(--color-brown) sm:text-lg"
+                        style="opacity: 0.85;">
+                        {{ heroContent.description }}
+                    </p>
+                    <div class="mx-auto mt-8 h-px w-24 bg-(--color-noisette)"></div>
+                </div>
+            </div>
+        </section>
 
-        <section data-reveal class="w-full pt-28 pb-20 sm:pt-32 sm:pb-24 lg:pt-36 lg:pb-28">
+        <section data-reveal class="w-full pb-20 sm:pb-24 lg:pb-28">
             <div class="mx-auto w-11/12 sm:w-10/12">
                 <div class="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-start">
                     <article class="book-card border bg-white/80 p-6 sm:p-8 lg:col-span-5"
@@ -79,7 +93,6 @@
 import { computed, nextTick, onMounted, reactive, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import Button from '../components/Button.vue';
-import SecondaryHero from '../components/SecondaryHero.vue';
 import SocialSection from '../components/SocialSection.vue';
 import { useRevealAnimations } from '../composables/useRevealAnimations';
 import { submitLead } from '../utils/leads';
@@ -97,8 +110,7 @@ const cmsSocialContent = ref({});
 const heroContent = computed(() => ({
     eyebrow: cmsBookingContent.value?.hero?.eyebrow ?? '',
     title: cmsBookingContent.value?.hero?.title ?? '',
-    description: cmsBookingContent.value?.hero?.description ?? '',
-    backgroundImage: cmsBookingContent.value?.hero?.backgroundImage ?? ''
+    description: cmsBookingContent.value?.hero?.description ?? ''
 }));
 const calendlyContent = computed(() => ({
     enabled: cmsBookingContent.value?.calendly?.enabled ?? true,

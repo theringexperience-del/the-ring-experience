@@ -5,13 +5,12 @@ export default {
     fields: [
         {
             name: 'hero',
-            title: 'Hero',
+            title: 'Intro Section',
             type: 'object',
             fields: [
                 { name: 'eyebrow', title: 'Subtitle', type: 'string' },
-                { name: 'title', title: 'Title', type: 'string' },
-                { name: 'description', title: 'Description', type: 'text', rows: 3 },
-                { name: 'backgroundImage', title: 'Background Image', type: 'image', options: { hotspot: true, accept: 'image/webp' } }
+                { name: 'title', title: 'Heading', type: 'string' },
+                { name: 'description', title: 'Description', type: 'text', rows: 3 }
             ]
         },
         {
