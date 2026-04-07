@@ -4,17 +4,6 @@ export default {
     type: 'document',
     fields: [
         {
-            name: 'hero',
-            title: 'Hero',
-            type: 'object',
-            fields: [
-                { name: 'eyebrow', title: 'Subtitle', type: 'string' },
-                { name: 'title', title: 'Title', type: 'string' },
-                { name: 'description', title: 'Description', type: 'text', rows: 3 },
-                { name: 'backgroundImage', title: 'Background Image', type: 'image', options: { hotspot: true, accept: 'image/webp' } }
-            ]
-        },
-        {
             name: 'intro',
             title: 'Intro',
             type: 'object',
@@ -59,7 +48,7 @@ export default {
     ],
     preview: {
         select: {
-            title: 'hero.title'
+            title: 'intro.heading'
         },
         prepare({ title }) {
             return { title: title || 'Client Gallery' };

@@ -1,8 +1,15 @@
 # The Ring Experience
 
-Vue + Vite website with Sanity CMS content and a separate Studio mounted at `/admin`.
+Website and CMS project created by `klyk.studio` for The Ring Experience.
 
-## Tech Stack
+The project includes:
+- a Vue 3 + Vite frontend
+- a Sanity Studio mounted at `/admin`
+- Cloudflare Pages Functions for lead handling
+- Google Sheets lead storage
+- Resend email notifications for form submissions
+
+## Stack
 
 - Vue 3
 - Vue Router
@@ -10,6 +17,15 @@ Vue + Vite website with Sanity CMS content and a separate Studio mounted at `/ad
 - Tailwind CSS
 - GSAP
 - Sanity CMS
+- Cloudflare Pages Functions
+
+## Main Features
+
+- Editable website content through Sanity
+- Embedded admin at `/admin`
+- Booking and inquiry forms connected to `/api/lead`
+- Lead backup in Google Sheets
+- Notification emails sent through Resend
 
 ## Local Development
 
@@ -19,60 +35,44 @@ Install dependencies:
 npm install
 ```
 
-Run frontend in development mode:
+Run the frontend:
 
 ```bash
 npm run dev
 ```
 
-Preview production build locally:
-
-```bash
-npx vite build
-npm run preview
-```
-
-Default build (frontend + embedded `/admin` studio bundle):
+Build frontend + embedded studio:
 
 ```bash
 npm run build
 ```
 
-Frontend-only build (without embedded `/admin`):
+Preview production build:
 
 ```bash
-npm run build:frontend
+npm run preview
 ```
 
-## Environment Variables
+## Environment
 
-Create `.env` from `.env.example` and set:
+Frontend `.env`:
 
 - `VITE_SANITY_PROJECT_ID`
 - `VITE_SANITY_DATASET`
-- `VITE_GOOGLE_PLACES_API_KEY` (only if using Google reviews)
+- `VITE_GOOGLE_PLACES_API_KEY` optional
 
-For Cloudflare form handling (`/api/lead`), set these in Cloudflare Pages variables:
+Cloudflare Pages variables:
 
-- `GOOGLE_SHEETS_CLIENT_EMAIL` (service account email)
-- `GOOGLE_SHEETS_PRIVATE_KEY` (service account private key, keep `\n` line breaks)
+- `GOOGLE_SHEETS_CLIENT_EMAIL`
+- `GOOGLE_SHEETS_PRIVATE_KEY`
 - `GOOGLE_SHEETS_SPREADSHEET_ID`
-- `GOOGLE_SHEETS_RANGE` (optional, default: `Sheet1!A:I`)
+- `GOOGLE_SHEETS_RANGE` optional
+- `RESEND_API_KEY`
+- `RESEND_FROM_EMAIL`
+- `RESEND_TO_EMAIL`
 
-## CMS Notes
+## Notes
 
-- Sanity Studio is configured with `basePath: /admin`.
-- Main schema files are under `sanity/schemaTypes`.
-- Studio config is in `studio/sanity.config.js`.
-
-## Forms
-
-- Forms submit to internal endpoint `/api/lead` (no `mailto` popup).
-- Backend appends lead rows to Google Sheets API.
-- Email/phone are written to sheet only when newsletter consent is true.
-
-## Build Notes
-
-- `npm run dev` serves source code with Vite dev server (HMR).
-- `npm run preview` serves the built `dist` output.
-- If they differ, rebuild first (`npx vite build`) and check environment/config differences.
+- Sanity Studio config lives in [studio/sanity.config.js](/c:/Users/Nicoletta/OneDrive/Desktop/Tutto/Progetti/the-ring-experience/studio/sanity.config.js)
+- Main schemas live in [sanity/schemaTypes](/c:/Users/Nicoletta/OneDrive/Desktop/Tutto/Progetti/the-ring-experience/sanity/schemaTypes)
+- Lead function lives in [functions/api/lead.js](/c:/Users/Nicoletta/OneDrive/Desktop/Tutto/Progetti/the-ring-experience/functions/api/lead.js)

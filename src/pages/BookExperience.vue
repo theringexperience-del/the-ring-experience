@@ -59,9 +59,6 @@
                         </div>
                         <iframe v-if="calendlyEmbedUrl" :src="calendlyEmbedUrl" title="Calendly booking"
                             class="h-[700px] w-full border-0 sm:h-[740px] lg:h-[680px] xl:h-[720px]"></iframe>
-                        <p v-else class="p-8 text-center text-(--color-brown)" style="opacity: 0.75;">
-                            Add a Calendly link from CMS to show the scheduler.
-                        </p>
                     </article>
                 </div>
             </div>
@@ -97,8 +94,6 @@ const calendlyContent = computed(() => ({
     link: cmsBookingContent.value?.calendly?.link ?? ''
 }));
 const mergedFormContent = computed(() => ({
-    recipientEmail: cmsFormContent.value?.recipientEmail ?? 'hello@the-ring-experience.com',
-    subjectPrefix: cmsFormContent.value?.subjectPrefix ?? 'Booking Request',
     submitLabel: cmsFormContent.value?.submitLabel ?? 'Send request',
     newsletterConsentLabel: cmsFormContent.value?.newsletterConsentLabel ?? 'I consent to store my email and phone for newsletter and updates.'
 }));
@@ -115,7 +110,7 @@ const calendlyEmbedUrl = computed(() => {
     if (!rawLink) return '';
     if (!/^https:\/\/calendly\.com\/.+/i.test(rawLink)) return '';
     const separator = rawLink.includes('?') ? '&' : '?';
-    return `${rawLink}${separator}embed_domain=the-ring-experience.com&hide_event_type_details=1&hide_gdpr_banner=1`;
+    return `${rawLink}${separator}embed_domain=www.theringexperience.lk&hide_event_type_details=1&hide_gdpr_banner=1`;
 });
 
 const form = reactive({

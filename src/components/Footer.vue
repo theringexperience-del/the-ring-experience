@@ -33,12 +33,12 @@ import Credits from './Credits.vue'
 import { fetchFooterContentFromSanity } from '../utils/sanity'
 
 const defaultFooterData = {
-  subtitle: 'Sri Lanka',
-  title: 'The Ring Experience',
-  text: 'Handcrafted memories, sterling silver, and stories you carry forever.',
-  phone: '+94-00-000-0000',
-  phoneLabel: '+94 00 000 0000',
-  email: 'hello@the-ring-experience.com',
+  subtitle: '',
+  title: '',
+  text: '',
+  phone: '',
+  phoneLabel: '',
+  email: '',
 }
 
 const footerData = ref(defaultFooterData)

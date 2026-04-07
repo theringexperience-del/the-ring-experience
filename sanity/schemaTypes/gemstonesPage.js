@@ -4,17 +4,6 @@ export default {
     type: 'document',
     fields: [
         {
-            name: 'hero',
-            title: 'Hero',
-            type: 'object',
-            fields: [
-                { name: 'eyebrow', title: 'Subtitle', type: 'string' },
-                { name: 'title', title: 'Title', type: 'string' },
-                { name: 'description', title: 'Description', type: 'text', rows: 3 },
-                { name: 'backgroundImage', title: 'Background Image', type: 'image', options: { hotspot: true, accept: 'image/webp' } }
-            ]
-        },
-        {
             name: 'intro',
             title: 'Intro',
             type: 'object',
@@ -37,6 +26,7 @@ export default {
                     { name: 'origin', title: 'Origin', type: 'string' },
                     { name: 'tone', title: 'Tone', type: 'string' },
                     { name: 'cut', title: 'Cut', type: 'string' },
+                    { name: 'meaning', title: 'Meaning', type: 'text', rows: 2 },
                     { name: 'description', title: 'Description', type: 'text', rows: 3 },
                     { name: 'image', title: 'Image', type: 'image', options: { hotspot: true, accept: 'image/webp' } }
                 ]
@@ -48,7 +38,7 @@ export default {
     ],
     preview: {
         select: {
-            title: 'hero.title'
+            title: 'intro.heading'
         },
         prepare({ title }) {
             return { title: title || 'Gemstones Page' };

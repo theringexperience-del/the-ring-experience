@@ -88,27 +88,24 @@
                         </article>
                     </div>
                 </div>
-                <p v-else class="mt-10 text-center text-(--color-brown)" style="opacity: 0.75;">
-                    Reviews will appear here as soon as they are published.
-                </p>
             </div>
         </section>
 
         <section id="aMoment" data-reveal class="authentic-vintage w-full py-20 sm:py-24 md:py-28 lg:py-36">
-            <div class="mx-auto grid w-11/12 grid-cols-1 items-center gap-8 sm:w-10/12 sm:gap-10 lg:grid-cols-12 lg:gap-14">
-                <figure class="flex items-center justify-center lg:col-span-7">
+            <div class="mx-auto grid w-11/12 grid-cols-1 items-center gap-10 sm:w-10/12 sm:gap-12 lg:grid-cols-12 lg:gap-16">
+                <figure class="flex items-center justify-center lg:col-span-6">
                     <img :src="aMomentContent.image" alt="A Moment Image"
-                        class="h-auto max-h-92 w-full rounded-xs object-cover sm:max-h-112 lg:max-h-160">
+                        class="h-[25rem] w-full rounded-xs object-cover object-center sm:h-[32rem] lg:h-[42rem]">
                 </figure>
-                <div class="flex flex-col justify-center lg:col-span-5 lg:pl-2">
+                <div class="flex flex-col justify-center lg:col-span-6 lg:pl-4 xl:pl-8">
                     <p class="mb-4 text-xs tracking-[0.18em] text-(--color-mutedbrown) uppercase sm:text-sm sm:tracking-[0.2em]">
                         {{ aMomentContent.eyebrow }}
                     </p>
-                    <h2 class="font-display text-3xl leading-[1.08] font-medium text-(--color-brown) sm:text-4xl md:text-5xl lg:text-6xl">
+                    <h2 class="max-w-[10ch] font-display text-3xl leading-[1.04] font-medium text-(--color-brown) sm:text-4xl md:text-5xl lg:text-6xl">
                         {{ aMomentContent.title }}
                     </h2>
                     <div class="mt-6 h-px w-20 bg-(--color-noisette) sm:mt-8 sm:w-24"></div>
-                    <div class="mt-6 space-y-3 sm:mt-7">
+                    <div class="mt-6 max-w-xl space-y-4 sm:mt-7">
                         <p class="text-base leading-relaxed text-(--color-brown) sm:text-lg" style="opacity: 0.85;">
                             {{ aMomentContent.paragraphOne }}
                         </p>

@@ -1,5 +1,5 @@
 <template>
-    <section id="followus" data-reveal class="relative w-full overflow-hidden py-20 sm:py-24 lg:py-28">
+    <section v-if="hasContent" id="followus" data-reveal class="relative w-full overflow-hidden py-20 sm:py-24 lg:py-28">
         <div class="pointer-events-none absolute inset-0">
             <div class="parallax-bg absolute inset-0 bg-cover bg-center" :style="backgroundStyle"></div>
             <div class="absolute inset-0 bg-(--color-darkbrown)" style="opacity: 0.64;"></div>
@@ -39,19 +39,17 @@ const props = defineProps({
     }
 });
 
-const defaultLinks = [
-    { label: 'Instagram', href: 'https://instagram.com' },
-    { label: 'TikTok', href: 'https://tiktok.com' },
-    { label: 'Pinterest', href: 'https://pinterest.com' }
-];
-
 const mergedContent = computed(() => ({
-    eyebrow: props.content?.eyebrow ?? 'Follow Us',
-    heading: props.content?.heading ?? 'Follow our journey',
-    description: props.content?.description ?? 'Behind the scenes, new stories, and handcrafted moments from Sri Lanka.',
+    eyebrow: props.content?.eyebrow ?? '',
+    heading: props.content?.heading ?? '',
+    description: props.content?.description ?? '',
     backgroundImage: props.content?.backgroundImage ?? defaultHeroImage,
-    links: Array.isArray(props.content?.links) && props.content.links.length ? props.content.links : defaultLinks
+    links: Array.isArray(props.content?.links) ? props.content.links.filter((link) => link?.label && link?.href) : []
 }));
+
+const hasContent = computed(() => (
+    Boolean(mergedContent.value.eyebrow || mergedContent.value.heading || mergedContent.value.description || mergedContent.value.links.length)
+));
 
 const backgroundStyle = computed(() => ({
     backgroundImage: `url(${toWebImage(mergedContent.value.backgroundImage, { width: 2200, quality: 80 })})`

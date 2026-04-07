@@ -3,10 +3,10 @@
     <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
       <p>&copy; {{ year }} The Ring Experience</p>
       <div class="flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4 sm:gap-y-2">
-        <a class="transition-opacity hover:opacity-70" :href="`tel:${footerData.phone}`">
+        <a v-if="footerData.phone" class="transition-opacity hover:opacity-70" :href="`tel:${footerData.phone}`">
           {{ footerData.phoneLabel || footerData.phone }}
         </a>
-        <a class="transition-opacity hover:opacity-70" :href="`mailto:${footerData.email}`">
+        <a v-if="footerData.email" class="transition-opacity hover:opacity-70" :href="`mailto:${footerData.email}`">
           {{ footerData.email }}
         </a>
         <RouterLink class="transition-opacity hover:opacity-70" to="/privacy-policy">
@@ -48,8 +48,8 @@ const props = defineProps({
 })
 
 const footerData = computed(() => ({
-  phone: props.footerData?.phone ?? '+94-00-000-0000',
-  phoneLabel: props.footerData?.phoneLabel ?? '+94 00 000 0000',
-  email: props.footerData?.email ?? 'hello@the-ring-experience.com',
+  phone: props.footerData?.phone ?? '',
+  phoneLabel: props.footerData?.phoneLabel ?? '',
+  email: props.footerData?.email ?? '',
 }))
 </script>

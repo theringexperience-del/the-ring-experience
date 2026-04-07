@@ -83,7 +83,7 @@ const cookieRoot = ref(null)
 const { setupRevealAnimations } = useRevealAnimations(cookieRoot, { start: 'top 92%', y: 24, duration: 0.65 })
 
 const footerData = {
-  email: 'hello@the-ring-experience.com',
+  email: 'theringexperience@gmail.com',
 }
 
 onMounted(() => {

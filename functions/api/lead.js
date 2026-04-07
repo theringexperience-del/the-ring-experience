@@ -1,5 +1,6 @@
 const GOOGLE_TOKEN_URL = 'https://oauth2.googleapis.com/token';
 const GOOGLE_SHEETS_SCOPE = 'https://www.googleapis.com/auth/spreadsheets';
+const RESEND_API_URL = 'https://api.resend.com/emails';
 
 const textResponse = (payload, status = 200) =>
   new Response(JSON.stringify(payload), {
@@ -74,7 +75,7 @@ async function appendLeadToSheet(env, leadData) {
   const range = env.GOOGLE_SHEETS_RANGE || 'Sheet1!A:I';
 
   if (!clientEmail || !privateKey || !spreadsheetId) {
-    throw new Error('missing_google_sheets_env');
+    return { skipped: true };
   }
 
   const accessToken = await createGoogleAccessToken(clientEmail, privateKey);
@@ -112,6 +113,88 @@ async function appendLeadToSheet(env, leadData) {
   }
 }
 
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function getLeadSummaryHtml(leadData) {
+  const fields = [
+    ['Submitted at', leadData.submittedAt || new Date().toISOString()],
+    ['Source', leadData.source || 'website'],
+    ['Package', leadData.packageName || '-'],
+    ['Name', leadData.name || '-'],
+    ['Email', leadData.email || '-'],
+    ['Phone', leadData.phone || '-'],
+    ['Preferred date', leadData.preferredDate || '-'],
+    ['Newsletter consent', leadData.newsletterConsent ? 'Yes' : 'No'],
+    ['Message', leadData.message || '-'],
+  ];
+
+  const rows = fields
+    .map(
+      ([label, value]) =>
+        `<tr><td style="padding:8px 12px;border:1px solid #e7dccd;font-weight:600;">${escapeHtml(
+          label
+        )}</td><td style="padding:8px 12px;border:1px solid #e7dccd;">${escapeHtml(value)}</td></tr>`
+    )
+    .join('');
+
+  return `<div style="font-family:Georgia,serif;color:#4c3926;">
+    <h2 style="margin:0 0 16px;">New website inquiry</h2>
+    <table style="border-collapse:collapse;width:100%;max-width:720px;background:#fffdf9;">${rows}</table>
+  </div>`;
+}
+
+function buildLeadSubject(leadData) {
+  const customerName = (leadData.name || '').trim() || 'A client';
+  const packageName = (leadData.packageName || '').trim();
+
+  if (packageName) {
+    return `${customerName} wants to book ${packageName}`;
+  }
+
+  return `${customerName} sent an inquiry`;
+}
+
+async function sendLeadEmail(env, leadData) {
+  const resendApiKey = env.RESEND_API_KEY;
+  const recipientEmail = env.RESEND_TO_EMAIL || env.LEAD_NOTIFICATION_EMAIL || leadData.recipientEmail || '';
+  const fromEmail = env.RESEND_FROM_EMAIL;
+  const replyToEmail = leadData.email || undefined;
+  const subject = buildLeadSubject(leadData);
+
+  if (!resendApiKey || !recipientEmail || !fromEmail) {
+    return { skipped: true };
+  }
+
+  const response = await fetch(RESEND_API_URL, {
+    method: 'POST',
+    headers: {
+      authorization: `Bearer ${resendApiKey}`,
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      from: fromEmail,
+      to: [recipientEmail],
+      reply_to: replyToEmail ? [replyToEmail] : undefined,
+      subject,
+      html: getLeadSummaryHtml(leadData),
+    }),
+  });
+
+  if (!response.ok) {
+    const detail = await response.text();
+    throw new Error(`resend_send_failed:${detail}`);
+  }
+
+  return response.json();
+}
+
 export async function onRequestPost(context) {
   try {
     const leadData = await context.request.json();
@@ -120,7 +203,23 @@ export async function onRequestPost(context) {
       return textResponse({ ok: false, error: 'missing_required_fields' }, 400);
     }
 
-    await appendLeadToSheet(context.env, leadData);
+    const deliveryResults = await Promise.allSettled([
+      appendLeadToSheet(context.env, leadData),
+      sendLeadEmail(context.env, leadData),
+    ]);
+
+    const hasSuccess = deliveryResults.some((result) => result.status === 'fulfilled' && result.value?.skipped !== true);
+    const allSkipped = deliveryResults.every((result) => result.status === 'fulfilled' && result.value?.skipped === true);
+
+    if (allSkipped) {
+      return textResponse({ ok: false, error: 'no_delivery_channel_configured' }, 500);
+    }
+
+    if (!hasSuccess) {
+      const firstFailure = deliveryResults.find((result) => result.status === 'rejected');
+      throw firstFailure?.reason || new Error('lead_delivery_failed');
+    }
+
     return textResponse({ ok: true });
   } catch (error) {
     return textResponse(

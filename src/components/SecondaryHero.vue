@@ -36,9 +36,9 @@ const props = defineProps({
 });
 
 const mergedContent = computed(() => ({
-    eyebrow: props.content?.eyebrow ?? 'Our Story',
-    title: props.content?.title ?? 'Crafted memories, shaped by your hands.',
-    description: props.content?.description ?? 'A quieter and more meaningful way to carry a piece of your travel story.',
+    eyebrow: props.content?.eyebrow ?? '',
+    title: props.content?.title ?? '',
+    description: props.content?.description ?? '',
     backgroundImage: props.content?.backgroundImage ?? defaultHeroImage
 }));
 

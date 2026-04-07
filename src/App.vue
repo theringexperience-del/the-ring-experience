@@ -24,7 +24,7 @@ import GlobalBackground from './components/GlobalBackground.vue'
 import Navbar from './components/Navbar.vue'
 
 const route = useRoute()
-const siteUrl = 'https://the-ring-experience.com'
+const siteUrl = 'https://www.theringexperience.lk'
 const defaultOgImage = `${siteUrl}/uploads/whatsapp-image-2026-02-24-at-10.43.29-1-.jpeg`
 
 const defaultTitle = 'The Ring Experience - Sri Lanka'

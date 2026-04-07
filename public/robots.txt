@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://the-ring-experience.com/sitemap.xml
-Host: the-ring-experience.com
+Sitemap: https://www.theringexperience.lk/sitemap.xml
+Host: www.theringexperience.lk

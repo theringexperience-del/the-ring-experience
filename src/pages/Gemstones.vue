@@ -22,6 +22,9 @@
                             <p class="text-xs tracking-[0.14em] text-(--color-mutedbrown) uppercase">{{ stone.origin }}</p>
                             <h3 class="mt-2 font-display text-3xl leading-tight text-(--color-brown)">{{ stone.name }}</h3>
                             <p class="mt-2 text-sm tracking-[0.08em] text-(--color-noisette) uppercase">{{ stone.cut }}</p>
+                            <p v-if="stone.meaning" class="mt-4 text-sm text-(--color-mutedbrown)">
+                                Meaning: <span class="text-(--color-brown)">{{ stone.meaning }}</span>
+                            </p>
                             <p class="mt-4 text-base leading-relaxed text-(--color-brown)" style="opacity: 0.86;">
                                 {{ stone.description }}
                             </p>

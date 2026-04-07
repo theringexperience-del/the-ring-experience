@@ -171,12 +171,6 @@ const OFFERS_PAGE_QUERY = `
 
 const GEMSTONES_PAGE_QUERY = `
 *[_type == "gemstonesPage"][0]{
-  hero{
-    eyebrow,
-    title,
-    description,
-    "backgroundImage": backgroundImage.asset->url
-  },
   intro{
     eyebrow,
     heading,
@@ -189,6 +183,7 @@ const GEMSTONES_PAGE_QUERY = `
     origin,
     tone,
     cut,
+    meaning,
     description,
     "image": image.asset->url
   }
@@ -197,12 +192,6 @@ const GEMSTONES_PAGE_QUERY = `
 
 const CLIENT_GALLERY_QUERY = `
 *[_type == "clientGallery"][0]{
-  hero{
-    eyebrow,
-    title,
-    description,
-    "backgroundImage": backgroundImage.asset->url
-  },
   intro{
     eyebrow,
     heading,
@@ -243,8 +232,6 @@ const CONTACT_FORM_QUERY = `
   eyebrow,
   heading,
   description,
-  recipientEmail,
-  subjectPrefix,
   submitLabel,
   privacyNote,
   newsletterConsentLabel

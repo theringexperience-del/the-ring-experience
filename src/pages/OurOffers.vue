@@ -17,7 +17,7 @@
                         class="offer-card rounded-sm border bg-white/74 p-7 sm:p-8 lg:p-10"
                         style="border-color: color-mix(in srgb, var(--color-darkbrown) 18%, transparent);">
                         <div class="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
-                            <div class="max-w-4xl">
+                            <div class="max-w-[60ch]">
                                 <p class="text-xs tracking-[0.14em] text-(--color-mutedbrown) uppercase">{{ pkg.tag }}</p>
                                 <h3 class="mt-2 font-display text-4xl leading-tight text-(--color-brown)">{{ pkg.name }}</h3>
                                 <p class="mt-2 text-sm tracking-[0.08em] text-(--color-noisette) uppercase">{{ pkg.duration }}</p>
@@ -31,7 +31,7 @@
                                     <li v-for="highlight in pkg.highlights" :key="`${pkg.key}-${highlight}`">- {{ highlight }}</li>
                                 </ul>
                             </div>
-                            <div class="flex min-w-[12rem] flex-col items-start gap-4 lg:items-end">
+                            <div class="flex shrink-0 flex-col items-start gap-4 lg:items-end">
                                 <Button type="button" @click="focusFormForPackage(pkg.name)">{{ pkg.buttonLabel || 'Request info for this offer' }}</Button>
                             </div>
                         </div>
@@ -143,10 +143,8 @@ const mergedFormContent = computed(() => ({
     eyebrow: cmsFormContent.value?.eyebrow ?? '',
     heading: cmsFormContent.value?.heading ?? '',
     description: cmsFormContent.value?.description ?? '',
-    recipientEmail: cmsFormContent.value?.recipientEmail ?? 'hello@the-ring-experience.com',
-    subjectPrefix: cmsFormContent.value?.subjectPrefix ?? 'Offer Request',
     submitLabel: cmsFormContent.value?.submitLabel ?? 'Send request',
-    privacyNote: cmsFormContent.value?.privacyNote ?? 'By sending this form, you consent to be contacted regarding your request.',
+    privacyNote: cmsFormContent.value?.privacyNote ?? '',
     newsletterConsentLabel: cmsFormContent.value?.newsletterConsentLabel ?? 'I consent to store my email and phone for newsletter and updates.'
 }));
 const gemstonesCalloutContent = computed(() => ({

@@ -30,7 +30,7 @@ const props = defineProps({
 });
 
 const baseClasses =
-    'group inline-flex cursor-pointer items-center justify-center rounded-full uppercase tracking-[0.08em] transition-colors duration-300 ease-out active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60';
+    'group inline-flex cursor-pointer items-center justify-center rounded-full whitespace-nowrap uppercase tracking-[0.08em] transition-colors duration-300 ease-out active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60';
 
 const sizeClasses = {
     sm: 'px-4 py-2 text-xs md:text-sm',

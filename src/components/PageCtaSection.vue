@@ -47,10 +47,10 @@ const props = defineProps({
 
 const mergedContent = computed(() => ({
     enabled: props.content?.enabled ?? true,
-    eyebrow: props.content?.eyebrow ?? 'Ready to begin',
-    heading: props.content?.heading ?? 'Book your ring experience',
-    description: props.content?.description ?? 'Choose your date and create something that stays with you.',
-    buttonLabel: props.content?.buttonLabel ?? 'Book now',
+    eyebrow: props.content?.eyebrow ?? '',
+    heading: props.content?.heading ?? '',
+    description: props.content?.description ?? '',
+    buttonLabel: props.content?.buttonLabel ?? '',
     buttonLink: props.content?.buttonLink ?? '/bookexperience',
     backgroundImage: props.content?.backgroundImage ?? defaultHeroImage
 }));

@@ -83,13 +83,11 @@ const props = defineProps({
 
 const mergedContent = computed(() => ({
     enabled: props.content?.enabled ?? true,
-    eyebrow: props.content?.eyebrow ?? 'Plan your session',
-    heading: props.content?.heading ?? 'Tell us what you have in mind',
-    description: props.content?.description ?? 'Send your request and we will confirm details shortly.',
-    recipientEmail: props.content?.recipientEmail ?? 'hello@the-ring-experience.com',
-    subjectPrefix: props.content?.subjectPrefix ?? 'New Inquiry',
+    eyebrow: props.content?.eyebrow ?? '',
+    heading: props.content?.heading ?? '',
+    description: props.content?.description ?? '',
     submitLabel: props.content?.submitLabel ?? 'Send request',
-    privacyNote: props.content?.privacyNote ?? 'By sending this form you consent to be contacted about your booking request.',
+    privacyNote: props.content?.privacyNote ?? '',
     newsletterConsentLabel: props.content?.newsletterConsentLabel ?? 'I consent to store my email and phone for newsletter and updates.'
 }));
 
