@@ -82,6 +82,11 @@
                                 class="h-11 rounded-sm border border-[#7B6248]/45 bg-white px-3 text-(--color-brown) outline-none focus:border-(--color-noisette) focus:ring-2 focus:ring-[#B08942]/35">
                         </div>
                     </label>
+                    <label class="flex flex-col gap-2">
+                        <span class="text-sm font-medium text-(--color-brown)">Preferred date</span>
+                        <input v-model="form.preferredDate" type="date"
+                            class="h-11 rounded-sm border border-[#7B6248]/45 bg-white px-3 text-(--color-brown) outline-none focus:border-(--color-noisette) focus:ring-2 focus:ring-[#B08942]/35">
+                    </label>
                     <label class="md:col-span-2 flex flex-col gap-2">
                         <span class="text-sm font-medium text-(--color-brown)">Message</span>
                         <textarea v-model.trim="form.message" rows="5"
@@ -161,6 +166,7 @@ const form = reactive({
     email: '',
     phoneCode: '+94',
     phoneNumber: '',
+    preferredDate: '',
     message: '',
     newsletterConsent: false
 });
@@ -209,6 +215,7 @@ const submitByEmail = async () => {
         name: form.name,
         email: form.email,
         phone: getFullPhone(),
+        preferredDate: form.preferredDate || '',
         message: form.message || '',
         newsletterConsent: Boolean(form.newsletterConsent)
     });
@@ -225,6 +232,7 @@ const submitByEmail = async () => {
     form.name = '';
     form.email = '';
     form.phoneNumber = '';
+    form.preferredDate = '';
     form.message = '';
     form.newsletterConsent = false;
     isSubmitting.value = false;

@@ -29,6 +29,11 @@
                                     class="h-11 rounded-sm border border-[#7B6248]/45 bg-white px-3 text-(--color-brown) outline-none focus:border-(--color-noisette) focus:ring-2 focus:ring-[#B08942]/35">
                             </label>
                             <label class="flex flex-col gap-2">
+                                <span class="text-sm font-medium text-(--color-brown)">Preferred date</span>
+                                <input v-model="form.preferredDate" type="date"
+                                    class="h-11 rounded-sm border border-[#7B6248]/45 bg-white px-3 text-(--color-brown) outline-none focus:border-(--color-noisette) focus:ring-2 focus:ring-[#B08942]/35">
+                            </label>
+                            <label class="flex flex-col gap-2">
                                 <span class="text-sm font-medium text-(--color-brown)">Message</span>
                                 <textarea v-model.trim="form.message" rows="4"
                                     class="rounded-sm border border-[#7B6248]/45 bg-white px-3 py-2 text-(--color-brown) outline-none focus:border-(--color-noisette) focus:ring-2 focus:ring-[#B08942]/35"></textarea>
@@ -117,6 +122,7 @@ const form = reactive({
     packageName: '',
     name: '',
     email: '',
+    preferredDate: '',
     message: '',
     newsletterConsent: false
 });
@@ -135,6 +141,7 @@ const submitByEmail = async () => {
         packageName: form.packageName || '',
         name: form.name,
         email: form.email,
+        preferredDate: form.preferredDate || '',
         message: form.message || '',
         newsletterConsent: Boolean(form.newsletterConsent)
     });
@@ -151,6 +158,7 @@ const submitByEmail = async () => {
     form.packageName = '';
     form.name = '';
     form.email = '';
+    form.preferredDate = '';
     form.message = '';
     form.newsletterConsent = false;
     isSubmitting.value = false;
