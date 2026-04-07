@@ -2,4 +2,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.theringexperience.lk/sitemap.xml
-Host: www.theringexperience.lk

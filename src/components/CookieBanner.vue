@@ -45,10 +45,26 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { COOKIE_CONSENT_KEY, getCookieConsent, setCookieConsent } from '../utils/consentState'
 
-const isVisible = ref(false)
+const getInitialVisibility = () => {
+  if (typeof window === 'undefined') return false
+
+  const query = new URLSearchParams(window.location.search)
+
+  if (query.get('resetCookieConsent') === '1') {
+    window.localStorage.removeItem(COOKIE_CONSENT_KEY)
+  }
+
+  if (query.get('showCookieBanner') === '1') {
+    return true
+  }
+
+  return !getCookieConsent()
+}
+
+const isVisible = ref(getInitialVisibility())
 
 const hideBanner = () => {
   isVisible.value = false
@@ -63,24 +79,6 @@ const rejectCookies = () => {
   setCookieConsent('rejected')
   hideBanner()
 }
-
-onMounted(() => {
-  if (typeof window !== 'undefined') {
-    const query = new URLSearchParams(window.location.search)
-
-    if (query.get('resetCookieConsent') === '1') {
-      window.localStorage.removeItem(COOKIE_CONSENT_KEY)
-    }
-
-    const forceBanner = query.get('showCookieBanner') === '1'
-    if (forceBanner) {
-      isVisible.value = true
-      return
-    }
-  }
-
-  isVisible.value = !getCookieConsent()
-})
 </script>
 
 <style scoped>
