@@ -31,8 +31,11 @@
                                     <li v-for="highlight in pkg.highlights" :key="`${pkg.key}-${highlight}`">- {{ highlight }}</li>
                                 </ul>
                             </div>
-                            <div class="flex shrink-0 flex-col items-start gap-4 lg:items-end">
-                                <Button type="button" @click="focusFormForPackage(pkg.name)">{{ pkg.buttonLabel || 'Request info for this offer' }}</Button>
+                            <div class="flex shrink-0 flex-col items-start gap-3 lg:items-end">
+                                <Button type="button" @click="focusFormForPackage(pkg.name)">Send request</Button>
+                                <RouterLink :to="{ path: '/bookexperience', query: { package: pkg.name } }">
+                                    <Button type="button" variant="outline">Book experience</Button>
+                                </RouterLink>
                             </div>
                         </div>
                     </article>
