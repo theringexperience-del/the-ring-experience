@@ -250,7 +250,6 @@ const FAQ_PAGE_QUERY = `
     enabled,
     eyebrow,
     heading,
-    description,
     ctaLabel,
     ctaLink
   },

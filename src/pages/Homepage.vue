@@ -276,7 +276,7 @@ const faqHomepagePreviewContent = computed(() => ({
     enabled: cmsFaqContent.value?.homepageSection?.enabled ?? true,
     eyebrow: cmsFaqContent.value?.homepageSection?.eyebrow ?? 'Most asked',
     heading: cmsFaqContent.value?.homepageSection?.heading ?? 'Quick answers before you book',
-    description: cmsFaqContent.value?.homepageSection?.description ?? 'Find quick answers to the questions guests ask most often before booking their ring-making experience.',
+    description: cmsFaqContent.value?.hero?.description ?? 'Find quick answers to the questions guests ask most often before booking their ring-making experience.',
     ctaLabel: cmsFaqContent.value?.homepageSection?.ctaLabel ?? 'See all FAQs',
     ctaLink: cmsFaqContent.value?.homepageSection?.ctaLink ?? '/faq'
 }));

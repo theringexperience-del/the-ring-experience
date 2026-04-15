@@ -23,7 +23,6 @@ export default {
                 { name: 'enabled', title: 'Enabled', type: 'boolean', initialValue: true },
                 { name: 'eyebrow', title: 'Subtitle', type: 'string', initialValue: 'Most asked' },
                 { name: 'heading', title: 'Heading', type: 'string', initialValue: 'Quick answers before you book' },
-                { name: 'description', title: 'Description', type: 'text', rows: 3, initialValue: 'Highlight the questions guests ask most often. These cards will appear before the social section on the homepage.' },
                 { name: 'ctaLabel', title: 'CTA Label', type: 'string', initialValue: 'See all FAQs' },
                 routeField({ name: 'ctaLink', title: 'CTA Link', initialValue: '/faq' })
             ]
