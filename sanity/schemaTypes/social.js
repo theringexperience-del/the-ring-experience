@@ -8,6 +8,18 @@ export default {
         { name: 'description', title: 'Description', type: 'text', rows: 3 },
         { name: 'backgroundImage', title: 'Background Image', type: 'image', options: { hotspot: true, accept: 'image/webp' } },
         {
+            name: 'whatsappDmUrl',
+            title: 'WhatsApp DM URL',
+            type: 'url',
+            description: 'Direct WhatsApp link for the fixed CTA button, for example https://wa.me/9477XXXXXXX'
+        },
+        {
+            name: 'instagramDmUrl',
+            title: 'Instagram DM URL',
+            type: 'url',
+            description: 'Direct Instagram DM or profile link for the fixed CTA button'
+        },
+        {
             name: 'links',
             title: 'Links',
             type: 'array',

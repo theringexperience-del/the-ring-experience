@@ -110,6 +110,8 @@ const SOCIAL_QUERY = `
   heading,
   description,
   "backgroundImage": backgroundImage.asset->url,
+  whatsappDmUrl,
+  instagramDmUrl,
   links[]{
     label,
     href
