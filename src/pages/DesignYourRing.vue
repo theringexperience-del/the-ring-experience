@@ -101,7 +101,7 @@
             </label>
 
             <label class="field-label">
-              <span>Stone</span>
+              <span>Stone / Birthstone</span>
               <select v-model="form.stone" class="field-control">
                 <option v-for="stone in selectedOptions.stones" :key="stone">{{ stone }}</option>
               </select>
@@ -126,15 +126,29 @@
             <span>Describe The Person</span>
             <textarea
               v-model="form.description"
-              maxlength="500"
+              maxlength="600"
               rows="5"
               class="field-control person-description min-h-36 resize-y leading-relaxed"
-              placeholder="Example: Calm, emotional, mysterious, elegant, loves the ocean, sunsets, and meaningful handmade jewellery."
+              placeholder="Example: She loves travelling, the ocean, sunsets, meaningful experiences, and handmade things that feel personal rather than expensive."
             ></textarea>
           </label>
 
-          <div class="mt-2 text-right text-xs text-(--color-mutedbrown)">
-            <span>{{ form.description.length }}</span>/500 characters
+          <div class="story-bottom mt-3">
+            <div class="story-chips" aria-label="Quick story ideas">
+              <button
+                v-for="chip in storyChips"
+                :key="chip"
+                type="button"
+                class="story-chip"
+                @click="addStoryChip(chip)"
+              >
+                {{ chip }}
+              </button>
+            </div>
+
+            <div class="text-xs text-(--color-mutedbrown)">
+              <span>{{ form.description.length }}</span>/600 characters
+            </div>
           </div>
 
           <button type="button" class="main-action mt-6 sm:w-auto" @click="generatePrompt">
@@ -157,10 +171,9 @@
           <div class="mx-auto mt-6 grid max-w-5xl grid-cols-3 gap-2 sm:gap-3 xl:grid-cols-4">
             <button type="button" class="main-action" @click="copyPrompt">Copy</button>
             <button type="button" class="secondary-action" @click="downloadPrompt">Download</button>
-            <button type="button" class="secondary-action" @click="isPromptVisible = !isPromptVisible">{{ isPromptVisible ? 'Hide' : 'Show' }}</button>
             <a
               v-if="whatsappHref"
-              class="whatsapp-action col-span-3 xl:col-span-1"
+              class="whatsapp-action"
               :href="whatsappHref"
               target="_blank"
               rel="noreferrer"
@@ -177,8 +190,6 @@
           </RouterLink>
 
           <p v-if="copyMessage" class="mt-4 text-sm text-(--color-brown)">{{ copyMessage }}</p>
-
-          <pre v-if="isPromptVisible" class="mt-6 max-h-[560px] overflow-auto whitespace-pre-wrap border border-[#2A1E17]/12 bg-[#F4EFE8] p-5 text-left text-sm leading-relaxed text-[#3F3831]">{{ finalPrompt }}</pre>
         </section>
       </div>
     </section>
@@ -202,7 +213,6 @@ const { setupRevealAnimations } = useRevealAnimations(pageRoot, {
 const selectedPackageKey = ref('essential')
 const finalPrompt = ref('')
 const isResultVisible = ref(false)
-const isPromptVisible = ref(false)
 const hasCopiedPrompt = ref(false)
 const hasStartedSketches = ref(false)
 const errorMessage = ref('')
@@ -212,7 +222,28 @@ const footerContent = ref({})
 
 const steps = ['1. Package', '2. Personalize', '3. Copy Prompt', '4. Create Sketches']
 const recipients = ['Wife', 'Husband', 'Girlfriend', 'Boyfriend', 'Partner', 'Self']
-const purposes = ['Protection Ring', 'Love Ring', 'Promise Ring', 'Memory Ring', 'Anniversary Ring']
+const purposes = ['Protection Ring', 'Love Ring', 'Promise Ring', 'Memory Ring', 'Anniversary Ring', 'Self-Love Ring', 'Birthday Ring']
+const storyChips = ['Ocean and sunsets', 'Quiet luxury', 'Protective energy', 'Bold personality']
+const birthstones = [
+  'No Stone',
+  'Moonstone',
+  'Black Sapphire',
+  'Blue Sapphire',
+  'Diamond',
+  'Ruby',
+  'Emerald',
+  'Pearl',
+  'Opal',
+  'Garnet',
+  'Aquamarine',
+  'Amethyst',
+  'Onyx',
+  'Tourmaline',
+  'Tanzanite',
+  'Citrine',
+  'Topaz',
+  'Turquoise',
+]
 
 const activeStepCount = computed(() => {
   if (hasStartedSketches.value) return 4
@@ -232,13 +263,13 @@ const packageCards = [
     key: 'signature',
     label: 'Signature',
     title: '3-4 Hour Ring',
-    description: 'Refined, artistic, premium but realistic.',
+    description: 'Refined, detailed, and premium.',
   },
   {
     key: 'ceremony',
     label: 'Ceremony',
     title: 'Symbolic Ring',
-    description: 'Meaningful, emotional, ceremonial.',
+    description: 'Meaningful, emotional, and ceremonial.',
   },
 ]
 
@@ -246,21 +277,21 @@ const options = {
   essential: {
     shapes: ['Minimal Thin Band', 'Rounded Comfort Band', 'Simple Organic Handmade Band'],
     textures: ['Clean Polished Finish', 'Soft Hammered Texture', 'Very Light Raw Forged Texture', 'Matte Brushed Finish'],
-    stones: ['No Stone', 'Moonstone', 'Black Onyx', 'Garnet', 'Amethyst'],
+    stones: birthstones,
     settings: ['No Stone', 'Tiny Flush Set Stone', 'Very Simple Low Bezel'],
     moods: ['Quiet Luxury', 'Romantic Minimal', 'Ancient Handcrafted'],
   },
   signature: {
     shapes: ['Organic Handmade Band', 'Minimal Thin Band', 'Rounded Comfort Band', 'Wide Signet Ring'],
     textures: ['Raw Forged Texture', 'Hammered Texture', 'Matte Brushed Finish', 'Clean Polished Finish', 'Oxidized Antique Finish'],
-    stones: ['Black Sapphire', 'Blue Sapphire', 'Black Onyx', 'Moonstone', 'Garnet', 'Emerald', 'Ruby', 'Amethyst', 'No Stone'],
+    stones: birthstones,
     settings: ['Bezel Set Center Stone', 'Flush Set Stone', 'Simple Prong Set Stone', 'Three Small Stones', 'Hidden Inner Stone'],
     moods: ['Quiet Luxury', 'Bold Artistic', 'Ancient Handcrafted', 'Romantic Minimal'],
   },
   ceremony: {
     shapes: ['Organic Handmade Band', 'Wide Signet Ring', 'Minimal Thin Band', 'Rounded Comfort Band', 'Ceremonial Forged Band'],
     textures: ['Raw Forged Texture', 'Hammered Texture', 'Matte Brushed Finish', 'Clean Polished Finish', 'Oxidized Antique Finish'],
-    stones: ['Black Sapphire', 'Blue Sapphire', 'Black Onyx', 'Moonstone', 'Garnet', 'Emerald', 'Ruby', 'Amethyst', 'No Stone'],
+    stones: birthstones,
     settings: ['Bezel Set Center Stone', 'Raised Handmade Bezel', 'Protective Stone Frame', 'Simple Prong Set Stone', 'Three Small Stones', 'Hidden Inner Stone'],
     moods: ['Quiet Luxury', 'Bold Artistic', 'Ancient Handcrafted', 'Romantic Minimal', 'Ceremonial Symbolic'],
   },
@@ -270,8 +301,8 @@ const packageRules = {
   essential: {
     name: 'Essential Package',
     time: 'Simple 2 hour handmade ring experience',
-    info: 'Minimal, clean, beginner-friendly rings only. Best for simple bands, light texture, and no complex stone work.',
-    complexity: 'simple, minimal, beginner-friendly, realistic to handmake within 2 hours',
+    info: 'Minimal, clean, beginner-friendly rings. Best for simple bands, light texture, and very simple stone work.',
+    complexity: 'simple, minimal, clean, beginner-friendly, realistic to handmake within 2 hours',
     allowed: `
 - minimal thin bands
 - rounded comfort bands
@@ -286,6 +317,7 @@ const packageRules = {
 - Tiny Flush Set Stone is acceptable
 - Very Simple Low Bezel is acceptable only if minimal
 - Avoid prongs
+- Avoid large stones
 - Avoid three-stone designs
 - Avoid hidden inner stones unless shown only as a tiny symbolic mark`,
     directions: `
@@ -295,6 +327,7 @@ Concept 3: Simple symbolic ring, subtle line or hidden engraving idea.
 Concept 4: Clean polished quiet luxury ring, elegant and minimal.`,
     limits: `
 Keep every design extremely simple.
+Keep every design wearable and realistic.
 Do not create sculptural rings.
 Do not create large stone rings.
 Do not create advanced jewellery structures.`,
@@ -302,8 +335,8 @@ Do not create advanced jewellery structures.`,
   signature: {
     name: 'Signature Package',
     time: 'Refined 3-4 hour handmade ring experience',
-    info: 'Refined artisan rings with better shape, texture, and one realistic stone setting. Premium but still practical.',
-    complexity: 'refined, handcrafted, elegant, realistic to handmake within 3-4 hours',
+    info: 'Refined artisan rings with stronger form, better texture, and one realistic premium stone setting.',
+    complexity: 'refined, handcrafted, elegant, premium, realistic to handmake within 3-4 hours',
     allowed: `
 - organic handmade bands
 - refined forged texture
@@ -339,7 +372,7 @@ No extreme sculptural jewellery.`,
   ceremony: {
     name: 'Ceremony Package',
     time: 'Premium symbolic handmade ceremony ring experience',
-    info: 'More emotional, symbolic, and premium. Still handmade, traditional, and realistic. No casting or impossible fantasy designs.',
+    info: 'Emotional, symbolic, and premium rings with ceremonial meaning while remaining traditionally handmade.',
     complexity: 'premium, symbolic, ceremonial, emotional, handcrafted, realistic through traditional jewellery techniques',
     allowed: `
 - meaningful protection rings
@@ -404,6 +437,12 @@ const resetPackageChoices = () => {
 }
 
 watch(selectedPackageKey, resetPackageChoices, { immediate: true })
+
+const addStoryChip = (chip) => {
+  const current = form.description.trim()
+  const next = current ? `${current}, ${chip}` : chip
+  form.description = next.slice(0, 600)
+}
 
 const findLinkByLabel = (links, matcher) => {
   return links.find((link) => matcher.test(String(link?.label || '').trim()))
@@ -478,7 +517,7 @@ BRAND:
 THE RING EXPERIENCE
 
 TASK:
-Create ONE image containing 4 separate handcrafted luxury jewellery sketch mockup concepts for a custom ${form.material} ring for ${form.recipient}.
+Create ONE image containing 4 separate handcrafted luxury jewellery sketch concepts for a custom ${form.material} ring for ${form.recipient}.
 
 SELECTED PACKAGE:
 ${rule.name}
@@ -646,7 +685,6 @@ No tension setting.
 No advanced gallery construction.`
 
   isResultVisible.value = true
-  isPromptVisible.value = true
   await nextTick()
   setupRevealAnimations()
   resultSection.value?.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -800,6 +838,38 @@ onMounted(async () => {
   box-shadow: 0 0 0 3px rgba(176, 137, 66, 0.2);
 }
 
+.story-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.story-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.story-chip {
+  cursor: pointer;
+  border: 1px solid color-mix(in srgb, var(--color-darkbrown) 14%, transparent);
+  background: #f7efe4;
+  padding: 0.62rem 0.8rem;
+  color: var(--color-mutedbrown);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.story-chip:hover {
+  border-color: var(--color-darkbrown);
+  color: var(--color-darkbrown);
+  transform: translateY(-1px);
+}
+
 .main-action,
 .secondary-action,
 .whatsapp-action {
@@ -935,6 +1005,17 @@ onMounted(async () => {
 
   .person-description {
     min-height: 7rem;
+  }
+
+  .story-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .story-chip {
+    padding: 0.5rem 0.62rem;
+    font-size: 0.6rem;
   }
 
   .package-selector {
