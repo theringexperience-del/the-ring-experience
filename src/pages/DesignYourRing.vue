@@ -17,16 +17,22 @@
 
     <section class="w-full pb-20 sm:pb-24 lg:pb-28">
       <div class="mx-auto w-11/12 sm:w-10/12">
-        <div data-reveal class="grid grid-cols-1 gap-3 md:grid-cols-4">
-          <div v-for="(step, index) in steps" :key="step" class="step-pill" :class="{ active: index < activeStepCount }">
-            {{ step }}
+        <div data-reveal class="step-track grid grid-cols-1 gap-3 md:grid-cols-4">
+          <div
+            v-for="(step, index) in steps"
+            :key="step"
+            class="step-pill"
+            :class="{ active: index < activeStepCount }"
+            :data-step="index + 1"
+          >
+            <span>{{ step }}</span>
           </div>
         </div>
 
         <section data-reveal class="builder-card mt-5">
-          <p class="font-display text-3xl leading-tight text-(--color-brown) sm:text-4xl">Choose Your Experience</p>
+          <p class="builder-title font-display text-3xl leading-tight text-(--color-brown) sm:text-4xl">Choose Your Experience</p>
 
-          <div class="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-3">
+          <div class="package-selector mt-5 grid grid-cols-1 gap-4 lg:grid-cols-3">
             <button
               v-for="packageCard in packageCards"
               :key="packageCard.key"
@@ -41,11 +47,23 @@
             </button>
           </div>
 
+          <div class="package-dots" aria-label="Package selector">
+            <button
+              v-for="packageCard in packageCards"
+              :key="`dot-${packageCard.key}`"
+              type="button"
+              class="package-dot"
+              :class="{ active: selectedPackageKey === packageCard.key }"
+              :aria-label="`Select ${packageCard.label} package`"
+              @click="selectedPackageKey = packageCard.key"
+            ></button>
+          </div>
+
           <p class="mt-5 border border-[#2A1E17]/12 bg-[#F4EFE8] p-5 text-sm leading-relaxed text-(--color-mutedbrown)">
             {{ selectedRule.name }} - {{ selectedRule.info }}
           </p>
 
-          <div class="mt-7 grid grid-cols-1 gap-5 md:grid-cols-2">
+          <div class="form-grid mt-7 grid grid-cols-1 gap-5 md:grid-cols-2">
             <label class="field-label">
               <span>Who is this ring for?</span>
               <select v-model="form.recipient" class="field-control">
@@ -110,7 +128,7 @@
               v-model="form.description"
               maxlength="500"
               rows="5"
-              class="field-control min-h-36 resize-y leading-relaxed"
+              class="field-control person-description min-h-36 resize-y leading-relaxed"
               placeholder="Example: Calm, emotional, mysterious, elegant, loves the ocean, sunsets, and meaningful handmade jewellery."
             ></textarea>
           </label>
@@ -136,13 +154,13 @@
             Your personal ring design prompt is ready. Copy it and paste it into ChatGPT, Gemini, Midjourney, DALL-E, or another AI image generator to create your custom sketch concepts.
           </p>
 
-          <div class="mx-auto mt-6 grid max-w-5xl grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
-            <button type="button" class="main-action" @click="copyPrompt">Copy AI Prompt</button>
-            <button type="button" class="secondary-action" @click="downloadPrompt">Download Prompt</button>
-            <button type="button" class="secondary-action" @click="isPromptVisible = !isPromptVisible">Show / Hide Prompt</button>
+          <div class="mx-auto mt-6 grid max-w-5xl grid-cols-3 gap-2 sm:gap-3 xl:grid-cols-4">
+            <button type="button" class="main-action" @click="copyPrompt">Copy</button>
+            <button type="button" class="secondary-action" @click="downloadPrompt">Download</button>
+            <button type="button" class="secondary-action" @click="isPromptVisible = !isPromptVisible">{{ isPromptVisible ? 'Hide' : 'Show' }}</button>
             <a
               v-if="whatsappHref"
-              class="whatsapp-action"
+              class="whatsapp-action col-span-3 xl:col-span-1"
               :href="whatsappHref"
               target="_blank"
               rel="noreferrer"
@@ -699,6 +717,10 @@ onMounted(async () => {
   color: var(--color-lightbeige);
 }
 
+.step-pill::before {
+  content: none;
+}
+
 .builder-card {
   border: 1px solid color-mix(in srgb, var(--color-darkbrown) 16%, transparent);
   background: color-mix(in srgb, var(--color-lightbeige) 86%, white);
@@ -745,12 +767,20 @@ onMounted(async () => {
   line-height: 1.5;
 }
 
+.package-dots {
+  display: none;
+}
+
 .field-label {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
   color: var(--color-brown);
   font-size: 0.9rem;
+}
+
+.field-label > span {
+  font-weight: 600;
 }
 
 .field-control {
@@ -760,6 +790,7 @@ onMounted(async () => {
   padding: 0.95rem 1rem;
   color: var(--color-darkbrown);
   font-size: 0.95rem;
+  font-weight: 400;
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -826,9 +857,147 @@ onMounted(async () => {
   .main-action,
   .secondary-action,
   .whatsapp-action {
-    min-height: 3rem;
-    padding-inline: 1rem;
-    font-size: 0.72rem;
+    min-height: 2.85rem;
+    padding-inline: 0.55rem;
+    font-size: 0.68rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .step-track {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .step-track::before {
+    position: absolute;
+    top: 50%;
+    left: calc(50% - 5.25rem);
+    width: 10.5rem;
+    height: 1px;
+    background: color-mix(in srgb, var(--color-darkbrown) 18%, transparent);
+    content: '';
+    transform: translateY(-50%);
+  }
+
+  .step-pill {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    width: 2.25rem;
+    height: 2.25rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    padding: 0;
+    background: var(--color-lightbeige);
+    font-size: 0;
+  }
+
+  .step-pill span {
+    display: none;
+  }
+
+  .step-pill::before {
+    content: attr(data-step);
+    font-size: 0.78rem;
+    letter-spacing: 0;
+  }
+
+  .builder-title {
+    font-size: 1.65rem;
+  }
+
+  .builder-card {
+    padding: 1.25rem;
+  }
+
+  .form-grid {
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .field-label {
+    gap: 0.32rem;
+    font-size: 0.8rem;
+  }
+
+  .field-control {
+    padding: 0.58rem 0.7rem;
+    font-size: 0.84rem;
+  }
+
+  select.field-control {
+    min-height: 2.55rem;
+  }
+
+  .person-description {
+    min-height: 7rem;
+  }
+
+  .package-selector {
+    display: flex;
+    overflow-x: auto;
+    padding: 0.35rem 0;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .package-selector::-webkit-scrollbar {
+    display: none;
+  }
+
+  .package-card {
+    flex: 0 0 9.75rem;
+    min-height: 5.75rem;
+    border-color: transparent;
+    padding: 0.8rem;
+    scroll-snap-align: start;
+  }
+
+  .package-card:hover,
+  .package-card.active {
+    border-color: var(--color-darkbrown);
+  }
+
+  .package-card span {
+    margin-bottom: 0.35rem;
+    font-size: 0.56rem;
+    letter-spacing: 0.14em;
+  }
+
+  .package-card strong {
+    margin-bottom: 0;
+    font-size: 1.12rem;
+    line-height: 1.12;
+  }
+
+  .package-card small {
+    display: none;
+  }
+
+  .package-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.55rem;
+    margin-top: 0.8rem;
+  }
+
+  .package-dot {
+    width: 0.42rem;
+    height: 0.42rem;
+    border: 0;
+    border-radius: 9999px;
+    background: color-mix(in srgb, var(--color-darkbrown) 24%, transparent);
+    padding: 0;
+    transition: background-color 0.2s ease, transform 0.2s ease, width 0.2s ease;
+  }
+
+  .package-dot.active {
+    width: 1.25rem;
+    background: var(--color-darkbrown);
   }
 }
 </style>
