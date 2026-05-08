@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 const Homepage = () => import('./pages/Homepage.vue')
 const AboutUs = () => import('./pages/AboutUs.vue')
 const OurOffers = () => import('./pages/OurOffers.vue')
+const DesignYourRing = () => import('./pages/DesignYourRing.vue')
 const Gemstones = () => import('./pages/Gemstones.vue')
 const Gallery = () => import('./pages/Gallery.vue')
 const BookExperience = () => import('./pages/BookExperience.vue')
@@ -30,6 +31,17 @@ const routes = [
         title: 'Our Offers | The Ring Experience Sri Lanka',
         description:
           'Explore all available packages and choose the ring-making format that fits your trip in Sri Lanka.',
+      },
+    },
+  },
+  {
+    path: '/design-your-ring',
+    component: DesignYourRing,
+    meta: {
+      seo: {
+        title: 'Design Your Ring | The Ring Experience Sri Lanka',
+        description:
+          'Create a custom AI sketch prompt for handcrafted ring concepts with The Ring Experience.',
       },
     },
   },

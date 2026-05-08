@@ -107,6 +107,7 @@ const logoSrc = ref('/the-ring-experience-logo.svg')
 
 const primaryLinks = [
   { label: 'Our Offers', to: '/ouroffers' },
+  { label: 'Design Ring', to: '/design-your-ring' },
   { label: 'About Us', to: '/aboutus' },
   { label: 'Gemstones', to: '/gemstones' },
   { label: 'Gallery', to: '/gallery' },
