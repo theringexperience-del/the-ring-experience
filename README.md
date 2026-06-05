@@ -59,10 +59,11 @@ Frontend `.env`:
 
 - `VITE_SANITY_PROJECT_ID`
 - `VITE_SANITY_DATASET`
-- `VITE_GOOGLE_PLACES_API_KEY` optional
 
 Cloudflare Pages variables:
 
+- `GOOGLE_PLACES_API_KEY` optional, used by `/api/google-reviews`
+- `GOOGLE_PLACES_PLACE_ID` optional, used by `/api/google-reviews`
 - `GOOGLE_SHEETS_CLIENT_EMAIL`
 - `GOOGLE_SHEETS_PRIVATE_KEY`
 - `GOOGLE_SHEETS_SPREADSHEET_ID`

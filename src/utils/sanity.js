@@ -90,9 +90,7 @@ const HOMEPAGE_QUERY = `
     description,
     sourceLabel,
     sourceUrl,
-    embedUrl,
     sourceType,
-    googlePlaceId,
     maxItems,
     items[]{
       author,
@@ -364,8 +362,6 @@ const SITE_APPEARANCE_QUERY = `
 }
 `;
 
-const GOOGLE_PLACES_API_KEY = import.meta.env.VITE_GOOGLE_PLACES_API_KEY;
-
 async function fetchFromSanity(query) {
     if (!SANITY_PROJECT_ID || !SANITY_DATASET) {
         console.warn('[sanity] Missing VITE_SANITY_PROJECT_ID or VITE_SANITY_DATASET. CMS content cannot be loaded.');
@@ -381,84 +377,24 @@ async function fetchFromSanity(query) {
     }
 }
 
-function extractPlaceIdFromUrl(url) {
-    if (!url || typeof url !== 'string') return '';
-
-    const decodedUrl = decodeURIComponent(url);
-    const placeIdParam = decodedUrl.match(/[?&]place_id=([^&]+)/i)?.[1];
-    if (placeIdParam) return placeIdParam.trim();
-
-    const bangFormat = decodedUrl.match(/!1s(ChI[^!]+)/);
-    if (bangFormat?.[1]) return bangFormat[1].trim();
-
-    return '';
-}
-
-async function resolvePlaceIdFromGoogleUrl(sourceUrl) {
-    if (!sourceUrl || !GOOGLE_PLACES_API_KEY) return '';
-
-    const fromUrl = extractPlaceIdFromUrl(sourceUrl);
-    if (fromUrl) return fromUrl;
-
-    try {
-        const response = await fetch('https://places.googleapis.com/v1/places:searchText', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-Goog-Api-Key': GOOGLE_PLACES_API_KEY,
-                'X-Goog-FieldMask': 'places.id'
-            },
-            body: JSON.stringify({
-                textQuery: sourceUrl
-            })
-        });
-
-        if (!response.ok) return '';
-
-        const payload = await response.json();
-        return payload?.places?.[0]?.id || '';
-    } catch {
-        return '';
-    }
-}
-
 export async function fetchGooglePlaceReviews(config = {}) {
     const sourceType = config.sourceType === 'google' ? 'google' : 'manual';
-    if (sourceType !== 'google' || !GOOGLE_PLACES_API_KEY) return [];
+    if (sourceType !== 'google') return [];
 
-    const manualItems = Array.isArray(config.items) ? config.items : [];
     const maxItems = Number.isFinite(config.maxItems) ? Math.max(3, Math.min(20, config.maxItems)) : 9;
 
-    const placeId = (config.googlePlaceId && config.googlePlaceId.trim())
-        ? config.googlePlaceId.trim()
-        : await resolvePlaceIdFromGoogleUrl(config.sourceUrl);
-
-    if (!placeId) return manualItems;
-
     try {
-        const response = await fetch(`https://places.googleapis.com/v1/places/${placeId}`, {
-            method: 'GET',
-            headers: {
-                'X-Goog-Api-Key': GOOGLE_PLACES_API_KEY,
-                'X-Goog-FieldMask': 'reviews'
-            }
-        });
+        const response = await fetch(`/api/google-reviews?maxItems=${encodeURIComponent(maxItems)}`);
 
-        if (!response.ok) return manualItems;
+        if (!response.ok) return [];
         const payload = await response.json();
         const reviews = Array.isArray(payload?.reviews) ? payload.reviews : [];
 
         return reviews
             .slice(0, maxItems)
-            .map((review) => ({
-                author: review?.authorAttribution?.displayName || 'Guest',
-                rating: Number.isFinite(review?.rating) ? review.rating : 5,
-                text: review?.originalText?.text || review?.text?.text || '',
-                dateLabel: review?.relativePublishTimeDescription || ''
-            }))
             .filter((item) => item.text);
     } catch {
-        return manualItems;
+        return [];
     }
 }
 

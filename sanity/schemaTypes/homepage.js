@@ -120,9 +120,8 @@ export default {
                 { name: 'eyebrow', title: 'Subtitle', type: 'string' },
                 { name: 'heading', title: 'Heading', type: 'string' },
                 { name: 'description', title: 'Description', type: 'text', rows: 3 },
-                { name: 'sourceLabel', title: 'Source Label', type: 'string' },
-                { name: 'sourceUrl', title: 'Source URL', type: 'url' },
-                { name: 'embedUrl', title: 'Reviews Embed URL (Optional)', type: 'url' },
+                { name: 'sourceLabel', title: 'Public Link Label', type: 'string', description: 'Optional label for a public reviews link, for example View on Google.' },
+                { name: 'sourceUrl', title: 'Public Reviews Link', type: 'url', description: 'Optional public link shown under the reviews heading. No API keys or Place IDs go here.' },
                 {
                     name: 'sourceType',
                     title: 'Source Type',
@@ -136,17 +135,18 @@ export default {
                         layout: 'radio'
                     }
                 },
-                { name: 'googlePlaceId', title: 'Google Place ID', type: 'string' },
                 {
                     name: 'maxItems',
                     title: 'Maximum Reviews to Show',
                     type: 'number',
                     initialValue: 9,
+                    hidden: ({ parent }) => parent?.sourceType !== 'google',
                     validation: (Rule) => Rule.min(3).max(20)
                 },
                 {
                     name: 'items',
-                    title: 'Manual Items',
+                    title: 'Manual Reviews / Fallback',
+                    description: 'Used when Source Type is Manual Reviews, and kept as backup if Google reviews are unavailable.',
                     type: 'array',
                     of: [{
                         type: 'object',

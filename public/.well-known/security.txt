@@ -1,0 +1,3 @@
+Contact: mailto:theringexperience@gmail.com
+Preferred-Languages: en
+Canonical: https://www.theringexperience.lk/.well-known/security.txt

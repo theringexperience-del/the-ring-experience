@@ -33,65 +33,6 @@
             </div>
         </section>
 
-        <section v-if="reviewsContent.enabled !== false" id="reviews" ref="reviewsSection" data-reveal
-            class="w-full py-20 sm:py-24 lg:py-28">
-            <div class="mx-auto w-11/12 sm:w-10/12">
-                <div class="mx-auto max-w-3xl text-center">
-                    <p class="text-xs tracking-[0.2em] text-(--color-mutedbrown) uppercase">{{ reviewsContent.eyebrow }}
-                    </p>
-                    <h2 class="mt-3 font-display text-4xl leading-tight text-(--color-brown) sm:text-5xl">{{
-                        reviewsContent.heading }}</h2>
-                    <p v-if="reviewsContent.description"
-                        class="mx-auto mt-4 max-w-2xl text-base text-(--color-brown) sm:text-lg" style="opacity: 0.85;">
-                        {{ reviewsContent.description }}
-                    </p>
-                    <a v-if="reviewsContent.sourceUrl" :href="reviewsContent.sourceUrl" target="_blank"
-                        rel="noopener noreferrer"
-                        class="mt-4 inline-block text-sm tracking-[0.12em] text-(--color-noisette) uppercase">
-                        {{ reviewsContent.sourceLabel }}
-                    </a>
-                </div>
-                <div class="mx-auto mt-7 h-px w-24 bg-(--color-noisette)"></div>
-
-                <div v-if="reviewsContent.embedUrl" class="mt-10 overflow-hidden border bg-white/70 p-3"
-                    style="border-color: color-mix(in srgb, var(--color-darkbrown) 20%, transparent);">
-                    <iframe :src="shouldLoadReviewsEmbed ? reviewsContent.embedUrl : undefined" loading="lazy" title="Reviews embed"
-                        class="h-[520px] w-full border-0"></iframe>
-                </div>
-                <div v-else-if="reviewsItems.length" class="mt-8">
-                    <div v-if="useReviewSlider" class="mb-5 flex items-center justify-between">
-                        <p class="text-sm text-(--color-mutedbrown)">Showing 3 of {{ reviewsItems.length }} reviews</p>
-                        <div class="flex gap-2">
-                            <button type="button" class="h-9 w-9 rounded-full border text-(--color-brown)"
-                                style="border-color: color-mix(in srgb, var(--color-darkbrown) 26%, transparent);"
-                                @click="prevReviewSlide">&#8592;</button>
-                            <button type="button" class="h-9 w-9 rounded-full border text-(--color-brown)"
-                                style="border-color: color-mix(in srgb, var(--color-darkbrown) 26%, transparent);"
-                                @click="nextReviewSlide">&#8594;</button>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-                        <article v-for="review in visibleReviews" :key="`${review.author}-${review.text}`"
-                            class="border bg-white/72 p-6 sm:p-7"
-                            style="border-color: color-mix(in srgb, var(--color-darkbrown) 18%, transparent);">
-                            <div class="flex items-center justify-between gap-2">
-                                <p class="font-medium text-(--color-brown)">{{ review.author }}</p>
-                                <span v-if="review.dateLabel"
-                                    class="text-xs tracking-[0.08em] text-(--color-mutedbrown) uppercase">{{
-                                    review.dateLabel }}</span>
-                            </div>
-                            <p class="mt-3 text-(--color-noisette)">
-                                <span v-for="star in 5" :key="star" class="text-sm"
-                                    :style="{ opacity: star <= review.rating ? 1 : 0.35 }">&#9733;</span>
-                            </p>
-                            <p class="mt-4 text-base leading-relaxed text-(--color-brown)" style="opacity: 0.9;">{{
-                                review.text }}</p>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section id="aMoment" data-reveal class="authentic-vintage w-full py-20 sm:py-24 md:py-28 lg:py-36">
             <div class="mx-auto grid w-11/12 grid-cols-1 items-center gap-10 sm:w-10/12 sm:gap-12 lg:grid-cols-12 lg:gap-16">
                 <figure class="flex items-center justify-center lg:col-span-6">
@@ -198,6 +139,60 @@
 
         <FaqPreviewSection :content="faqHomepagePreviewContent" :items="homepageFaqItems" />
 
+        <section v-if="reviewsContent.enabled !== false" id="reviews" data-reveal
+            class="w-full py-20 sm:py-24 lg:py-28">
+            <div class="mx-auto w-11/12 sm:w-10/12">
+                <div class="mx-auto max-w-3xl text-center">
+                    <p class="text-xs tracking-[0.2em] text-(--color-mutedbrown) uppercase">{{ reviewsContent.eyebrow }}
+                    </p>
+                    <h2 class="mt-3 font-display text-4xl leading-tight text-(--color-brown) sm:text-5xl">{{
+                        reviewsContent.heading }}</h2>
+                    <p v-if="reviewsContent.description"
+                        class="mx-auto mt-4 max-w-2xl text-base text-(--color-brown) sm:text-lg" style="opacity: 0.85;">
+                        {{ reviewsContent.description }}
+                    </p>
+                    <a v-if="reviewsContent.sourceUrl" :href="reviewsContent.sourceUrl" target="_blank"
+                        rel="noopener noreferrer"
+                        class="mt-4 inline-block text-sm tracking-[0.12em] text-(--color-noisette) uppercase">
+                        {{ reviewsContent.sourceLabel }}
+                    </a>
+                </div>
+                <div class="mx-auto mt-7 h-px w-24 bg-(--color-noisette)"></div>
+
+                <div v-if="reviewsItems.length" class="mt-8">
+                    <div v-if="useReviewSlider" class="mb-5 flex items-center justify-between">
+                        <p class="text-sm text-(--color-mutedbrown)">Showing 3 of {{ reviewsItems.length }} reviews</p>
+                        <div class="flex gap-2">
+                            <button type="button" class="h-9 w-9 rounded-full border text-(--color-brown)"
+                                style="border-color: color-mix(in srgb, var(--color-darkbrown) 26%, transparent);"
+                                @click="prevReviewSlide">&#8592;</button>
+                            <button type="button" class="h-9 w-9 rounded-full border text-(--color-brown)"
+                                style="border-color: color-mix(in srgb, var(--color-darkbrown) 26%, transparent);"
+                                @click="nextReviewSlide">&#8594;</button>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+                        <article v-for="review in visibleReviews" :key="`${review.author}-${review.text}`"
+                            class="border bg-white/72 p-6 sm:p-7"
+                            style="border-color: color-mix(in srgb, var(--color-darkbrown) 18%, transparent);">
+                            <div class="flex items-center justify-between gap-2">
+                                <p class="font-medium text-(--color-brown)">{{ review.author }}</p>
+                                <span v-if="review.dateLabel"
+                                    class="text-xs tracking-[0.08em] text-(--color-mutedbrown) uppercase">{{
+                                    review.dateLabel }}</span>
+                            </div>
+                            <p class="mt-3 text-(--color-noisette)">
+                                <span v-for="star in 5" :key="star" class="text-sm"
+                                    :style="{ opacity: star <= review.rating ? 1 : 0.35 }">&#9733;</span>
+                            </p>
+                            <p class="mt-4 text-base leading-relaxed text-(--color-brown)" style="opacity: 0.9;">{{
+                                review.text }}</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <SocialSection :content="cmsSocialContent" />
     </main>
 </template>
@@ -301,9 +296,7 @@ const reviewsContent = computed(() => ({
     description: cmsHomepageContent.value?.reviews?.description ?? '',
     sourceLabel: cmsHomepageContent.value?.reviews?.sourceLabel ?? '',
     sourceUrl: cmsHomepageContent.value?.reviews?.sourceUrl ?? '',
-    embedUrl: cmsHomepageContent.value?.reviews?.embedUrl ?? '',
     sourceType: cmsHomepageContent.value?.reviews?.sourceType ?? 'manual',
-    googlePlaceId: cmsHomepageContent.value?.reviews?.googlePlaceId ?? '',
     maxItems: cmsHomepageContent.value?.reviews?.maxItems,
     items: Array.isArray(cmsHomepageContent.value?.reviews?.items) ? cmsHomepageContent.value.reviews.items : []
 }));
@@ -320,17 +313,14 @@ const visibleReviews = computed(() => {
 
 const homepageRoot = ref(null);
 const experienceGrid = ref(null);
-const reviewsSection = ref(null);
 let animationContext = null;
 let mediaMatcher = null;
 let reviewSliderInterval = null;
 let reviewsRequestId = 0;
-let reviewsObserver = null;
 let animationFrameId = null;
 let idleCallbackId = null;
 let isDisposed = false;
 let gsapLoader = null;
-const shouldLoadReviewsEmbed = ref(false);
 
 const loadGsap = async () => {
     if (!gsapLoader) {
@@ -361,7 +351,7 @@ const clearReviewInterval = () => {
 };
 
 watch(
-    () => [reviewsContent.value.sourceType, reviewsContent.value.sourceUrl, reviewsContent.value.googlePlaceId, reviewsContent.value.maxItems],
+    () => [reviewsContent.value.sourceType, reviewsContent.value.maxItems],
     async () => {
         const requestId = ++reviewsRequestId;
         if (reviewsContent.value.sourceType !== 'google') {
@@ -387,21 +377,6 @@ watch(
     },
     { immediate: true }
 );
-
-const observeReviewsEmbed = () => {
-    reviewsObserver?.disconnect();
-
-    if (!reviewsSection.value || !reviewsContent.value.embedUrl || shouldLoadReviewsEmbed.value) return;
-
-    reviewsObserver = new IntersectionObserver((entries) => {
-        if (!entries.some((entry) => entry.isIntersecting)) return;
-        shouldLoadReviewsEmbed.value = true;
-        reviewsObserver?.disconnect();
-        reviewsObserver = null;
-    }, { rootMargin: '280px 0px' });
-
-    reviewsObserver.observe(reviewsSection.value);
-};
 
 const setupHomepageAnimations = async () => {
     if (!homepageRoot.value) return;
@@ -479,14 +454,12 @@ onMounted(async () => {
     cmsSocialContent.value = sanitySocial ?? {};
     cmsFaqContent.value = sanityFaq ?? {};
     await nextTick();
-    observeReviewsEmbed();
     scheduleHomepageAnimations();
 });
 
 onBeforeUnmount(() => {
     isDisposed = true;
     clearReviewInterval();
-    reviewsObserver?.disconnect();
     mediaMatcher?.revert();
     animationContext?.revert();
     if (animationFrameId) window.cancelAnimationFrame(animationFrameId);
