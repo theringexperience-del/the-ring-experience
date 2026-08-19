@@ -78,16 +78,16 @@
           <strong class="mt-1 block font-display text-5xl text-(--color-noisette)">{{ money.format(price) }}</strong>
           <div class="mt-3 grid gap-1 text-xs text-[#AD9B8E]">
             <p class="flex justify-between gap-4">
-              <span>Gold live + fee</span>
-              <span>{{ money.format(goldRateLkr) }} / g</span>
+              <span>Gold live</span>
+              <span>{{ money.format(finalRatesLkr.gold) }} / g</span>
             </p>
             <p class="flex justify-between gap-4 text-[#8C8277]">
               <span>Silver</span>
-              <span>LKR 2,000 / g</span>
+              <span>{{ money.format(finalRatesLkr.silver) }} / g</span>
             </p>
             <p class="flex justify-between gap-4 text-[#8C8277]">
               <span>Copper</span>
-              <span>LKR 500 / g</span>
+              <span>{{ money.format(finalRatesLkr.copper) }} / g</span>
             </p>
           </div>
         </div>
@@ -171,12 +171,21 @@ const activeMetals = computed(() => metals.filter((metal) => mix.value[metal.key
 const price = computed(() => {
   if (!total.value) return 0
   const metalCost =
-    mix.value.gold * goldRateLkr.value +
-    mix.value.silver * 2000 +
-    mix.value.copper * 500
+    mix.value.gold * finalRatesLkr.value.gold +
+    mix.value.silver * finalRatesLkr.value.silver +
+    mix.value.copper * finalRatesLkr.value.copper
   return metalCost
 })
-const goldRateLkr = computed(() => metalPricesUsd.value.gold * usdLkr.value + 1000)
+const finalRatesLkr = computed(() => ({
+  gold: finalRatesUsd.value.gold * usdLkr.value,
+  silver: finalRatesUsd.value.silver * usdLkr.value,
+  copper: finalRatesUsd.value.copper * usdLkr.value,
+}))
+const finalRatesUsd = computed(() => ({
+  gold: metalPricesUsd.value.gold + 1000 / usdLkr.value,
+  silver: metalPricesUsd.value.silver + 2000 / usdLkr.value,
+  copper: metalPricesUsd.value.copper + 500 / usdLkr.value,
+}))
 const alloyName = computed(() => {
   if (goldShare.value > 0.98) return 'Fine Gold'
   if (goldShare.value > 0) return `${karat.value}K Custom Gold`
