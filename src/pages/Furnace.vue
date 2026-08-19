@@ -27,6 +27,7 @@
           </button>
           <h3 class="mt-2 font-display text-lg tracking-[0.12em] uppercase">{{ metal.name }}</h3>
           <p class="mt-1 text-[0.62rem] tracking-[0.14em] text-[#9E8D80] uppercase">{{ metal.symbol }} - melts {{ metal.melt }}</p>
+          <p class="mt-1 text-[0.62rem] tracking-[0.14em] text-(--color-noisette) uppercase">Purity {{ metal.purity }}</p>
           <div class="mt-4 flex items-center justify-center gap-3">
             <button type="button" class="counter-button" @click="remove(metal.key)">-</button>
             <b class="min-w-12 text-xs font-normal text-[#CFC7BB]">{{ mix[metal.key].toFixed(1) }}g</b>
@@ -76,13 +77,21 @@
           <small class="text-xs tracking-[0.15em] text-[#AD9B8E] uppercase">Your metal price</small>
           <strong class="mt-1 block font-display text-5xl text-(--color-noisette)">{{ money.format(price) }}</strong>
           <div class="mt-3 grid gap-1 text-xs text-[#AD9B8E]">
-            <p v-for="metal in metals" :key="`rate-${metal.key}`" class="flex justify-between gap-4">
-              <span>{{ metal.name }}</span>
-              <span>{{ usd.format(metalPricesUsd[metal.key]) }} / g</span>
+            <p class="flex justify-between gap-4">
+              <span>Gold live</span>
+              <span>{{ usd.format(metalPricesUsd.gold) }} / g</span>
             </p>
             <p class="flex justify-between gap-4 text-[#8C8277]">
-              <span>Making</span>
+              <span>Gold extra</span>
+              <span>LKR 1,000 / g</span>
+            </p>
+            <p class="flex justify-between gap-4 text-[#8C8277]">
+              <span>Silver</span>
               <span>LKR 2,000 / g</span>
+            </p>
+            <p class="flex justify-between gap-4 text-[#8C8277]">
+              <span>Copper</span>
+              <span>LKR 500 / g</span>
             </p>
           </div>
           <p class="mt-3 text-[0.68rem] text-[#8C8277]">{{ priceNote }}</p>
@@ -145,9 +154,9 @@ const usd = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD',
 const { setupRevealAnimations } = useRevealAnimations(pageRoot, { selectors: ['[data-reveal]'], start: 'top 86%' })
 
 const metals = [
-  { key: 'gold', name: 'Gold', symbol: 'Au', color: '#D5AD45', melt: '1064 C' },
-  { key: 'silver', name: 'Silver', symbol: 'Ag', color: '#D5D8D9', melt: '962 C' },
-  { key: 'copper', name: 'Copper', symbol: 'Cu', color: '#BD704D', melt: '1085 C' },
+  { key: 'gold', name: 'Gold', symbol: 'Au', color: '#D5AD45', melt: '1064 C', purity: '24K' },
+  { key: 'silver', name: 'Silver', symbol: 'Ag', color: '#D5D8D9', melt: '962 C', purity: '999.98' },
+  { key: 'copper', name: 'Copper', symbol: 'Cu', color: '#BD704D', melt: '1085 C', purity: '99.9' },
 ]
 
 const recipes = [
@@ -167,14 +176,14 @@ const activeMetals = computed(() => metals.filter((metal) => mix.value[metal.key
 const price = computed(() => {
   if (!total.value) return 0
   const metalCost =
-    mix.value.gold * metalPricesUsd.value.gold * usdLkr.value +
-    mix.value.silver * metalPricesUsd.value.silver * usdLkr.value +
-    mix.value.copper * metalPricesUsd.value.copper * usdLkr.value
-  return metalCost + total.value * 2000
+    mix.value.gold * (metalPricesUsd.value.gold * usdLkr.value + 1000) +
+    mix.value.silver * 2000 +
+    mix.value.copper * 500
+  return metalCost
 })
 const priceNote = computed(() => {
   if (!total.value) return `${priceSource.value}. Add metal to calculate.`
-  return `${priceSource.value}. Converted at ${money.format(usdLkr.value)} per USD.`
+  return `${priceSource.value}. Gold converted at ${money.format(usdLkr.value)} per USD.`
 })
 const alloyName = computed(() => {
   if (goldShare.value > 0.98) return 'Fine Gold'
