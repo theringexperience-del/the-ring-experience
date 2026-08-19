@@ -94,13 +94,12 @@
               <span>LKR 500 / g</span>
             </p>
           </div>
-          <p class="mt-3 text-[0.68rem] text-[#8C8277]">{{ priceNote }}</p>
         </div>
 
-        <button type="button" class="w-full bg-(--color-noisette) px-5 py-4 text-sm tracking-[0.18em] uppercase text-white disabled:cursor-not-allowed disabled:opacity-35" :disabled="!total" @click="fire">
+        <button type="button" class="w-full cursor-pointer bg-(--color-noisette) px-5 py-4 text-sm tracking-[0.18em] uppercase text-white disabled:cursor-not-allowed disabled:opacity-35" :disabled="!total" @click="fire">
           Fire the furnace
         </button>
-        <button type="button" class="w-full px-5 py-4 text-xs tracking-[0.15em] text-[#9E8D80] uppercase" @click="empty">
+        <button type="button" class="w-full cursor-pointer px-5 py-4 text-xs tracking-[0.15em] text-[#9E8D80] uppercase" @click="empty">
           Empty the tray
         </button>
 
@@ -180,10 +179,6 @@ const price = computed(() => {
     mix.value.silver * 2000 +
     mix.value.copper * 500
   return metalCost
-})
-const priceNote = computed(() => {
-  if (!total.value) return `${priceSource.value}. Add metal to calculate.`
-  return `${priceSource.value}. Gold converted at ${money.format(usdLkr.value)} per USD.`
 })
 const alloyName = computed(() => {
   if (goldShare.value > 0.98) return 'Fine Gold'
