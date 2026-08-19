@@ -14,7 +14,7 @@
         The Ring Experience
       </RouterLink>
 
-      <nav class="hidden items-center gap-8 text-sm tracking-[0.12em] uppercase lg:flex">
+      <nav class="hidden items-center gap-8 text-sm tracking-[0.12em] uppercase md:flex">
         <RouterLink
           v-for="link in primaryLinks"
           :key="link.to"
@@ -37,7 +37,7 @@
 
       <button
         type="button"
-        class="inline-flex h-10 w-10 items-center justify-center lg:hidden"
+        class="inline-flex h-10 w-10 items-center justify-center md:hidden"
         :aria-expanded="isMobileOpen ? 'true' : 'false'"
         aria-label="Toggle menu"
         @click="isMobileOpen = !isMobileOpen"
@@ -63,7 +63,7 @@
     <transition name="nav-fade">
       <div
         v-if="isMobileOpen"
-        class="border-t border-[#2A1E17]/10 bg-[#F4EFE8]/98 lg:hidden"
+        class="border-t border-[#2A1E17]/10 bg-[#F4EFE8]/98 md:hidden"
       >
         <nav class="mx-auto flex w-11/12 flex-col py-5 text-sm tracking-[0.12em] uppercase sm:w-10/12">
           <RouterLink
@@ -108,11 +108,10 @@ const logoSrc = ref('/the-ring-experience-logo.svg')
 const primaryLinks = [
   { label: 'Our Offers', to: '/ouroffers' },
   { label: 'Design Ring', to: '/design-your-ring' },
-  { label: 'Furnace', to: '/furnace' },
-  { label: 'Gemstones', to: '/gemstones' },
   { label: 'About Us', to: '/aboutus' },
-  { label: 'FAQ', to: '/faq' },
+  { label: 'Gemstones', to: '/gemstones' },
   { label: 'Gallery', to: '/gallery' },
+  { label: 'FAQ', to: '/faq' },
 ]
 
 const isSolid = computed(() => route.path !== '/' || hasScrolled.value || isMobileOpen.value)

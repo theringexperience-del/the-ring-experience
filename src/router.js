@@ -6,7 +6,6 @@ const OurOffers = () => import('./pages/OurOffers.vue')
 const DesignYourRing = () => import('./pages/DesignYourRing.vue')
 const Gemstones = () => import('./pages/Gemstones.vue')
 const Gallery = () => import('./pages/Gallery.vue')
-const Furnace = () => import('./pages/Furnace.vue')
 const BookExperience = () => import('./pages/BookExperience.vue')
 const FaqPage = () => import('./pages/FaqPage.vue')
 const PrivacyPolicy = () => import('./pages/PrivacyPolicy.vue')
@@ -76,17 +75,6 @@ const routes = [
         title: 'Client Gallery | The Ring Experience Sri Lanka',
         description:
           'Explore real moments and handcrafted rings created by our guests during The Ring Experience.',
-      },
-    },
-  },
-  {
-    path: '/furnace',
-    component: Furnace,
-    meta: {
-      seo: {
-        title: 'The Furnace | The Ring Experience Sri Lanka',
-        description:
-          'Build a precious-metal recipe, estimate the metal price, and bring your alloy idea to The Ring Experience.',
       },
     },
   },
