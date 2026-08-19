@@ -75,7 +75,17 @@
         <div class="border-t border-[#513C30] py-5">
           <small class="text-xs tracking-[0.15em] text-[#AD9B8E] uppercase">Your metal price</small>
           <strong class="mt-1 block font-display text-5xl text-(--color-noisette)">{{ money.format(price) }}</strong>
-          <p class="mt-2 text-xs text-[#8C8277]">{{ priceNote }}</p>
+          <div class="mt-3 grid gap-1 text-xs text-[#AD9B8E]">
+            <p v-for="metal in metals" :key="`rate-${metal.key}`" class="flex justify-between gap-4">
+              <span>{{ metal.name }}</span>
+              <span>{{ usd.format(metalPricesUsd[metal.key]) }} / g</span>
+            </p>
+            <p class="flex justify-between gap-4 text-[#8C8277]">
+              <span>Making</span>
+              <span>LKR 2,000 / g</span>
+            </p>
+          </div>
+          <p class="mt-3 text-[0.68rem] text-[#8C8277]">{{ priceNote }}</p>
         </div>
 
         <button type="button" class="w-full bg-(--color-noisette) px-5 py-4 text-sm tracking-[0.18em] uppercase text-white disabled:cursor-not-allowed disabled:opacity-35" :disabled="!total" @click="fire">
@@ -127,7 +137,11 @@ const pageRoot = ref(null)
 const isFiring = ref(false)
 const resultVisible = ref(false)
 const mix = ref({ gold: 0, silver: 0, copper: 0 })
+const metalPricesUsd = ref({ gold: 135, silver: 1.55, copper: 0.025 })
+const usdLkr = ref(300)
+const priceSource = ref('Fallback estimate')
 const money = new Intl.NumberFormat('en-LK', { style: 'currency', currency: 'LKR', maximumFractionDigits: 0 })
+const usd = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 })
 const { setupRevealAnimations } = useRevealAnimations(pageRoot, { selectors: ['[data-reveal]'], start: 'top 86%' })
 
 const metals = [
@@ -152,14 +166,15 @@ const karat = computed(() => Math.round(goldShare.value * 24))
 const activeMetals = computed(() => metals.filter((metal) => mix.value[metal.key] > 0))
 const price = computed(() => {
   if (!total.value) return 0
-  if (mix.value.gold > 0) return total.value * (47730 * goldShare.value + 2000)
-  if (mix.value.silver > 0) return total.value * 2000
-  return 0
+  const metalCost =
+    mix.value.gold * metalPricesUsd.value.gold * usdLkr.value +
+    mix.value.silver * metalPricesUsd.value.silver * usdLkr.value +
+    mix.value.copper * metalPricesUsd.value.copper * usdLkr.value
+  return metalCost + total.value * 2000
 })
 const priceNote = computed(() => {
-  if (mix.value.gold > 0) return 'Live gold price + LKR 2,000 per gram'
-  if (mix.value.silver > 0) return 'Silver - LKR 2,000 per gram'
-  return 'Add gold or silver to calculate'
+  if (!total.value) return `${priceSource.value}. Add metal to calculate.`
+  return `${priceSource.value}. Converted at ${money.format(usdLkr.value)} per USD.`
 })
 const alloyName = computed(() => {
   if (goldShare.value > 0.98) return 'Fine Gold'
@@ -221,6 +236,17 @@ const fire = () => {
 }
 
 onMounted(async () => {
+  try {
+    const response = await fetch('/api/metal-prices')
+    if (response.ok) {
+      const data = await response.json()
+      metalPricesUsd.value = { ...metalPricesUsd.value, ...data.pricesUsdPerGram }
+      usdLkr.value = Number(data.usdLkr) || usdLkr.value
+      priceSource.value = data.source || priceSource.value
+    }
+  } catch {
+    priceSource.value = 'Fallback estimate'
+  }
   await nextTick()
   setupRevealAnimations()
 })
