@@ -78,8 +78,8 @@
           <strong class="mt-1 block font-display text-5xl text-(--color-noisette)">{{ money.format(price) }}</strong>
           <div class="mt-3 grid gap-1 text-xs text-[#AD9B8E]">
             <p class="flex justify-between gap-4">
-              <span>Gold live</span>
-              <span>{{ usd.format(metalPricesUsd.gold) }} / g</span>
+              <span>Gold live + fee</span>
+              <span>{{ money.format(goldRateLkr) }} / g</span>
             </p>
             <p class="flex justify-between gap-4 text-[#8C8277]">
               <span>Silver</span>
@@ -171,11 +171,12 @@ const activeMetals = computed(() => metals.filter((metal) => mix.value[metal.key
 const price = computed(() => {
   if (!total.value) return 0
   const metalCost =
-    mix.value.gold * (metalPricesUsd.value.gold * usdLkr.value + 1000) +
+    mix.value.gold * goldRateLkr.value +
     mix.value.silver * 2000 +
     mix.value.copper * 500
   return metalCost
 })
+const goldRateLkr = computed(() => metalPricesUsd.value.gold * usdLkr.value + 1000)
 const alloyName = computed(() => {
   if (goldShare.value > 0.98) return 'Fine Gold'
   if (goldShare.value > 0) return `${karat.value}K Custom Gold`
