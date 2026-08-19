@@ -82,10 +82,6 @@
               <span>{{ usd.format(metalPricesUsd.gold) }} / g</span>
             </p>
             <p class="flex justify-between gap-4 text-[#8C8277]">
-              <span>Gold extra</span>
-              <span>LKR 1,000 / g</span>
-            </p>
-            <p class="flex justify-between gap-4 text-[#8C8277]">
               <span>Silver</span>
               <span>LKR 2,000 / g</span>
             </p>
