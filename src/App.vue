@@ -12,6 +12,7 @@
   <Footer />
   <MobileContactCta />
   <AnalyticsManager />
+  <GoogleMerchantWidget />
   <CookieBanner />
 </template>
 
@@ -23,8 +24,10 @@ import AnalyticsManager from './components/AnalyticsManager.vue'
 import CookieBanner from './components/CookieBanner.vue'
 import Footer from './components/Footer.vue'
 import GlobalBackground from './components/GlobalBackground.vue'
+import GoogleMerchantWidget from './components/GoogleMerchantWidget.vue'
 import MobileContactCta from './components/MobileContactCta.vue'
 import Navbar from './components/Navbar.vue'
+import { getJournalPost } from './content/journal.js'
 
 const route = useRoute()
 const siteUrl = 'https://www.theringexperience.lk'
@@ -34,29 +37,46 @@ const defaultTitle = 'The Ring Experience - Sri Lanka'
 const defaultDescription =
   'Create your own sterling silver ring in Sri Lanka with natural gemstones and local craftsmanship.'
 
-const seo = computed(() => route.meta?.seo ?? {})
+const article = computed(() => route.name === 'journalArticle' ? getJournalPost(route.params.slug) : null)
+const seo = computed(() => article.value ? {
+  title: `${article.value.title} | The Ring Experience`,
+  description: article.value.description,
+} : (route.meta?.seo ?? {}))
 const canonicalPath = computed(() => (route.path === '/' ? '' : route.path))
 const canonicalUrl = computed(() => `${siteUrl}${canonicalPath.value}`)
 const ogImage = computed(() => seo.value.image || defaultOgImage)
 const jsonLd = computed(() =>
   JSON.stringify({
     '@context': 'https://schema.org',
-    '@type': 'Organization',
+    '@type': 'LocalBusiness',
     name: 'The Ring Experience',
     url: siteUrl,
     logo: `${siteUrl}/the-ring-experience-logo.svg`,
     image: ogImage.value,
-    description: seo.value.description || defaultDescription,
+    description: 'Guided ring-making and jewellery workshops in Negombo, Sri Lanka.',
+    telephone: '+94 76 901 2344',
+    email: 'theringexperience@gmail.com',
+    address: { '@type': 'PostalAddress', addressLocality: 'Negombo', addressCountry: 'LK' },
   })
 )
+const articleLd = computed(() => article.value ? JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: article.value.title,
+  description: article.value.description,
+  datePublished: article.value.published,
+  author: { '@type': 'Organization', name: 'The Ring Experience', url: siteUrl },
+  publisher: { '@type': 'Organization', name: 'The Ring Experience', url: siteUrl },
+  mainEntityOfPage: canonicalUrl.value,
+}) : null)
 
 useHead(() => ({
   title: seo.value.title || defaultTitle,
   meta: [
     { name: 'description', content: seo.value.description || defaultDescription },
-    { name: 'robots', content: 'index, follow' },
+    { name: 'robots', content: route.name === 'journalArticle' && !article.value ? 'noindex' : 'index, follow' },
     { property: 'og:site_name', content: 'The Ring Experience' },
-    { property: 'og:type', content: 'website' },
+    { property: 'og:type', content: article.value ? 'article' : 'website' },
     { property: 'og:title', content: seo.value.title || defaultTitle },
     {
       property: 'og:description',
@@ -87,6 +107,7 @@ useHead(() => ({
       type: 'application/ld+json',
       children: jsonLd.value,
     },
+    ...(articleLd.value ? [{ key: 'article-jsonld', type: 'application/ld+json', children: articleLd.value }] : []),
   ],
 }))
 </script>

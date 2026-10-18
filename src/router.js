@@ -12,6 +12,8 @@ const FaqPage = () => import('./pages/FaqPage.vue')
 const PrivacyPolicy = () => import('./pages/PrivacyPolicy.vue')
 const CookiePolicy = () => import('./pages/CookiePolicy.vue')
 const RingMakingGuide = () => import('./pages/RingMakingGuide.vue')
+const Journal = () => import('./pages/Journal.vue')
+const JournalArticle = () => import('./pages/JournalArticle.vue')
 
 const routes = [
   {
@@ -46,6 +48,19 @@ const routes = [
           'How a guided ring-making workshop in Negombo works, what beginners can expect, and how to choose a jewellery experience for your Sri Lanka visit.',
       },
     },
+  },
+  {
+    path: '/journal',
+    component: Journal,
+    meta: { seo: {
+      title: 'Jewellery Making Journal | The Ring Experience Sri Lanka',
+      description: 'Practical guides to silver rings, gold choices and a hands-on jewellery-making experience in Negombo, Sri Lanka.'
+    } },
+  },
+  {
+    path: '/journal/:slug',
+    name: 'journalArticle',
+    component: JournalArticle,
   },
   {
     path: '/design-your-ring',

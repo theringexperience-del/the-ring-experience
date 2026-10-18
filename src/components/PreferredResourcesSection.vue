@@ -29,15 +29,20 @@
         </RouterLink>
       </div>
 
+      <div class="mt-8 flex flex-wrap gap-4">
+      <RouterLink to="/journal" class="inline-flex items-center gap-3 border border-[#B9A990] px-5 py-3 text-sm text-[#38291F] hover:bg-white">
+        Read the jewellery journal <span aria-hidden="true">↗</span>
+      </RouterLink>
       <a
         v-if="googleReviewsUrl"
         :href="googleReviewsUrl"
         target="_blank"
         rel="noopener noreferrer"
-        class="mt-8 inline-flex items-center gap-3 border border-[#B9A990] px-5 py-3 text-sm text-[#38291F] hover:bg-white"
+        class="inline-flex items-center gap-3 border border-[#B9A990] px-5 py-3 text-sm text-[#38291F] hover:bg-white"
       >
         Read guest reviews on Google <span aria-hidden="true">↗</span>
       </a>
+      </div>
     </div>
   </section>
 </template>

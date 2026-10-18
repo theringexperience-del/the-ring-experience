@@ -116,6 +116,7 @@ const primaryLinks = [
   { label: 'FAQs', to: '/faq' },
 ]
 const studioLinks = [
+  { label: 'Journal', to: '/journal' },
   { label: 'Gemstones', to: '/gemstones' },
   { label: 'Design Your Ring', to: '/design-your-ring' },
   { label: 'Metal Calculator', to: '/furnace' },
