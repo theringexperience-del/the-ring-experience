@@ -290,7 +290,8 @@ const valuesItems = computed(() => (Array.isArray(valuesContent.value.items) ? v
 const valuesBgStyle = computed(() => ({ backgroundImage: `url(${optimizeImageSource(valuesContent.value.backgroundImage, { width: 1600, quality: 74 })})` }));
 const faqHomepagePreviewContent = computed(() => ({
     enabled: cmsFaqContent.value?.homepageSection?.enabled ?? true,
-    eyebrow: cmsFaqContent.value?.homepageSection?.eyebrow ?? 'Most asked',
+    eyebrow: cmsFaqContent.value?.homepageSection?.eyebrow?.trim().toLowerCase() === 'preferred resources'
+        ? 'Most asked' : (cmsFaqContent.value?.homepageSection?.eyebrow ?? 'Most asked'),
     heading: cmsFaqContent.value?.homepageSection?.heading ?? 'Quick answers before you book',
     description: cmsFaqContent.value?.hero?.description ?? 'Find quick answers to the questions guests ask most often before booking their ring-making experience.',
     ctaLabel: cmsFaqContent.value?.homepageSection?.ctaLabel ?? 'See all FAQs',
