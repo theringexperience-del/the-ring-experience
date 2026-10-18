@@ -35,7 +35,7 @@ const page = ({ title, description, path, body, schema }) => {
     .replace(/<meta name="twitter:title" content="[^"]*"\s*\/>/, `<meta name="twitter:title" content="${escape(title)}" />`)
     .replace(/<meta name="twitter:description" content="[^"]*"\s*\/>/, `<meta name="twitter:description" content="${escape(description)}" />`)
     .replace('<div id="app"></div>', `<div id="app">${body}</div>`)
-    .replace('</head>', `<link rel="canonical" href="${url}" />${schema ? `<script type="application/ld+json">${JSON.stringify(schema).replace(/</g, '\\u003c')}</script>` : ''}</head>`);
+    .replace('</head>', `<link rel="canonical" href="${url}" />${schema ? `<script id="prerender-article-jsonld" type="application/ld+json">${JSON.stringify(schema).replace(/</g, '\\u003c')}</script>` : ''}</head>`);
   return html;
 };
 

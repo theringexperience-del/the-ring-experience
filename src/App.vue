@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useHead } from '@unhead/vue'
 import AnalyticsManager from './components/AnalyticsManager.vue'
@@ -69,6 +69,9 @@ const articleLd = computed(() => article.value ? JSON.stringify({
   publisher: { '@type': 'Organization', name: 'The Ring Experience', url: siteUrl },
   mainEntityOfPage: canonicalUrl.value,
 }) : null)
+
+// Static HTML exposes article data before JavaScript; Unhead owns the live tag after hydration.
+onMounted(() => document.getElementById('prerender-article-jsonld')?.remove())
 
 useHead(() => ({
   title: seo.value.title || defaultTitle,
