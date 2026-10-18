@@ -21,12 +21,26 @@
             </div>
         </section>
 
+        <section class="bg-[#EFE7DA] px-[6%] py-16 text-[#38291F] sm:py-20" aria-labelledby="more-guides-heading">
+            <div class="mx-auto max-w-6xl">
+                <p class="text-xs uppercase tracking-[.18em] text-[#795B3C]">More answers from the workbench</p>
+                <h2 id="more-guides-heading" class="mt-4 font-display text-3xl sm:text-5xl">Planning a meaningful ring?</h2>
+                <p class="mt-5 max-w-2xl leading-relaxed">Read our guides to wedding bands, engagement designs and coloured gemstones. Each explains what to ask an artisan before you book.</p>
+                <div class="mt-9 grid gap-4 md:grid-cols-3">
+                    <RouterLink to="/journal/make-your-own-wedding-rings-sri-lanka" class="border border-[#CBBBA5] bg-white p-6 font-display text-2xl hover:underline">Making wedding rings together ↗</RouterLink>
+                    <RouterLink to="/journal/engagement-ring-design-workshop-guide" class="border border-[#CBBBA5] bg-white p-6 font-display text-2xl hover:underline">Planning an engagement ring ↗</RouterLink>
+                    <RouterLink to="/journal/sri-lankan-gemstones-for-rings" class="border border-[#CBBBA5] bg-white p-6 font-display text-2xl hover:underline">Choosing a gemstone ↗</RouterLink>
+                </div>
+            </div>
+        </section>
+
         <SocialSection :content="cmsSocialContent" />
     </main>
 </template>
 
 <script setup>
 import { computed, nextTick, onMounted, ref } from 'vue';
+import { RouterLink } from 'vue-router';
 import PageTitleSection from '../components/PageTitleSection.vue';
 import SocialSection from '../components/SocialSection.vue';
 import { useRevealAnimations } from '../composables/useRevealAnimations';
@@ -40,7 +54,7 @@ const { setupRevealAnimations } = useRevealAnimations(faqRoot);
 const fallbackFaqItems = [
     {
         question: 'How long does the ring-making experience take?',
-        answer: 'A standard session usually takes around two to three hours from introduction to final finishing.'
+        answer: 'The Essential is listed at 90–120 minutes, Signature at around three hours, and Ceremony at four hours or more. Confirm timing for your design when booking.'
     },
     {
         question: 'Is the experience suitable for beginners?',
@@ -48,7 +62,7 @@ const fallbackFaqItems = [
     },
     {
         question: 'Can we choose gemstones during the session?',
-        answer: 'Yes. Available gemstones depend on the current selection, and the team can guide guests toward the best fit.'
+        answer: 'Ask in advance. Gemstone availability, setting time and additional costs depend on the stone and design. An artisan may need to handle the technical setting step.'
     },
     {
         question: 'Do I need to book in advance?',

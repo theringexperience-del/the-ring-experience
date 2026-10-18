@@ -23,7 +23,7 @@ const routes = [
       seo: {
         title: 'The Ring Experience | Craft Your Ring in Sri Lanka',
         description:
-          'Join a hands-on ring-making experience in Sri Lanka with sterling silver and natural local gemstones.',
+          'Make your own ring in a guided jewellery workshop in Negombo, Sri Lanka. Explore private sessions, silver designs and gemstone options.',
       },
     },
   },
@@ -54,7 +54,7 @@ const routes = [
     component: Journal,
     meta: { seo: {
       title: 'Jewellery Making Journal | The Ring Experience Sri Lanka',
-      description: 'Practical guides to silver rings, gold choices and a hands-on jewellery-making experience in Negombo, Sri Lanka.'
+      description: 'Guides to silver, gold, gemstones, wedding and engagement rings, and hands-on jewellery making in Negombo, Sri Lanka.'
     } },
   },
   {
