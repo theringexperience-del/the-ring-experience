@@ -1,51 +1,56 @@
 <template>
-    <main ref="homepageRoot" class="relative isolate w-full overflow-hidden">
+    <div ref="homepageRoot" class="relative isolate w-full overflow-hidden">
         <section id="hero"
-            class="relative flex min-h-svh w-full items-end overflow-hidden bg-black pb-40 pt-28 sm:pt-32 lg:h-screen lg:min-h-0">
+            class="home-hero relative flex w-full items-center overflow-hidden bg-[#201A15]">
             <video v-if="heroMediaType === 'video' && heroContent.video" :src="heroContent.video" autoplay muted loop
-                playsinline preload="metadata" class="absolute inset-0 h-full w-full object-cover object-center opacity-72"></video>
+                playsinline preload="metadata" class="absolute inset-0 h-full w-full object-cover object-center opacity-80"></video>
             <img v-else :src="heroImage.src" :srcset="heroImage.srcSet || undefined"
-                sizes="100vw" alt="Hero Cover Image" width="1920" height="1080" fetchpriority="high" decoding="async"
-                class="absolute inset-0 h-full w-full object-cover object-center opacity-72">
-            <div class="hero-orb hero-orb-left"></div>
-            <div class="hero-orb hero-orb-right"></div>
-            <div class="absolute inset-0"
-                style="background: linear-gradient(to top, color-mix(in srgb, var(--color-darkbrown) 84%, transparent), color-mix(in srgb, var(--color-darkbrown) 45%, transparent), transparent);">
+                sizes="100vw" alt="The Ring Experience jewellery workshop in Negombo" width="1920" height="1080" fetchpriority="high" decoding="async"
+                class="absolute inset-0 h-full w-full object-cover object-center opacity-80">
+            <div class="absolute inset-0 hero-shade">
             </div>
             <div class="relative z-10 mx-auto w-11/12 sm:w-10/12">
-                <div class="hero-copy flex max-w-5xl flex-col items-center text-center text-white lg:items-start lg:text-left">
-                    <h1 class="max-w-5xl font-display text-4xl leading-[0.98] font-medium text-(--color-lightbeige) sm:text-5xl md:text-6xl lg:text-7xl">
+                <div class="hero-copy flex max-w-3xl flex-col items-start text-left text-white">
+                    <p class="mb-6 text-[.65rem] tracking-[.22em] uppercase text-[#E6D4B4] sm:text-xs">Negombo, Sri Lanka · Private jewellery workshops</p>
+                    <h1 class="hero-heading font-display font-medium text-(--color-lightbeige)">
                         {{ heroContent.headline }}
                     </h1>
-                    <p class="mt-4 max-w-xl text-sm font-light text-gray-200 sm:text-base lg:text-xl">
+                    <p class="mt-6 max-w-lg text-base leading-relaxed text-[#F1E8DC] sm:text-lg">
                         {{ heroContent.subheadline }}
                     </p>
-                    <div class="mt-6 h-px w-20 bg-(--color-noisette) sm:w-24"></div>
-                    <div class="mt-7 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:items-start">
+
+                    <div class="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
                         <router-link :to="heroContent.buttonLink">
-                            <Button class="w-auto min-w-[11rem]">{{ heroContent.buttonLabel }}</Button>
+                            <Button as="span" class="w-full min-w-[11rem]">{{ heroContent.buttonLabel }}</Button>
                         </router-link>
                         <router-link :to="heroContent.secondaryButtonLink">
-                            <Button class="w-auto min-w-[11rem]" variant="outline">{{ heroContent.secondaryButtonLabel }}</Button>
+                            <Button as="span" class="hero-secondary w-full min-w-[11rem]" variant="navLight">{{ heroContent.secondaryButtonLabel }}</Button>
                         </router-link>
                     </div>
+                    <p class="mt-7 text-xs tracking-wide text-[#E6D4B4]">For first-timers, couples and curious travellers.</p>
                 </div>
             </div>
+            <a href="#theExperience" class="hero-scroll absolute bottom-7 right-[8.333%] text-xs tracking-[.15em] uppercase text-[#F1E8DC]">Discover the experience <span aria-hidden="true">↓</span></a>
         </section>
+        <div class="experience-strip border-b border-[#D8CDBB] bg-[#EFE7DA]">
+            <div class="mx-auto grid w-11/12 grid-cols-1 gap-3 py-5 text-center text-xs tracking-[.1em] uppercase text-[#4B3827] sm:w-10/12 sm:grid-cols-3">
+                <p>Local artisan guidance</p><p>A design that feels like you</p><p>A memory to take home</p>
+            </div>
+        </div>
 
         <section id="aMoment" data-reveal class="authentic-vintage w-full py-20 sm:py-24 md:py-28 lg:py-36">
             <div class="mx-auto grid w-11/12 grid-cols-1 items-center gap-10 sm:w-10/12 sm:gap-12 lg:grid-cols-12 lg:gap-16">
                 <figure class="flex items-center justify-center lg:col-span-6">
                     <img :src="aMomentImage.src" :srcset="aMomentImage.srcSet || undefined"
-                        sizes="(min-width: 1024px) 42vw, 92vw" alt="A Moment Image" width="1200" height="1600"
+                        sizes="(min-width: 1024px) 42vw, 92vw" alt="A closer look at the ring-making experience" width="1200" height="1600"
                         loading="lazy" decoding="async"
-                        class="h-[25rem] w-full rounded-xs object-cover object-center sm:h-[32rem] lg:h-[42rem]">
+                        class="moment-photo w-full object-cover object-center">
                 </figure>
                 <div class="flex flex-col justify-center lg:col-span-6 lg:pl-4 xl:pl-8">
                     <p class="mb-4 text-xs tracking-[0.18em] text-(--color-mutedbrown) uppercase sm:text-sm sm:tracking-[0.2em]">
                         {{ aMomentContent.eyebrow }}
                     </p>
-                    <h2 class="max-w-[10ch] font-display text-3xl leading-[1.04] font-medium text-(--color-brown) sm:text-4xl md:text-5xl lg:text-6xl">
+                    <h2 class="max-w-[16ch] font-display text-3xl leading-[1.04] font-medium text-(--color-brown) sm:text-4xl md:text-5xl lg:text-6xl">
                         {{ aMomentContent.title }}
                     </h2>
                     <div class="mt-6 h-px w-20 bg-(--color-noisette) sm:mt-8 sm:w-24"></div>
@@ -53,7 +58,7 @@
                         <p class="text-base leading-relaxed text-(--color-brown) sm:text-lg" style="opacity: 0.85;">
                             {{ aMomentContent.paragraphOne }}
                         </p>
-                        <p class="text-base leading-relaxed text-(--color-brown) font-semibold italic sm:text-lg">
+                        <p class="text-base leading-relaxed text-(--color-brown) sm:text-lg">
                             {{ aMomentContent.paragraphTwo }}
                         </p>
                     </div>
@@ -77,7 +82,7 @@
             </div>
         </section>
 
-        <section v-if="packagesPreviewContent.enabled !== false" id="packages" data-reveal class="w-full bg-black py-20 text-(--color-lightbeige) sm:py-24 lg:py-28">
+        <section v-if="packagesPreviewContent.enabled !== false" id="packages" data-reveal class="workshops-section w-full bg-[#252A24] py-20 text-(--color-lightbeige) sm:py-24 lg:py-28">
             <div class="mx-auto w-11/12 sm:w-10/12">
                 <div class="mx-auto max-w-3xl text-center">
                     <p class="text-xs tracking-[0.2em] uppercase" style="opacity: 0.75;">{{ packagesPreviewContent.eyebrow }}</p>
@@ -90,18 +95,20 @@
                 <div class="mx-auto mt-8 h-px w-24 bg-(--color-noisette)"></div>
 
                 <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-                    <article v-for="pkg in homepagePackages" :key="pkg.key || pkg.name" class="border p-7 sm:p-8"
+                    <article v-for="(pkg, index) in homepagePackages" :key="pkg.key || pkg.name" class="workshop-card relative flex flex-col border p-7 sm:p-8"
                         style="border-color: color-mix(in srgb, var(--color-lightbeige) 28%, transparent);">
-                        <p class="text-xs tracking-[0.16em] uppercase text-(--color-noisette)">{{ pkg.tag }}</p>
+                        <span class="mb-7 text-xs tracking-[.18em] text-[#CDB88E]">0{{ index + 1 }}</span>
+                        <p class="text-xs tracking-[0.16em] uppercase text-[#D6BD8C]">{{ pkg.tag }}</p>
                         <h3 class="mt-3 font-display text-3xl leading-tight sm:text-4xl">{{ pkg.name }}</h3>
                         <p class="mt-2 text-sm tracking-[0.08em] uppercase" style="opacity: 0.76;">{{ pkg.duration }}</p>
-                        <p class="mt-5 text-base leading-relaxed" style="opacity: 0.88;">{{ pkg.summary || pkg.fullDescription }}</p>
+                        <p class="mt-5 grow text-base leading-relaxed" style="opacity: 0.88;">{{ pkg.summary || pkg.fullDescription }}</p>
+                        <router-link to="/ouroffers" class="mt-8 border-t border-white/20 pt-5 text-sm text-[#E1CCA4]">Explore {{ pkg.name }} <span aria-hidden="true">↗</span></router-link>
                     </article>
                 </div>
 
                 <div class="mt-10 text-center">
                     <router-link :to="packagesPreviewContent.ctaLink">
-                        <Button variant="outline">{{ packagesPreviewContent.ctaLabel }}</Button>
+                        <Button as="span" variant="navLight">{{ packagesPreviewContent.ctaLabel }}</Button>
                     </router-link>
                 </div>
             </div>
@@ -137,6 +144,7 @@
             </div>
         </section>
 
+        <PreferredResourcesSection :reviews-url="reviewsContent.sourceUrl" />
         <FaqPreviewSection :content="faqHomepagePreviewContent" :items="homepageFaqItems" />
 
         <section v-if="reviewsContent.enabled !== false" id="reviews" data-reveal
@@ -163,10 +171,10 @@
                     <div v-if="useReviewSlider" class="mb-5 flex items-center justify-between">
                         <p class="text-sm text-(--color-mutedbrown)">Showing 3 of {{ reviewsItems.length }} reviews</p>
                         <div class="flex gap-2">
-                            <button type="button" class="h-9 w-9 rounded-full border text-(--color-brown)"
+                            <button type="button" class="h-11 w-11 rounded-full border text-(--color-brown)" aria-label="Previous reviews"
                                 style="border-color: color-mix(in srgb, var(--color-darkbrown) 26%, transparent);"
                                 @click="prevReviewSlide">&#8592;</button>
-                            <button type="button" class="h-9 w-9 rounded-full border text-(--color-brown)"
+                            <button type="button" class="h-11 w-11 rounded-full border text-(--color-brown)" aria-label="Next reviews"
                                 style="border-color: color-mix(in srgb, var(--color-darkbrown) 26%, transparent);"
                                 @click="nextReviewSlide">&#8594;</button>
                         </div>
@@ -193,19 +201,23 @@
             </div>
         </section>
 
+        <PageCtaSection :content="closingInvitation" />
         <SocialSection :content="cmsSocialContent" />
-    </main>
+    </div>
 </template>
 
 <script setup>
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import Button from '../components/Button.vue';
 import Card from '../components/Card.vue';
+import PageCtaSection from '../components/PageCtaSection.vue';
+import PreferredResourcesSection from '../components/PreferredResourcesSection.vue';
 import FaqPreviewSection from '../components/FaqPreviewSection.vue';
 import SocialSection from '../components/SocialSection.vue';
 import defaultHeroImage from '../assets/herocover.jpeg';
 import {
     fetchGooglePlaceReviews,
+    fetchPageCtaContentFromSanity,
     fetchFaqPageContentFromSanity,
     fetchHomepageContentFromSanity,
     fetchOffersPageContentFromSanity,
@@ -215,6 +227,15 @@ import {
 } from '../utils/sanity';
 
 const cmsHomepageContent = ref({});
+const cmsPageCtaContent = ref({});
+const closingInvitation = computed(() => ({
+    eyebrow: 'Your time at the workbench',
+    heading: 'What will you make yours?',
+    description: 'Send us your preferred date and ring ideas. We’ll help you choose a suitable workshop and confirm availability.',
+    buttonLabel: 'Plan Your Visit',
+    buttonLink: '/bookexperience',
+    ...cmsPageCtaContent.value?.home,
+}));
 const cmsOffersContent = ref({});
 const cmsSocialContent = ref({});
 const cmsFaqContent = ref({});
@@ -222,14 +243,14 @@ const googleReviews = ref([]);
 const reviewSlideIndex = ref(0);
 
 const heroContent = computed(() => ({
-    headline: cmsHomepageContent.value?.hero?.headline ?? '',
-    subheadline: cmsHomepageContent.value?.hero?.subheadline ?? '',
+    headline: cmsHomepageContent.value?.hero?.headline ?? 'Make a ring. Keep the memory.',
+    subheadline: cmsHomepageContent.value?.hero?.subheadline ?? 'A private ring-making workshop in Negombo, Sri Lanka. Create something personal with a local artisan—no experience needed.',
     mediaType: cmsHomepageContent.value?.hero?.mediaType ?? 'image',
     image: cmsHomepageContent.value?.hero?.image ?? defaultHeroImage,
     video: cmsHomepageContent.value?.hero?.video ?? '',
-    buttonLabel: cmsHomepageContent.value?.hero?.buttonLabel ?? 'Book your experience',
+    buttonLabel: cmsHomepageContent.value?.hero?.buttonLabel ?? 'Check Availability',
     buttonLink: cmsHomepageContent.value?.hero?.buttonLink ?? '/bookexperience',
-    secondaryButtonLabel: cmsHomepageContent.value?.hero?.secondaryButtonLabel ?? 'Discover our offers',
+    secondaryButtonLabel: cmsHomepageContent.value?.hero?.secondaryButtonLabel ?? 'Explore Workshops',
     secondaryButtonLink: cmsHomepageContent.value?.hero?.secondaryButtonLink ?? '/ouroffers'
 }));
 const heroMediaType = computed(() => (heroContent.value.mediaType === 'video' ? 'video' : 'image'));
@@ -443,16 +464,18 @@ const scheduleHomepageAnimations = () => {
 };
 
 onMounted(async () => {
-    const [sanityHomepage, sanityOffers, sanitySocial, sanityFaq] = await Promise.all([
+    const [sanityHomepage, sanityOffers, sanitySocial, sanityFaq, sanityPageCta] = await Promise.all([
         fetchHomepageContentFromSanity(),
         fetchOffersPageContentFromSanity(),
         fetchSocialContentFromSanity(),
-        fetchFaqPageContentFromSanity()
+        fetchFaqPageContentFromSanity(),
+        fetchPageCtaContentFromSanity()
     ]);
     cmsHomepageContent.value = sanityHomepage ?? {};
     cmsOffersContent.value = sanityOffers ?? {};
     cmsSocialContent.value = sanitySocial ?? {};
     cmsFaqContent.value = sanityFaq ?? {};
+    cmsPageCtaContent.value = sanityPageCta ?? {};
     await nextTick();
     scheduleHomepageAnimations();
 });
@@ -472,43 +495,19 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-.hero-orb {
-    pointer-events: none;
-    position: absolute;
-    border-radius: 9999px;
-    filter: blur(40px);
-    opacity: 0.45;
+.home-hero { min-height: min(860px, 100svh); padding-block: 10rem 8rem; }
+.hero-shade { background: linear-gradient(90deg, rgba(24,21,17,.88), rgba(24,21,17,.52) 58%, rgba(24,21,17,.18)); }
+.hero-heading { max-width: 12ch; font-size: clamp(3.5rem, 6.4vw, 6.5rem); line-height: 1.02; letter-spacing: -.035em; }
+.hero-secondary { backdrop-filter: blur(8px); }
+.moment-photo { aspect-ratio: 4 / 5; max-height: 40rem; border-radius: 42% 42% 3px 3px; }
+.workshop-card { background: rgba(255,255,255,.035); transition: background .2s, transform .2s; }
+.workshop-card:hover { background: rgba(255,255,255,.07); transform: translateY(-4px); }
+@media (max-width: 639px) {
+    .home-hero { min-height: 720px; min-height: max(680px, 92svh); padding-block: 9rem 7rem; }
+    .hero-heading { font-size: clamp(3.15rem, 13.5vw, 4.75rem); }
+    .hero-shade { background: linear-gradient(90deg, rgba(24,21,17,.85), rgba(24,21,17,.52)); }
+    .experience-strip p + p { display: none; }
+    .moment-photo { max-height: 30rem; }
 }
-
-.hero-orb-left {
-    left: -8rem;
-    bottom: 3rem;
-    height: 14rem;
-    width: 14rem;
-    background: color-mix(in srgb, var(--color-noisette) 45%, transparent);
-}
-
-.hero-orb-right {
-    right: -6rem;
-    top: 4rem;
-    height: 12rem;
-    width: 12rem;
-    background: color-mix(in srgb, var(--color-lightbeige) 28%, transparent);
-}
-
-@media (min-width: 1024px) {
-    .hero-orb-left {
-        left: -4rem;
-        bottom: 5rem;
-        height: 20rem;
-        width: 20rem;
-    }
-
-    .hero-orb-right {
-        right: -2rem;
-        top: 5rem;
-        height: 17rem;
-        width: 17rem;
-    }
-}
+@media (prefers-reduced-motion: reduce) { .workshop-card:hover { transform: none; } }
 </style>

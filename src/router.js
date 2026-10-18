@@ -11,6 +11,7 @@ const BookExperience = () => import('./pages/BookExperience.vue')
 const FaqPage = () => import('./pages/FaqPage.vue')
 const PrivacyPolicy = () => import('./pages/PrivacyPolicy.vue')
 const CookiePolicy = () => import('./pages/CookiePolicy.vue')
+const RingMakingGuide = () => import('./pages/RingMakingGuide.vue')
 
 const routes = [
   {
@@ -32,6 +33,17 @@ const routes = [
         title: 'Our Offers | The Ring Experience Sri Lanka',
         description:
           'Explore all available packages and choose the ring-making format that fits your trip in Sri Lanka.',
+      },
+    },
+  },
+  {
+    path: '/ring-making-guide',
+    component: RingMakingGuide,
+    meta: {
+      seo: {
+        title: 'Make Your Own Ring in Negombo, Sri Lanka | Visitor Guide',
+        description:
+          'How a guided ring-making workshop in Negombo works, what beginners can expect, and how to choose a jewellery experience for your Sri Lanka visit.',
       },
     },
   },
@@ -139,7 +151,9 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
-  scrollBehavior() {
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) return savedPosition
+    if (to.hash) return { el: to.hash, top: 96 }
     return { top: 0 }
   },
 })

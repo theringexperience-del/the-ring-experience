@@ -1,5 +1,5 @@
 <template>
-    <section v-if="mergedContent.enabled" class="relative w-full overflow-hidden py-20 sm:py-24 lg:py-32">
+    <section v-if="mergedContent.enabled && mergedContent.heading" class="relative w-full overflow-hidden py-20 sm:py-24 lg:py-32">
         <div class="pointer-events-none absolute inset-0">
             <div class="absolute inset-0 bg-cover bg-center" :style="backgroundStyle"></div>
             <div class="absolute inset-0 bg-(--color-darkbrown)" style="opacity: 0.68;"></div>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="flex items-end lg:col-span-4 lg:justify-end">
                     <router-link :to="mergedContent.buttonLink" class="w-auto">
-                        <Button class="w-auto min-w-[11rem]" variant="outline">
+                        <Button as="span" class="w-auto min-w-[11rem]" variant="navLight">
                             {{ mergedContent.buttonLabel }}
                         </Button>
                     </router-link>

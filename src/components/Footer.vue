@@ -21,6 +21,12 @@
           </p>
         </div>
 
+        <nav aria-label="Explore the studio" class="flex flex-wrap gap-x-7 gap-y-4 border-t border-white/15 pt-6 text-sm text-[#E6D4B4]">
+          <RouterLink to="/gemstones">Explore Gemstones</RouterLink>
+          <RouterLink to="/design-your-ring">Design Your Ring</RouterLink>
+          <RouterLink to="/furnace">Metal Calculator</RouterLink>
+          <RouterLink to="/faq">Workshop FAQs</RouterLink>
+        </nav>
         <Credits :footer-data="footerData" />
       </div>
     </div>
@@ -29,6 +35,7 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
+import { RouterLink } from 'vue-router'
 import Credits from './Credits.vue'
 import { fetchFooterContentFromSanity } from '../utils/sanity'
 

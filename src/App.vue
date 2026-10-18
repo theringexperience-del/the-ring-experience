@@ -1,7 +1,8 @@
 <template>
+  <a href="#main-content" class="skip-link">Skip to content</a>
   <GlobalBackground />
   <Navbar />
-  <main class="relative z-10">
+  <main id="main-content" tabindex="-1" class="relative z-10">
     <router-view v-slot="{ Component }">
       <transition name="page-fade" mode="out-in">
         <component :is="Component" />
