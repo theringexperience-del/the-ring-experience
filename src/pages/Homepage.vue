@@ -144,7 +144,7 @@
             </div>
         </section>
 
-        <PreferredResourcesSection :reviews-url="reviewsContent.sourceUrl" />
+        <PreferredResourcesSection :reviews-url="GOOGLE_MAPS_URL" />
         <FaqPreviewSection :content="faqHomepagePreviewContent" :items="homepageFaqItems" />
 
         <section v-if="reviewsContent.enabled !== false" id="reviews" data-reveal
@@ -159,10 +159,14 @@
                         class="mx-auto mt-4 max-w-2xl text-base text-(--color-brown) sm:text-lg" style="opacity: 0.85;">
                         {{ reviewsContent.description }}
                     </p>
-                    <a v-if="reviewsContent.sourceUrl" :href="reviewsContent.sourceUrl" target="_blank"
+                    <a v-if="reviewsContent.sourceUrl && reviewsContent.sourceUrl !== GOOGLE_MAPS_URL" :href="reviewsContent.sourceUrl" target="_blank"
                         rel="noopener noreferrer"
                         class="mt-4 inline-block text-sm tracking-[0.12em] text-(--color-noisette) uppercase">
                         {{ reviewsContent.sourceLabel }}
+                    </a>
+                    <a :href="GOOGLE_MAPS_URL" target="_blank" rel="noopener noreferrer"
+                        class="mt-4 inline-block text-sm tracking-[0.12em] text-(--color-noisette) underline underline-offset-4 uppercase">
+                        Google reviews &amp; directions ↗
                     </a>
                 </div>
                 <div class="mx-auto mt-7 h-px w-24 bg-(--color-noisette)"></div>
@@ -212,6 +216,7 @@ import Button from '../components/Button.vue';
 import Card from '../components/Card.vue';
 import PageCtaSection from '../components/PageCtaSection.vue';
 import PreferredResourcesSection from '../components/PreferredResourcesSection.vue';
+import { GOOGLE_MAPS_URL } from '../utils/businessProfile.js';
 import FaqPreviewSection from '../components/FaqPreviewSection.vue';
 import SocialSection from '../components/SocialSection.vue';
 import defaultHeroImage from '../assets/herocover.jpeg';

@@ -28,6 +28,7 @@ import GoogleMerchantWidget from './components/GoogleMerchantWidget.vue'
 import MobileContactCta from './components/MobileContactCta.vue'
 import Navbar from './components/Navbar.vue'
 import { getJournalPost } from './content/journal.js'
+import { GOOGLE_MAPS_URL } from './utils/businessProfile.js'
 
 const route = useRoute()
 const siteUrl = 'https://www.theringexperience.lk'
@@ -56,7 +57,9 @@ const jsonLd = computed(() =>
     description: 'Guided ring-making and jewellery workshops in Negombo, Sri Lanka.',
     telephone: '+94 76 901 2344',
     email: 'theringexperience@gmail.com',
-    address: { '@type': 'PostalAddress', addressLocality: 'Negombo', addressCountry: 'LK' },
+    address: { '@type': 'PostalAddress', streetAddress: '63/1 Porutota Rd', addressLocality: 'Negombo', postalCode: '11500', addressCountry: 'LK' },
+    hasMap: GOOGLE_MAPS_URL,
+    sameAs: [GOOGLE_MAPS_URL],
   })
 )
 const articleLd = computed(() => article.value ? JSON.stringify({
