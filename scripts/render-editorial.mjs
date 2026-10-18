@@ -20,7 +20,7 @@ const articleBody = (post) => `
 
 const indexBody = `<main style="max-width:1000px;margin:7rem auto 5rem;padding:0 1.5rem;font:1.1rem/1.8 Georgia,serif;color:#38291f">
   <h1 style="font-size:clamp(3rem,7vw,5rem)">The Journal</h1>
-  <p>Practical notes on silver, gold and making jewellery in Sri Lanka.</p>
+  <p>Clear answers about silver, gold, gemstones, wedding and engagement rings, and making jewellery in Sri Lanka.</p>
   ${journalPosts.map((post) => `<article><h2><a href="/journal/${escape(post.slug)}">${escape(post.title)}</a></h2><p>${escape(post.description)}</p></article>`).join('')}
 </main>`;
 
@@ -47,7 +47,7 @@ const writeRoute = async (path, html) => {
 
 await writeRoute('/journal', page({
   title: 'Jewellery Making Journal | The Ring Experience Sri Lanka',
-  description: 'Practical guides to silver rings, gold choices and a hands-on jewellery-making experience in Negombo, Sri Lanka.',
+  description: 'Guides to silver, gold, gemstones, wedding and engagement rings, and hands-on jewellery making in Negombo, Sri Lanka.',
   path: '/journal', body: indexBody,
 }));
 

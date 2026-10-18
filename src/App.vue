@@ -105,9 +105,9 @@ useHead(() => ({
     {
       key: 'organization-jsonld',
       type: 'application/ld+json',
-      children: jsonLd.value,
+      textContent: jsonLd.value,
     },
-    ...(articleLd.value ? [{ key: 'article-jsonld', type: 'application/ld+json', children: articleLd.value }] : []),
+    ...(articleLd.value ? [{ key: 'article-jsonld', type: 'application/ld+json', textContent: articleLd.value }] : []),
   ],
 }))
 </script>

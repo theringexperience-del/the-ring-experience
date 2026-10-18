@@ -4,7 +4,7 @@
       <div class="mx-auto max-w-6xl">
         <p class="text-xs tracking-[.22em] uppercase text-[#7A603F]">Stories from the workbench</p>
         <h1 class="mt-5 max-w-4xl font-display text-5xl leading-tight sm:text-7xl">The Journal</h1>
-        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-[#604B39]">Practical notes on silver, gold and making jewellery in Sri Lanka. Start with a question, then bring your ideas to the workbench.</p>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-[#604B39]">Clear answers about silver, gold, gemstones, wedding and engagement rings, and making jewellery in Sri Lanka. Start with a question, then bring your ideas to the workbench.</p>
       </div>
     </header>
     <section aria-label="Articles" class="mx-auto grid max-w-6xl gap-5 px-[6%] py-16 md:grid-cols-3 sm:py-20">
