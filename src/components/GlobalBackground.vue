@@ -1,29 +1,21 @@
 <template>
-    <div class="pointer-events-none fixed inset-0 -z-20 overflow-hidden">
-        <img :src="resolvedImage" alt="" aria-hidden="true" width="1600" height="900" decoding="async"
-            fetchpriority="low" class="h-full w-full object-cover object-center opacity-18 brightness-75">
-        <div class="absolute inset-0"
-            style="background: color-mix(in srgb, var(--color-lightbeige) 60%, transparent);"></div>
+    <div class="pointer-events-none fixed inset-0 -z-20 overflow-hidden bg-[#FAF7F1]" aria-hidden="true">
+        <img v-if="backgroundImage" :src="backgroundImage" alt="" width="1600" height="900" decoding="async"
+            fetchpriority="low" class="h-full w-full object-cover object-center opacity-[0.06]">
     </div>
 </template>
 
 <script setup>
 import { computed, onMounted, ref } from 'vue';
-import defaultHeroImage from '../assets/herocover.jpeg';
 import { fetchSiteAppearanceContentFromSanity, toWebImage } from '../utils/sanity';
 
 const cmsAppearance = ref({});
-
-const resolvedImage = computed(() => {
-    const cmsImage = cmsAppearance.value?.globalBackgroundImage;
-    if (cmsImage) {
-        return toWebImage(cmsImage, { width: 1600, quality: 72 });
-    }
-    return defaultHeroImage;
+const backgroundImage = computed(() => {
+    const image = cmsAppearance.value?.globalBackgroundImage;
+    return image ? toWebImage(image, { width: 1600, quality: 72 }) : null;
 });
 
 onMounted(async () => {
-    const sanityAppearance = await fetchSiteAppearanceContentFromSanity();
-    cmsAppearance.value = sanityAppearance ?? {};
+    cmsAppearance.value = await fetchSiteAppearanceContentFromSanity() ?? {};
 });
 </script>

@@ -7,7 +7,7 @@
 
 :root {
   --color-base: #E6DDD1;
-  --color-lightbeige: #fff5e8;
+  --color-lightbeige: #FAF7F1;
   --color-brown: #4B2F1D;
   --color-noisette: #B08942;
   --color-darkbrown: #2A1E17;
@@ -51,10 +51,25 @@ body {
   color: var(--color-darkbrown);
   background-color: var(--color-lightbeige);
   font-size: 18px;
-  font-weight: 350;
+  font-weight: 400;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+
+body { margin: 0; -webkit-font-smoothing: antialiased; line-height: 1.6; }
+h1, h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+a, button, input, select, textarea, summary { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 3px solid #9A743D; outline-offset: 5px; }
+section[id] { scroll-margin-top: 6rem; }
+::selection { background: #D7C29C; color: #2A1E17; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+.skip-link { position: fixed; left: 1rem; top: -5rem; z-index: 100; background: #FAF7F1; color: #2A1E17; padding: .75rem 1rem; }
+.skip-link:focus { top: 1rem; }

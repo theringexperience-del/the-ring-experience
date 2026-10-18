@@ -1,4 +1,6 @@
 import { createClient } from '@sanity/client';
+import * as contentQueries from './sanityQueries.js';
+import { HOMEPAGE_QUERY, SOCIAL_QUERY, ABOUT_US_QUERY, OFFERS_PAGE_QUERY, GEMSTONES_PAGE_QUERY, CLIENT_GALLERY_QUERY, BOOKING_PAGE_QUERY, FAQ_PAGE_QUERY, CONTACT_FORM_QUERY, PAGE_CTA_QUERY, FOOTER_QUERY, NAVBAR_QUERY, SITE_APPEARANCE_QUERY } from './sanityQueries.js';
 
 const SANITY_PROJECT_ID = import.meta.env.VITE_SANITY_PROJECT_ID;
 const SANITY_DATASET = import.meta.env.VITE_SANITY_DATASET;
@@ -36,331 +38,18 @@ export function toImageSrcSet(url, widths = [], options = {}) {
         .join(', ');
 }
 
-const HOMEPAGE_QUERY = `
-*[_type == "homepage"][0]{
-  hero{
-    headline,
-    subheadline,
-    buttonLabel,
-    buttonLink,
-    secondaryButtonLabel,
-    secondaryButtonLink,
-    mediaType,
-    "image": image.asset->url,
-    "video": video.asset->url
-  },
-  aMoment{
-    eyebrow,
-    title,
-    paragraphOne,
-    paragraphTwo,
-    "image": image.asset->url
-  },
-  theExperience{
-    eyebrow,
-    title
-  },
-  experienceCards[]{
-    key,
-    title,
-    lineOne,
-    lineTwo,
-    "image": image.asset->url
-  },
-  packagesPreview{
-    enabled,
-    eyebrow,
-    heading,
-    description,
-    ctaLabel,
-    ctaLink
-  },
-  values{
-    heading,
-    "backgroundImage": backgroundImage.asset->url,
-    items[]{
-      title,
-      text
-    }
-  },
-  reviews{
-    enabled,
-    eyebrow,
-    heading,
-    description,
-    sourceLabel,
-    sourceUrl,
-    sourceType,
-    maxItems,
-    items[]{
-      author,
-      rating,
-      text,
-      dateLabel
-    }
-  }
-}
-`;
 
-const SOCIAL_QUERY = `
-*[_type == "social"][0]{
-  eyebrow,
-  heading,
-  description,
-  "backgroundImage": backgroundImage.asset->url,
-  whatsappDmUrl,
-  instagramDmUrl,
-  links[]{
-    label,
-    href
-  }
-}
-`;
 
-const ABOUT_US_QUERY = `
-*[_type == "aboutUs"][0]{
-  hero{
-    eyebrow,
-    title,
-    description,
-    "backgroundImage": backgroundImage.asset->url
-  },
-  approach{
-    eyebrow,
-    title,
-    paragraphOne,
-    paragraphTwo,
-    "image": image.asset->url
-  },
-  origin{
-    eyebrow,
-    title,
-    paragraphOne,
-    paragraphTwo,
-    "image": image.asset->url
-  },
-  reasonToExist{
-    eyebrow,
-    heading,
-    description
-  }
-}
-`;
 
-const OFFERS_PAGE_QUERY = `
-*[_type == "offersPage"][0]{
-  hero{
-    eyebrow,
-    title,
-    description,
-    "backgroundImage": backgroundImage.asset->url
-  },
-  packagesSection{
-    eyebrow,
-    heading,
-    description
-  },
-  packages[]{
-    key,
-    isVisible,
-    tag,
-    name,
-    duration,
-    summary,
-    fullDescription,
-    idealFor,
-    highlights[],
-    buttonLabel
-  },
-  gemstonesLink{
-    enabled,
-    eyebrow,
-    heading,
-    description,
-    buttonLabel,
-    buttonLink
-  }
-}
-`;
 
-const GEMSTONES_PAGE_QUERY = `
-*[_type == "gemstonesPage"][0]{
-  intro{
-    eyebrow,
-    heading,
-    description
-  },
-  gemstones[]{
-    key,
-    name,
-    isVisible,
-    origin,
-    tone,
-    cut,
-    meaning,
-    description,
-    "image": image.asset->url
-  }
-}
-`;
 
-const CLIENT_GALLERY_QUERY = `
-*[_type == "clientGallery"][0]{
-  intro{
-    eyebrow,
-    heading,
-    description
-  },
-  photos[]{
-    "image": image.asset->url,
-    isVisible,
-    displaySize,
-    caption,
-    story,
-    dateLabel
-  }
-}
-`;
 
-const BOOKING_PAGE_QUERY = `
-*[_type == "bookingPage"][0]{
-  hero{
-    eyebrow,
-    title,
-    description
-  },
-  calendly{
-    enabled,
-    eyebrow,
-    heading,
-    description,
-    link
-  }
-}
-`;
 
-const FAQ_PAGE_QUERY = `
-*[_type == "faqPage"][0]{
-  hero{
-    eyebrow,
-    title,
-    description
-  },
-  homepageSection{
-    enabled,
-    eyebrow,
-    heading,
-    ctaLabel,
-    ctaLink
-  },
-  items[]|order(coalesce(homepageOrder, 999) asc){
-    question,
-    answer,
-    showOnHomepage,
-    homepageOrder
-  }
-}
-`;
 
-const CONTACT_FORM_QUERY = `
-*[_type == "contactForm"][0]{
-  enabled,
-  eyebrow,
-  heading,
-  description,
-  submitLabel,
-  privacyNote,
-  newsletterConsentLabel
-}
-`;
 
-const PAGE_CTA_QUERY = `
-*[_type == "pageCta"][0]{
-  home{
-    enabled,
-    showInquiryForm,
-    eyebrow,
-    heading,
-    description,
-    buttonLabel,
-    buttonLink,
-    "backgroundImage": backgroundImage.asset->url
-  },
-  about{
-    enabled,
-    showInquiryForm,
-    eyebrow,
-    heading,
-    description,
-    buttonLabel,
-    buttonLink,
-    "backgroundImage": backgroundImage.asset->url
-  },
-  gemstones{
-    enabled,
-    showInquiryForm,
-    eyebrow,
-    heading,
-    description,
-    buttonLabel,
-    buttonLink,
-    "backgroundImage": backgroundImage.asset->url
-  },
-  gallery{
-    enabled,
-    showInquiryForm,
-    eyebrow,
-    heading,
-    description,
-    buttonLabel,
-    buttonLink,
-    "backgroundImage": backgroundImage.asset->url
-  },
-  offers{
-    enabled,
-    showInquiryForm,
-    eyebrow,
-    heading,
-    description,
-    buttonLabel,
-    buttonLink,
-    "backgroundImage": backgroundImage.asset->url
-  },
-  book{
-    enabled,
-    showInquiryForm,
-    eyebrow,
-    heading,
-    description,
-    buttonLabel,
-    buttonLink,
-    "backgroundImage": backgroundImage.asset->url
-  }
-}
-`;
 
-const FOOTER_QUERY = `
-*[_type == "footer"][0]{
-  subtitle,
-  title,
-  text,
-  phone,
-  phoneLabel,
-  email
-}
-`;
 
-const NAVBAR_QUERY = `
-*[_type == "navbar"][0]{
-  "logoSvgUrl": logoSvg.asset->url
-}
-`;
 
-const SITE_APPEARANCE_QUERY = `
-*[_type == "siteAppearance"][0]{
-  "globalBackgroundImage": globalBackgroundImage.asset->url
-}
-`;
 
 async function fetchFromSanity(query) {
     if (!SANITY_PROJECT_ID || !SANITY_DATASET) {
@@ -369,6 +58,12 @@ async function fetchFromSanity(query) {
     }
 
     try {
+        const type = Object.entries(contentQueries).find(([, value]) => value === query)?.[0];
+        if (type) {
+            const response = await fetch(`/api/content?type=${encodeURIComponent(type)}`);
+            if (response.ok) return (await response.json()).result ?? null;
+        }
+        // Vite development does not serve Pages Functions.
         return await sanity.fetch(query);
     } catch (error) {
         const message = error?.message || String(error);

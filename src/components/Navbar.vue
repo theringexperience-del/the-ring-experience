@@ -9,37 +9,37 @@
      
       <RouterLink
         to="/"
-        class="flex items-center justify-center font-display text-xl leading-none font-bold tracking-[0.01em] sm:text-[1.6rem]"
-      > <img id="logo" :src="logoSrc" alt="" width="56" height="56" decoding="async" class="w-14">
+        class="brand-link flex items-center gap-2 font-display text-lg leading-none font-medium sm:text-[1.35rem]" aria-label="The Ring Experience home"
+      > <img id="logo" :src="logoSrc" alt="" width="56" height="56" decoding="async" class="w-11 sm:w-12">
         The Ring Experience
       </RouterLink>
 
-      <nav class="hidden items-center gap-8 text-sm tracking-[0.12em] uppercase lg:flex">
+      <nav class="hidden items-center gap-6 text-xs tracking-[0.1em] uppercase xl:flex">
         <RouterLink
           v-for="link in primaryLinks"
           :key="link.to"
           :to="link.to"
-          class="transition-all duration-200 hover:opacity-70 hover:italic"
-          :class="route.path === link.to ? 'opacity-100' : 'opacity-85'"
+          class="nav-link transition-colors duration-200"
+          :aria-current="route.path === link.to ? 'page' : undefined"
         >
           {{ link.label }}
         </RouterLink>
-        <RouterLink to="/bookexperience">
+        <RouterLink to="/bookexperience" class="booking-link">
           <Button
-            size="sm"
+            as="span" size="sm"
             :variant="isSolid ? 'nav' : 'navLight'"
             class="px-5 py-2 text-xs tracking-[0.14em]"
           >
-            Book
+            Check Availability
           </Button>
         </RouterLink>
       </nav>
 
       <button
         type="button"
-        class="inline-flex h-10 w-10 items-center justify-center lg:hidden"
+        class="inline-flex h-10 w-10 items-center justify-center xl:hidden"
         :aria-expanded="isMobileOpen ? 'true' : 'false'"
-        aria-label="Toggle menu"
+        aria-label="Toggle menu" aria-controls="mobile-navigation"
         @click="isMobileOpen = !isMobileOpen"
       >
         <span class="sr-only">Open menu</span>
@@ -62,8 +62,8 @@
 
     <transition name="nav-fade">
       <div
-        v-if="isMobileOpen"
-        class="border-t border-[#2A1E17]/10 bg-[#F4EFE8]/98 lg:hidden"
+        v-if="isMobileOpen" id="mobile-navigation"
+        class="max-h-[calc(100svh-4.5rem)] overflow-y-auto border-t border-[#2A1E17]/10 bg-[#F4EFE8]/98 text-[#2A1E17] xl:hidden"
       >
         <nav class="mx-auto flex w-11/12 flex-col py-5 text-sm tracking-[0.12em] uppercase sm:w-10/12">
           <RouterLink
@@ -75,17 +75,20 @@
           >
             {{ link.label }}
           </RouterLink>
+          <div class="mt-5 flex flex-wrap gap-x-5 gap-y-3 text-xs text-[#6F5644]">
+            <RouterLink v-for="link in studioLinks" :key="link.to" :to="link.to" @click="isMobileOpen = false">{{ link.label }}</RouterLink>
+          </div>
           <RouterLink
             to="/bookexperience"
             class="mt-4"
             @click="isMobileOpen = false"
           >
             <Button
-              size="sm"
+              as="span" size="sm"
               variant="nav"
               class="w-full px-5 py-2 text-xs tracking-[0.14em]"
             >
-              Book
+              Check Availability
             </Button>
           </RouterLink>
         </nav>
@@ -106,13 +109,17 @@ const hasScrolled = ref(false)
 const logoSrc = ref('/the-ring-experience-logo.svg')
 
 const primaryLinks = [
-  { label: 'Our Offers', to: '/ouroffers' },
-  { label: 'Design Ring', to: '/design-your-ring' },
-  { label: 'Furnace', to: '/furnace' },
-  { label: 'Gemstones', to: '/gemstones' },
-  { label: 'About Us', to: '/aboutus' },
-  { label: 'FAQ', to: '/faq' },
+  { label: 'The Experience', to: '/#theExperience' },
+  { label: 'Workshops', to: '/ouroffers' },
+  { label: 'Our Story', to: '/aboutus' },
   { label: 'Gallery', to: '/gallery' },
+  { label: 'FAQs', to: '/faq' },
+]
+const studioLinks = [
+  { label: 'Journal', to: '/journal' },
+  { label: 'Gemstones', to: '/gemstones' },
+  { label: 'Design Your Ring', to: '/design-your-ring' },
+  { label: 'Metal Calculator', to: '/furnace' },
 ]
 
 const isSolid = computed(() => route.path !== '/' || hasScrolled.value || isMobileOpen.value)
@@ -154,4 +161,8 @@ onBeforeUnmount(() => {
 .nav-fade-leave-to {
   opacity: 0;
 }
+.nav-link { padding-block: 1rem; border-bottom: 1px solid transparent; }
+.nav-link:hover, .nav-link[aria-current="page"] { border-color: currentColor; }
+.brand-link { flex-shrink: 0; }
+@media (max-width: 359px) { .brand-link { font-size: 1rem; gap: .25rem; } }
 </style>
