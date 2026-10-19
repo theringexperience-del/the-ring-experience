@@ -12,7 +12,6 @@
   <Footer />
   <MobileContactCta />
   <AnalyticsManager />
-  <GoogleMerchantWidget />
   <CookieBanner />
 </template>
 
@@ -24,10 +23,10 @@ import AnalyticsManager from './components/AnalyticsManager.vue'
 import CookieBanner from './components/CookieBanner.vue'
 import Footer from './components/Footer.vue'
 import GlobalBackground from './components/GlobalBackground.vue'
-import GoogleMerchantWidget from './components/GoogleMerchantWidget.vue'
 import MobileContactCta from './components/MobileContactCta.vue'
 import Navbar from './components/Navbar.vue'
 import { getJournalPost } from './content/journal.js'
+import { BUSINESS_SCHEMA } from './utils/businessProfile.js'
 
 const route = useRoute()
 const siteUrl = 'https://www.theringexperience.lk'
@@ -42,23 +41,10 @@ const seo = computed(() => article.value ? {
   title: `${article.value.title} | The Ring Experience`,
   description: article.value.description,
 } : (route.meta?.seo ?? {}))
-const canonicalPath = computed(() => (route.path === '/' ? '' : route.path))
+const canonicalPath = computed(() => (route.path === '/' ? '' : route.path.replace(/\/+$/, '')))
 const canonicalUrl = computed(() => `${siteUrl}${canonicalPath.value}`)
 const ogImage = computed(() => seo.value.image || defaultOgImage)
-const jsonLd = computed(() =>
-  JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: 'The Ring Experience',
-    url: siteUrl,
-    logo: `${siteUrl}/the-ring-experience-logo.svg`,
-    image: ogImage.value,
-    description: 'Guided ring-making and jewellery workshops in Negombo, Sri Lanka.',
-    telephone: '+94 76 901 2344',
-    email: 'theringexperience@gmail.com',
-    address: { '@type': 'PostalAddress', addressLocality: 'Negombo', addressCountry: 'LK' },
-  })
-)
+const jsonLd = computed(() => JSON.stringify({ ...BUSINESS_SCHEMA, image: ogImage.value }))
 const articleLd = computed(() => article.value ? JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
@@ -71,13 +57,13 @@ const articleLd = computed(() => article.value ? JSON.stringify({
 }) : null)
 
 // Static HTML exposes article data before JavaScript; Unhead owns the live tag after hydration.
-onMounted(() => document.getElementById('prerender-article-jsonld')?.remove())
+onMounted(() => document.querySelectorAll('#prerender-article-jsonld, #prerender-page-jsonld').forEach(tag => tag.remove()))
 
 useHead(() => ({
   title: seo.value.title || defaultTitle,
   meta: [
     { name: 'description', content: seo.value.description || defaultDescription },
-    { name: 'robots', content: route.name === 'journalArticle' && !article.value ? 'noindex' : 'index, follow' },
+    { name: 'robots', content: (route.name === 'notFound' || (route.name === 'journalArticle' && !article.value)) ? 'noindex' : 'index, follow' },
     { property: 'og:site_name', content: 'The Ring Experience' },
     { property: 'og:type', content: article.value ? 'article' : 'website' },
     { property: 'og:title', content: seo.value.title || defaultTitle },

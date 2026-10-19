@@ -42,6 +42,7 @@
       >
         Read guest reviews on Google <span aria-hidden="true">↗</span>
       </a>
+      <GooglePreferredSource />
       </div>
     </div>
   </section>
@@ -50,6 +51,7 @@
 <script setup>
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
+import GooglePreferredSource from './GooglePreferredSource.vue'
 
 const props = defineProps({
   reviewsUrl: { type: String, default: '' }
