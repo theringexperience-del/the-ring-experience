@@ -1,84 +1,15 @@
 <template>
-  <div v-if="ctaLinks.length" class="fixed right-4 bottom-4 z-[45] md:hidden">
-    <a
-      v-for="cta in ctaLinks"
-      :key="cta.key"
-      :href="cta.href"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="mt-3 flex h-15 w-15 items-center justify-center rounded-full text-white shadow-[0_14px_30px_rgba(42,30,23,0.22)] transition-transform duration-200 hover:-translate-y-0.5 first:mt-0"
-      :class="cta.className"
-      :aria-label="cta.ariaLabel"
-    >
-      <svg v-if="cta.key === 'whatsapp'" viewBox="0 0 24 24" aria-hidden="true" class="h-7 w-7 fill-current">
-        <path
-          d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2C6.62 2 2.2 6.4 2.2 11.82c0 1.73.45 3.42 1.3 4.91L2 22l5.43-1.42a9.81 9.81 0 0 0 4.59 1.17h.01c5.41 0 9.82-4.4 9.82-9.82 0-2.62-1.02-5.08-2.8-6.99ZM12.03 20.1h-.01a8.13 8.13 0 0 1-4.14-1.13l-.3-.18-3.22.84.86-3.14-.2-.32a8.1 8.1 0 0 1-1.24-4.34 8.25 8.25 0 0 1 14.08-5.84 8.19 8.19 0 0 1 2.41 5.84 8.26 8.26 0 0 1-8.24 8.27Zm4.53-6.16c-.25-.12-1.49-.74-1.72-.82-.23-.09-.4-.12-.57.12-.17.25-.66.82-.81.98-.15.17-.3.19-.56.06-.25-.12-1.07-.39-2.03-1.24-.75-.67-1.26-1.49-1.41-1.74-.15-.25-.02-.38.11-.5.11-.11.25-.3.37-.45.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.13-.57-1.37-.78-1.88-.21-.5-.42-.43-.57-.44h-.49c-.17 0-.43.06-.66.31-.23.25-.86.84-.86 2.05s.88 2.38 1 2.55c.12.17 1.71 2.61 4.15 3.66.58.25 1.03.4 1.38.52.58.18 1.1.16 1.52.1.46-.07 1.49-.61 1.7-1.19.21-.58.21-1.08.15-1.19-.07-.11-.24-.18-.5-.31Z"
-        />
-      </svg>
-      <svg v-else viewBox="0 0 24 24" aria-hidden="true" class="h-7 w-7 fill-current">
-        <path
-          d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.8A3.95 3.95 0 0 0 3.8 7.75v8.5a3.95 3.95 0 0 0 3.95 3.95h8.5a3.95 3.95 0 0 0 3.95-3.95v-8.5a3.95 3.95 0 0 0-3.95-3.95h-8.5Zm8.9 1.55a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2ZM12 6.85A5.15 5.15 0 1 1 6.85 12 5.16 5.16 0 0 1 12 6.85Zm0 1.8A3.35 3.35 0 1 0 15.35 12 3.36 3.36 0 0 0 12 8.65Z"
-        />
-      </svg>
-    </a>
-  </div>
+  <a v-if="showContact" :href="WORKSHOP_WHATSAPP" target="_blank" rel="noopener noreferrer"
+    class="fixed right-4 z-[45] inline-flex min-h-12 items-center gap-2.5 rounded-full border border-white/25 bg-[#38291F] px-4 py-3 text-xs tracking-wide text-[#FAF7F1] shadow-lg md:hidden"
+    style="bottom:calc(1rem + env(safe-area-inset-bottom))" aria-label="Ask The Ring Experience on WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true" class="h-5 w-5 fill-current"><path d="M12.04 2a9.84 9.84 0 0 0-8.52 14.77L2 22l5.36-1.41A9.82 9.82 0 1 0 12.04 2Zm0 17.9a8.06 8.06 0 0 1-4.1-1.12l-.3-.18-3.18.84.85-3.1-.2-.32a8.1 8.1 0 1 1 6.93 3.88Zm4.49-6.08c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.24-.64.8-.79.97-.15.16-.3.18-.55.06-.25-.13-1.04-.39-1.98-1.23-.74-.65-1.23-1.46-1.38-1.7-.14-.25-.01-.38.11-.5.11-.1.25-.28.37-.43.12-.14.16-.24.24-.4.08-.17.04-.31-.02-.44-.06-.12-.56-1.34-.77-1.84-.2-.48-.41-.42-.56-.43h-.47c-.17 0-.43.06-.65.3-.23.25-.86.84-.86 2.03s.88 2.34 1 2.5c.13.17 1.75 2.67 4.23 3.74.59.25 1.05.4 1.41.51.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.68-1.18.2-.58.2-1.08.14-1.18-.06-.1-.22-.17-.47-.3Z"/></svg>
+    Ask us
+  </a>
 </template>
-
 <script setup>
-import { computed, onMounted, ref } from 'vue'
-import { fetchFooterContentFromSanity, fetchSocialContentFromSanity } from '../utils/sanity'
-
-const socialContent = ref({})
-const footerContent = ref({})
-
-function findLinkByLabel(links, matcher) {
-  return links.find((link) => matcher.test(String(link?.label || '').trim()))
-}
-
-function toWhatsappUrl(phoneNumber) {
-  const normalized = String(phoneNumber || '').replace(/\D/g, '')
-  return normalized ? `https://wa.me/${normalized}` : ''
-}
-
-const ctaLinks = computed(() => {
-  const links = Array.isArray(socialContent.value?.links) ? socialContent.value.links : []
-  const whatsappFallback =
-    socialContent.value?.whatsappDmUrl ||
-    findLinkByLabel(links, /whats\s*app|whatsapp/i)?.href ||
-    toWhatsappUrl(footerContent.value?.phone)
-  const instagramFallback = findLinkByLabel(links, /instagram|insta/i)?.href || ''
-  const whatsappHref = whatsappFallback
-  const instagramHref = socialContent.value?.instagramDmUrl || instagramFallback
-  const items = []
-
-  if (whatsappHref) {
-    items.push({
-      key: 'whatsapp',
-      href: whatsappHref,
-      className: 'bg-[#25D366]',
-      ariaLabel: 'Chat on WhatsApp'
-    })
-  }
-
-  if (instagramHref) {
-    items.push({
-      key: 'instagram',
-      href: instagramHref,
-      className: 'bg-[linear-gradient(135deg,#F58529_0%,#FEDA77_18%,#DD2A7B_52%,#8134AF_76%,#515BD4_100%)]',
-      ariaLabel: 'Open Instagram'
-    })
-  }
-
-  return items
-})
-
-onMounted(async () => {
-  const [social, footer] = await Promise.all([
-    fetchSocialContentFromSanity(),
-    fetchFooterContentFromSanity()
-  ])
-
-  socialContent.value = social ?? {}
-  footerContent.value = footer ?? {}
-})
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { WORKSHOP_WHATSAPP } from '../utils/businessProfile.js'
+const route = useRoute()
+const showContact = computed(() => !/^\/(bookexperience|design-your-ring)\/?$/.test(route.path))
 </script>

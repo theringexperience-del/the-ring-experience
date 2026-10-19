@@ -1,34 +1,12 @@
 <template>
-    <section v-if="sectionEnabled" data-reveal class="w-full py-16 sm:py-20 lg:py-24">
-        <div class="mx-auto w-11/12 sm:w-10/12">
-            <div class="mx-auto max-w-3xl text-center">
-                <p class="text-xs tracking-[0.2em] text-(--color-mutedbrown) uppercase">{{ previewContent.eyebrow }}</p>
-                <h2 class="mt-3 font-display text-4xl leading-tight text-(--color-brown) sm:text-5xl">{{ previewContent.heading }}</h2>
-                <p class="mx-auto mt-4 max-w-2xl text-base text-(--color-brown) sm:text-lg" style="opacity: 0.86;">
-                    {{ previewContent.description }}
-                </p>
-            </div>
-
-            <div class="mx-auto mt-7 h-px w-24 bg-(--color-noisette)"></div>
-
-            <div class="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-3">
-                <article v-for="item in homepageItems" :key="item.question" class="border bg-white/70 p-6 sm:p-7"
-                    style="border-color: color-mix(in srgb, var(--color-darkbrown) 16%, transparent);">
-                    <p class="font-display text-2xl leading-tight text-(--color-brown)">{{ item.question }}</p>
-                    <p class="mt-4 text-base leading-relaxed whitespace-pre-line text-(--color-brown)" style="opacity: 0.88;">
-                        {{ item.answer }}
-                    </p>
-                </article>
-            </div>
-
-            <div class="mt-10 text-center">
-                <router-link :to="previewContent.ctaLink" class="inline-flex items-center justify-center rounded-full border px-6 py-3 text-sm tracking-[0.12em] uppercase text-(--color-brown) transition hover:bg-[#2A1E17] hover:text-(--color-lightbeige)"
-                    style="border-color: color-mix(in srgb, var(--color-darkbrown) 18%, transparent);">
-                    {{ previewContent.ctaLabel }}
-                </router-link>
-            </div>
-        </div>
-    </section>
+  <section v-if="sectionEnabled" class="bg-[#FAF7F1] px-[6%] py-14 sm:py-18" aria-labelledby="home-faq-title">
+    <div class="mx-auto max-w-4xl"><p class="text-xs uppercase tracking-[.18em] text-[#80664A]">A little guidance</p><h2 id="home-faq-title" class="mt-4 font-display text-3xl text-[#38291F] sm:text-4xl">Before you visit.</h2>
+      <div class="mt-7 divide-y divide-[#D4C6B2] border-y border-[#D4C6B2]">
+        <details v-for="item in homepageItems" :key="item.question" class="group py-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-base font-medium text-[#38291F]"><span>{{ item.question }}</span><span class="text-xl text-[#80664A] group-open:rotate-45" aria-hidden="true">+</span></summary><p class="mt-4 max-w-3xl whitespace-pre-line text-sm leading-relaxed text-[#604B39]">{{ item.answer }}</p></details>
+      </div>
+      <router-link :to="previewContent.ctaLink" class="mt-6 inline-flex min-h-11 items-center gap-6 text-sm text-[#755024]">All workshop FAQs <span aria-hidden="true">→</span></router-link>
+    </div>
+  </section>
 </template>
 
 <script setup>
