@@ -1,5 +1,5 @@
 <template>
-    <main ref="faqRoot" class="w-full">
+    <div ref="faqRoot" class="w-full">
         <PageTitleSection :content="heroContent" />
 
         <section data-reveal class="w-full pb-16 sm:pb-20 lg:pb-24">
@@ -35,12 +35,13 @@
         </section>
 
         <SocialSection :content="cmsSocialContent" />
-    </main>
+    </div>
 </template>
 
 <script setup>
 import { computed, nextTick, onMounted, ref } from 'vue';
 import { RouterLink } from 'vue-router';
+import { mergeWorkshopFaqs } from '../content/workshopFaqs.js';
 import PageTitleSection from '../components/PageTitleSection.vue';
 import SocialSection from '../components/SocialSection.vue';
 import { useRevealAnimations } from '../composables/useRevealAnimations';
@@ -84,7 +85,7 @@ const faqItems = computed(() => {
     const items = Array.isArray(cmsFaqContent.value?.items)
         ? cmsFaqContent.value.items.filter((item) => item?.question && item?.answer)
         : [];
-    return items.length ? items : fallbackFaqItems;
+    return mergeWorkshopFaqs(items.length ? items : fallbackFaqItems);
 });
 
 onMounted(async () => {

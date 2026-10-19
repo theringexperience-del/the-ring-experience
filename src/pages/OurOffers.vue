@@ -19,7 +19,7 @@
                         <div class="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
                             <div class="max-w-[60ch]">
                                 <p class="text-xs tracking-[0.14em] text-(--color-mutedbrown) uppercase">{{ pkg.tag }}</p>
-                                <h3 class="mt-2 font-display text-4xl leading-tight text-(--color-brown)">{{ pkg.name }}</h3>
+                                <h2 class="mt-2 font-display text-4xl leading-tight text-(--color-brown)">{{ pkg.name }}</h2>
                                 <p class="mt-2 text-sm tracking-[0.08em] text-(--color-noisette) uppercase">{{ pkg.duration }}</p>
                                 <p class="mt-4 text-base leading-relaxed text-(--color-brown)" style="opacity: 0.9;">
                                     {{ pkg.fullDescription || pkg.summary }}
@@ -33,9 +33,7 @@
                             </div>
                             <div class="flex shrink-0 flex-col items-start gap-3 lg:items-end">
                                 <Button type="button" @click="focusFormForPackage(pkg.name)">Send request</Button>
-                                <RouterLink :to="{ path: '/bookexperience', query: { package: pkg.name } }">
-                                    <Button type="button" variant="outline">Book experience</Button>
-                                </RouterLink>
+                                <RouterLink :to="{ path: '/bookexperience', query: { package: pkg.name } }" class="inline-flex min-h-12 items-center justify-center border border-[#7B6248] px-6 py-3 text-sm uppercase tracking-[.12em] text-(--color-brown) hover:bg-[#EFE7DA]">Check availability</RouterLink>
                             </div>
                         </div>
                     </article>
@@ -87,7 +85,7 @@
                     </label>
                     <label class="flex flex-col gap-2">
                         <span class="text-sm font-medium text-(--color-brown)">Preferred date</span>
-                        <input v-model="form.preferredDate" type="date"
+                        <input v-model="form.preferredDate" type="date" :min="todayInColombo"
                             class="h-11 rounded-sm border border-[#7B6248]/45 bg-white px-3 text-(--color-brown) outline-none focus:border-(--color-noisette) focus:ring-2 focus:ring-[#B08942]/35">
                     </label>
                     <label class="md:col-span-2 flex flex-col gap-2">
@@ -163,6 +161,8 @@ const gemstonesCalloutContent = computed(() => ({
     buttonLink: cmsOffersContent.value?.gemstonesLink?.buttonLink || '/gemstones'
 }));
 
+const todayInColombo = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Colombo', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+
 const form = reactive({
     packageName: '',
     name: '',
@@ -225,13 +225,13 @@ const submitByEmail = async () => {
 
     if (!saved) {
         submitState.value = 'error';
-        submitMessage.value = 'Request not sent. Please try again.';
+        submitMessage.value = 'Your request was not sent. Please try again or contact us on WhatsApp at +94 76 901 2344.';
         isSubmitting.value = false;
         return;
     }
 
     submitState.value = 'success';
-    submitMessage.value = 'We will be back as soon as possible';
+    submitMessage.value = 'Request received. We will reply with availability and details. Your session is confirmed once we agree the booking with you.';
     form.name = '';
     form.email = '';
     form.phoneNumber = '';

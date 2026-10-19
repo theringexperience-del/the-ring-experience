@@ -202,7 +202,151 @@ export const journalPosts = [
       ] }
     ],
     related: ['engagement-ring-design-workshop-guide', 'make-a-silver-ring-in-negombo', 'silver-or-gold-for-a-handmade-ring']
-  }
+  },
+{
+  "slug": "care-for-silver-gold-and-gemstone-rings",
+  "title": "How to care for silver, gold and gemstone rings after your workshop",
+  "description": "Simple care for your handmade ring: silver tarnish, gentle cleaning, safe storage and why gemstone treatments matter.",
+  "category": "Jewellery care",
+  "published": "2026-10-20",
+  "readingTime": "4 min read",
+  "intro": "Your ring leaves the bench with a finish you helped choose. Keeping it looking good starts with knowing its metal, stone and setting. Ask for care instructions for your exact piece before leaving the studio.",
+  "sections": [
+    {
+      "heading": "What does 925 mean on a silver ring?",
+      "paragraphs": [
+        "Sterling silver is 92.5% silver, usually alloyed with copper for jewellery. The number 925 describes that fineness. Silver can tarnish as it reacts with its surroundings; a surface colour change does not by itself mean the ring is fake.",
+        "For a plain silver band, use a suitable soft jewellery polishing cloth with a light touch. Keep pieces dry and separate during storage. Tell your jeweller if you want to preserve a deliberately darkened texture: polishing can change that finish."
+      ],
+      "source": {
+        "label": "The Silver Institute: silver jewellery",
+        "href": "https://silverinstitute.org/silver-jewelry/"
+      }
+    },
+    {
+      "heading": "Does gold need different care?",
+      "paragraphs": [
+        "Gold jewellery is an alloy, and its colour and properties depend on the metals mixed with gold. Eighteen carat is 75% gold; 14 carat is about 58.5%. Higher purity does not make a finished ring immune to scratching or wear.",
+        "Keep your ring away from activities that knock or distort it. Before using a chemical cleaner, check that it suits the whole piece, including solder joints, plating, stones and any special finish. Ask an artisan to inspect a loose stone or damaged setting rather than continuing to wear it."
+      ],
+      "source": {
+        "label": "World Gold Council: gold purity and colour",
+        "href": "https://www.gold.org/about-gold/about-gold-jewellery"
+      }
+    },
+    {
+      "heading": "Can I clean every gemstone ring the same way?",
+      "paragraphs": [
+        "No. The gem and any treatments matter. GIA recommends warm soapy water for moonstone and advises against ultrasonic or steam cleaning. Moonstone also needs protection from hard knocks and sudden temperature changes.",
+        "Sapphire is harder, but filled or dyed stones need different care from untreated material. Ask which treatments are known for your stone before choosing a cleaner. When that information is missing, ask the maker for advice before trying a home cleaning method."
+      ],
+      "source": {
+        "label": "GIA: moonstone care and cleaning",
+        "href": "https://www.gia.edu/moonstone-care-cleaning"
+      }
+    },
+    {
+      "heading": "What should I ask before taking my ring home?",
+      "paragraphs": [
+        "Confirm the metal purity, stone identity, known treatments, care method and whether the finish needs special handling. Ask how to arrange a fit or setting inspection if something changes. Keep your receipt and any gemstone documentation together.",
+        "If you want a ring for everyday wear, tell us during the design conversation. We can discuss its width, finish, stone choice and setting before you choose the details."
+      ]
+    }
+  ],
+  "related": [
+    "silver-or-gold-for-a-handmade-ring",
+    "sri-lankan-gemstones-for-rings",
+    "ring-size-and-fit-for-a-handmade-ring"
+  ]
+},
+{
+  "slug": "ring-size-and-fit-for-a-handmade-ring",
+  "title": "Ring size and fit: what to check before making your own ring",
+  "description": "A practical sizing checklist for custom rings, wedding bands and surprise gifts, including band width, existing rings and resizing questions.",
+  "category": "Fit & customisation",
+  "published": "2026-10-20",
+  "readingTime": "4 min read",
+  "intro": "A personal ring should feel right as well as look right. A number from an online chart can start the conversation, but the final fit belongs to the actual finger, band width and shape you choose.",
+  "sections": [
+    {
+      "heading": "Bring the sizing system, not just a number",
+      "paragraphs": [
+        "Ring sizes are labelled differently across countries. Tell the artisan whether your measurement uses UK letters, US numbers or an inside diameter in millimetres. Do not send a bare number without the system.",
+        "An existing ring can be useful if it fits the intended finger. Tell us which hand and finger it is worn on. For a surprise gift, send the information you have and ask what can be measured reliably before choosing a design."
+      ]
+    },
+    {
+      "heading": "Why does band width matter?",
+      "paragraphs": [
+        "A broad band can feel different from a narrow ring in the same nominal size. The inner profile also affects comfort. Try a sample close to your intended design and confirm the fit with the artisan before work begins.",
+        "Your hands can change through the day and with temperature. Avoid deciding solely from a tight strip of paper or a measurement taken when your hands feel unusually swollen. A home measurement is a guide, not a guaranteed final fit."
+      ]
+    },
+    {
+      "heading": "Can a finished ring be resized?",
+      "paragraphs": [
+        "Ask before making it. The answer depends on its metal, construction, pattern and stone setting. A plain band and a design with stones or engraving all the way around it present different challenges.",
+        "If you are ordering wedding bands, allow time to check both finished rings before the ceremony. Mention your deadline early and ask what adjustments could involve; do not assume every ring can be resized immediately or without changing its appearance."
+      ]
+    },
+    {
+      "heading": "Send a useful custom-ring inquiry",
+      "paragraphs": [
+        "Include the occasion, intended finger, sizing system, preferred band width, metal, finish and any stone or engraving ideas. Add a reference photograph if it helps explain the style.",
+        "Our ring planner lets you record those choices before contacting the Negombo workshop. Leave a field undecided if you are unsure, then confirm the fit and design with the artisan."
+      ]
+    }
+  ],
+  "related": [
+    "make-your-own-wedding-rings-sri-lanka",
+    "engagement-ring-design-workshop-guide",
+    "make-a-silver-ring-in-negombo"
+  ]
+},
+{
+  "slug": "creative-things-to-do-in-negombo-ring-making",
+  "title": "A creative thing to do in Negombo: make a ring at the workbench",
+  "description": "Planning activities in Negombo, Sri Lanka? See how a private jewellery workshop fits a solo visit, couples trip or short stay.",
+  "category": "Visiting Negombo",
+  "published": "2026-10-20",
+  "readingTime": "4 min read",
+  "intro": "If you want an activity in Negombo that leaves you with something personal, spend part of your visit making a ring. The Ring Experience offers guided sessions with an artisan, so you can explore a craft without arriving with jewellery-making skills.",
+  "sections": [
+    {
+      "heading": "What makes it different from buying a souvenir?",
+      "paragraphs": [
+        "You choose details and join the making process. A shape, a hammered texture or an inscription can connect the piece to your trip. Your artisan explains which stages you can take part in and which technical work they need to complete.",
+        "Come with an idea or begin with a simple band. The design, materials and amount of hands-on work are agreed before your session. A workshop is a shared making experience, and the finished piece reflects the decisions you bring to it."
+      ]
+    },
+    {
+      "heading": "Is it an activity for couples or solo travellers?",
+      "paragraphs": [
+        "Both can inquire. Couples may want to make two rings side by side; a solo traveller may want a personal memento. Friends can also ask about joining together. Confirm the number of makers and the total cost when choosing a session.",
+        "For wedding bands, an engagement design or a milestone gift, send your ideas in advance. A detailed stone-set ring may need more time and artisan finishing than a straightforward first project."
+      ]
+    },
+    {
+      "heading": "Can I fit it into a short Negombo stay?",
+      "paragraphs": [
+        "Compare the current session lengths on our workshop page and leave some flexibility around your chosen time. Tell us if you are planning an arrival-day activity or have a flight afterward. Travel time, traffic and your airport requirements need their own allowance.",
+        "Do not reserve a complex ring on the assumption that it will be ready before a flight. We review your design and timing, then confirm whether a suitable session is available."
+      ]
+    },
+    {
+      "heading": "Where do I go, and how do I book?",
+      "paragraphs": [
+        "The Ring Experience is at 63/1 Porutota Road, Negombo 11500, Sri Lanka. Use our Google Maps profile for directions and guest reviews. Contact us before setting out so we can confirm your appointment and arrival details.",
+        "Send your preferred date, number of makers and any design references. We reply with availability, materials, costs and timing. An inquiry becomes a booking only when we have agreed the details with you."
+      ]
+    }
+  ],
+  "related": [
+    "sri-lankan-jewellery-making-experience",
+    "make-a-silver-ring-in-negombo",
+    "make-your-own-wedding-rings-sri-lanka"
+  ]
+}
 ];
 
 export const getJournalPost = (slug) => journalPosts.find((post) => post.slug === slug);
