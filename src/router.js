@@ -35,9 +35,9 @@ const routes = [
     component: OurOffers,
     meta: {
       seo: {
-        title: 'Our Offers | The Ring Experience Sri Lanka',
+        title: 'Jewellery & Ring-Making Workshops in Negombo | The Ring Experience',
         description:
-          'Explore all available packages and choose the ring-making format that fits your trip in Sri Lanka.',
+          'Compare private ring-making workshops in Negombo, Sri Lanka. Choose a session for beginners, couples, wedding bands or a personal custom ring.',
       },
     },
   },
@@ -86,9 +86,9 @@ const routes = [
     component: AboutUs,
     meta: {
       seo: {
-        title: 'About Us | The Ring Experience Sri Lanka',
+        title: 'Our Negombo Jewellery Workshop | The Ring Experience Sri Lanka',
         description:
-          'Learn how The Ring Experience was created to turn travel moments into meaningful handcrafted memories.',
+          'Discover The Ring Experience, a guided jewellery workshop in Negombo where visitors design and take part in making a personal ring with an artisan.',
       },
     },
   },
@@ -97,9 +97,9 @@ const routes = [
     component: Gemstones,
     meta: {
       seo: {
-        title: 'Gemstones | The Ring Experience Sri Lanka',
+        title: 'Gemstones for Custom Rings in Sri Lanka | The Ring Experience',
         description:
-          'Discover our latest curated gemstones available for handcrafted ring experiences in Sri Lanka.',
+          'Explore gemstone ideas for a personal ring in Negombo. Ask about available stones, suitability, treatments, setting work and care before choosing your design.',
       },
     },
   },
@@ -108,9 +108,9 @@ const routes = [
     component: Gallery,
     meta: {
       seo: {
-        title: 'Client Gallery | The Ring Experience Sri Lanka',
+        title: 'Handmade Rings & Workshop Moments | The Ring Experience Negombo',
         description:
-          'Explore real moments and handcrafted rings created by our guests during The Ring Experience.',
+          'Browse ring designs and workshop moments from The Ring Experience in Negombo, Sri Lanka. Bring your ideas to a guided jewellery-making session.',
       },
     },
   },
@@ -141,9 +141,9 @@ const routes = [
     component: FaqPage,
     meta: {
       seo: {
-        title: 'FAQ | The Ring Experience Sri Lanka',
+        title: 'Jewellery Workshop FAQs: Rings, Gems & Booking | The Ring Experience',
         description:
-          'Find quick answers about timing, materials, booking, and what to expect during The Ring Experience.',
+          'Answers about making silver and gold rings in Sri Lanka: beginners, wedding bands, engagement designs, gemstones, sizing, timing and booking in Negombo.',
       },
     },
   },

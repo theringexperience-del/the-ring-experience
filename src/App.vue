@@ -57,13 +57,13 @@ const articleLd = computed(() => article.value ? JSON.stringify({
 }) : null)
 
 // Static HTML exposes article data before JavaScript; Unhead owns the live tag after hydration.
-onMounted(() => document.querySelectorAll('#prerender-article-jsonld, #prerender-page-jsonld').forEach(tag => tag.remove()))
+onMounted(() => document.querySelectorAll('#prerender-article-jsonld, #prerender-page-jsonld, [data-prerender-seo]').forEach(tag => tag.remove()))
 
 useHead(() => ({
   title: seo.value.title || defaultTitle,
   meta: [
     { name: 'description', content: seo.value.description || defaultDescription },
-    { name: 'robots', content: (route.name === 'notFound' || (route.name === 'journalArticle' && !article.value)) ? 'noindex' : 'index, follow' },
+    { name: 'robots', content: (route.name === 'notFound' || (route.name === 'journalArticle' && !article.value)) ? 'noindex' : 'index, follow, max-image-preview:large' },
     { property: 'og:site_name', content: 'The Ring Experience' },
     { property: 'og:type', content: article.value ? 'article' : 'website' },
     { property: 'og:title', content: seo.value.title || defaultTitle },
@@ -89,6 +89,7 @@ useHead(() => ({
   link: [
     { rel: 'canonical', href: canonicalUrl.value },
     { rel: 'alternate', hreflang: 'en', href: canonicalUrl.value },
+    { rel: 'alternate', type: 'application/rss+xml', title: 'The Ring Experience Journal', href: `${siteUrl}/journal/feed.xml` },
   ],
   script: [
     {

@@ -4,7 +4,7 @@
             <div class="mx-auto w-11/12 sm:w-10/12">
                 <div class="mx-auto max-w-3xl text-center">
                     <p class="text-xs tracking-[0.2em] text-(--color-mutedbrown) uppercase">{{ introContent.eyebrow }}</p>
-                    <h2 class="mt-3 font-display text-5xl leading-tight text-(--color-brown) sm:text-6xl">{{ introContent.heading }}</h2>
+                    <h1 class="mt-3 font-display text-5xl leading-tight text-(--color-brown) sm:text-6xl">{{ introContent.heading }}</h1>
                     <p class="mx-auto mt-4 max-w-2xl text-base text-(--color-brown) sm:text-lg" style="opacity: 0.85;">
                         {{ introContent.description }}
                     </p>

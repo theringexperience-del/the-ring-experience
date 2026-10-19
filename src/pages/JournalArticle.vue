@@ -4,6 +4,7 @@
       <div class="mx-auto max-w-4xl">
         <RouterLink to="/journal" class="text-xs uppercase tracking-[.18em] text-[#795B3C] hover:underline">← The Journal</RouterLink>
         <p class="mt-8 text-xs tracking-[.18em] uppercase text-[#795B3C]">{{ post.category }} · {{ post.readingTime }}</p>
+        <p class="mt-4 text-sm text-[#604B39]">By The Ring Experience · Published {{ publishedDate }}</p>
         <h1 class="mt-5 font-display text-5xl leading-tight sm:text-7xl">{{ post.title }}</h1>
         <p class="mt-8 max-w-3xl text-lg leading-relaxed text-[#604B39]">{{ post.intro }}</p>
       </div>
@@ -39,5 +40,6 @@ import { getJournalPost } from '../content/journal.js';
 
 const route = useRoute();
 const post = computed(() => getJournalPost(route.params.slug));
+const publishedDate = computed(() => post.value ? new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Colombo' }).format(new Date(post.value.published + 'T12:00:00+05:30')) : '');
 const relatedPosts = computed(() => (post.value?.related ?? []).map(getJournalPost).filter(Boolean));
 </script>
