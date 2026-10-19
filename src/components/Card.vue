@@ -7,8 +7,8 @@
         </div>
         <div class="p-6 text-[#2A1E17] sm:p-8">
             <h3 class="font-display text-3xl font-medium">{{ title }}</h3>
-            <p class="mt-3 text-sm leading-relaxed text-[#66533F] sm:text-base">{{ lineOne }}</p>
-            <p class="text-sm leading-relaxed text-[#66533F] sm:text-base">{{ lineTwo }}</p>
+            <p v-if="lineOne" class="mt-3 text-sm leading-relaxed text-[#66533F] sm:text-base">{{ lineOne }}</p>
+            <p v-if="lineTwo" class="text-sm leading-relaxed text-[#66533F] sm:text-base">{{ lineTwo }}</p>
         </div>
     </article>
 </template>

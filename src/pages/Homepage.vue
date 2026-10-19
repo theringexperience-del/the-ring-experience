@@ -27,46 +27,22 @@
                             <Button as="span" class="hero-secondary w-full min-w-[11rem]" variant="navLight">{{ heroContent.secondaryButtonLabel }}</Button>
                         </router-link>
                     </div>
-                    <p class="mt-7 text-xs tracking-wide text-[#E6D4B4]">For first-timers, couples and curious travellers.</p>
+                    <div class="hero-google mt-7 inline-flex max-w-full items-center divide-x divide-white/25 rounded-full border border-white/30 bg-black/15 text-xs text-[#F1E8DC] backdrop-blur-sm sm:text-sm">
+                        <a :href="GOOGLE_MAPS_URL" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center gap-2 px-4 transition-colors hover:bg-white/10 sm:px-5"><svg viewBox="0 0 24 24" class="h-3.5 w-3.5 fill-[#D9BC80]" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2-6.2 3.2 1.2-6.8-5-4.9 6.9-1z"/></svg>Google reviews</a>
+                        <a :href="GOOGLE_MAPS_URL" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center gap-2 px-4 transition-colors hover:bg-white/10 sm:px-5"><svg viewBox="0 0 24 24" class="h-4 w-4 fill-none stroke-current" stroke-width="1.5" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Directions</a>
+                    </div>
                 </div>
             </div>
             <a href="#theExperience" class="hero-scroll absolute bottom-7 right-[8.333%] text-xs tracking-[.15em] uppercase text-[#F1E8DC]">Discover the experience <span aria-hidden="true">↓</span></a>
         </section>
-        <div class="experience-strip border-b border-[#D8CDBB] bg-[#EFE7DA]">
-            <div class="mx-auto grid w-11/12 grid-cols-1 gap-3 py-5 text-center text-xs tracking-[.1em] uppercase text-[#4B3827] sm:w-10/12 sm:grid-cols-3">
-                <p>Local artisan guidance</p><p>A design that feels like you</p><p>A memory to take home</p>
-            </div>
-        </div>
-
-        <section id="aMoment" data-reveal class="authentic-vintage w-full py-20 sm:py-24 md:py-28 lg:py-36">
-            <div class="mx-auto grid w-11/12 grid-cols-1 items-center gap-10 sm:w-10/12 sm:gap-12 lg:grid-cols-12 lg:gap-16">
-                <figure class="flex items-center justify-center lg:col-span-6">
-                    <img :src="aMomentImage.src" :srcset="aMomentImage.srcSet || undefined"
-                        sizes="(min-width: 1024px) 42vw, 92vw" alt="A closer look at the ring-making experience" width="1200" height="1600"
-                        loading="lazy" decoding="async"
-                        class="moment-photo w-full object-cover object-center">
-                </figure>
-                <div class="flex flex-col justify-center lg:col-span-6 lg:pl-4 xl:pl-8">
-                    <p class="mb-4 text-xs tracking-[0.18em] text-(--color-mutedbrown) uppercase sm:text-sm sm:tracking-[0.2em]">
-                        {{ aMomentContent.eyebrow }}
-                    </p>
-                    <h2 class="max-w-[16ch] font-display text-3xl leading-[1.04] font-medium text-(--color-brown) sm:text-4xl md:text-5xl lg:text-6xl">
-                        {{ aMomentContent.title }}
-                    </h2>
-                    <div class="mt-6 h-px w-20 bg-(--color-noisette) sm:mt-8 sm:w-24"></div>
-                    <div class="mt-6 max-w-xl space-y-4 sm:mt-7">
-                        <p class="text-base leading-relaxed text-(--color-brown) sm:text-lg" style="opacity: 0.85;">
-                            {{ aMomentContent.paragraphOne }}
-                        </p>
-                        <p class="text-base leading-relaxed text-(--color-brown) sm:text-lg">
-                            {{ aMomentContent.paragraphTwo }}
-                        </p>
-                    </div>
-                </div>
+        <section id="aMoment" data-reveal class="w-full bg-[#F5EFE5] py-14 sm:py-20">
+            <div class="mx-auto grid w-11/12 items-center gap-8 sm:w-10/12 lg:grid-cols-2 lg:gap-16">
+                <figure class="overflow-hidden"><img src="/uploads/jeweller-at-the-bench.webp" alt="A jeweller using a torch and tweezers to work on a ring" width="1000" height="1500" loading="lazy" decoding="async" class="moment-photo w-full object-cover"></figure>
+                <div class="max-w-lg"><p class="text-xs uppercase tracking-[.2em] text-[#80664A]">At the workbench</p><h2 class="mt-4 font-display text-4xl leading-tight text-[#38291F] sm:text-6xl">Your hands.<br>Your story.</h2><p class="mt-5 max-w-sm text-base leading-relaxed text-[#604B39]">Choose the details. Take your place at the bench. Create something personal with an artisan beside you.</p><router-link to="/design-your-ring" class="mt-7 inline-flex min-h-11 items-center gap-6 border-b border-[#9D7A4B] text-sm text-[#755024]">Make it yours <span aria-hidden="true">→</span></router-link></div>
             </div>
         </section>
 
-        <section id="theExperience" data-reveal class="w-full pb-20 sm:pb-24 lg:pb-36">
+        <section id="theExperience" data-reveal class="w-full py-14 sm:py-20">
             <div class="mx-auto w-11/12 sm:w-10/12">
                 <div class="mx-auto mb-10 max-w-3xl text-center sm:mb-12">
                     <p class="text-xs tracking-[0.2em] text-(--color-mutedbrown) uppercase">{{ theExperienceContent.eyebrow }}</p>
@@ -76,8 +52,8 @@
                 </div>
                 <div ref="experienceGrid" class="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 xl:grid-cols-3 xl:gap-9">
                     <Card v-for="card in experienceCards" :key="card.key"
-                        class="experience-card mx-auto w-full max-w-md md:max-w-none" :title="card.title" :line-one="card.lineOne"
-                        :line-two="card.lineTwo" :image="card.image" />
+                        class="experience-card mx-auto w-full max-w-md md:max-w-none" :title="card.title" :line-one="''"
+                        :line-two="''" :image="card.image" />
                 </div>
             </div>
         </section>
@@ -87,9 +63,7 @@
                 <div class="mx-auto max-w-3xl text-center">
                     <p class="text-xs tracking-[0.2em] uppercase" style="opacity: 0.75;">{{ packagesPreviewContent.eyebrow }}</p>
                     <h2 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">{{ packagesPreviewContent.heading }}</h2>
-                    <p class="mx-auto mt-4 max-w-2xl text-base sm:text-lg" style="opacity: 0.86;">
-                        {{ packagesPreviewContent.description }}
-                    </p>
+
                 </div>
 
                 <div class="mx-auto mt-8 h-px w-24 bg-(--color-noisette)"></div>
@@ -97,7 +71,7 @@
                 <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
                     <article v-for="(pkg, index) in homepagePackages" :key="pkg.key || pkg.name" class="workshop-card relative flex flex-col border p-7 sm:p-8"
                         style="border-color: color-mix(in srgb, var(--color-lightbeige) 28%, transparent);">
-                        <span class="mb-7 text-xs tracking-[.18em] text-[#CDB88E]">0{{ index + 1 }}</span>
+
                         <p class="text-xs tracking-[0.16em] uppercase text-[#D6BD8C]">{{ pkg.tag }}</p>
                         <h3 class="mt-3 font-display text-3xl leading-tight sm:text-4xl">{{ pkg.name }}</h3>
                         <p class="mt-2 text-sm tracking-[0.08em] uppercase" style="opacity: 0.76;">{{ pkg.duration }}</p>
@@ -114,34 +88,10 @@
             </div>
         </section>
 
-        <section id="values" data-reveal class="relative w-full overflow-hidden bg-black py-16 sm:py-20 lg:py-24">
-            <div class="pointer-events-none absolute inset-0">
-                <div class="parallax-bg absolute inset-0 bg-cover bg-center" :style="valuesBgStyle"></div>
-                <div class="absolute inset-0 bg-(--color-darkerbrown) opacity-55"></div>
-                <div class="absolute inset-0"
-                    style="background: linear-gradient(to right, color-mix(in srgb, var(--color-darkbrown) 82%, transparent), color-mix(in srgb, var(--color-darkbrown) 42%, transparent), color-mix(in srgb, var(--color-darkbrown) 68%, transparent));">
-                </div>
-            </div>
-            <div class="relative mx-auto grid w-11/12 grid-cols-1 border text-(--color-lightbeige) md:w-10/12 md:grid-cols-3 md:grid-rows-2"
-                style="border-color: color-mix(in srgb, var(--color-lightbeige) 35%, transparent);">
-                <div class="border-b p-7 sm:p-8 md:row-span-2 md:border-r md:border-b-0 md:p-10 lg:p-12"
-                    style="border-color: color-mix(in srgb, var(--color-lightbeige) 35%, transparent);">
-                    <h2 class="font-display text-4xl leading-tight md:text-5xl">{{ valuesContent.heading }}</h2>
-                </div>
-                <article v-for="(item, index) in valuesItems" :key="item.title" class="border-b p-7 sm:p-8 md:border-b-0 md:p-10 lg:p-12"
-                    style="border-color: color-mix(in srgb, var(--color-lightbeige) 35%, transparent);" :class="{
-                        'md:border-r': index === 0 || index === 2,
-                        'md:border-b': index === 0 || index === 1,
-                        'border-b-0': index === valuesItems.length - 1
-                    }">
-                    <p class="text-xs tracking-[0.2em] text-(--color-lightbeige) uppercase" style="opacity: 0.75;">
-                        {{ item.title }}
-                    </p>
-                    <p class="mt-4 max-w-sm text-base leading-relaxed text-(--color-lightbeige)" style="opacity: 0.88;">
-                        {{ item.text }}
-                    </p>
-                </article>
-            </div>
+        <section id="values" class="craft-atmosphere relative isolate w-full overflow-hidden bg-[#30251B]" aria-labelledby="craft-moment-title">
+            <img src="/uploads/ring-hammering-craft.webp" alt="Close-up of a ring being shaped on a steel block with a mallet" width="1200" height="1800" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#20180F]/80 via-transparent to-transparent"></div>
+            <div class="absolute inset-x-0 bottom-0 mx-auto w-11/12 pb-9 text-[#FAF7F1] sm:w-10/12 sm:pb-12"><p class="text-[.65rem] uppercase tracking-[.22em]">A moment in the making</p><h2 id="craft-moment-title" class="mt-3 font-display text-4xl sm:text-6xl">Feel the craft.</h2></div>
         </section>
 
         <PreferredResourcesSection :reviews-url="GOOGLE_MAPS_URL" />
@@ -153,12 +103,7 @@
                 <div class="mx-auto max-w-3xl text-center">
                     <p class="text-xs tracking-[0.2em] text-(--color-mutedbrown) uppercase">{{ reviewsContent.eyebrow }}
                     </p>
-                    <h2 class="mt-3 font-display text-4xl leading-tight text-(--color-brown) sm:text-5xl">{{
-                        reviewsContent.heading }}</h2>
-                    <p v-if="reviewsContent.description"
-                        class="mx-auto mt-4 max-w-2xl text-base text-(--color-brown) sm:text-lg" style="opacity: 0.85;">
-                        {{ reviewsContent.description }}
-                    </p>
+                    <h2 class="mt-3 font-display text-3xl leading-tight text-(--color-brown) sm:text-5xl">From our guests.</h2>
                     <a v-if="reviewsContent.sourceUrl && reviewsContent.sourceUrl !== GOOGLE_MAPS_URL" :href="reviewsContent.sourceUrl" target="_blank"
                         rel="noopener noreferrer"
                         class="mt-4 inline-block text-sm tracking-[0.12em] text-(--color-noisette) uppercase">
@@ -173,7 +118,7 @@
 
                 <div v-if="reviewsItems.length" class="mt-8">
                     <div v-if="useReviewSlider" class="mb-5 flex items-center justify-between">
-                        <p class="text-sm text-(--color-mutedbrown)">Showing 3 of {{ reviewsItems.length }} reviews</p>
+                        <p class="text-sm text-(--color-mutedbrown)" aria-live="polite"><span class="md:hidden">{{ reviewSlideIndex + 1 }} of {{ reviewsItems.length }}</span><span class="hidden md:inline">Showing {{ Math.min(3, reviewsItems.length) }} of {{ reviewsItems.length }} reviews</span></p>
                         <div class="flex gap-2">
                             <button type="button" class="h-11 w-11 rounded-full border text-(--color-brown)" aria-label="Previous reviews"
                                 style="border-color: color-mix(in srgb, var(--color-darkbrown) 26%, transparent);"
@@ -184,8 +129,8 @@
                         </div>
                     </div>
                     <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-                        <article v-for="review in visibleReviews" :key="`${review.author}-${review.text}`"
-                            class="border bg-white/72 p-6 sm:p-7"
+                        <article v-for="(review, index) in visibleReviews" :key="`${review.author}-${review.text}`"
+                            class="border bg-white/72 p-6 sm:p-7" :class="index > 0 ? 'hidden md:block' : ''"
                             style="border-color: color-mix(in srgb, var(--color-darkbrown) 18%, transparent);">
                             <div class="flex items-center justify-between gap-2">
                                 <p class="font-medium text-(--color-brown)">{{ review.author }}</p>
@@ -259,20 +204,13 @@ const heroContent = computed(() => ({
     secondaryButtonLink: cmsHomepageContent.value?.hero?.secondaryButtonLink ?? '/ouroffers'
 }));
 const heroMediaType = computed(() => (heroContent.value.mediaType === 'video' ? 'video' : 'image'));
-const aMomentContent = computed(() => ({
-    eyebrow: cmsHomepageContent.value?.aMoment?.eyebrow ?? '',
-    title: cmsHomepageContent.value?.aMoment?.title ?? '',
-    paragraphOne: cmsHomepageContent.value?.aMoment?.paragraphOne ?? '',
-    paragraphTwo: cmsHomepageContent.value?.aMoment?.paragraphTwo ?? '',
-    image: cmsHomepageContent.value?.aMoment?.image ?? defaultHeroImage
-}));
 const theExperienceContent = computed(() => ({
     eyebrow: cmsHomepageContent.value?.theExperience?.eyebrow ?? '',
     title: cmsHomepageContent.value?.theExperience?.title ?? ''
 }));
 const experienceCards = computed(() => (
     Array.isArray(cmsHomepageContent.value?.experienceCards) && cmsHomepageContent.value.experienceCards.length
-        ? cmsHomepageContent.value.experienceCards
+        ? cmsHomepageContent.value.experienceCards.map((card, index) => index === 1 ? { ...card, image: '/uploads/ring-hammering-craft.webp' } : card)
         : []
 ));
 const packagesPreviewContent = computed(() => ({
@@ -286,13 +224,6 @@ const packagesPreviewContent = computed(() => ({
 const homepagePackages = computed(() => (
     (Array.isArray(cmsOffersContent.value?.packages) ? cmsOffersContent.value.packages : []).filter((pkg) => pkg?.isVisible !== false)
 ));
-const valuesContent = computed(() => ({
-    heading: cmsHomepageContent.value?.values?.heading ?? '',
-    backgroundImage: cmsHomepageContent.value?.values?.backgroundImage ?? defaultHeroImage,
-    items: Array.isArray(cmsHomepageContent.value?.values?.items) ? cmsHomepageContent.value.values.items : []
-}));
-const valuesItems = computed(() => (Array.isArray(valuesContent.value.items) ? valuesContent.value.items : []));
-const valuesBgStyle = computed(() => ({ backgroundImage: `url(${optimizeImageSource(valuesContent.value.backgroundImage, { width: 1600, quality: 74 })})` }));
 const faqHomepagePreviewContent = computed(() => ({
     enabled: cmsFaqContent.value?.homepageSection?.enabled ?? true,
     eyebrow: cmsFaqContent.value?.homepageSection?.eyebrow?.trim().toLowerCase() === 'preferred resources'
@@ -312,10 +243,6 @@ const heroImage = computed(() => ({
     src: optimizeImageSource(heroContent.value.image, { width: 1800, quality: 76 }),
     srcSet: toImageSrcSet(heroContent.value.image, [640, 960, 1280, 1800], { quality: 76 })
 }));
-const aMomentImage = computed(() => ({
-    src: optimizeImageSource(aMomentContent.value.image, { width: 1200, quality: 76 }),
-    srcSet: toImageSrcSet(aMomentContent.value.image, [480, 768, 1024, 1200], { quality: 76 })
-}));
 const reviewsContent = computed(() => ({
     enabled: cmsHomepageContent.value?.reviews?.enabled ?? true,
     eyebrow: cmsHomepageContent.value?.reviews?.eyebrow ?? '',
@@ -332,10 +259,10 @@ const reviewsItems = computed(() => {
     if (reviewsContent.value.sourceType === 'google' && googleReviews.value.length) return googleReviews.value;
     return manualItems.filter((review) => review?.text);
 });
-const useReviewSlider = computed(() => reviewsItems.value.length > 3);
+const useReviewSlider = computed(() => reviewsItems.value.length > 1);
 const visibleReviews = computed(() => {
     if (!useReviewSlider.value) return reviewsItems.value;
-    return Array.from({ length: 3 }, (_, i) => reviewsItems.value[(reviewSlideIndex.value + i) % reviewsItems.value.length]);
+    return Array.from({ length: Math.min(3, reviewsItems.value.length) }, (_, i) => reviewsItems.value[(reviewSlideIndex.value + i) % reviewsItems.value.length]);
 });
 
 const homepageRoot = ref(null);
@@ -398,9 +325,7 @@ watch(
     () => {
         reviewSlideIndex.value = 0;
         clearReviewInterval();
-        if (useReviewSlider.value) {
-            reviewSliderInterval = window.setInterval(nextReviewSlide, 5000);
-        }
+
     },
     { immediate: true }
 );
@@ -505,14 +430,17 @@ onBeforeUnmount(() => {
 .hero-shade { background: linear-gradient(90deg, rgba(24,21,17,.88), rgba(24,21,17,.52) 58%, rgba(24,21,17,.18)); }
 .hero-heading { max-width: 12ch; font-size: clamp(3.5rem, 6.4vw, 6.5rem); line-height: 1.02; letter-spacing: -.035em; }
 .hero-secondary { backdrop-filter: blur(8px); }
-.moment-photo { aspect-ratio: 4 / 5; max-height: 40rem; border-radius: 42% 42% 3px 3px; }
+.moment-photo { aspect-ratio: 4 / 5; max-height: 37rem; object-position: center 55%; }
+.craft-atmosphere { height: clamp(360px, 50vw, 580px); }
+.craft-atmosphere img { object-position: center 53%; filter: saturate(.7) contrast(1.03); }
 .workshop-card { background: rgba(255,255,255,.035); transition: background .2s, transform .2s; }
 .workshop-card:hover { background: rgba(255,255,255,.07); transform: translateY(-4px); }
 @media (max-width: 639px) {
     .home-hero { min-height: 720px; min-height: max(680px, 92svh); padding-block: 9rem 7rem; }
     .hero-heading { font-size: clamp(3.15rem, 13.5vw, 4.75rem); }
     .hero-shade { background: linear-gradient(90deg, rgba(24,21,17,.85), rgba(24,21,17,.52)); }
-    .experience-strip p + p { display: none; }
+    .craft-atmosphere { height: 500px; }
+    .craft-atmosphere img { object-position: center 51%; transform: scale(1.35); transform-origin: 50% 58%; }
     .moment-photo { max-height: 30rem; }
 }
 @media (prefers-reduced-motion: reduce) { .workshop-card:hover { transform: none; } }
