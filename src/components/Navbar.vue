@@ -111,11 +111,12 @@ const logoSrc = ref('/the-ring-experience-logo.svg')
 const primaryLinks = [
   { label: 'The Experience', to: '/#theExperience' },
   { label: 'Workshops', to: '/ouroffers' },
-  { label: 'Our Story', to: '/aboutus' },
+  { label: 'Customise', to: '/design-your-ring' },
   { label: 'Gallery', to: '/gallery' },
   { label: 'FAQs', to: '/faq' },
 ]
 const studioLinks = [
+  { label: 'Our Story', to: '/aboutus' },
   { label: 'Journal', to: '/journal' },
   { label: 'Gemstones', to: '/gemstones' },
   { label: 'Design Your Ring', to: '/design-your-ring' },

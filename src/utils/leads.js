@@ -30,6 +30,6 @@ export async function submitLead(payload) {
         request.then((response) => {
             if (!response.ok) throw new Error('Lead API failed');
         }),
-        4000
+        15000
     );
 }

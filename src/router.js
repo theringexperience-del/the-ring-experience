@@ -4,6 +4,7 @@ const Homepage = () => import('./pages/Homepage.vue')
 const AboutUs = () => import('./pages/AboutUs.vue')
 const OurOffers = () => import('./pages/OurOffers.vue')
 const DesignYourRing = () => import('./pages/DesignYourRing.vue')
+const RingSketchPrompt = () => import('./pages/RingSketchPrompt.vue')
 const Gemstones = () => import('./pages/Gemstones.vue')
 const Gallery = () => import('./pages/Gallery.vue')
 const Furnace = () => import('./pages/Furnace.vue')
@@ -15,13 +16,15 @@ const RingMakingGuide = () => import('./pages/RingMakingGuide.vue')
 const Journal = () => import('./pages/Journal.vue')
 const JournalArticle = () => import('./pages/JournalArticle.vue')
 
+const NotFound = () => import('./pages/NotFound.vue')
+
 const routes = [
   {
     path: '/',
     component: Homepage,
     meta: {
       seo: {
-        title: 'The Ring Experience | Craft Your Ring in Sri Lanka',
+        title: 'Ring-Making Workshop in Negombo | The Ring Experience',
         description:
           'Make your own ring in a guided jewellery workshop in Negombo, Sri Lanka. Explore private sessions, silver designs and gemstone options.',
       },
@@ -69,9 +72,14 @@ const routes = [
       seo: {
         title: 'Design Your Ring | The Ring Experience Sri Lanka',
         description:
-          'Create a custom AI sketch prompt for handcrafted ring concepts with The Ring Experience.',
+          'Plan a custom ring with our Negombo workshop. Choose metal, finish, gemstone ideas and personal details, then send your design notes to an artisan.',
       },
     },
+  },
+  {
+    path: '/ring-sketch-prompt',
+    component: RingSketchPrompt,
+    meta: { seo: { title: 'AI Ring Sketch Prompt Tool | The Ring Experience', description: 'Create an optional AI image prompt to explore ring concepts before discussing a design with an artisan.' } },
   },
   {
     path: '/aboutus',
@@ -124,7 +132,7 @@ const routes = [
       seo: {
         title: 'Book The Experience | The Ring Experience Sri Lanka',
         description:
-          'Book your sterling silver ring-making session in Sri Lanka and leave with a personal symbol of your trip.',
+          'Request a private ring-making workshop in Negombo, Sri Lanka. Share your date, number of makers and custom ring ideas, then confirm details with our artisan.',
       },
     },
   },
@@ -161,6 +169,7 @@ const routes = [
       },
     },
   },
+  { path: '/:pathMatch(.*)*', name: 'notFound', component: NotFound, meta: { seo: { title: 'Page not found | The Ring Experience', description: 'Find your way back to our jewellery workshops and custom ring design tools in Negombo.' } } },
 ]
 
 const router = createRouter({

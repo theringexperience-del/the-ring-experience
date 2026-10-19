@@ -1,5 +1,7 @@
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { journalPosts } from '../src/content/journal.js';
+import { sitePages } from '../src/content/sitePages.js';
+import { BUSINESS_SCHEMA, GOOGLE_MAPS_URL } from '../src/utils/businessProfile.js';
 
 const dist = new URL('../dist/', import.meta.url);
 const template = await readFile(new URL('index.html', dist), 'utf8');
@@ -35,12 +37,12 @@ const page = ({ title, description, path, body, schema }) => {
     .replace(/<meta name="twitter:title" content="[^"]*"\s*\/>/, `<meta name="twitter:title" content="${escape(title)}" />`)
     .replace(/<meta name="twitter:description" content="[^"]*"\s*\/>/, `<meta name="twitter:description" content="${escape(description)}" />`)
     .replace('<div id="app"></div>', `<div id="app">${body}</div>`)
-    .replace('</head>', `<link rel="canonical" href="${url}" />${schema ? `<script id="prerender-article-jsonld" type="application/ld+json">${JSON.stringify(schema).replace(/</g, '\\u003c')}</script>` : ''}</head>`);
+    .replace('</head>', `<link rel="canonical" href="${url}" />${schema ? `<script id="prerender-page-jsonld" type="application/ld+json">${JSON.stringify(schema).replace(/</g, '\\u003c')}</script>` : ''}</head>`);
   return html;
 };
 
 const writeRoute = async (path, html) => {
-  const dir = new URL(`.${path}/`, dist);
+  const dir = path === '/' ? dist : new URL(`.${path}/`, dist);
   await mkdir(dir, { recursive: true });
   await writeFile(new URL('index.html', dir), html);
 };
@@ -64,4 +66,9 @@ for (const post of journalPosts) {
       mainEntityOfPage: `${siteUrl}${path}`,
     },
   }));
+}
+
+for (const entry of sitePages) {
+  const body = `<main style="max-width:1000px;margin:5rem auto;padding:0 1.5rem;font:1.1rem/1.8 Georgia,serif;color:#38291f"><nav><a href="/">The Ring Experience</a> · <a href="/ouroffers">Workshops</a> · <a href="/design-your-ring">Customise</a> · <a href="/journal">Journal</a></nav>${entry.body}<footer><p>The Ring Experience · 63/1 Porutota Road, Negombo 11500, Sri Lanka</p><p><a href="${GOOGLE_MAPS_URL}">Google Maps, reviews and directions</a> · <a href="tel:+94769012344">+94 76 901 2344</a></p></footer></main>`;
+  await writeRoute(entry.path, page({ ...entry, body, schema: BUSINESS_SCHEMA }));
 }
