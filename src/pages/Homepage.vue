@@ -35,10 +35,17 @@
             </div>
             <a href="#theExperience" class="hero-scroll absolute bottom-7 right-[8.333%] text-xs tracking-[.15em] uppercase text-[#F1E8DC]">Discover the experience <span aria-hidden="true">↓</span></a>
         </section>
+        <div class="bg-[#E9DED0] text-[#443528]" aria-label="At a glance">
+            <div class="mx-auto grid w-11/12 divide-y divide-[#BFAF99] sm:w-10/12 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+                <p class="py-4 text-center text-xs uppercase tracking-[.16em] sm:px-4"><span class="font-display text-xl italic normal-case tracking-normal">01</span> &nbsp; Choose your ring</p>
+                <p class="py-4 text-center text-xs uppercase tracking-[.16em] sm:px-4"><span class="font-display text-xl italic normal-case tracking-normal">02</span> &nbsp; Make it with an artisan</p>
+                <p class="py-4 text-center text-xs uppercase tracking-[.16em] sm:px-4"><span class="font-display text-xl italic normal-case tracking-normal">03</span> &nbsp; Take the memory home</p>
+            </div>
+        </div>
         <section id="aMoment" data-reveal class="w-full bg-[#F5EFE5] py-14 sm:py-20">
             <div class="mx-auto grid w-11/12 items-center gap-8 sm:w-10/12 lg:grid-cols-2 lg:gap-16">
-                <figure class="overflow-hidden"><img src="/uploads/jeweller-at-the-bench.webp" alt="A jeweller using a torch and tweezers to work on a ring" width="1000" height="1500" loading="lazy" decoding="async" class="moment-photo w-full object-cover"></figure>
-                <div class="max-w-lg"><p class="text-xs uppercase tracking-[.2em] text-[#80664A]">At the workbench</p><h2 class="mt-4 font-display text-4xl leading-tight text-[#38291F] sm:text-6xl">Your hands.<br>Your story.</h2><p class="mt-5 max-w-sm text-base leading-relaxed text-[#604B39]">Choose the details. Take your place at the bench. Create something personal with an artisan beside you.</p><router-link to="/design-your-ring" class="mt-7 inline-flex min-h-11 items-center gap-6 border-b border-[#9D7A4B] text-sm text-[#755024]">Make it yours <span aria-hidden="true">→</span></router-link></div>
+                <figure class="relative overflow-hidden"><img src="/uploads/jeweller-at-the-bench.webp" alt="A jeweller using a torch and tweezers to work on a ring" width="1000" height="1500" loading="lazy" decoding="async" class="moment-photo w-full object-cover"><figcaption class="absolute bottom-4 left-4 bg-[#F5EFE5]/95 px-4 py-3 font-display text-lg italic text-[#604B39] sm:bottom-7 sm:left-7">An afternoon worth keeping.</figcaption></figure>
+                <div class="max-w-lg"><p class="text-xs uppercase tracking-[.2em] text-[#80664A]">A slower moment on the island</p><h2 class="mt-4 font-display text-4xl leading-tight text-[#38291F] sm:text-6xl">Your hands.<br>Your story.</h2><p class="mt-5 max-w-sm text-base leading-relaxed text-[#604B39]">Step away from the itinerary and into the workshop. Choose the details of your ring, then make it with a local artisan beside you.</p><div class="mt-7 flex flex-wrap gap-x-7 gap-y-2"><router-link to="/design-your-ring" class="inline-flex min-h-11 items-center gap-6 border-b border-[#9D7A4B] text-sm text-[#755024]">Explore your design <span aria-hidden="true">→</span></router-link><router-link to="/gallery" class="inline-flex min-h-11 items-center gap-6 border-b border-[#9D7A4B] text-sm text-[#755024]">See the gallery <span aria-hidden="true">→</span></router-link></div></div>
             </div>
         </section>
 
@@ -49,11 +56,12 @@
                     <h2 class="mt-3 font-display text-4xl leading-tight text-(--color-brown) sm:text-5xl">
                         {{ theExperienceContent.title }}
                     </h2>
+                    <p class="mx-auto mt-4 max-w-xl text-base leading-relaxed text-[#604B39]">A personal design, the feel of the tools, and a ring that carries your time in Sri Lanka.</p>
                 </div>
                 <div ref="experienceGrid" class="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 xl:grid-cols-3 xl:gap-9">
                     <Card v-for="card in experienceCards" :key="card.key"
-                        class="experience-card mx-auto w-full max-w-md md:max-w-none" :title="card.title" :line-one="''"
-                        :line-two="''" :image="card.image" />
+                        class="experience-card mx-auto w-full max-w-md md:max-w-none" :title="card.title" :line-one="card.lineOne || ''"
+                        :line-two="card.lineTwo || ''" :image="card.image" />
                 </div>
             </div>
         </section>
@@ -63,18 +71,19 @@
                 <div class="mx-auto max-w-3xl text-center">
                     <p class="text-xs tracking-[0.2em] uppercase" style="opacity: 0.75;">{{ packagesPreviewContent.eyebrow }}</p>
                     <h2 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">{{ packagesPreviewContent.heading }}</h2>
+                    <p class="mx-auto mt-4 max-w-xl text-base leading-relaxed text-[#E9DED0]">A first ring, a more personal design, or a piece to mark a shared moment. We’ll help you find the right session.</p>
 
                 </div>
 
                 <div class="mx-auto mt-8 h-px w-24 bg-(--color-noisette)"></div>
 
                 <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-                    <article v-for="(pkg, index) in homepagePackages" :key="pkg.key || pkg.name" class="workshop-card relative flex flex-col border p-7 sm:p-8"
+                    <article v-for="pkg in homepagePackages" :key="pkg.key || pkg.name" class="workshop-card relative flex flex-col border p-7 sm:p-8"
                         style="border-color: color-mix(in srgb, var(--color-lightbeige) 28%, transparent);">
 
                         <p class="text-xs tracking-[0.16em] uppercase text-[#D6BD8C]">{{ pkg.tag }}</p>
                         <h3 class="mt-3 font-display text-3xl leading-tight sm:text-4xl">{{ pkg.name }}</h3>
-                        <p class="mt-2 text-sm tracking-[0.08em] uppercase" style="opacity: 0.76;">{{ pkg.duration }}</p>
+                        <p v-if="pkg.duration" class="mt-2 text-sm tracking-[0.08em] uppercase" style="opacity: 0.76;">{{ pkg.duration }}</p>
                         <p class="mt-5 grow text-base leading-relaxed" style="opacity: 0.88;">{{ pkg.summary || pkg.fullDescription }}</p>
                         <router-link to="/ouroffers" class="mt-8 border-t border-white/20 pt-5 text-sm text-[#E1CCA4]">Explore {{ pkg.name }} <span aria-hidden="true">↗</span></router-link>
                     </article>
@@ -92,6 +101,13 @@
             <img src="/uploads/ring-hammering-craft.webp" alt="Close-up of a ring being shaped on a steel block with a mallet" width="1200" height="1800" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-[#20180F]/80 via-transparent to-transparent"></div>
             <div class="absolute inset-x-0 bottom-0 mx-auto w-11/12 pb-9 text-[#FAF7F1] sm:w-10/12 sm:pb-12"><p class="text-[.65rem] uppercase tracking-[.22em]">A moment in the making</p><h2 id="craft-moment-title" class="mt-3 font-display text-4xl sm:text-6xl">Feel the craft.</h2></div>
+        </section>
+
+        <section id="planYourVisit" class="bg-[#F5EFE5] px-[6%] py-16 text-[#38291F] sm:py-24" aria-labelledby="visit-heading">
+            <div class="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[.9fr_1.1fr] lg:gap-20">
+                <div><p class="text-xs uppercase tracking-[.2em] text-[#80664A]">Your visit, made easy</p><h2 id="visit-heading" class="mt-4 max-w-lg font-display text-4xl leading-tight sm:text-6xl">Come as you are.<br><em>Leave with a story.</em></h2><p class="mt-5 max-w-md leading-relaxed text-[#604B39]">No jewellery-making experience needed. Tell us when you’re in Negombo and what you have in mind; we’ll talk through the options and confirm the details together.</p><div class="mt-7 flex flex-wrap gap-3"><router-link to="/bookexperience" class="inline-flex min-h-12 items-center justify-center bg-[#76502C] px-6 text-sm uppercase tracking-[.1em] text-white transition-colors hover:bg-[#4C321D]">Check availability <span class="ml-4" aria-hidden="true">↗</span></router-link><router-link to="/ring-making-guide" class="inline-flex min-h-12 items-center justify-center border border-[#9D8264] px-6 text-sm text-[#604B39] hover:bg-[#EBE0D1]">What to expect</router-link></div><p class="mt-4 text-xs leading-relaxed text-[#80664A]">An inquiry is free. We confirm availability, timing and cost before your session is booked.</p></div>
+                <div class="visit-panel border border-[#C8B79E] bg-[#EEE3D3] p-6 sm:p-10"><p class="text-xs uppercase tracking-[.18em] text-[#80664A]">From your first message to the finished ring</p><ol class="mt-6 divide-y divide-[#C8B79E]"><li class="flex gap-6 py-5 first:pt-0"><span class="font-display text-3xl italic text-[#A47D4A]">01</span><div><h3 class="font-display text-2xl">Pick your moment</h3><p class="mt-1 text-sm leading-relaxed text-[#604B39]">Share a preferred date, your group size and any travel plans.</p></div></li><li class="flex gap-6 py-5"><span class="font-display text-3xl italic text-[#A47D4A]">02</span><div><h3 class="font-display text-2xl">Make it personal</h3><p class="mt-1 text-sm leading-relaxed text-[#604B39]">Choose a simple band or ask about finishes, gemstones and special details.</p></div></li><li class="flex gap-6 py-5 last:pb-0"><span class="font-display text-3xl italic text-[#A47D4A]">03</span><div><h3 class="font-display text-2xl">Meet at the bench</h3><p class="mt-1 text-sm leading-relaxed text-[#604B39]">Work alongside an artisan in our Negombo studio, at the pace of your chosen session.</p></div></li></ol></div>
+            </div>
         </section>
 
         <PreferredResourcesSection :reviews-url="GOOGLE_MAPS_URL" />
@@ -205,24 +221,39 @@ const heroContent = computed(() => ({
 }));
 const heroMediaType = computed(() => (heroContent.value.mediaType === 'video' ? 'video' : 'image'));
 const theExperienceContent = computed(() => ({
-    eyebrow: cmsHomepageContent.value?.theExperience?.eyebrow ?? '',
-    title: cmsHomepageContent.value?.theExperience?.title ?? ''
+    eyebrow: cmsHomepageContent.value?.theExperience?.eyebrow || 'The experience',
+    title: cmsHomepageContent.value?.theExperience?.title || 'A keepsake in the making.'
 }));
+const defaultExperienceCards = [
+    { key: 'choose', title: 'Imagine it', lineOne: 'Start with a shape, a finish and a meaning of your own.', image: '/uploads/jeweller-at-the-bench.webp' },
+    { key: 'make', title: 'Make it', lineOne: 'Take your place beside an artisan and feel the craft up close.', image: '/uploads/ring-hammering-craft.webp' },
+    { key: 'keep', title: 'Keep it', lineOne: 'Carry a little of your time in Sri Lanka home with you.', image: defaultHeroImage }
+];
 const experienceCards = computed(() => (
     Array.isArray(cmsHomepageContent.value?.experienceCards) && cmsHomepageContent.value.experienceCards.length
-        ? cmsHomepageContent.value.experienceCards.map((card, index) => index === 1 ? { ...card, image: '/uploads/ring-hammering-craft.webp' } : card)
-        : []
+        ? cmsHomepageContent.value.experienceCards.map((card, index) => ({
+            ...defaultExperienceCards[index % defaultExperienceCards.length],
+            ...card,
+            image: card.image || defaultExperienceCards[index % defaultExperienceCards.length].image
+        }))
+        : defaultExperienceCards
 ));
 const packagesPreviewContent = computed(() => ({
     enabled: cmsHomepageContent.value?.packagesPreview?.enabled ?? true,
-    eyebrow: cmsHomepageContent.value?.packagesPreview?.eyebrow ?? '',
-    heading: cmsHomepageContent.value?.packagesPreview?.heading ?? '',
+    eyebrow: cmsHomepageContent.value?.packagesPreview?.eyebrow || 'Find your workshop',
+    heading: cmsHomepageContent.value?.packagesPreview?.heading || 'Made for your moment.',
     description: cmsHomepageContent.value?.packagesPreview?.description ?? '',
     ctaLabel: cmsHomepageContent.value?.packagesPreview?.ctaLabel ?? 'Discover all offers',
     ctaLink: cmsHomepageContent.value?.packagesPreview?.ctaLink ?? '/ouroffers'
 }));
 const homepagePackages = computed(() => (
-    (Array.isArray(cmsOffersContent.value?.packages) ? cmsOffersContent.value.packages : []).filter((pkg) => pkg?.isVisible !== false)
+    (Array.isArray(cmsOffersContent.value?.packages) && cmsOffersContent.value.packages.length
+        ? cmsOffersContent.value.packages
+        : [
+            { key: 'essential', name: 'The Essential', tag: 'Your first ring', summary: 'A thoughtful introduction to shaping a ring at the workbench.' },
+            { key: 'signature', name: 'The Signature', tag: 'A personal design', summary: 'Explore the details that make a piece feel like your own.' },
+            { key: 'ceremony', name: 'The Ceremony', tag: 'Made together', summary: 'A meaningful way to mark your story side by side.' }
+        ]).filter((pkg) => pkg?.isVisible !== false)
 ));
 const faqHomepagePreviewContent = computed(() => ({
     enabled: cmsFaqContent.value?.homepageSection?.enabled ?? true,
@@ -245,7 +276,7 @@ const heroImage = computed(() => ({
 }));
 const reviewsContent = computed(() => ({
     enabled: cmsHomepageContent.value?.reviews?.enabled ?? true,
-    eyebrow: cmsHomepageContent.value?.reviews?.eyebrow ?? '',
+    eyebrow: cmsHomepageContent.value?.reviews?.eyebrow || 'Kind words',
     heading: cmsHomepageContent.value?.reviews?.heading ?? '',
     description: cmsHomepageContent.value?.reviews?.description ?? '',
     sourceLabel: cmsHomepageContent.value?.reviews?.sourceLabel ?? '',
