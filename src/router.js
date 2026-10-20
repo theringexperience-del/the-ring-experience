@@ -13,6 +13,7 @@ const FaqPage = () => import('./pages/FaqPage.vue')
 const PrivacyPolicy = () => import('./pages/PrivacyPolicy.vue')
 const CookiePolicy = () => import('./pages/CookiePolicy.vue')
 const RingMakingGuide = () => import('./pages/RingMakingGuide.vue')
+const ThingsToDoNegombo = () => import('./pages/ThingsToDoNegombo.vue')
 const Journal = () => import('./pages/Journal.vue')
 const JournalArticle = () => import('./pages/JournalArticle.vue')
 
@@ -51,6 +52,14 @@ const routes = [
           'How a guided ring-making workshop in Negombo works, what beginners can expect, and how to choose a jewellery experience for your Sri Lanka visit.',
       },
     },
+  },
+  {
+    path: '/things-to-do-in-negombo',
+    component: ThingsToDoNegombo,
+    meta: { seo: {
+      title: 'Things to Do in Negombo, Sri Lanka | Local Craft & Visitor Guide',
+      description: 'Ideas for a day in Negombo: make your own ring, visit the fish market, explore the lagoon and canal, and enjoy the beach. Plan a private jewellery workshop.'
+    } },
   },
   {
     path: '/journal',
