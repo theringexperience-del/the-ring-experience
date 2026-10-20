@@ -37,6 +37,7 @@
             <RouterLink to="/journal/make-your-own-wedding-rings-sri-lanka">Wedding bands</RouterLink>
             <RouterLink to="/journal/engagement-ring-design-workshop-guide">Engagement rings</RouterLink>
             <RouterLink to="/gemstones">Gemstones</RouterLink>
+            <RouterLink to="/custom-jewellery-sri-lanka">Custom jewellery guide</RouterLink>
           </div>
           <RouterLink to="/ring-sketch-prompt" class="mt-5 inline-block text-sm text-[#755024] underline underline-offset-4">Explore ideas with the optional AI sketch prompt tool ↗</RouterLink>
         </div>

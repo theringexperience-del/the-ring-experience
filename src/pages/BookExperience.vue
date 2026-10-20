@@ -40,7 +40,7 @@
             <label class="field">Preferred date (optional)<input v-model="form.preferredDate" type="date" :min="todayInColombo" class="control"></label>
             <label class="field">Number of makers<select v-model="form.makers" class="control"><option>1</option><option>2</option><option>3</option><option>4 or more — confirm space</option></select></label>
           </div>
-          <label class="field">Ring ideas or questions<textarea v-model.trim="form.message" rows="4" maxlength="2000" placeholder="Preferred time, designs, gemstones or travel plans…" class="control py-3"></textarea></label>
+          <label class="field">Ring ideas, metal or stone, budget range and deadline<textarea v-model.trim="form.message" rows="4" maxlength="2000" placeholder="What would you like to make? Silver, gold or a particular gem? Include a reference, budget range, proposal or flight date if relevant…" class="control py-3"></textarea></label>
           <label class="flex items-start gap-3 text-sm leading-relaxed text-[#604B39]"><input v-model="form.newsletterConsent" type="checkbox" class="mt-1 h-4 w-4 accent-[#755024]">{{ cmsForm.newsletterConsentLabel || 'Email me occasional workshop news and updates (optional).' }}</label>
           <button type="submit" :disabled="isSubmitting || submitState === 'success'" class="min-h-12 bg-[#704D29] px-6 py-3 text-sm font-medium text-white hover:bg-[#4B341F] disabled:cursor-wait disabled:opacity-60">{{ isSubmitting ? 'Sending your request…' : submitState === 'success' ? 'Request sent' : 'Send workshop request' }}</button>
           <p v-if="submitMessage" role="status" class="text-sm leading-relaxed" :class="submitState === 'error' ? 'text-red-800' : 'text-[#604B39]'">{{ submitMessage }}</p>

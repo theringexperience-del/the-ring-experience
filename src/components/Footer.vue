@@ -24,6 +24,7 @@
         <nav aria-label="Explore the studio" class="flex flex-wrap gap-x-7 gap-y-4 border-t border-white/15 pt-6 text-sm text-[#E6D4B4]">
           <RouterLink to="/aboutus">Our Story</RouterLink>
           <RouterLink to="/journal">The Journal</RouterLink>
+          <RouterLink to="/custom-jewellery-sri-lanka">Custom Jewellery</RouterLink>
           <RouterLink to="/things-to-do-in-negombo">Things to Do in Negombo</RouterLink>
           <RouterLink to="/gemstones">Explore Gemstones</RouterLink>
           <RouterLink to="/design-your-ring">Design Your Ring</RouterLink>

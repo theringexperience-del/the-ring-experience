@@ -387,6 +387,62 @@ export const journalPosts = [
     }
   ],
   related: ['creative-things-to-do-in-negombo-ring-making', 'sri-lankan-jewellery-making-experience', 'make-a-silver-ring-in-negombo']
+},
+{
+  slug: 'buying-ceylon-sapphire-sri-lanka',
+  title: 'Buying a Ceylon sapphire in Sri Lanka: questions worth asking',
+  description: 'Before choosing a Sri Lankan sapphire for a custom ring, ask about origin, natural or lab-grown status, treatments, reports, setting and the actual stone.',
+  category: 'Gemstone buying',
+  published: '2026-10-21',
+  readingTime: '6 min read',
+  intro: 'A blue sapphire can be the centre of an engagement ring or a personal piece. “Ceylon sapphire” is an origin description, not a substitute for checking the specific gem. Here is how to have a clear conversation before buying or setting one in Sri Lanka.',
+  sections: [
+    { heading: 'Does buying a sapphire in Sri Lanka prove it was mined here?', paragraphs: [
+      'No. Sri Lanka is both a source of gemstones and a cutting, treatment and trading centre for material from elsewhere. A seller’s location, a workshop visit or a photograph cannot establish where a particular stone formed.',
+      'If origin affects your decision or the price, ask for an independent laboratory report on the exact stone that includes an origin opinion when possible. Even specialist origin determination can be uncertain, particularly after treatment. Read the report’s wording rather than assuming every certificate proves “Ceylon” origin.'
+    ], source: { label: 'GIA: Sri Lanka, an island of jewels', href: 'https://www.gia.edu/sri-lanka-gemstones' } },
+    { heading: 'Which facts belong on the invoice or report?', paragraphs: [
+      'Ask for the gem’s identity, measurements, weight, colour and whether it is natural or laboratory-grown. Request disclosure of known treatments such as heat or diffusion, the report issuer and number if a report is included, and a price for that specific stone. Confirm what the seller will provide in writing before paying.',
+      'A gemstone report describes the stone examined; it is not a promise about how a finished ring will wear. Check that the report details match the gem you receive. If a report is important to you, agree on that requirement before an artisan begins the setting.'
+    ], source: { label: 'GIA: sapphire buyer’s guide', href: 'https://www.gia.edu/sapphire/buyers-guide' } },
+    { heading: 'Can a sapphire be worn every day?', paragraphs: [
+      'Sapphire is corundum, a relatively durable material often selected for rings. But an exposed setting can still be knocked, and treatments can affect care. A stone’s shape, depth and size influence which setting will protect it and how the ring feels to wear.',
+      'Ask an artisan to review both the stone and the design. Avoid choosing an engagement-ring setting solely from a photograph; the actual gem and the wearer’s routine matter.'
+    ], source: { label: 'GIA: sapphire care and cleaning', href: 'https://www.gia.edu/sapphire-care-cleaning' } },
+    { heading: 'What can The Ring Experience arrange?', paragraphs: [
+      'Our Negombo studio can discuss a gemstone idea for a custom ring and review whether a suitable stone can be sourced for the design. We do not represent a specific sapphire or a certificate as available until it has been individually confirmed. Tell us your preferred colour, shape, budget range and date.',
+      'We will explain the workshop choice, what making stages you can join, which work an artisan must complete, and any stone, setting or material charges before you commit. For a proposal or flight deadline, ask for a realistic handover date rather than assuming same-day completion.'
+    ] }
+  ],
+  related: ['sri-lankan-gemstones-for-rings', 'engagement-ring-design-workshop-guide', 'silver-or-gold-for-a-handmade-ring']
+},
+{
+  slug: 'commission-custom-jewellery-sri-lanka-travel',
+  title: 'How to commission custom jewellery during a Sri Lanka trip',
+  description: 'A practical inquiry checklist for custom rings, wedding bands and engagement designs: metal, gemstone, budget, making involvement and travel deadline.',
+  category: 'Custom jewellery',
+  published: '2026-10-21',
+  readingTime: '5 min read',
+  intro: 'You may want a ring you helped make, or a design that needs more of an artisan’s specialist work. Either way, a good first message lets a workshop tell you what is realistic before your holiday schedule or proposal date is fixed.',
+  sections: [
+    { heading: 'What should I put in my first message?', paragraphs: [
+      'Tell us what piece you want and for whom: a personal ring, two wedding bands, an engagement design or a gift. Include a sketch or reference photo, the metal and stone you prefer, your approximate budget, the number of makers and the date you need the finished piece.',
+      'If you want to do as much as possible yourself, say that at the start. A simple band offers different hands-on possibilities from a delicate stone-set design. We can then explain which stages you can join and which an artisan would do.'
+    ] },
+    { heading: 'What if I want gold or a Sri Lankan gemstone?', paragraphs: [
+      'Gold is discussed on request. Ask about purity, estimated metal weight, how the metal price is calculated and how a design change affects cost. For a gemstone, ask about the exact stone, identity, known treatments, any independent report and evidence for an origin claim. A “Ceylon” label alone is not enough to establish origin.',
+      'Choosing a stone may involve sourcing and specialist setting work. We confirm availability and a quote for the proposed materials before treating an inquiry as an order.'
+    ], source: { label: 'GIA: sapphire buyer’s guide', href: 'https://www.gia.edu/sapphire/buyers-guide' } },
+    { heading: 'Make at the bench or commission a finished piece?', paragraphs: [
+      'The Ring Experience specialises in guided ring-making sessions in Negombo. You choose the design and work with an artisan where the techniques allow. Complex rings can need additional artisan finishing. Other jewellery ideas can be sent for individual review; do not assume that a chain or pendant is a standard workshop item.',
+      'Ask for a written explanation of inclusions, extra metal, stone and setting charges, likely handover and any later work. That helps you decide whether the experience, the commissioned piece or a simpler design best fits your trip.'
+    ] },
+    { heading: 'Can I have it ready before I fly home?', paragraphs: [
+      'Share the flight date and allow time for the workshop and travel separately. A design with a sourced stone, engraving or specialised setting may need longer. The artisan reviews feasibility and confirms a realistic timeline before you rely on a collection date.',
+      'The first message begins the conversation; it does not reserve a session or guarantee completion. Use the design planner for your notes, then send an inquiry with your preferred dates.'
+    ] }
+  ],
+  related: ['buying-ceylon-sapphire-sri-lanka', 'make-your-own-wedding-rings-sri-lanka', 'engagement-ring-design-workshop-guide']
 }
 ];
 

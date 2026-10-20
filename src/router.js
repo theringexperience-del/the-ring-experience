@@ -4,6 +4,7 @@ const Homepage = () => import('./pages/Homepage.vue')
 const AboutUs = () => import('./pages/AboutUs.vue')
 const OurOffers = () => import('./pages/OurOffers.vue')
 const DesignYourRing = () => import('./pages/DesignYourRing.vue')
+const CustomJewellery = () => import('./pages/CustomJewellery.vue')
 const RingSketchPrompt = () => import('./pages/RingSketchPrompt.vue')
 const Gemstones = () => import('./pages/Gemstones.vue')
 const Gallery = () => import('./pages/Gallery.vue')
@@ -84,6 +85,14 @@ const routes = [
           'Plan a custom ring with our Negombo workshop. Choose metal, finish, gemstone ideas and personal details, then send your design notes to an artisan.',
       },
     },
+  },
+  {
+    path: '/custom-jewellery-sri-lanka',
+    component: CustomJewellery,
+    meta: { seo: {
+      title: 'Custom Jewellery in Sri Lanka | Rings & Gems in Negombo',
+      description: 'Make or commission a personal ring in Negombo. Ask The Ring Experience about wedding bands, engagement rings, silver, gold, Ceylon sapphire options and realistic timelines.'
+    } },
   },
   {
     path: '/ring-sketch-prompt',
