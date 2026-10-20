@@ -1,7 +1,7 @@
 <template>
     <article class="group experience-card w-full overflow-hidden bg-[#EFE7DA]">
         <div class="overflow-hidden">
-            <img :src="optimizedImage" :srcset="imageSrcSet || undefined" :alt="title" loading="lazy" decoding="async"
+            <img :src="optimizedImage" :srcset="imageSrcSet || undefined" :alt="imageAlt || title" loading="lazy" decoding="async"
                 width="900" height="1200" sizes="(min-width: 1280px) 30vw, (min-width: 768px) 44vw, 92vw"
                 class="aspect-[4/5] w-full object-cover object-center transition-transform duration-700 motion-safe:md:group-hover:scale-105">
         </div>
@@ -33,6 +33,10 @@ const props = defineProps({
     image: {
         type: String,
         default: '/the-ring-experience-logo.svg'
+    },
+    imageAlt: {
+        type: String,
+        default: ''
     }
 })
 

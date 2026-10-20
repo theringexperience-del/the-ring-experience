@@ -16,6 +16,7 @@ import { RouterLink } from 'vue-router'
 import GooglePreferredSource from './GooglePreferredSource.vue'
 defineProps({ reviewsUrl: { type:String, default:'' } })
 const resources = [
+  {to:'/custom-jewellery-sri-lanka',title:'Custom jewellery & ring design'},
   {to:'/things-to-do-in-negombo',title:'Things to do in Negombo'},
   {to:'/ring-making-guide',title:'The workshop guide'},
   {to:'/design-your-ring',title:'Your ring ideas'},
