@@ -346,6 +346,47 @@ export const journalPosts = [
     "make-a-silver-ring-in-negombo",
     "make-your-own-wedding-rings-sri-lanka"
   ]
+},
+{
+  slug: 'creative-things-to-do-in-sri-lanka',
+  title: 'Creative things to do in Sri Lanka: make something to take home',
+  description: 'Looking for hands-on activities in Sri Lanka? Explore batik, handloom, pottery and a guided jewellery-making workshop in Negombo.',
+  category: 'Visiting Sri Lanka',
+  published: '2026-10-20',
+  readingTime: '5 min read',
+  intro: 'Beaches, wildlife and historic places are only part of a Sri Lanka trip. If you enjoy meeting makers and learning with your hands, leave room for a craft experience too. A piece you help make carries the memory of the place in a different way from one you buy.',
+  sections: [
+    {
+      heading: 'Look for living crafts, not just souvenirs',
+      paragraphs: [
+        'Batik, handloom weaving and pottery are among the crafts highlighted by Sri Lanka Tourism. Workshops and demonstrations vary by place and maker, so check directly with a host before travelling. Ask whether you will observe, take part in a short lesson or make a finished item.',
+        'A good craft stop has enough time to learn a little about the tools, materials and people involved. If you visit a working studio, follow the maker’s safety guidance and ask before taking photographs.'
+      ],
+      source: { label: 'Sri Lanka Tourism: traditional crafts', href: 'https://srilanka.travel/essence?article=62' }
+    },
+    {
+      heading: 'Make a ring in Negombo',
+      paragraphs: [
+        'At The Ring Experience, a local artisan guides you through choices for a personal ring and helps you take part in its making. It works as a creative stop for solo travellers, couples and friends, including beginners. The amount of tool work you can do depends on the ring design and the workshop you choose.',
+        'Silver is a common starting point. If you are considering gold, a gemstone or engraving, share the idea in advance so the artisan can explain suitable materials, time and any additional cost. Compare the current workshop options and agree the details before treating an inquiry as a confirmed appointment.'
+      ]
+    },
+    {
+      heading: 'Fit a creative stop into a real travel day',
+      paragraphs: [
+        'If Negombo is your first or last stop in Sri Lanka, combine a prearranged workshop with time to see the fishing town, canal, lagoon or beach. Our Negombo activity guide gives a loose morning-to-evening plan. Leave enough room for travel and any onward flight rather than scheduling a detailed ring just before departure.',
+        'Elsewhere on the island, look for craft hosts whose activity fits the place you are already visiting. Availability, opening hours and whether you can take a finished piece with you should be confirmed with each host.'
+      ]
+    },
+    {
+      heading: 'Questions to ask before choosing a craft activity',
+      paragraphs: [
+        'What will I actually do with my hands? How long does it take? What materials are included? Does a professional finish any technical stages? Can I bring the item home on the day? These questions help you choose a workshop that matches your expectations.',
+        'For our ring-making sessions, send your date, group size and any ring ideas through the booking page. We will reply with availability and the scope of the session. If you are still exploring, start with the visitor guide to see how ring making works.'
+      ]
+    }
+  ],
+  related: ['creative-things-to-do-in-negombo-ring-making', 'sri-lankan-jewellery-making-experience', 'make-a-silver-ring-in-negombo']
 }
 ];
 
