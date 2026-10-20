@@ -2,11 +2,9 @@
     <div ref="homepageRoot" class="relative isolate w-full overflow-hidden">
         <section id="hero"
             class="home-hero relative flex w-full items-center overflow-hidden bg-[#201A15]">
-            <video v-if="heroMediaType === 'video' && heroContent.video" :src="heroContent.video" autoplay muted loop
-                playsinline preload="metadata" class="absolute inset-0 h-full w-full object-cover object-center opacity-80"></video>
-            <img v-else :src="heroImage.src" :srcset="heroImage.srcSet || undefined"
-                sizes="100vw" alt="The Ring Experience jewellery workshop in Negombo" width="1920" height="1080" fetchpriority="high" decoding="async"
-                class="absolute inset-0 h-full w-full object-cover object-center opacity-80">
+            <img src="/uploads/negombo-workshop-hero.webp"
+                alt="The Ring Experience jewellery workshop and tool wall in Negombo" width="900" height="1600" fetchpriority="high" decoding="async"
+                class="hero-photo absolute inset-0 h-full w-full object-cover opacity-80">
             <div class="absolute inset-0 hero-shade">
             </div>
             <div class="relative z-10 mx-auto w-11/12 sm:w-10/12">
@@ -44,7 +42,7 @@
         </div>
         <section id="aMoment" data-reveal class="w-full bg-[#F5EFE5] py-14 sm:py-20">
             <div class="mx-auto grid w-11/12 items-center gap-8 sm:w-10/12 lg:grid-cols-2 lg:gap-16">
-                <figure class="relative overflow-hidden"><img src="/uploads/jeweller-at-the-bench.webp" alt="A jeweller using a torch and tweezers to work on a ring" width="1000" height="1500" loading="lazy" decoding="async" class="moment-photo w-full object-cover"><figcaption class="absolute bottom-4 left-4 bg-[#F5EFE5]/95 px-4 py-3 font-display text-lg italic text-[#604B39] sm:bottom-7 sm:left-7">An afternoon worth keeping.</figcaption></figure>
+                <figure class="relative overflow-hidden"><img src="/uploads/artisan-crafting-ring.webp" alt="An artisan crafting a ring by hand at the workshop bench" width="934" height="1685" loading="lazy" decoding="async" class="moment-photo w-full object-cover"><figcaption class="absolute bottom-4 left-4 bg-[#F5EFE5]/95 px-4 py-3 font-display text-lg italic text-[#604B39] sm:bottom-7 sm:left-7">An afternoon worth keeping.</figcaption></figure>
                 <div class="max-w-lg"><p class="text-xs uppercase tracking-[.2em] text-[#80664A]">A slower moment on the island</p><h2 class="mt-4 font-display text-4xl leading-tight text-[#38291F] sm:text-6xl">Your hands.<br>Your story.</h2><p class="mt-5 max-w-sm text-base leading-relaxed text-[#604B39]">Step away from the itinerary and into the workshop. Choose the details of your ring, then make it with a local artisan beside you.</p><div class="mt-7 flex flex-wrap gap-x-7 gap-y-2"><router-link to="/custom-jewellery-sri-lanka" class="inline-flex min-h-11 items-center gap-6 border-b border-[#9D7A4B] text-sm text-[#755024]">Custom jewellery <span aria-hidden="true">→</span></router-link><router-link to="/design-your-ring" class="inline-flex min-h-11 items-center gap-6 border-b border-[#9D7A4B] text-sm text-[#755024]">Explore your design <span aria-hidden="true">→</span></router-link></div></div>
             </div>
         </section>
@@ -61,7 +59,7 @@
                 <div ref="experienceGrid" class="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 xl:grid-cols-3 xl:gap-9">
                     <Card v-for="card in experienceCards" :key="card.key"
                         class="experience-card mx-auto w-full max-w-md md:max-w-none" :title="card.title" :line-one="card.lineOne || ''"
-                        :line-two="card.lineTwo || ''" :image="card.image" />
+                        :line-two="card.lineTwo || ''" :image="card.image" :image-alt="card.imageAlt" />
                 </div>
             </div>
         </section>
@@ -98,7 +96,7 @@
         </section>
 
         <section id="values" class="craft-atmosphere relative isolate w-full overflow-hidden bg-[#30251B]" aria-labelledby="craft-moment-title">
-            <img src="/uploads/ring-hammering-craft.webp" alt="Close-up of a ring being shaped on a steel block with a mallet" width="1200" height="1800" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover">
+            <img src="/uploads/guest-hammering-ring.webp" alt="A guest shaping a ring with a hammer in our Negombo workshop" width="986" height="1595" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-[#20180F]/80 via-transparent to-transparent"></div>
             <div class="absolute inset-x-0 bottom-0 mx-auto w-11/12 pb-9 text-[#FAF7F1] sm:w-10/12 sm:pb-12"><p class="text-[.65rem] uppercase tracking-[.22em]">A moment in the making</p><h2 id="craft-moment-title" class="mt-3 font-display text-4xl sm:text-6xl">Feel the craft.</h2></div>
         </section>
@@ -180,16 +178,13 @@ import PreferredResourcesSection from '../components/PreferredResourcesSection.v
 import { GOOGLE_MAPS_URL } from '../utils/businessProfile.js';
 import FaqPreviewSection from '../components/FaqPreviewSection.vue';
 import SocialSection from '../components/SocialSection.vue';
-import defaultHeroImage from '../assets/herocover.jpeg';
 import {
     fetchGooglePlaceReviews,
     fetchPageCtaContentFromSanity,
     fetchFaqPageContentFromSanity,
     fetchHomepageContentFromSanity,
     fetchOffersPageContentFromSanity,
-    fetchSocialContentFromSanity,
-    optimizeImageSource,
-    toImageSrcSet
+    fetchSocialContentFromSanity
 } from '../utils/sanity';
 
 const cmsHomepageContent = ref({});
@@ -211,30 +206,27 @@ const reviewSlideIndex = ref(0);
 const heroContent = computed(() => ({
     headline: cmsHomepageContent.value?.hero?.headline ?? 'Make a ring. Keep the memory.',
     subheadline: cmsHomepageContent.value?.hero?.subheadline ?? 'A private ring-making workshop in Negombo, Sri Lanka. Create something personal with a local artisan—no experience needed.',
-    mediaType: cmsHomepageContent.value?.hero?.mediaType ?? 'image',
-    image: cmsHomepageContent.value?.hero?.image ?? defaultHeroImage,
-    video: cmsHomepageContent.value?.hero?.video ?? '',
     buttonLabel: cmsHomepageContent.value?.hero?.buttonLabel ?? 'Check Availability',
     buttonLink: cmsHomepageContent.value?.hero?.buttonLink ?? '/bookexperience',
     secondaryButtonLabel: cmsHomepageContent.value?.hero?.secondaryButtonLabel ?? 'Explore Workshops',
     secondaryButtonLink: cmsHomepageContent.value?.hero?.secondaryButtonLink ?? '/ouroffers'
 }));
-const heroMediaType = computed(() => (heroContent.value.mediaType === 'video' ? 'video' : 'image'));
 const theExperienceContent = computed(() => ({
     eyebrow: cmsHomepageContent.value?.theExperience?.eyebrow || 'The experience',
     title: cmsHomepageContent.value?.theExperience?.title || 'A keepsake in the making.'
 }));
 const defaultExperienceCards = [
-    { key: 'choose', title: 'Imagine it', lineOne: 'Start with a shape, a finish and a meaning of your own.', image: '/uploads/jeweller-at-the-bench.webp' },
-    { key: 'make', title: 'Make it', lineOne: 'Take your place beside an artisan and feel the craft up close.', image: '/uploads/ring-hammering-craft.webp' },
-    { key: 'keep', title: 'Keep it', lineOne: 'Carry a little of your time in Sri Lanka home with you.', image: defaultHeroImage }
+    { key: 'choose', title: 'Imagine it', lineOne: 'Start with a shape, a finish and a meaning of your own.', image: '/uploads/guest-designing-ring.webp', imageAlt: 'A guest sketching a ring design at The Ring Experience' },
+    { key: 'make', title: 'Make it', lineOne: 'Take your place beside an artisan and feel the craft up close.', image: '/uploads/guest-hammering-ring.webp', imageAlt: 'A guest shaping a ring with a hammer at the workbench' },
+    { key: 'keep', title: 'Keep it', lineOne: 'Carry a little of your time in Sri Lanka home with you.', image: '/uploads/guests-take-rings-home.webp', imageAlt: 'Two guests show the finished rings they made at the workshop' }
 ];
 const experienceCards = computed(() => (
     Array.isArray(cmsHomepageContent.value?.experienceCards) && cmsHomepageContent.value.experienceCards.length
         ? cmsHomepageContent.value.experienceCards.map((card, index) => ({
             ...defaultExperienceCards[index % defaultExperienceCards.length],
             ...card,
-            image: card.image || defaultExperienceCards[index % defaultExperienceCards.length].image
+            image: defaultExperienceCards[index % defaultExperienceCards.length].image,
+            imageAlt: defaultExperienceCards[index % defaultExperienceCards.length].imageAlt
         }))
         : defaultExperienceCards
 ));
@@ -270,10 +262,6 @@ const homepageFaqItems = computed(() => {
         .filter((item) => item?.showOnHomepage && item?.question && item?.answer)
         .sort((a, b) => (a.homepageOrder ?? 999) - (b.homepageOrder ?? 999));
 });
-const heroImage = computed(() => ({
-    src: optimizeImageSource(heroContent.value.image, { width: 1800, quality: 76 }),
-    srcSet: toImageSrcSet(heroContent.value.image, [640, 960, 1280, 1800], { quality: 76 })
-}));
 const reviewsContent = computed(() => ({
     enabled: cmsHomepageContent.value?.reviews?.enabled ?? true,
     eyebrow: cmsHomepageContent.value?.reviews?.eyebrow || 'Kind words',
@@ -458,6 +446,7 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .home-hero { min-height: min(860px, 100svh); padding-block: 10rem 8rem; }
+.hero-photo { object-position: center 46%; }
 .hero-shade { background: linear-gradient(90deg, rgba(24,21,17,.88), rgba(24,21,17,.52) 58%, rgba(24,21,17,.18)); }
 .hero-heading { max-width: 12ch; font-size: clamp(3.5rem, 6.4vw, 6.5rem); line-height: 1.02; letter-spacing: -.035em; }
 .hero-secondary { backdrop-filter: blur(8px); }

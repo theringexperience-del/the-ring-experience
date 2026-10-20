@@ -1,10 +1,11 @@
 <template>
   <div class="bg-[#FAF7F1] text-[#38291F]">
     <header class="bg-[#EFE7DA] px-[6%] pb-14 pt-32 sm:pb-18 sm:pt-40">
-      <div class="mx-auto max-w-6xl">
-        <p class="text-xs uppercase tracking-[.22em] text-[#795B3C]">From an idea to the workbench</p>
+      <div class="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1fr_.75fr]">
+        <div><p class="text-xs uppercase tracking-[.22em] text-[#795B3C]">From an idea to the workbench</p>
         <h1 class="mt-5 max-w-4xl font-display text-5xl leading-[1.08] sm:text-7xl">A ring that feels like you.</h1>
-        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-[#604B39]">Choose a few details for your custom ring. Send your ideas to our Negombo workshop, or bring them into a booking request. You can leave anything undecided.</p>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-[#604B39]">Choose a few details for your custom ring. Send your ideas to our Negombo workshop, or bring them into a booking request. You can leave anything undecided.</p></div>
+        <figure class="overflow-hidden"><img src="/uploads/guest-designing-ring.webp" alt="A guest sketches a personal ring design at The Ring Experience" width="998" height="1576" fetchpriority="high" decoding="async" class="h-72 w-full object-cover object-[center_60%] sm:h-96 lg:h-[32rem]"><figcaption class="bg-[#E1D3BD] px-4 py-3 text-sm italic text-[#604B39]">It starts with your idea.</figcaption></figure>
       </div>
     </header>
     <div class="mx-auto grid max-w-6xl gap-8 px-[6%] py-12 lg:grid-cols-[minmax(0,1fr)_22rem] sm:py-18">
