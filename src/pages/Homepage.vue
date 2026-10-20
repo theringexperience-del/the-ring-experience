@@ -31,6 +31,10 @@
                         <a :href="GOOGLE_MAPS_URL" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center gap-2 px-4 transition-colors hover:bg-white/10 sm:px-5"><svg viewBox="0 0 24 24" class="h-3.5 w-3.5 fill-[#D9BC80]" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2-6.2 3.2 1.2-6.8-5-4.9 6.9-1z"/></svg>Google reviews</a>
                         <a :href="GOOGLE_MAPS_URL" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center gap-2 px-4 transition-colors hover:bg-white/10 sm:px-5"><svg viewBox="0 0 24 24" class="h-4 w-4 fill-none stroke-current" stroke-width="1.5" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Directions</a>
                     </div>
+                    <div class="mt-4 flex items-center gap-5 text-xs text-[#F1E8DC] md:hidden">
+                        <a :href="WORKSHOP_INSTAGRAM" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center gap-2 border-b border-white/40 hover:border-white" aria-label="Visit The Ring Experience on Instagram">Instagram <span aria-hidden="true">↗</span></a>
+                        <a :href="WORKSHOP_WHATSAPP" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center gap-2 border-b border-white/40 hover:border-white" aria-label="Message The Ring Experience on WhatsApp">WhatsApp <span aria-hidden="true">↗</span></a>
+                    </div>
                 </div>
             </div>
             <a href="#theExperience" class="hero-scroll absolute bottom-7 right-[8.333%] text-xs tracking-[.15em] uppercase text-[#F1E8DC]">Discover the experience <span aria-hidden="true">↓</span></a>
@@ -161,7 +165,7 @@ import Button from '../components/Button.vue';
 import Card from '../components/Card.vue';
 import PageCtaSection from '../components/PageCtaSection.vue';
 import PreferredResourcesSection from '../components/PreferredResourcesSection.vue';
-import { GOOGLE_MAPS_URL } from '../utils/businessProfile.js';
+import { GOOGLE_MAPS_URL, WORKSHOP_INSTAGRAM, WORKSHOP_WHATSAPP } from '../utils/businessProfile.js';
 import FaqPreviewSection from '../components/FaqPreviewSection.vue';
 import SocialSection from '../components/SocialSection.vue';
 import defaultHeroImage from '../assets/herocover.jpeg';
