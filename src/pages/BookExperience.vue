@@ -21,7 +21,7 @@
           </div>
         </aside>
         <section v-if="calendlyEmbedUrl" class="overflow-hidden border border-[#CDBFA9] bg-white" aria-labelledby="calendar-heading">
-          <div class="p-6"><h2 id="calendar-heading" class="font-display text-2xl">{{ cmsBooking.calendly?.heading || 'Explore session times' }}</h2><p v-if="cmsBooking.calendly?.description" class="mt-3 text-sm leading-relaxed text-[#604B39]">{{ cmsBooking.calendly.description }}</p></div>
+          <div class="p-6"><h2 id="calendar-heading" class="font-display text-2xl">{{ isShortCalendar ? 'Plan your workshop with us' : (cmsBooking.calendly?.heading || 'Explore session times') }}</h2><p class="mt-3 text-sm leading-relaxed text-[#604B39]">{{ isShortCalendar ? 'This short calendar slot is for discussing your ring ideas and availability. Your full workshop time, materials and cost are confirmed separately.' : (cmsBooking.calendly?.description || 'Choose a time to discuss your visit. We will confirm the workshop details together.') }}</p></div>
           <iframe :src="calendlyEmbedUrl" title="Workshop scheduling calendar" loading="lazy" class="h-[700px] w-full border-0"></iframe>
           <a :href="cmsBooking.calendly.link" target="_blank" rel="noopener noreferrer" class="m-6 inline-block text-sm underline">Open the calendar in a new tab ↗</a>
         </section>
@@ -66,6 +66,7 @@ const cmsBooking = ref({}), cmsForm = ref({}), cmsOffers = ref({})
 const hero = computed(() => ({ eyebrow: cmsBooking.value.hero?.eyebrow || 'A private workshop in Negombo', title: cmsBooking.value.hero?.title || 'Make time to make something yours.', description: cmsBooking.value.hero?.description || 'Tell us when you are visiting and what you would love to create. We will help you choose a suitable ring-making session.' }))
 const packageOptions = computed(() => { const names = (cmsOffers.value.packages || []).filter(p => p.isVisible !== false).map(p => p.name).filter(Boolean); return names.length ? names : ['The Essential','The Signature','The Ceremony'] })
 const calendlyEmbedUrl = computed(() => { const cal = cmsBooking.value.calendly; if (cal?.enabled === false || !/^https:\/\/calendly\.com\/.+/i.test(cal?.link || '')) return ''; const url = new URL(cal.link); url.searchParams.set('embed_domain','www.theringexperience.lk'); url.searchParams.set('hide_event_type_details','1'); return url.href })
+const isShortCalendar = computed(() => /\/30min(?:\/|$)/i.test(new URL(calendlyEmbedUrl.value || 'https://calendly.com/').pathname))
 const form = reactive({ packageName:'Help me choose',name:'',email:'',phone:'',preferredDate:'',makers:'1',message:'',newsletterConsent:false })
 const todayInColombo = new Date(Date.now() + 19800000).toISOString().slice(0,10)
 const designBrief = ref(route.query.from === 'design' ? readRingBrief() : '')
