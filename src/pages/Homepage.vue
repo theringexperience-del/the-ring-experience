@@ -11,15 +11,15 @@
             </div>
             <div class="relative z-10 mx-auto w-11/12 sm:w-10/12">
                 <div class="hero-copy flex max-w-3xl flex-col items-start text-left text-white">
-                    <p class="mb-6 text-[.65rem] tracking-[.22em] uppercase text-[#E6D4B4] sm:text-xs">Negombo, Sri Lanka · Private jewellery workshops</p>
+                    <p class="mb-3 text-[.65rem] tracking-[.22em] uppercase text-[#E6D4B4] sm:mb-6 sm:text-xs">Negombo, Sri Lanka · Private jewellery workshops</p>
                     <h1 class="hero-heading font-display font-medium text-(--color-lightbeige)">
                         {{ heroContent.headline }}
                     </h1>
-                    <p class="mt-6 max-w-lg text-base leading-relaxed text-[#F1E8DC] sm:text-lg">
+                    <p class="mt-4 max-w-lg text-base leading-relaxed text-[#F1E8DC] sm:mt-6 sm:text-lg">
                         {{ heroContent.subheadline }}
                     </p>
 
-                    <div class="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+                    <div class="mt-5 flex w-full flex-col gap-2 sm:mt-8 sm:w-auto sm:flex-row sm:gap-3">
                         <router-link :to="heroContent.buttonLink">
                             <Button as="span" class="w-full min-w-[11rem]">{{ heroContent.buttonLabel }}</Button>
                         </router-link>
@@ -27,13 +27,13 @@
                             <Button as="span" class="hero-secondary w-full min-w-[11rem]" variant="navLight">{{ heroContent.secondaryButtonLabel }}</Button>
                         </router-link>
                     </div>
-                    <div class="hero-google mt-7 inline-flex max-w-full items-center divide-x divide-white/25 rounded-full border border-white/30 bg-black/15 text-xs text-[#F1E8DC] backdrop-blur-sm sm:text-sm">
+                    <div class="hero-google mt-4 inline-flex max-w-full items-center divide-x divide-white/25 rounded-full border border-white/50 bg-[#271D17]/80 text-xs text-white backdrop-blur-sm sm:mt-7 sm:bg-black/15 sm:text-sm">
                         <a :href="GOOGLE_MAPS_URL" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center gap-2 px-4 transition-colors hover:bg-white/10 sm:px-5"><svg viewBox="0 0 24 24" class="h-3.5 w-3.5 fill-[#D9BC80]" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2-6.2 3.2 1.2-6.8-5-4.9 6.9-1z"/></svg>Google reviews</a>
                         <a :href="GOOGLE_MAPS_URL" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center gap-2 px-4 transition-colors hover:bg-white/10 sm:px-5"><svg viewBox="0 0 24 24" class="h-4 w-4 fill-none stroke-current" stroke-width="1.5" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Directions</a>
                     </div>
-                    <div class="mt-4 flex items-center gap-5 text-xs text-[#F1E8DC] md:hidden">
-                        <a :href="WORKSHOP_INSTAGRAM" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center gap-2 border-b border-white/40 hover:border-white" aria-label="Visit The Ring Experience on Instagram">Instagram <span aria-hidden="true">↗</span></a>
-                        <a :href="WORKSHOP_WHATSAPP" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center gap-2 border-b border-white/40 hover:border-white" aria-label="Message The Ring Experience on WhatsApp">WhatsApp <span aria-hidden="true">↗</span></a>
+                    <div class="mt-2 flex items-center gap-2 text-xs text-white md:hidden">
+                        <a :href="WORKSHOP_INSTAGRAM" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-10 items-center gap-2 rounded-full border border-white/50 bg-[#271D17]/80 px-4 backdrop-blur-sm hover:bg-[#38291F]" aria-label="Visit The Ring Experience on Instagram">Instagram <span aria-hidden="true">↗</span></a>
+                        <a :href="WORKSHOP_WHATSAPP" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-10 items-center gap-2 rounded-full border border-white/50 bg-[#271D17]/80 px-4 backdrop-blur-sm hover:bg-[#38291F]" aria-label="Message The Ring Experience on WhatsApp">WhatsApp <span aria-hidden="true">↗</span></a>
                     </div>
                 </div>
             </div>
@@ -440,8 +440,8 @@ onBeforeUnmount(() => {
 .workshop-card { background: rgba(255,255,255,.035); transition: background .2s, transform .2s; }
 .workshop-card:hover { background: rgba(255,255,255,.07); transform: translateY(-4px); }
 @media (max-width: 639px) {
-    .home-hero { min-height: 720px; min-height: max(680px, 92svh); padding-block: 9rem 7rem; }
-    .hero-heading { font-size: clamp(3.15rem, 13.5vw, 4.75rem); }
+    .home-hero { min-height: 680px; min-height: max(640px, 92svh); padding-block: 5.5rem 4rem; }
+    .hero-heading { font-size: clamp(2.9rem, 12vw, 4.2rem); }
     .hero-shade { background: linear-gradient(90deg, rgba(24,21,17,.85), rgba(24,21,17,.52)); }
     .craft-atmosphere { height: 500px; }
     .craft-atmosphere img { object-position: center 51%; transform: scale(1.35); transform-origin: 50% 58%; }
