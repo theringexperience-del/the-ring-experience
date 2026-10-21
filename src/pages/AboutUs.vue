@@ -69,14 +69,15 @@
 </template>
 
 <script setup>
+import { initialContent } from '../utils/sanity.js';
 import { computed, nextTick, onMounted, ref } from 'vue';
 import PageTitleSection from '../components/PageTitleSection.vue';
 import SocialSection from '../components/SocialSection.vue';
 import { useRevealAnimations } from '../composables/useRevealAnimations';
 import { fetchAboutUsContentFromSanity, fetchSocialContentFromSanity, optimizeImageSource } from '../utils/sanity';
 
-const cmsAboutContent = ref({});
-const cmsSocialContent = ref({});
+const cmsAboutContent = ref(initialContent('ABOUT_US_QUERY') ?? {});
+const cmsSocialContent = ref(initialContent('SOCIAL_QUERY') ?? {});
 const aboutRoot = ref(null);
 const { setupRevealAnimations } = useRevealAnimations(aboutRoot);
 
@@ -114,8 +115,8 @@ onMounted(async () => {
         fetchAboutUsContentFromSanity(),
         fetchSocialContentFromSanity()
     ]);
-    cmsAboutContent.value = sanityAbout ?? {};
-    cmsSocialContent.value = sanitySocial ?? {};
+    cmsAboutContent.value = sanityAbout ?? cmsAboutContent.value;
+    cmsSocialContent.value = sanitySocial ?? cmsSocialContent.value;
     await nextTick();
     setupRevealAnimations();
 });

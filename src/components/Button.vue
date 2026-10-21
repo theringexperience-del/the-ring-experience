@@ -31,22 +31,22 @@ const props = defineProps({
 });
 
 const baseClasses =
-    'group inline-flex cursor-pointer items-center justify-center rounded-sm whitespace-nowrap uppercase tracking-[0.08em] transition-colors duration-300 ease-out active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60';
+    'ui-button group whitespace-nowrap disabled:cursor-not-allowed disabled:opacity-60';
 
 const sizeClasses = {
     sm: 'px-4 py-2 text-xs md:text-sm',
-    md: 'px-6 py-3 text-sm md:text-base'
+    md: 'px-6 py-3 text-sm'
 };
 
 const variantClasses = {
     solid:
-        'bg-[#7A5429] text-white hover:bg-[#63421F]',
+        'ui-button-solid',
     outline:
-        'border border-[#B08942] text-[#765326] bg-transparent hover:bg-[#B08942] hover:text-white',
+        'ui-button-outline',
     nav:
-        'border border-[#2A1E17] bg-[#2A1E17] text-[#F4EFE8] hover:bg-[#3B2B21]',
+        'ui-button-solid',
     navLight:
-        'border border-[#F4EFE8]/80 bg-[#F4EFE8]/10 text-[#F4EFE8] hover:bg-[#F4EFE8]/20'
+        'ui-button-light'
 };
 
 </script>

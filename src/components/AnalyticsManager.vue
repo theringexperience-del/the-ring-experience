@@ -1,3 +1,4 @@
+<template></template>
 <script setup>
 import { onBeforeUnmount, onMounted } from 'vue'
 import {

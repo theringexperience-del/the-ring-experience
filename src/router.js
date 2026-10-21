@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, createMemoryHistory } from 'vue-router'
 
 const Homepage = () => import('./pages/Homepage.vue')
 const AboutUs = () => import('./pages/AboutUs.vue')
@@ -191,7 +191,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: typeof window === 'undefined' ? createMemoryHistory() : createWebHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) return savedPosition

@@ -5,6 +5,7 @@ export default {
     title: 'Our Offers Page',
     type: 'document',
     fields: [
+        { name: 'pricingExplanation', title: 'Pricing explanation', type: 'text', rows: 4 },
         {
             name: 'hero',
             title: 'Hero',

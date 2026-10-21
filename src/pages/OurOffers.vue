@@ -33,7 +33,7 @@
                             </div>
                             <div class="flex shrink-0 flex-col items-start gap-3 lg:items-end">
                                 <Button type="button" @click="focusFormForPackage(pkg.name)">{{ pkg.buttonLabel }}</Button>
-                                <RouterLink :to="{ path: '/bookexperience', query: { package: pkg.name } }" class="inline-flex min-h-12 items-center justify-center border border-[#7B6248] px-6 py-3 text-sm uppercase tracking-[.12em] text-(--color-brown) hover:bg-[#EFE7DA]">Check availability</RouterLink>
+                                <RouterLink :to="{ path: '/bookexperience', query: { package: pkg.name } }" class="ui-button ui-button-outline inline-flex min-h-12 items-center justify-center px-6 py-3">Check availability</RouterLink>
                             </div>
                         </div>
                     </article>
@@ -54,39 +54,39 @@
                 <div class="mx-auto mt-8 h-px w-24 bg-(--color-noisette)"></div>
 
                 <form class="mx-auto mt-10 grid max-w-4xl grid-cols-1 gap-4 md:grid-cols-2" @submit.prevent="submitByEmail">
-                    <label class="flex flex-col gap-2">
+                    <label class="flex min-w-0 flex-col gap-2">
                         <span class="text-sm font-medium text-(--color-brown)">Package</span>
                         <select ref="packageField" v-model="form.packageName" required
-                            class="h-11 rounded-sm border border-[#7B6248]/45 bg-white px-3 text-(--color-brown) outline-none focus:border-(--color-noisette) focus:ring-2 focus:ring-[#B08942]/35">
+                            class="h-11 min-w-0 rounded-sm border border-[#7B6248]/45 bg-white px-3 text-(--color-brown) outline-none focus:border-(--color-noisette) focus:ring-2 focus:ring-[#B08942]/35">
                             <option value="" disabled>Select a package</option>
                             <option v-for="pkg in packageOptions" :key="pkg" :value="pkg">{{ pkg }}</option>
                         </select>
                     </label>
-                    <label class="flex flex-col gap-2">
+                    <label class="flex min-w-0 flex-col gap-2">
                         <span class="text-sm font-medium text-(--color-brown)">Name</span>
                         <input v-model.trim="form.name" required type="text"
-                            class="h-11 rounded-sm border border-[#7B6248]/45 bg-white px-3 text-(--color-brown) outline-none focus:border-(--color-noisette) focus:ring-2 focus:ring-[#B08942]/35">
+                            class="h-11 min-w-0 rounded-sm border border-[#7B6248]/45 bg-white px-3 text-(--color-brown) outline-none focus:border-(--color-noisette) focus:ring-2 focus:ring-[#B08942]/35">
                     </label>
-                    <label class="flex flex-col gap-2">
+                    <label class="flex min-w-0 flex-col gap-2">
                         <span class="text-sm font-medium text-(--color-brown)">Email</span>
                         <input v-model.trim="form.email" required type="email"
-                            class="h-11 rounded-sm border border-[#7B6248]/45 bg-white px-3 text-(--color-brown) outline-none focus:border-(--color-noisette) focus:ring-2 focus:ring-[#B08942]/35">
+                            class="h-11 min-w-0 rounded-sm border border-[#7B6248]/45 bg-white px-3 text-(--color-brown) outline-none focus:border-(--color-noisette) focus:ring-2 focus:ring-[#B08942]/35">
                     </label>
-                    <label class="flex flex-col gap-2">
+                    <label class="flex min-w-0 flex-col gap-2">
                         <span class="text-sm font-medium text-(--color-brown)">Phone / WhatsApp</span>
-                        <div class="grid grid-cols-[8rem_1fr] gap-2">
+                        <div class="grid grid-cols-[minmax(0,8rem)_minmax(0,1fr)] gap-2">
                             <select v-model="form.phoneCode"
-                                class="h-11 rounded-sm border border-[#7B6248]/45 bg-white px-2 text-sm text-(--color-brown) outline-none focus:border-(--color-noisette) focus:ring-2 focus:ring-[#B08942]/35">
+                                class="h-11 min-w-0 rounded-sm border border-[#7B6248]/45 bg-white px-2 text-sm text-(--color-brown) outline-none focus:border-(--color-noisette) focus:ring-2 focus:ring-[#B08942]/35">
                                 <option v-for="code in phoneCodes" :key="code.value" :value="code.value">{{ code.label }}</option>
                             </select>
                             <input v-model.trim="form.phoneNumber" type="tel" placeholder="Phone number"
-                                class="h-11 rounded-sm border border-[#7B6248]/45 bg-white px-3 text-(--color-brown) outline-none focus:border-(--color-noisette) focus:ring-2 focus:ring-[#B08942]/35">
+                                class="h-11 min-w-0 rounded-sm border border-[#7B6248]/45 bg-white px-3 text-(--color-brown) outline-none focus:border-(--color-noisette) focus:ring-2 focus:ring-[#B08942]/35">
                         </div>
                     </label>
-                    <label class="flex flex-col gap-2">
+                    <label class="flex min-w-0 flex-col gap-2">
                         <span class="text-sm font-medium text-(--color-brown)">Preferred date</span>
                         <input v-model="form.preferredDate" type="date" :min="todayInColombo"
-                            class="h-11 rounded-sm border border-[#7B6248]/45 bg-white px-3 text-(--color-brown) outline-none focus:border-(--color-noisette) focus:ring-2 focus:ring-[#B08942]/35">
+                            class="h-11 min-w-0 rounded-sm border border-[#7B6248]/45 bg-white px-3 text-(--color-brown) outline-none focus:border-(--color-noisette) focus:ring-2 focus:ring-[#B08942]/35">
                     </label>
                     <label class="md:col-span-2 flex flex-col gap-2">
                         <span class="text-sm font-medium text-(--color-brown)">Message</span>
@@ -115,6 +115,7 @@
 </template>
 
 <script setup>
+import { initialContent } from '../utils/sanity.js';
 import { computed, nextTick, onMounted, reactive, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import Button from '../components/Button.vue';
@@ -122,7 +123,7 @@ import GemstonesOffersCallout from '../components/GemstonesOffersCallout.vue';
 import SocialSection from '../components/SocialSection.vue';
 import { useRevealAnimations } from '../composables/useRevealAnimations';
 import { submitLead } from '../utils/leads';
-import { currentWorkshopPackages, pricingExplanation } from '../content/workshopPackages.js';
+import { currentWorkshopPackages } from '../content/workshopPackages.js';
 import { phoneCodes } from '../utils/phoneCodes';
 import { fetchContactFormContentFromSanity, fetchOffersPageContentFromSanity, fetchSocialContentFromSanity } from '../utils/sanity';
 
@@ -131,14 +132,14 @@ const packageField = ref(null);
 const offersRoot = ref(null);
 const { setupRevealAnimations } = useRevealAnimations(offersRoot, { selectors: ['[data-reveal]', '.offer-card'], start: 'top 86%' });
 
-const cmsOffersContent = ref({});
-const cmsFormContent = ref({});
-const cmsSocialContent = ref({});
+const cmsOffersContent = ref(initialContent('OFFERS_PAGE_QUERY') ?? {});
+const cmsFormContent = ref(initialContent('CONTACT_FORM_QUERY') ?? {});
+const cmsSocialContent = ref(initialContent('SOCIAL_QUERY') ?? {});
 
 const packagesSectionContent = computed(() => ({
     eyebrow: cmsOffersContent.value?.packagesSection?.eyebrow ?? '',
     heading: cmsOffersContent.value?.packagesSection?.heading ?? '',
-    description: pricingExplanation
+    description: cmsOffersContent.value?.pricingExplanation ?? ''
 }));
 
 const packagesContent = computed(() => (
@@ -249,9 +250,9 @@ onMounted(async () => {
         fetchSocialContentFromSanity()
     ]);
 
-    cmsOffersContent.value = sanityOffers ?? {};
-    cmsFormContent.value = sanityForm ?? {};
-    cmsSocialContent.value = sanitySocial ?? {};
+    cmsOffersContent.value = sanityOffers ?? cmsOffersContent.value;
+    cmsFormContent.value = sanityForm ?? cmsFormContent.value;
+    cmsSocialContent.value = sanitySocial ?? cmsSocialContent.value;
 
     await applyPackageFromRoute();
     await nextTick();

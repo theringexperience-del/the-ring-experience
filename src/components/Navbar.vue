@@ -3,7 +3,7 @@
     class="fixed top-0 right-0 left-0 z-50 border-b transition-all duration-300"
     :class="isSolid
       ? 'border-[#2A1E17]/12 bg-(--color-lightbeige) text-[#2A1E17] backdrop-blur-md'
-      : 'border-transparent bg-transparent text-[#F4EFE8]'"
+      : 'border-transparent bg-transparent text-(--color-lightbeige)'"
   >
     <div class="mx-auto flex h-18 w-11/12 items-center justify-between sm:w-10/12">
      
@@ -24,13 +24,13 @@
         >
           {{ link.label }}
         </RouterLink>
-        <RouterLink to="/bookexperience" class="booking-link">
+        <RouterLink :to="cmsNavbar.bookingLink || '/bookexperience'" class="booking-link">
           <Button
             as="span" size="sm"
             :variant="isSolid ? 'nav' : 'navLight'"
             class="px-5 py-2 text-xs tracking-[0.14em]"
           >
-            Check Availability
+            {{ cmsNavbar.bookingLabel }}
           </Button>
         </RouterLink>
       </nav>
@@ -63,7 +63,7 @@
     <transition name="nav-fade">
       <div
         v-if="isMobileOpen" id="mobile-navigation"
-        class="max-h-[calc(100svh-4.5rem)] overflow-y-auto border-t border-[#2A1E17]/10 bg-[#F4EFE8]/98 text-[#2A1E17] xl:hidden"
+        class="max-h-[calc(100svh-4.5rem)] overflow-y-auto border-t border-[#2A1E17]/10 bg-(--color-lightbeige)/98 text-[#2A1E17] xl:hidden"
       >
         <nav class="mx-auto flex w-11/12 flex-col py-5 text-sm tracking-[0.12em] uppercase sm:w-10/12">
           <RouterLink
@@ -79,7 +79,7 @@
             <RouterLink v-for="link in studioLinks" :key="link.to" :to="link.to" @click="isMobileOpen = false">{{ link.label }}</RouterLink>
           </div>
           <RouterLink
-            to="/bookexperience"
+            :to="cmsNavbar.bookingLink || '/bookexperience'"
             class="mt-4"
             @click="isMobileOpen = false"
           >
@@ -88,7 +88,7 @@
               variant="nav"
               class="w-full px-5 py-2 text-xs tracking-[0.14em]"
             >
-              Check Availability
+              {{ cmsNavbar.bookingLabel }}
             </Button>
           </RouterLink>
         </nav>
@@ -101,27 +101,16 @@
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 import Button from './Button.vue'
-import { fetchNavbarContentFromSanity } from '../utils/sanity'
+import { fetchNavbarContentFromSanity, initialContent } from '../utils/sanity'
 
 const route = useRoute()
+const cmsNavbar = ref(initialContent('NAVBAR_QUERY') ?? {})
 const isMobileOpen = ref(false)
 const hasScrolled = ref(false)
 const logoSrc = ref('/the-ring-experience-logo.svg')
 
-const primaryLinks = [
-  { label: 'The Experience', to: '/#theExperience' },
-  { label: 'Workshops', to: '/ouroffers' },
-  { label: 'Customise', to: '/design-your-ring' },
-  { label: 'Gallery', to: '/gallery' },
-  { label: 'FAQs', to: '/faq' },
-]
-const studioLinks = [
-  { label: 'Our Story', to: '/aboutus' },
-  { label: 'Journal', to: '/journal' },
-  { label: 'Gemstones', to: '/gemstones' },
-  { label: 'Design Your Ring', to: '/design-your-ring' },
-  { label: 'Metal Calculator', to: '/furnace' },
-]
+const primaryLinks = computed(() => cmsNavbar.value.primaryLinks ?? [])
+const studioLinks = computed(() => cmsNavbar.value.studioLinks ?? [])
 
 const isSolid = computed(() => route.path !== '/' || hasScrolled.value || isMobileOpen.value)
 
@@ -141,6 +130,7 @@ onMounted(() => {
   window.addEventListener('scroll', onScroll, { passive: true })
 
   fetchNavbarContentFromSanity().then((navbarContent) => {
+    if (navbarContent) cmsNavbar.value = navbarContent
     if (navbarContent?.logoSvgUrl) {
       logoSrc.value = navbarContent.logoSvgUrl
     }
@@ -164,6 +154,9 @@ onBeforeUnmount(() => {
 }
 .nav-link { padding-block: 1rem; border-bottom: 1px solid transparent; }
 .nav-link:hover, .nav-link[aria-current="page"] { border-color: currentColor; }
+header :is(a, button):focus-visible { outline: none; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .35em; }
+header a:focus-visible :deep(.ui-button) { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .35em; }
+header button:focus-visible { border-bottom: 2px solid currentColor; }
 .brand-link { flex-shrink: 0; }
 @media (max-width: 359px) { .brand-link { font-size: 1rem; gap: .25rem; } }
 </style>

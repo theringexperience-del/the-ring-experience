@@ -35,7 +35,7 @@
 <script setup>
 import { computed } from 'vue';
 import Button from './Button.vue';
-import defaultHeroImage from '../assets/herocover.jpeg';
+import defaultHeroImage from '../assets/herocover.webp';
 import { toWebImage } from '../utils/sanity';
 
 const props = defineProps({

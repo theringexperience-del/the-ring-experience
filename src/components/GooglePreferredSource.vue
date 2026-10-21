@@ -1,7 +1,7 @@
 <template>
   <a v-if="enabled" href="https://www.google.com/preferences/source?q=theringexperience.lk"
     target="_blank" rel="noopener noreferrer"
-    class="inline-flex min-h-12 items-center justify-center border border-[#B9A990] bg-white px-5 py-3 text-sm text-[#38291F] hover:bg-[#FAF7F1]">
+    class="ui-button ui-button-outline inline-flex min-h-12 items-center justify-center px-5 py-3">
     Add as Preferred Source on Google <span class="ml-3" aria-hidden="true">↗</span>
   </a>
 </template>

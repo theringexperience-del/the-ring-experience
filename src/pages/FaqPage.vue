@@ -21,9 +21,9 @@
             </div>
         </section>
 
-        <section class="bg-[#EFE7DA] px-[6%] py-16 text-[#38291F] sm:py-20" aria-labelledby="more-guides-heading">
+        <section class="bg-(--color-panel) px-[6%] py-16 text-(--color-darkbrown) sm:py-20" aria-labelledby="more-guides-heading">
             <div class="mx-auto max-w-6xl">
-                <p class="text-xs uppercase tracking-[.18em] text-[#795B3C]">More answers from the workbench</p>
+                <p class="text-xs uppercase tracking-[.18em] text-(--color-mutedbrown)">More answers from the workbench</p>
                 <h2 id="more-guides-heading" class="mt-4 font-display text-3xl sm:text-5xl">Planning a meaningful ring?</h2>
                 <p class="mt-5 max-w-2xl leading-relaxed">Read our guides to wedding bands, engagement designs and coloured gemstones. Each explains what to ask an artisan before you book.</p>
                 <div class="mt-9 grid gap-4 md:grid-cols-2">
@@ -40,6 +40,7 @@
 </template>
 
 <script setup>
+import { initialContent } from '../utils/sanity.js';
 import { computed, nextTick, onMounted, ref } from 'vue';
 import { RouterLink } from 'vue-router';
 import { mergeWorkshopFaqs } from '../content/workshopFaqs.js';
@@ -48,8 +49,8 @@ import SocialSection from '../components/SocialSection.vue';
 import { useRevealAnimations } from '../composables/useRevealAnimations';
 import { fetchFaqPageContentFromSanity, fetchSocialContentFromSanity } from '../utils/sanity';
 
-const cmsFaqContent = ref({});
-const cmsSocialContent = ref({});
+const cmsFaqContent = ref(initialContent('FAQ_PAGE_QUERY') ?? {});
+const cmsSocialContent = ref(initialContent('SOCIAL_QUERY') ?? {});
 const faqRoot = ref(null);
 const { setupRevealAnimations } = useRevealAnimations(faqRoot);
 
@@ -94,8 +95,8 @@ onMounted(async () => {
         fetchFaqPageContentFromSanity(),
         fetchSocialContentFromSanity()
     ]);
-    cmsFaqContent.value = sanityFaq ?? {};
-    cmsSocialContent.value = sanitySocial ?? {};
+    cmsFaqContent.value = sanityFaq ?? cmsFaqContent.value;
+    cmsSocialContent.value = sanitySocial ?? cmsSocialContent.value;
     await nextTick();
     if (window.innerWidth >= 768) {
         setupRevealAnimations();

@@ -1,15 +1,15 @@
 <template>
-  <div class="contact-pair fixed right-4 z-[45] flex items-center gap-2 md:hidden"
+  <div v-show="route.path !== '/' || isPastHero" class="contact-pair fixed right-4 z-[45] flex items-center gap-2 md:hidden"
     :class="{ 'is-playing': isPlaying, 'is-scrolling': isScrolling }"
     :style="{ '--travel-x': `${travelX}px`, '--travel-y': `${travelY}px` }"
     aria-label="Contact The Ring Experience">
-    <a :href="WORKSHOP_INSTAGRAM" target="_blank" rel="noopener noreferrer"
-      class="flex h-12 w-12 items-center justify-center rounded-full border border-white/70 bg-[#38291F] text-white shadow-lg"
+    <a :href="publicLinks.instagramUrl" target="_blank" rel="noopener noreferrer"
+      class="flex h-12 w-12 items-center justify-center rounded-full border border-white/70 bg-(--color-darkbrown) hover:bg-(--color-brown) text-white shadow-lg"
       aria-label="The Ring Experience on Instagram">
       <svg viewBox="0 0 24 24" aria-hidden="true" class="h-5 w-5 fill-none stroke-current" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" class="fill-current stroke-none"/></svg>
     </a>
-    <a :href="WORKSHOP_WHATSAPP" target="_blank" rel="noopener noreferrer"
-      class="flex h-12 w-12 items-center justify-center rounded-full border border-white/70 bg-[#276C4D] text-white shadow-lg"
+    <a :href="publicLinks.whatsappUrl" target="_blank" rel="noopener noreferrer"
+      class="flex h-12 w-12 items-center justify-center rounded-full border border-white/70 bg-(--color-whatsapp) hover:brightness-90 text-white shadow-lg"
       aria-label="Ask The Ring Experience on WhatsApp">
     <svg viewBox="0 0 24 24" aria-hidden="true" class="h-5 w-5 fill-current"><path d="M12.04 2a9.84 9.84 0 0 0-8.52 14.77L2 22l5.36-1.41A9.82 9.82 0 1 0 12.04 2Zm0 17.9a8.06 8.06 0 0 1-4.1-1.12l-.3-.18-3.18.84.85-3.1-.2-.32a8.1 8.1 0 1 1 6.93 3.88Zm4.49-6.08c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.24-.64.8-.79.97-.15.16-.3.18-.55.06-.25-.13-1.04-.39-1.98-1.23-.74-.65-1.23-1.46-1.38-1.7-.14-.25-.01-.38.11-.5.11-.1.25-.28.37-.43.12-.14.16-.24.24-.4.08-.17.04-.31-.02-.44-.06-.12-.56-1.34-.77-1.84-.2-.48-.41-.42-.56-.43h-.47c-.17 0-.43.06-.65.3-.23.25-.86.84-.86 2.03s.88 2.34 1 2.5c.13.17 1.75 2.67 4.23 3.74.59.25 1.05.4 1.41.51.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.68-1.18.2-.58.2-1.08.14-1.18-.06-.1-.22-.17-.47-.3Z"/></svg>
     </a>
@@ -17,8 +17,13 @@
   </div>
 </template>
 <script setup>
-import { onBeforeUnmount, onMounted, ref } from 'vue'
-import { WORKSHOP_INSTAGRAM, WORKSHOP_WHATSAPP } from '../utils/businessProfile.js'
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
+import { useBusinessLinks } from '../composables/useBusinessLinks.js';
+const publicLinks = useBusinessLinks();
+const route = useRoute()
+const isPastHero = ref(false)
+watch(() => route.path, () => { isPastHero.value = false })
 const isPlaying = ref(false)
 const isScrolling = ref(false)
 const travelX = ref(0)
@@ -27,6 +32,8 @@ let idleTimer
 let playTimer
 
 function onScroll() {
+  const hero = document.getElementById('hero')
+  isPastHero.value = Boolean(hero && hero.getBoundingClientRect().bottom <= 72)
   isPlaying.value = false
   isScrolling.value = true
   clearTimeout(idleTimer)

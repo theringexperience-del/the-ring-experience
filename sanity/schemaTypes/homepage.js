@@ -5,6 +5,7 @@ export default {
     title: 'Homepage',
     type: 'document',
     fields: [
+        {name:'atAGlance',title:'At a glance steps',type:'array',of:[{type:'string'}],validation:Rule=>Rule.length(3)},
         {
             name: 'hero',
             title: 'Hero',

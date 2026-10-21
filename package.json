@@ -7,8 +7,9 @@
     "dev": "vite",
     "build": "vite build && node scripts/render-editorial.mjs && node scripts/check-public-pages.mjs && npm --prefix studio ci && npm --prefix studio run build && node scripts/copy-studio.mjs",
     "build:frontend": "vite build && node scripts/render-editorial.mjs && node scripts/check-public-pages.mjs",
-    "build:with-studio": "vite build && npm --prefix studio ci && npm --prefix studio run build && node scripts/copy-studio.mjs",
-    "preview": "vite preview"
+    "build:with-studio": "npm run build",
+    "preview": "vite preview",
+    "check:cms": "node scripts/check-cms-model.mjs && node scripts/check-content.mjs"
   },
   "dependencies": {
     "@sanity/client": "^7.16.0",

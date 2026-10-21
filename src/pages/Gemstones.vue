@@ -38,17 +38,10 @@
             </div>
         </section>
 
-        <section class="bg-[#EEE4D6] px-[6%] py-16 text-[#38291F] sm:py-24" aria-labelledby="gem-buying-heading">
-            <div class="mx-auto max-w-6xl">
-                <p class="text-xs uppercase tracking-[.18em] text-[#80664A]">Sri Lankan gems · informed choices</p>
-                <h2 id="gem-buying-heading" class="mt-4 max-w-4xl font-display text-4xl leading-tight sm:text-5xl">A beautiful stone deserves a clear story.</h2>
-                <p class="mt-5 max-w-3xl leading-relaxed text-[#604B39]">Sri Lanka is known for sapphires and other coloured gems. The Ring Experience can discuss gemstone ideas for a custom ring in Negombo. Ask us about a specific stone and design; availability, sourcing, origin evidence and setting work are confirmed individually.</p>
-                <div class="mt-10 grid gap-5 md:grid-cols-3">
-                    <article class="border-t border-[#BFAE96] pt-5"><h3 class="font-display text-2xl">What is a “Ceylon sapphire”?</h3><p class="mt-3 leading-relaxed text-[#604B39]">It refers to sapphire attributed to Sri Lankan origin. A stone bought, cut or set here is not automatically mined here. For a valuable origin claim, ask for a report from an independent gem laboratory that states its opinion.</p></article>
-                    <article class="border-t border-[#BFAE96] pt-5"><h3 class="font-display text-2xl">What should I ask before buying?</h3><p class="mt-3 leading-relaxed text-[#604B39]">Request the identity, natural or laboratory-grown status, known treatments, measurements, price and any report for the exact stone. An origin opinion may not be possible for every gem. Keep the written details with your receipt.</p></article>
-                    <article class="border-t border-[#BFAE96] pt-5"><h3 class="font-display text-2xl">Can it go into my ring?</h3><p class="mt-3 leading-relaxed text-[#604B39]">The stone, cut, size, setting, chosen metal and available time all matter. An artisan may need to handle the setting. Send your ideas before booking so we can explain feasibility, involvement and cost.</p></article>
-                </div>
-                <div class="mt-9 flex flex-wrap gap-x-8 gap-y-3 text-sm text-[#755024]"><a href="https://www.gia.edu/sapphire/buyers-guide" target="_blank" rel="noopener noreferrer" class="underline underline-offset-4">GIA sapphire buyer’s guide ↗</a><a href="https://www.gia.edu/sri-lanka-gemstones" target="_blank" rel="noopener noreferrer" class="underline underline-offset-4">GIA on Sri Lankan gems ↗</a><RouterLink to="/journal/buying-ceylon-sapphire-sri-lanka" class="underline underline-offset-4">Our sapphire buying guide ↗</RouterLink><RouterLink to="/custom-jewellery-sri-lanka" class="underline underline-offset-4">Discuss a custom ring ↗</RouterLink></div>
+        <section class="bg-(--color-panel) px-[6%] py-16 text-(--color-darkbrown) sm:py-24" aria-labelledby="gem-buying-heading">
+            <div class="mx-auto max-w-6xl"><p class="text-xs uppercase tracking-[.18em] text-(--color-mutedbrown)">{{ section('gem-buying').eyebrow }}</p><h2 id="gem-buying-heading" class="mt-4 max-w-4xl font-display text-4xl leading-tight sm:text-5xl">{{ section('gem-buying').heading }}</h2><CmsRichText :blocks="section('gem-buying').body?.slice(0,1)" class="mt-5 max-w-3xl leading-relaxed text-(--color-mutedbrown)"/>
+                <div class="mt-10 grid gap-5 md:grid-cols-3"><article v-for="item in buyingQuestions" :key="item.key" class="border-t border-[#BFAE96] pt-5"><h3 class="font-display text-2xl">{{ item.heading }}</h3><CmsRichText :blocks="item.body" class="mt-3 leading-relaxed text-(--color-mutedbrown)"/></article></div>
+                <div class="mt-9 flex flex-wrap gap-x-8 gap-y-3 text-sm text-(--color-action)"><a v-for="link in section('gem-buying').links" :key="link.href" :href="link.href" class="underline underline-offset-4">{{ link.label }}</a></div>
             </div>
         </section>
 
@@ -58,6 +51,11 @@
 </template>
 
 <script setup>
+import CmsRichText from '../components/CmsRichText.vue';
+import { useEditorialPage } from '../composables/useEditorialPage.js';
+const { page: editorialPage, section } = useEditorialPage('/gemstones');
+const buyingQuestions = computed(() => editorialPage.value?.sections?.filter(item => /^gemQuestion/.test(item.key)) ?? []);
+import { initialContent } from '../utils/sanity.js';
 import { computed, nextTick, onMounted, ref } from 'vue';
 import { RouterLink } from 'vue-router';
 import GemstonesOffersCallout from '../components/GemstonesOffersCallout.vue';
@@ -65,8 +63,8 @@ import SocialSection from '../components/SocialSection.vue';
 import { useRevealAnimations } from '../composables/useRevealAnimations';
 import { fetchGemstonesPageContentFromSanity, fetchSocialContentFromSanity, toWebImage } from '../utils/sanity';
 
-const cmsGemstonesContent = ref({});
-const cmsSocialContent = ref({});
+const cmsGemstonesContent = ref(initialContent('GEMSTONES_PAGE_QUERY') ?? {});
+const cmsSocialContent = ref(initialContent('SOCIAL_QUERY') ?? {});
 const gemstonesRoot = ref(null);
 const { setupRevealAnimations } = useRevealAnimations(gemstonesRoot, { selectors: ['[data-reveal]', '.gem-card'], start: 'top 88%' });
 
@@ -91,8 +89,8 @@ onMounted(async () => {
         fetchGemstonesPageContentFromSanity(),
         fetchSocialContentFromSanity()
     ]);
-    cmsGemstonesContent.value = sanityGemstones ?? {};
-    cmsSocialContent.value = sanitySocial ?? {};
+    cmsGemstonesContent.value = sanityGemstones ?? cmsGemstonesContent.value;
+    cmsSocialContent.value = sanitySocial ?? cmsSocialContent.value;
     await nextTick();
     setupRevealAnimations();
 });

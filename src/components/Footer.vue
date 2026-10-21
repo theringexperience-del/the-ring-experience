@@ -1,5 +1,5 @@
 <template>
-  <footer class="relative mt-0 overflow-hidden bg-[#171210] text-[#F4EFE8]">
+  <footer class="relative mt-0 overflow-hidden bg-[#171210] text-(--color-lightbeige)">
     <div class="pointer-events-none absolute inset-0 opacity-40">
       <div
         class="absolute -top-20 -left-12 h-52 w-52 rounded-full"
@@ -21,15 +21,8 @@
           </p>
         </div>
 
-        <nav aria-label="Explore the studio" class="flex flex-wrap gap-x-7 gap-y-4 border-t border-white/15 pt-6 text-sm text-[#E6D4B4]">
-          <RouterLink to="/aboutus">Our Story</RouterLink>
-          <RouterLink to="/journal">The Journal</RouterLink>
-          <RouterLink to="/custom-jewellery-sri-lanka">Custom Jewellery</RouterLink>
-          <RouterLink to="/things-to-do-in-negombo">Things to Do in Negombo</RouterLink>
-          <RouterLink to="/gemstones">Explore Gemstones</RouterLink>
-          <RouterLink to="/design-your-ring">Design Your Ring</RouterLink>
-          <RouterLink to="/furnace">Metal Calculator</RouterLink>
-          <RouterLink to="/faq">Workshop FAQs</RouterLink>
+        <nav aria-label="Explore the studio" class="flex flex-wrap gap-x-7 gap-y-4 border-t border-white/15 pt-6 text-sm text-(--color-accent-light)">
+          <RouterLink v-for="link in footerData.studioLinks" :key="link.to" :to="link.to">{{ link.label }}</RouterLink>
         </nav>
         <Credits :footer-data="footerData" />
       </div>
@@ -41,7 +34,7 @@
 import { onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import Credits from './Credits.vue'
-import { fetchFooterContentFromSanity } from '../utils/sanity'
+import { fetchFooterContentFromSanity, initialContent } from '../utils/sanity'
 
 const defaultFooterData = {
   subtitle: '',
@@ -52,7 +45,7 @@ const defaultFooterData = {
   email: '',
 }
 
-const footerData = ref(defaultFooterData)
+const footerData = ref(initialContent('FOOTER_QUERY') ?? defaultFooterData)
 
 onMounted(async () => {
   const sanityFooter = await fetchFooterContentFromSanity()

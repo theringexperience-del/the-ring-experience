@@ -1,0 +1,86 @@
+{
+  "navbar": {
+    "primaryLinks": [
+      {
+        "label": "The Experience",
+        "to": "/#theExperience"
+      },
+      {
+        "label": "Workshops",
+        "to": "/ouroffers"
+      },
+      {
+        "label": "Customise",
+        "to": "/design-your-ring"
+      },
+      {
+        "label": "Gallery",
+        "to": "/gallery"
+      },
+      {
+        "label": "FAQs",
+        "to": "/faq"
+      }
+    ],
+    "studioLinks": [
+      {
+        "label": "Our Story",
+        "to": "/aboutus"
+      },
+      {
+        "label": "Journal",
+        "to": "/journal"
+      },
+      {
+        "label": "Gemstones",
+        "to": "/gemstones"
+      },
+      {
+        "label": "Design Your Ring",
+        "to": "/design-your-ring"
+      },
+      {
+        "label": "Metal Calculator",
+        "to": "/furnace"
+      }
+    ],
+    "bookingLabel": "Check Availability",
+    "bookingLink": "/bookexperience"
+  },
+  "footer": {
+    "studioLinks": [
+      {
+        "label": "Our Story",
+        "to": "/aboutus"
+      },
+      {
+        "label": "The Journal",
+        "to": "/journal"
+      },
+      {
+        "label": "Custom Jewellery",
+        "to": "/custom-jewellery-sri-lanka"
+      },
+      {
+        "label": "Things to Do in Negombo",
+        "to": "/things-to-do-in-negombo"
+      },
+      {
+        "label": "Explore Gemstones",
+        "to": "/gemstones"
+      },
+      {
+        "label": "Design Your Ring",
+        "to": "/design-your-ring"
+      },
+      {
+        "label": "Metal Calculator",
+        "to": "/furnace"
+      },
+      {
+        "label": "Workshop FAQs",
+        "to": "/faq"
+      }
+    ]
+  }
+}

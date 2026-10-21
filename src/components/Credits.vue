@@ -1,5 +1,5 @@
 <template>
-  <div class="border-t border-[#F4EFE8]/20 pt-6 text-xs tracking-[0.08em] uppercase text-[#CFC7BB]">
+  <div class="border-t border-(--color-lightbeige)/20 pt-6 text-xs tracking-[0.08em] uppercase text-[#CFC7BB]">
     <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
       <p>&copy; {{ year }} The Ring Experience</p>
       <div class="flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4 sm:gap-y-2">
@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <div class="mt-5 border-t border-[#F4EFE8]/12 pt-5 normal-case sm:mt-5">
+    <div class="mt-5 border-t border-(--color-lightbeige)/12 pt-5 normal-case sm:mt-5">
       <p>
         Designer and developer:
         <a

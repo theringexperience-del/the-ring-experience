@@ -59,7 +59,7 @@
             ></button>
           </div>
 
-          <p class="mt-5 border border-[#2A1E17]/12 bg-[#F4EFE8] p-5 text-sm leading-relaxed text-(--color-mutedbrown)">
+          <p class="mt-5 border border-[#2A1E17]/12 bg-(--color-lightbeige) p-5 text-sm leading-relaxed text-(--color-mutedbrown)">
             {{ selectedRule.name }} - {{ selectedRule.info }}
           </p>
 
@@ -201,7 +201,7 @@ import { computed, nextTick, onMounted, reactive, ref, watch } from 'vue'
 import { RouterLink } from 'vue-router'
 import Button from '../components/Button.vue'
 import { useRevealAnimations } from '../composables/useRevealAnimations'
-import { fetchFooterContentFromSanity, fetchSocialContentFromSanity } from '../utils/sanity'
+import { fetchFooterContentFromSanity, fetchSocialContentFromSanity, fetchOffersPageContentFromSanity, initialContent } from '../utils/sanity'
 
 const pageRoot = ref(null)
 const resultSection = ref(null)
@@ -210,6 +210,8 @@ const { setupRevealAnimations } = useRevealAnimations(pageRoot, {
   start: 'top 86%',
 })
 
+const cmsOffers = ref(initialContent('OFFERS_PAGE_QUERY') ?? {});
+onMounted(async () => { cmsOffers.value = await fetchOffersPageContentFromSanity() ?? cmsOffers.value; });
 const selectedPackageKey = ref('essential')
 const finalPrompt = ref('')
 const isResultVisible = ref(false)
@@ -252,26 +254,7 @@ const activeStepCount = computed(() => {
   return 1
 })
 
-const packageCards = [
-  {
-    key: 'essential',
-    label: 'Essential',
-    title: 'Silver Ring · 1.5–2 Hours',
-    description: 'Simple, personal, beginner-friendly. 4g silver included.',
-  },
-  {
-    key: 'signature',
-    label: 'Signature Gem Discovery',
-    title: 'Gemstone Ring · Around 3 Hours',
-    description: '6g silver, LKR 5,000 gemstone allowance and one standard setting included.',
-  },
-  {
-    key: 'ceremony',
-    label: 'Ceremony',
-    title: 'Special Ring · 4+ Hours',
-    description: '8g silver, LKR 8,000 gemstone allowance, standard setting and engraving included.',
-  },
-]
+const packageCards = computed(() => (cmsOffers.value.packages ?? []).filter(pkg => pkg.isVisible !== false && ['essential','signature','ceremony'].includes(pkg.key)).map(pkg => ({key:pkg.key,label:pkg.name,title:pkg.duration,description:pkg.summary})));
 
 const options = {
   essential: {
@@ -426,7 +409,11 @@ const form = reactive({
 })
 
 const selectedOptions = computed(() => options[selectedPackageKey.value])
-const selectedRule = computed(() => packageRules[selectedPackageKey.value])
+const selectedRule = computed(() => {
+ const rule = packageRules[selectedPackageKey.value];
+ const current = cmsOffers.value.packages?.find(pkg => pkg.key === selectedPackageKey.value);
+ return current ? {...rule, name: current.name, time: current.duration + '; ' + current.summary, info: current.summary} : rule;
+})
 
 const resetPackageChoices = () => {
   form.shape = selectedOptions.value.shapes[0]
@@ -892,34 +879,32 @@ onMounted(async () => {
 }
 
 .main-action {
-  background: var(--color-noisette);
+  background: var(--color-action);
   color: white;
 }
 
 .secondary-action {
-  border-color: var(--color-noisette);
+  border-color: var(--color-action);
   background: transparent;
-  color: var(--color-noisette);
+  color: var(--color-action);
 }
 
 .whatsapp-action {
-  border-color: #1f7a4d;
-  background: #1f7a4d;
+  border-color: var(--color-whatsapp);
+  background: var(--color-whatsapp);
   color: white;
 }
 
-.main-action:hover,
-.secondary-action:hover,
 .whatsapp-action:hover {
-  transform: translateY(-1px);
+  filter: brightness(.9);
 }
 
 .main-action:hover {
-  filter: brightness(1.05);
+  background: var(--color-action-hover);
 }
 
 .secondary-action:hover {
-  background: var(--color-noisette);
+  background: var(--color-action);
   color: white;
 }
 

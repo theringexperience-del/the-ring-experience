@@ -8,6 +8,8 @@ export const deskStructure = (S) =>
     S.list()
         .title('Content')
         .items([
+            collectionItem(S, { schemaType: 'journalPost', title: 'Journal articles' }),
+            collectionItem(S, { schemaType: 'editorialPage', title: 'Guides and new pages' }),
             S.listItem()
                 .title('Pages')
                 .child(
@@ -30,6 +32,7 @@ export const deskStructure = (S) =>
                         .title('Shared Sections')
                         .items([
                             collectionItem(S, { schemaType: 'social', title: 'Social Section' }),
+                            collectionItem(S, { schemaType: 'preferredResources', title: 'Studio notebook links' }),
                             collectionItem(S, { schemaType: 'pageCta', title: 'Page CTA' }),
                             collectionItem(S, { schemaType: 'contactForm', title: 'Contact Form' })
                         ])

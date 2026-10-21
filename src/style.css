@@ -14,6 +14,12 @@
   --color-darkerbrown: #171210;
   --color-darkbeige: #CFC7BB;
   --color-mutedbrown: #6F5644;
+  --color-action: #7A5429;
+  --color-action-hover: #63421F;
+  --color-border: #C8B79E;
+  --color-panel: #EFE7DA;
+  --color-accent-light: #D9BC80;
+  --color-whatsapp: #276C4D;
   --noise-opacity: 0.035;
 
   /* Optional dark variant */
@@ -63,7 +69,7 @@ body { margin: 0; -webkit-font-smoothing: antialiased; line-height: 1.6; }
 h1, h2, h3 { text-wrap: balance; }
 p { text-wrap: pretty; }
 a, button, input, select, textarea, summary { -webkit-tap-highlight-color: transparent; }
-:focus-visible { outline: 3px solid #9A743D; outline-offset: 5px; }
+:focus-visible { outline: 3px solid var(--color-noisette); outline-offset: 5px; }
 section[id] { scroll-margin-top: 6rem; }
 ::selection { background: #D7C29C; color: #2A1E17; }
 @media (prefers-reduced-motion: reduce) {
@@ -73,3 +79,23 @@ section[id] { scroll-margin-top: 6rem; }
 
 .skip-link { position: fixed; left: 1rem; top: -5rem; z-index: 100; background: #FAF7F1; color: #2A1E17; padding: .75rem 1rem; }
 .skip-link:focus { top: 1rem; }
+
+@layer base {
+  :where(a, button, summary) { transition: color .2s ease, background-color .2s ease, border-color .2s ease; }
+  :where(a.underline, a.border-b):hover { text-decoration-thickness: 2px; text-underline-offset: .3em; }
+  :where(footer a):hover { text-decoration: underline; text-underline-offset: .3em; }
+}
+
+@layer components {
+  .ui-button {
+    @apply inline-flex min-h-11 cursor-pointer items-center justify-center rounded-sm text-center text-sm uppercase tracking-[0.08em] transition-colors duration-200;
+    text-decoration: none;
+  }
+  .ui-button:disabled { cursor: not-allowed; opacity: .6; }
+  .ui-button-solid { background-color: var(--color-action); color: white; }
+  .ui-button-solid:not(:disabled):hover { background-color: var(--color-action-hover); }
+  .ui-button-outline { border: 1px solid var(--color-action); background-color: transparent; color: var(--color-action); }
+  .ui-button-outline:not(:disabled):hover { background-color: var(--color-action); color: white; }
+  .ui-button-light { border: 1px solid var(--color-lightbeige); background-color: transparent; color: var(--color-lightbeige); }
+  .ui-button-light:not(:disabled):hover { background-color: var(--color-lightbeige); color: var(--color-darkbrown); }
+}

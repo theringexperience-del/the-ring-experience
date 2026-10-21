@@ -1,88 +1,58 @@
-import { readFile, mkdir, writeFile } from 'node:fs/promises';
-import { journalPosts } from '../src/content/journal.js';
-import { getCmsPages } from './render-cms-pages.mjs';
-import { sitePages } from '../src/content/sitePages.js';
-import { BUSINESS_SCHEMA, GOOGLE_MAPS_URL } from '../src/utils/businessProfile.js';
+import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { loadEnv, createServer } from 'vite';
+import { createSSRApp } from 'vue';
+import { renderToString } from 'vue/server-renderer';
+import { createHead, renderSSRHead } from '@unhead/vue/server';
+import { withClientFallback } from '../src/utils/contentFallback.js';
+import * as queries from '../src/utils/sanityQueries.js';
+const env = { ...loadEnv('production',process.cwd(),'VITE_'), ...process.env };
 
-const dist = new URL('../dist/', import.meta.url);
-const template = await readFile(new URL('index.html', dist), 'utf8');
-const siteUrl = 'https://www.theringexperience.lk';
-const escape = (value) => String(value).replace(/[&<>"']/g, (char) => ({
-  '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
-})[char]);
-
-const cmsPages = await getCmsPages(escape);
-const allPages = [...sitePages, ...cmsPages];
-
-const articleBody = (post) => `
-<main style="max-width:780px;margin:7rem auto 5rem;padding:0 1.5rem;font:1.1rem/1.8 Georgia,serif;color:#38291f">
-  <a href="/journal">← The Journal</a>
-  <p>${escape(post.category)} · ${escape(post.readingTime)}</p><p>By The Ring Experience · Published ${escape(post.published)}</p>
-  <h1 style="font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.15">${escape(post.title)}</h1>
-  <p>${escape(post.intro)}</p>
-  ${post.sections.map((section) => `<section><h2>${escape(section.heading)}</h2>${section.paragraphs.map((paragraph) => `<p>${escape(paragraph)}</p>`).join('')}${section.source ? `<p><a href="${escape(section.source.href)}">Source: ${escape(section.source.label)}</a></p>` : ''}</section>`).join('')}
-  <p><a href="/bookexperience">Check workshop availability</a> · <a href="/ring-making-guide">Visitor guide</a></p>
-</main>`;
-
-const indexBody = `<main style="max-width:1000px;margin:7rem auto 5rem;padding:0 1.5rem;font:1.1rem/1.8 Georgia,serif;color:#38291f">
-  <h1 style="font-size:clamp(3rem,7vw,5rem)">The Journal</h1>
-  <p>Clear answers about silver, gold, gemstones, wedding and engagement rings, and making jewellery in Sri Lanka.</p>
-  ${journalPosts.map((post) => `<article><h2><a href="/journal/${escape(post.slug)}">${escape(post.title)}</a></h2><p>${escape(post.description)}</p></article>`).join('')}
-</main>`;
-
-const page = ({ title, description, path, body, schema }) => {
-  const url = `${siteUrl}${path}`;
-  let html = template
-    .replace(/<title>[^<]*<\/title>/, `<title>${escape(title)}</title>`)
-    .replace(/<meta name="description" content="[^"]*"\s*\/>/, `<meta name="description" content="${escape(description)}" />`)
-    .replace(/<meta property="og:type" content="[^"]*"\s*\/>/, `<meta property="og:type" content="${schema?.['@type'] === 'BlogPosting' ? 'article' : 'website'}" />`)
-    .replace(/<meta property="og:title" content="[^"]*"\s*\/>/, `<meta property="og:title" content="${escape(title)}" />`)
-    .replace(/<meta property="og:description" content="[^"]*"\s*\/>/, `<meta property="og:description" content="${escape(description)}" />`)
-    .replace(/<meta property="og:url" content="[^"]*"\s*\/>/, `<meta property="og:url" content="${url}" />`)
-    .replace(/<meta name="twitter:title" content="[^"]*"\s*\/>/, `<meta name="twitter:title" content="${escape(title)}" />`)
-    .replace(/<meta name="twitter:description" content="[^"]*"\s*\/>/, `<meta name="twitter:description" content="${escape(description)}" />`)
-    .replace('<div id="app"></div>', `<div id="app">${body}</div>`)
-    .replace(/<meta (?=(?:name="(?:description|robots|twitter:[^"]+)"|property="og:[^"]+"))/g, '<meta data-prerender-seo ')
-    .replace('</head>', `<link data-prerender-seo rel="canonical" href="${url}" /><link data-prerender-seo rel="alternate" type="application/rss+xml" title="The Ring Experience Journal" href="${siteUrl}/journal/feed.xml" />${schema ? `<script id="prerender-page-jsonld" type="application/ld+json">${JSON.stringify(schema).replace(/</g, '\\u003c')}</script>` : ''}</head>`);
-  return html;
-};
-
-const writeRoute = async (path, html) => {
-  const dir = path === '/' ? dist : new URL(`.${path}/`, dist);
-  await mkdir(dir, { recursive: true });
-  await writeFile(new URL('index.html', dir), html);
-};
-
-await writeRoute('/journal', page({
-  title: 'Jewellery Making Journal | The Ring Experience Sri Lanka',
-  description: 'Guides to silver, gold, gemstones, wedding and engagement rings, and hands-on jewellery making in Negombo, Sri Lanka.',
-  path: '/journal', body: indexBody,
-}));
-
-for (const post of journalPosts) {
-  const path = `/journal/${post.slug}`;
-  await writeRoute(path, page({
-    title: `${post.title} | The Ring Experience`, description: post.description, path,
-    body: articleBody(post),
-    schema: {
-      '@context': 'https://schema.org', '@type': 'BlogPosting', headline: post.title,
-      description: post.description, datePublished: post.published,
-      author: { '@type': 'Organization', name: 'The Ring Experience', url: siteUrl },
-      publisher: { '@type': 'Organization', name: 'The Ring Experience', url: siteUrl },
-      mainEntityOfPage: `${siteUrl}${path}`,
-    },
-  }));
-}
-
-for (const entry of allPages) {
-  const body = `<main style="max-width:1000px;margin:5rem auto;padding:0 1.5rem;font:1.1rem/1.8 Georgia,serif;color:#38291f"><nav><a href="/">The Ring Experience</a> · <a href="/ouroffers">Workshops</a> · <a href="/design-your-ring">Customise</a> · <a href="/journal">Journal</a></nav>${entry.body}<footer><p>The Ring Experience · 63/1 Porutota Road, Negombo 11500, Sri Lanka</p><p><a href="${GOOGLE_MAPS_URL}">Google Maps, reviews and directions</a> · <a href="tel:+94769012344">+94 76 901 2344</a></p></footer></main>`;
-  await writeRoute(entry.path, page({ ...entry, body, schema: BUSINESS_SCHEMA }));
-}
-
-// Derive discovery files from the pages actually emitted by this build.
-const urls = [...allPages.map(entry => entry.path), '/journal', ...journalPosts.map(post => `/journal/${post.slug}`)];
-await writeFile(new URL('sitemap.xml', dist), `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map(path => `<url><loc>${siteUrl}${escape(path)}</loc></url>`).join('')}</urlset>`);
-await writeFile(new URL('journal/feed.xml', dist), `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0"><channel><title>The Ring Experience Journal</title><link>${siteUrl}/journal</link><description>Jewellery-making guides from Negombo, Sri Lanka</description><language>en</language>${journalPosts.map(post => `<item><title>${escape(post.title)}</title><link>${siteUrl}/journal/${post.slug}</link><guid>${siteUrl}/journal/${post.slug}</guid><description>${escape(post.description)}</description><pubDate>${new Date(post.published + 'T12:00:00+05:30').toUTCString()}</pubDate></item>`).join('')}</channel></rss>`);
-console.log(`Published ${urls.length} readable pages and ${journalPosts.length} journal entries.`);
+const snapshot=Object.fromEntries(await Promise.all(Object.entries(queries).map(async([key,query])=>{
+ try {
+  if(!env.VITE_SANITY_PROJECT_ID || !env.VITE_SANITY_DATASET) throw Error('CMS environment is missing');
+  const url=new URL(`https://${env.VITE_SANITY_PROJECT_ID}.api.sanity.io/v2024-01-01/data/query/${env.VITE_SANITY_DATASET}`);
+  url.searchParams.set('query',query);url.searchParams.set('perspective','published');
+  const response=await fetch(url,{signal:AbortSignal.timeout(30000)});
+  if(!response.ok)throw Error('CMS response '+response.status);
+  return [key,withClientFallback(key,(await response.json()).result)];
+ } catch(error) {
+  console.warn('[cms] '+key+': '+error.message+'. Using original client fallback content.');
+  return [key,withClientFallback(key,null)];
+ }
+})));
+const posts=snapshot.JOURNAL_POSTS_QUERY;
+if(!Array.isArray(posts)||!posts.length)throw Error('Publish journal articles in Sanity before building.');
+const dist=new URL('../dist/',import.meta.url);
+await writeFile(new URL('cms-snapshot.json',dist),JSON.stringify(snapshot));
+globalThis.__CMS_CONTENT__=snapshot;
+const template=await readFile(new URL('index.html',dist),'utf8');
+const manifest=JSON.parse(await readFile(new URL('.vite/ssr-manifest.json',dist),'utf8'));
+const server=await createServer({server:{middlewareMode:true},appType:'custom',optimizeDeps:{noDiscovery:true,entries:[]}});
+const siteUrl='https://www.theringexperience.lk';
+const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+try {
+ const {default:App}=await server.ssrLoadModule('/src/App.vue');
+ const {default:router}=await server.ssrLoadModule('/src/router.js');
+ const routes=[...router.getRoutes().map(r=>r.path).filter(p=>!p.includes(':')),...posts.map(p=>'/journal/'+p.slug)];
+ for(const route of routes){
+  await router.push(route);await router.isReady();
+  const app=createSSRApp(App),head=createHead();app.use(router);app.use(head);
+  const context={};let body=await renderToString(app,context);
+  for (const [id, files] of Object.entries(manifest)) {
+    if (!id.startsWith('src/assets/')) continue;
+    const extension=id.slice(id.lastIndexOf('.'));
+    const asset=files.find(file=>file.endsWith(extension));
+    if(asset) body=body.replaceAll('/'+id,asset);
+  }
+  const {headTags}=await renderSSRHead(head);
+  const css=new Set([...context.modules||[]].flatMap(id=>manifest[id]||[]).filter(file=>file.endsWith('.css')));
+  const html=template.replace(/<title>[^<]*<\/title>/g,'').replace(/<meta\s+(?:name="(?:description|robots|twitter:[^"]+)"|property="og:[^"]+")[^>]*>/g,'')
+   .replace('<div id="app"></div>',`<div id="app">${body}</div>`)
+   .replace('</head>',`${headTags.replace(/<(meta|link|script)\b/g,'<$1 data-prerender-seo')}\n${[...css].map(file=>`<link rel="stylesheet" href="${file.startsWith('/')?file:'/'+file}">`).join('')}\n<script id="cms-bootstrap" type="application/json">${JSON.stringify(snapshot).replace(/</g,'\\u003c')}</script></head>`);
+  const dir=route==='/'?dist:new URL('.'+route+'/',dist);await mkdir(dir,{recursive:true});await writeFile(new URL('index.html',dir),html);
+ }
+ await writeFile(new URL('sitemap.xml',dist),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${routes.map(p=>`<url><loc>${siteUrl}${escape(p)}</loc></url>`).join('')}</urlset>`);
+ await mkdir(new URL('journal/',dist),{recursive:true});
+ await writeFile(new URL('journal/feed.xml',dist),`<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>The Ring Experience Journal</title><link>${siteUrl}/journal</link><description>Jewellery-making guides from Negombo, Sri Lanka</description><language>en</language>${posts.map(post=>`<item><title>${escape(post.title)}</title><link>${siteUrl}/journal/${escape(post.slug)}</link><guid>${siteUrl}/journal/${escape(post.slug)}</guid><description>${escape(post.description)}</description><pubDate>${new Date(post.published+'T12:00:00+05:30').toUTCString()}</pubDate></item>`).join('')}</channel></rss>`);
+ console.log(`Rendered ${routes.length} pages from Vue templates and published CMS content.`);
+} finally {await server.close();delete globalThis.__CMS_CONTENT__;}

@@ -25,12 +25,13 @@ import Footer from './components/Footer.vue'
 import GlobalBackground from './components/GlobalBackground.vue'
 import MobileContactCta from './components/MobileContactCta.vue'
 import Navbar from './components/Navbar.vue'
-import { getJournalPost } from './content/journal.js'
+import { getJournalPost, loadJournal } from './content/journal.js'
 import { BUSINESS_SCHEMA } from './utils/businessProfile.js'
 
+loadJournal();
 const route = useRoute()
 const siteUrl = 'https://www.theringexperience.lk'
-const defaultOgImage = `${siteUrl}/uploads/whatsapp-image-2026-02-24-at-10.43.29-1-.jpeg`
+const defaultOgImage = `${siteUrl}/uploads/whatsapp-image-2026-02-24-at-10.43.29-1-.webp`
 
 const defaultTitle = 'The Ring Experience - Sri Lanka'
 const defaultDescription =
@@ -42,7 +43,7 @@ const seo = computed(() => article.value ? {
   description: article.value.description,
 } : (route.meta?.seo ?? {}))
 const canonicalPath = computed(() => (route.path === '/' ? '' : route.path.replace(/\/+$/, '')))
-const canonicalUrl = computed(() => `${siteUrl}${canonicalPath.value}`)
+const canonicalUrl = computed(() => route.path === '/' ? `${siteUrl}/` : `${siteUrl}${canonicalPath.value}`)
 const ogImage = computed(() => seo.value.image || defaultOgImage)
 const jsonLd = computed(() => JSON.stringify({ ...BUSINESS_SCHEMA, image: ogImage.value }))
 const articleLd = computed(() => article.value ? JSON.stringify({

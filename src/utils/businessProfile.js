@@ -1,7 +1,8 @@
-// Public Google Business Profile link supplied by the business owner.
-export const GOOGLE_MAPS_URL = 'https://maps.app.goo.gl/DgFSXxdyEZRAjRqV7?g_st=ic'
-export const WORKSHOP_WHATSAPP = 'https://wa.me/94769012344'
-export const WORKSHOP_INSTAGRAM = 'https://www.instagram.com/theringexperience.lk/'
+import { initialContent } from './sanity.js';
+const links = initialContent('SITE_APPEARANCE_QUERY')?.contactLinks ?? {};
+export const GOOGLE_MAPS_URL = links.googleMapsUrl ?? '';
+export const WORKSHOP_WHATSAPP = links.whatsappUrl ?? '';
+export const WORKSHOP_INSTAGRAM = links.instagramUrl ?? '';
 export const BUSINESS_SCHEMA = {
   '@context': 'https://schema.org', '@type': 'LocalBusiness', name: 'The Ring Experience',
   url: 'https://www.theringexperience.lk',

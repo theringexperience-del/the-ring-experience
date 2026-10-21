@@ -2,7 +2,7 @@
   <transition name="cookie-fade">
     <section
       v-if="isVisible"
-      class="fixed inset-x-0 bottom-0 z-50 border-t border-[#2A1E17]/15 bg-[#FAF5EF] p-4 shadow-[0_-6px_20px_rgba(42,30,23,0.12)] sm:p-5"
+      class="fixed inset-x-0 bottom-0 z-50 max-h-[calc(100svh-5rem)] overflow-y-auto border-t border-[#2A1E17]/15 bg-(--color-lightbeige) p-4 shadow-[0_-6px_20px_rgba(42,30,23,0.12)] sm:p-5"
       role="dialog"
       aria-live="polite"
       aria-label="Cookie consent"
@@ -23,17 +23,17 @@
           </p>
         </div>
 
-        <div class="flex w-full shrink-0 flex-col gap-2 sm:w-auto sm:flex-row sm:items-center">
+        <div class="flex w-full shrink-0 flex-row items-center gap-2 sm:w-auto">
           <button
             type="button"
-            class="w-full cursor-pointer rounded-full border border-[#2A1E17] px-4 py-2 text-sm text-[#2A1E17] transition hover:bg-[#2A1E17]/5 sm:w-auto"
+            class="ui-button ui-button-outline w-full px-4 py-2 sm:w-auto"
             @click="rejectCookies"
           >
             Reject
           </button>
           <button
             type="button"
-            class="w-full cursor-pointer rounded-full bg-[#2A1E17] px-4 py-2 text-sm text-[#FAF5EF] transition hover:bg-[#3B2B21] sm:w-auto"
+            class="ui-button ui-button-solid w-full px-4 py-2 sm:w-auto"
             @click="acceptCookies"
           >
             Accept

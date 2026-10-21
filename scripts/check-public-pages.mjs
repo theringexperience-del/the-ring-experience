@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { journalPosts } from '../src/content/journal.js';
+
 const dist = new URL('../dist/', import.meta.url);
+const { JOURNAL_POSTS_QUERY: journalPosts } = JSON.parse(await readFile(new URL('cms-snapshot.json', dist), 'utf8'));
 const sitemap = await readFile(new URL('sitemap.xml', dist), 'utf8');
 const locations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
 assert.equal(new Set(locations).size, locations.length, 'Sitemap must not repeat URLs');
@@ -9,6 +10,7 @@ for (const location of locations) {
   const { pathname } = new URL(location);
   const file = new URL(pathname === '/' ? 'index.html' : `.${pathname}/index.html`, dist);
   const html = await readFile(file, 'utf8');
+  assert.ok(!html.includes('/src/assets/'), `${pathname} must use built asset URLs`);
   assert.equal((html.match(/<h1[\s>]/g) || []).length, 1, `${pathname} needs one initial H1`);
   assert.equal((html.match(/rel="canonical"/g) || []).length, 1, `${pathname} needs one canonical`);
   assert.ok(html.includes(`href="${location}"`), `${pathname} canonical should match sitemap`);

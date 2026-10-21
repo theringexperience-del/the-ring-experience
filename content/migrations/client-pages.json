@@ -1,0 +1,2049 @@
+[
+  {
+    "_id": "client-page-customjewellery",
+    "_type": "editorialPage",
+    "title": "CustomJewellery",
+    "path": "/custom-jewellery-sri-lanka",
+    "sections": [
+      {
+        "_key": "hero",
+        "key": "hero",
+        "heading": "A piece made for your story.",
+        "eyebrow": "Custom jewellery · Negombo, Sri Lanka",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "p0",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Design a personal ring and take part in making it with an artisan. For an engagement ring, wedding bands or a gemstone design, start with your idea; we will explain what is possible, what you can make yourself, and what needs specialist work.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          },
+          {
+            "_type": "block",
+            "_key": "p1",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "At a glance",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          },
+          {
+            "_type": "block",
+            "_key": "p2",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "The Ring Experience",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "s1",
+                "text": "\n",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "s2",
+                "text": "63/1 Porutota Road, Negombo 11500",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          },
+          {
+            "_type": "block",
+            "_key": "p3",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Guided ring-making sessions · Silver designs · Gold and gemstones discussed on request",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          }
+        ],
+        "links": [
+          {
+            "_key": "link0",
+            "label": "Start a ring design ↗",
+            "href": "/design-your-ring"
+          },
+          {
+            "_key": "link1",
+            "label": "Ask about a commission ↗",
+            "href": "/bookexperience"
+          },
+          {
+            "_key": "map",
+            "href": "https://maps.app.goo.gl/DgFSXxdyEZRAjRqV7?g_st=ic",
+            "label": "Reviews and directions ↗"
+          }
+        ]
+      },
+      {
+        "_key": "choose",
+        "key": "choose",
+        "heading": "Three questions. A clearer design.",
+        "eyebrow": "Where do you begin?",
+        "body": [],
+        "links": []
+      },
+      {
+        "_key": "ways",
+        "key": "ways",
+        "heading": "Make it together, or commission the details.",
+        "eyebrow": "Choose your way",
+        "body": [],
+        "links": [
+          {
+            "_key": "link0",
+            "label": "Compare workshop formats ↗",
+            "href": "/ouroffers"
+          }
+        ]
+      },
+      {
+        "_key": "questions",
+        "key": "questions",
+        "heading": "Before you choose a stone or ring.",
+        "eyebrow": "Straight answers",
+        "body": [],
+        "links": [
+          {
+            "_key": "link0",
+            "label": "Explore gemstone questions ↗",
+            "href": "/gemstones"
+          },
+          {
+            "_key": "link1",
+            "label": "Engagement ring guide ↗",
+            "href": "/journal/engagement-ring-design-workshop-guide"
+          },
+          {
+            "_key": "link2",
+            "label": "Wedding band guide ↗",
+            "href": "/journal/make-your-own-wedding-rings-sri-lanka"
+          }
+        ]
+      },
+      {
+        "_key": "section1",
+        "key": "section1",
+        "heading": "Tell us what you have in mind.",
+        "eyebrow": "",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "p0",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Your piece, metal or stone preference, timeline and budget range give us enough to start an honest conversation.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          }
+        ],
+        "links": [
+          {
+            "_key": "link0",
+            "label": "Send an inquiry ↗",
+            "href": "/bookexperience"
+          }
+        ]
+      },
+      {
+        "_key": "question1",
+        "key": "question1",
+        "heading": "What would you like to make?",
+        "eyebrow": "",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "p0",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "A ring for yourself, a pair of wedding bands, an engagement ring or a gift? Send a sketch or reference photo. Rings are our workshop focus; ask us to assess other jewellery ideas individually.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "question2",
+        "key": "question2",
+        "heading": "Which metal or stone?",
+        "eyebrow": "",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "p0",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Choose sterling silver or ask about a gold quote. If you are considering a Ceylon sapphire or another gem, tell us the colour, shape, size and budget you have in mind. We confirm suitable stones and documentation before purchase.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "question3",
+        "key": "question3",
+        "heading": "When do you need it?",
+        "eyebrow": "",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "p0",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Share your travel dates, proposal or ceremony deadline. A simple band and a stone-set ring need different work. We confirm availability, making stages, cost and a realistic handover date before your booking.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "way1",
+        "key": "way1",
+        "heading": "Join the making",
+        "eyebrow": "",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "p0",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "In a guided ring-making workshop, you choose the details and work at the bench where the design and techniques allow. An artisan handles specialist steps for accuracy and safety.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "way2",
+        "key": "way2",
+        "heading": "Discuss a custom order",
+        "eyebrow": "",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "p0",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "For a more intricate piece, tell us what you want and when you need it. We can review feasibility and provide a tailored proposal. We do not promise off-the-shelf inventory, a specific gemstone or same-day completion without confirmation.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "questions0",
+        "key": "questions0",
+        "heading": "Can I make an engagement ring myself?",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "body",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "text",
+                "text": "You can take part in a guided session. A plain band offers more hands-on possibilities than a delicate stone-set design. We will explain which stages an artisan must handle after reviewing your idea.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "questions1",
+        "key": "questions1",
+        "heading": "Can we make our wedding rings together?",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "body",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "text",
+                "text": "Ask about a session for two, with your sizes, metals, designs and wedding date. We confirm whether both bands can be completed in the chosen session and what finishing may be needed.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "questions2",
+        "key": "questions2",
+        "heading": "Can I buy a Ceylon sapphire here?",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "body",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "text",
+                "text": "Tell us the stone and ring you want. We can discuss sourcing a suitable gem for a design, subject to availability and review. Ask for the actual stone’s identity, known treatments, origin evidence, report and total price before committing; a Sri Lankan seller or cut does not by itself prove Sri Lankan origin.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "questions3",
+        "key": "questions3",
+        "heading": "Do you make gold rings or other jewellery?",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "body",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "text",
+                "text": "Gold is quoted on request, with purity, weight and price discussed for the design. Rings are our hands-on specialty. We can review other custom jewellery requests individually and tell you if an artisan can take them on.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "questions4",
+        "key": "questions4",
+        "heading": "Can it be ready before my flight?",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "body",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "text",
+                "text": "Tell us the exact travel date and your design first. A simple ring may fit a workshop visit; sourcing a stone, setting, engraving or specialist finishing can take longer. We confirm timing before you rely on a collection date.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "questions5",
+        "key": "questions5",
+        "heading": "How do I know the full cost?",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "body",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "text",
+                "text": "Ask for a breakdown of workshop time, included metal, extra metal, gemstone, setting, engraving and any other work. We agree the scope and price before your session or custom order is confirmed.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      }
+    ]
+  },
+  {
+    "_id": "client-page-ringmakingguide",
+    "_type": "editorialPage",
+    "title": "RingMakingGuide",
+    "path": "/ring-making-guide",
+    "sections": [
+      {
+        "_key": "hero",
+        "key": "hero",
+        "heading": "Make your own ring in Sri Lanka: a guide to our Negombo workshop",
+        "eyebrow": "The Ring Experience · Visitor guide",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "p0",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": " Looking for a creative activity near Negombo? Here is how our guided ring-making experience works, what to think about before visiting and where to find the right workshop. ",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "what-to-expect",
+        "key": "what-to-expect",
+        "heading": "What happens at the workbench?",
+        "eyebrow": "",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "p0",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "You start with an idea for a ring. An artisan helps you consider the shape, texture and details that suit the time and materials available for your chosen session. You take part in the making with guidance, then see the piece through its finishing stages. The amount of hands-on work depends on your design, the techniques involved and the workshop you select.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          },
+          {
+            "_type": "block",
+            "_key": "p1",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "If doing as much of the work yourself matters to you, tell us before booking. We can talk through a suitable design and what will be possible in your session.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "beginners",
+        "key": "beginners",
+        "heading": "Is it suitable for beginners?",
+        "eyebrow": "",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "p0",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Yes. You do not need to arrive with jewellery-making skills. The session is guided step by step by a local artisan, so you can focus on choosing a design and learning how a ring comes together.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "choose-workshop",
+        "key": "choose-workshop",
+        "heading": "Choosing a workshop",
+        "eyebrow": "",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "p0",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "The ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "s2",
+                "text": "workshop options",
+                "marks": [
+                  "l1"
+                ]
+              },
+              {
+                "_type": "span",
+                "_key": "s3",
+                "text": " vary in length and scope. A simpler first ring needs less time than an intricate design or a session with stone setting. Compare the current inclusions on the offers page, then share your preferred date and design ideas. We will confirm availability, materials, gemstone options and any additional charges before you book.",
+                "marks": []
+              }
+            ],
+            "markDefs": [
+              {
+                "_type": "link",
+                "_key": "l1",
+                "href": "/ouroffers"
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "p1",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Coming with a partner or friend? Let us know how many people will attend and whether you would each like to make a ring.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          }
+        ],
+        "links": [
+          {
+            "_key": "link0",
+            "label": "workshop options",
+            "href": "/ouroffers"
+          }
+        ]
+      },
+      {
+        "_key": "plan-visit",
+        "key": "plan-visit",
+        "heading": "Planning your visit to Negombo",
+        "eyebrow": "",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "p0",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "A ring-making workshop is an easy way to make a personal souvenir of your time in Sri Lanka. Leave enough room in your schedule for the session you choose, especially if you are travelling onward the same day. Send us your dates before making plans around the workshop; a booking request is confirmed only once we agree on a time.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          },
+          {
+            "_type": "block",
+            "_key": "p1",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Still deciding? Browse the ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "s2",
+                "text": "guest gallery",
+                "marks": [
+                  "l1"
+                ]
+              },
+              {
+                "_type": "span",
+                "_key": "s3",
+                "text": ", explore ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "s5",
+                "text": "gemstone ideas",
+                "marks": [
+                  "l4"
+                ]
+              },
+              {
+                "_type": "span",
+                "_key": "s6",
+                "text": " and read our ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "s8",
+                "text": "workshop FAQs",
+                "marks": [
+                  "l7"
+                ]
+              },
+              {
+                "_type": "span",
+                "_key": "s9",
+                "text": ".",
+                "marks": []
+              }
+            ],
+            "markDefs": [
+              {
+                "_type": "link",
+                "_key": "l1",
+                "href": "/gallery"
+              },
+              {
+                "_type": "link",
+                "_key": "l4",
+                "href": "/gemstones"
+              },
+              {
+                "_type": "link",
+                "_key": "l7",
+                "href": "/faq"
+              }
+            ]
+          }
+        ],
+        "links": [
+          {
+            "_key": "link0",
+            "label": "guest gallery",
+            "href": "/gallery"
+          },
+          {
+            "_key": "link1",
+            "label": "gemstone ideas",
+            "href": "/gemstones"
+          },
+          {
+            "_key": "link2",
+            "label": "workshop FAQs",
+            "href": "/faq"
+          }
+        ]
+      },
+      {
+        "_key": "closing",
+        "key": "closing",
+        "heading": "Ready to plan your ring?",
+        "eyebrow": "Make it yours",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "b0",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Tell us your preferred date, the number of guests and any design ideas. We’ll help you choose a suitable workshop.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": [
+          {
+            "_key": "l0",
+            "label": "Check availability",
+            "href": "/bookexperience"
+          }
+        ]
+      },
+      {
+        "_key": "navigation",
+        "key": "navigation",
+        "heading": "In this guide",
+        "eyebrow": "In this guide",
+        "body": [],
+        "links": [
+          {
+            "_key": "l0",
+            "label": "At the workbench",
+            "href": "#what-to-expect"
+          },
+          {
+            "_key": "l1",
+            "label": "For beginners",
+            "href": "#beginners"
+          },
+          {
+            "_key": "l2",
+            "label": "Choose a workshop",
+            "href": "#choose-workshop"
+          },
+          {
+            "_key": "l3",
+            "label": "Plan your visit",
+            "href": "#plan-visit"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "client-page-thingstodonegombo",
+    "_type": "editorialPage",
+    "title": "ThingsToDoNegombo",
+    "path": "/things-to-do-in-negombo",
+    "sections": [
+      {
+        "_key": "hero",
+        "key": "hero",
+        "heading": "Things to do in Negombo beyond the beach",
+        "eyebrow": "The local guide · Negombo, Sri Lanka",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "p0",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "A morning at the fish market, time on the lagoon, a sunset by the sea—and a ring you make yourself. Here is a flexible way to enjoy Negombo on a short Sri Lanka stay.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          }
+        ],
+        "links": [
+          {
+            "_key": "link0",
+            "label": "Plan a workshop",
+            "href": "/bookexperience"
+          },
+          {
+            "_key": "link1",
+            "label": "See a day plan",
+            "href": "#plan"
+          }
+        ]
+      },
+      {
+        "_key": "plan",
+        "key": "plan",
+        "heading": "A little sea, a little craft.",
+        "eyebrow": "One day in Negombo",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "p0",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Use this as a loose sequence, not a timed tour. Check opening conditions locally and leave breathing room for travel, meals and weather.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "questions",
+        "key": "questions",
+        "heading": "Questions before you go",
+        "eyebrow": "",
+        "body": [],
+        "links": []
+      },
+      {
+        "_key": "ideas0",
+        "key": "ideas0",
+        "heading": "Make your own ring",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "body",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "text",
+                "text": "Spend part of your visit at a workbench with a local artisan. Choose a shape and finish, take part in the making, and leave with a piece connected to your time in Sri Lanka. Materials, techniques and how much you do yourself depend on the workshop and design.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": [
+          {
+            "_key": "link",
+            "label": "Compare ring-making sessions",
+            "href": "/ouroffers"
+          }
+        ]
+      },
+      {
+        "_key": "ideas1",
+        "key": "ideas1",
+        "heading": "See the fish market",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "body",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "text",
+                "text": "Negombo is a working fishing town. Visit the market when traders are active to see a part of everyday life, keeping out of working areas and asking before photographing people.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "ideas2",
+        "key": "ideas2",
+        "heading": "Explore the lagoon and canal",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "body",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "text",
+                "text": "Consider a boat outing with a local operator, or enjoy the waterside at your own pace. Ask the operator about route, safety, timing and conditions before you set off.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "ideas3",
+        "key": "ideas3",
+        "heading": "Take a beach walk at sunset",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "body",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "text",
+                "text": "The beach is a relaxed place to end the day. Conditions for swimming vary, so check locally and treat a walk and the evening light as the main event.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "ideas4",
+        "key": "ideas4",
+        "heading": "Walk through the old town",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "body",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "text",
+                "text": "Look out for the canal, churches and traces of Negombo’s trading history. Dress and behave respectfully when visiting places of worship.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "ideas5",
+        "key": "ideas5",
+        "heading": "Try the local food",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "body",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "text",
+                "text": "Make time for a seafood meal or a small local café. Ask about the catch and preparation on the day rather than planning around one fixed menu.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "introduction",
+        "key": "introduction",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "b0",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Negombo is a practical first or last stop on a Sri Lanka trip, but it is worth more than a night near the airport. Its working fishing community, lagoon, canal, beach and local craft give you a varied day without trying to do everything.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "planStep0",
+        "key": "planStep0",
+        "heading": "Morning · Working Negombo",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "b0",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Visit the fish market if it is active, then explore the town and canal area respectfully.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "planStep1",
+        "key": "planStep1",
+        "heading": "Afternoon · Make something",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "b0",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Book a guided ring-making session. Confirm the date, design and time with us before arranging the rest of the day.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "planStep2",
+        "key": "planStep2",
+        "heading": "Evening · Slow down",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "b0",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Walk by the beach around sunset or arrange a lagoon outing with a local operator. Finish with a meal nearby.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "question0",
+        "key": "question0",
+        "heading": "What can I do in Negombo on a rainy day?",
+        "eyebrow": "",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "b0",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "A private jewellery workshop gives you a hands-on indoor activity. Ask us about availability and your preferred ring design; some steps and plans depend on the session and materials.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "question1",
+        "key": "question1",
+        "heading": "Can beginners or couples make rings?",
+        "eyebrow": "",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "b0",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Yes. An artisan guides beginners, solo visitors, friends and couples. If you want to do as much work yourself as possible, tell us before booking so we can suggest a suitable design.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "question2",
+        "key": "question2",
+        "heading": "Can I fit a workshop around a flight?",
+        "eyebrow": "",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "b0",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Possibly, but allow time for the whole session and travel. Share your flight or onward journey when enquiring. We will confirm whether a specific appointment works; a request alone does not reserve a place.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "closing",
+        "key": "closing",
+        "heading": "Make a memory to take home.",
+        "eyebrow": "",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "b0",
+            "style": "normal",
+            "markDefs": [
+              {
+                "_key": "l1",
+                "_type": "link",
+                "href": "/ouroffers"
+              },
+              {
+                "_key": "l4",
+                "_type": "link",
+                "href": "/ring-making-guide"
+              }
+            ],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "The Ring Experience is at 63/1 Porutota Road, Negombo. Compare our ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "s2",
+                "text": "workshops",
+                "marks": [
+                  "l1"
+                ]
+              },
+              {
+                "_type": "span",
+                "_key": "s3",
+                "text": ", read the ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "s5",
+                "text": "beginner’s guide",
+                "marks": [
+                  "l4"
+                ]
+              },
+              {
+                "_type": "span",
+                "_key": "s6",
+                "text": ", or use ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "s7",
+                "text": "Google Maps for reviews and directions",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "s8",
+                "text": ".",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "b1",
+            "style": "normal",
+            "markDefs": [
+              {
+                "_key": "l1",
+                "_type": "link",
+                "href": "/journal/creative-things-to-do-in-sri-lanka"
+              },
+              {
+                "_key": "l4",
+                "_type": "link",
+                "href": "https://www.srilanka.travel/what-to-do"
+              }
+            ],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Exploring more of the island? Read our ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "s2",
+                "text": "Sri Lanka craft activity guide",
+                "marks": [
+                  "l1"
+                ]
+              },
+              {
+                "_type": "span",
+                "_key": "s3",
+                "text": " or browse ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "s5",
+                "text": "Sri Lanka Tourism’s activity guide",
+                "marks": [
+                  "l4"
+                ]
+              },
+              {
+                "_type": "span",
+                "_key": "s6",
+                "text": ".",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": [
+          {
+            "_key": "l0",
+            "label": "workshops",
+            "href": "/ouroffers"
+          },
+          {
+            "_key": "l1",
+            "label": "beginner’s guide",
+            "href": "/ring-making-guide"
+          },
+          {
+            "_key": "l2",
+            "label": "Check availability",
+            "href": "/bookexperience"
+          },
+          {
+            "_key": "l3",
+            "label": "Sri Lanka craft activity guide",
+            "href": "/journal/creative-things-to-do-in-sri-lanka"
+          },
+          {
+            "_key": "l4",
+            "label": "Sri Lanka Tourism’s activity guide",
+            "href": "https://www.srilanka.travel/what-to-do"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "client-page-designyourring",
+    "_type": "editorialPage",
+    "title": "DesignYourRing",
+    "path": "/design-your-ring",
+    "sections": [
+      {
+        "_key": "hero",
+        "key": "hero",
+        "heading": "A ring that feels like you.",
+        "eyebrow": "From an idea to the workbench",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "p0",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Choose a few details for your custom ring. Send your ideas to our Negombo workshop, or bring them into a booking request. You can leave anything undecided.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          }
+        ],
+        "links": [],
+        "image": {
+          "_localFile": "public/uploads/guest-designing-ring.webp"
+        },
+        "imageAlt": "A guest sketches a personal ring design at The Ring Experience",
+        "caption": "It starts with your idea."
+      },
+      {
+        "_key": "choices",
+        "key": "choices",
+        "heading": "What would you love to make?",
+        "eyebrow": "01 · Your starting point",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "p0",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "These are ideas to discuss. We confirm suitable designs, materials, gemstone availability, price and timing with you before the session.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          },
+          {
+            "_type": "block",
+            "_key": "p1",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Stone setting, engraving and intricate designs can add time and cost. An artisan handles the technical stages that need specialist skills. Gold options are quoted on request.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          }
+        ],
+        "links": [
+          {
+            "_key": "link0",
+            "label": "Guest gallery",
+            "href": "/gallery"
+          },
+          {
+            "_key": "link1",
+            "label": "Wedding bands",
+            "href": "/journal/make-your-own-wedding-rings-sri-lanka"
+          },
+          {
+            "_key": "link2",
+            "label": "Engagement rings",
+            "href": "/journal/engagement-ring-design-workshop-guide"
+          },
+          {
+            "_key": "link3",
+            "label": "Gemstones",
+            "href": "/gemstones"
+          },
+          {
+            "_key": "link4",
+            "label": "Custom jewellery guide",
+            "href": "/custom-jewellery-sri-lanka"
+          },
+          {
+            "_key": "link5",
+            "label": "Explore ideas with the optional AI sketch prompt tool ↗",
+            "href": "/ring-sketch-prompt"
+          }
+        ]
+      },
+      {
+        "_key": "brief",
+        "key": "brief",
+        "heading": "Your design notes",
+        "eyebrow": "02 · Take your ideas with you",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "b0",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Opening WhatsApp creates a draft for you to review and send. A design brief is the start of a conversation; it does not reserve a session.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "inspiration",
+        "key": "inspiration",
+        "heading": "Need a little inspiration?",
+        "eyebrow": "",
+        "body": [],
+        "links": [
+          {
+            "_key": "l0",
+            "label": "Guest gallery",
+            "href": "/gallery"
+          },
+          {
+            "_key": "l1",
+            "label": "Wedding bands",
+            "href": "/journal/make-your-own-wedding-rings-sri-lanka"
+          },
+          {
+            "_key": "l2",
+            "label": "Engagement rings",
+            "href": "/journal/engagement-ring-design-workshop-guide"
+          },
+          {
+            "_key": "l3",
+            "label": "Gemstones",
+            "href": "/gemstones"
+          },
+          {
+            "_key": "l4",
+            "label": "Custom jewellery guide",
+            "href": "/custom-jewellery-sri-lanka"
+          },
+          {
+            "_key": "l5",
+            "label": "Explore ideas with the optional AI sketch prompt tool ↗",
+            "href": "/ring-sketch-prompt"
+          }
+        ]
+      }
+    ],
+    "choices": [
+      {
+        "key": "purpose",
+        "label": "The occasion",
+        "options": [
+          "A ring for myself",
+          "Wedding bands",
+          "An engagement ring",
+          "Anniversary or meaningful gift",
+          "Help me choose"
+        ],
+        "_key": "purpose"
+      },
+      {
+        "key": "metal",
+        "label": "Metal",
+        "options": [
+          "Sterling silver",
+          "Gold — request a quote",
+          "Help me choose"
+        ],
+        "_key": "metal"
+      },
+      {
+        "key": "shape",
+        "label": "Band shape",
+        "options": [
+          "Soft rounded band",
+          "Flat band",
+          "Organic band",
+          "Help me choose"
+        ],
+        "_key": "shape"
+      },
+      {
+        "key": "finish",
+        "label": "Finish",
+        "options": [
+          "Polished",
+          "Brushed / matte",
+          "Hammered texture",
+          "Help me choose"
+        ],
+        "_key": "finish"
+      },
+      {
+        "key": "stone",
+        "label": "Gemstone",
+        "options": [
+          "No gemstone",
+          "Explore gemstone options",
+          "I have a stone to discuss"
+        ],
+        "_key": "stone"
+      },
+      {
+        "key": "making",
+        "label": "At the workbench",
+        "options": [
+          "I would like to do as much as possible",
+          "I am happy with shared making",
+          "Help me choose a suitable project"
+        ],
+        "_key": "making"
+      }
+    ]
+  },
+  {
+    "_id": "client-page-homepage",
+    "_type": "editorialPage",
+    "title": "Homepage",
+    "path": "/",
+    "sections": [
+      {
+        "_key": "planYourVisit",
+        "key": "planYourVisit",
+        "heading": "Come as you are.\nLeave with a story.",
+        "eyebrow": "Your visit, made easy",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "p0",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "No jewellery-making experience needed. Tell us when you’re in Negombo and what you have in mind; we’ll talk through the options and confirm the details together.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          },
+          {
+            "_type": "block",
+            "_key": "p1",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "An inquiry is free. We confirm availability, timing and cost before your session is booked.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          }
+        ],
+        "links": [
+          {
+            "_key": "link0",
+            "label": "Check availability ↗",
+            "href": "/bookexperience"
+          },
+          {
+            "_key": "link1",
+            "label": "What to expect",
+            "href": "/ring-making-guide"
+          }
+        ]
+      },
+      {
+        "_key": "visitPanel",
+        "key": "visitPanel",
+        "heading": "Pick your moment",
+        "eyebrow": "From your first message to the finished ring",
+        "body": [],
+        "links": []
+      },
+      {
+        "_key": "visitStep0",
+        "key": "visitStep0",
+        "heading": "Pick your moment",
+        "eyebrow": "",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "b0",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Share a preferred date, your group size and any travel plans.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "visitStep1",
+        "key": "visitStep1",
+        "heading": "Make it personal",
+        "eyebrow": "",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "b0",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Choose a simple band or ask about finishes, gemstones and special details.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "visitStep2",
+        "key": "visitStep2",
+        "heading": "Meet at the bench",
+        "eyebrow": "",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "b0",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Work alongside an artisan in our Negombo studio, at the pace of your chosen session.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      }
+    ]
+  },
+  {
+    "_id": "client-page-bookexperience",
+    "_type": "editorialPage",
+    "title": "BookExperience",
+    "path": "/bookexperience",
+    "sections": [
+      {
+        "_key": "request",
+        "key": "request",
+        "heading": "Plan your workshop",
+        "eyebrow": "",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "p0",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Send your preferred date and ring ideas. No payment is taken through this form.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          },
+          {
+            "_type": "block",
+            "_key": "p1",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "We use your contact details to reply to this inquiry. A request does not reserve a session until we confirm availability with you. ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "s2",
+                "text": "Privacy policy",
+                "marks": [
+                  "l1"
+                ]
+              }
+            ],
+            "markDefs": [
+              {
+                "_type": "link",
+                "_key": "l1",
+                "href": "/privacy-policy"
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "p2",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "WhatsApp opens a draft with your details. Review it and tap send in WhatsApp.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          }
+        ],
+        "links": [
+          {
+            "_key": "link0",
+            "label": "Privacy policy",
+            "href": "/privacy-policy"
+          }
+        ]
+      },
+      {
+        "_key": "planning",
+        "key": "planning",
+        "heading": "A little planning. A personal piece.",
+        "eyebrow": "Your time at the workbench",
+        "body": [],
+        "links": [
+          {
+            "_key": "l0",
+            "label": "Build your ring design notes ↗",
+            "href": "/design-your-ring"
+          }
+        ]
+      },
+      {
+        "_key": "planningStep0",
+        "key": "planningStep0",
+        "heading": "01 · Tell us your dates",
+        "eyebrow": "",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "b0",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Choose a workshop or ask for guidance. Let us know how many people will make a ring.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "planningStep1",
+        "key": "planningStep1",
+        "heading": "02 · Share your ideas",
+        "eyebrow": "",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "b0",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "A simple band, a gemstone or a meaningful inscription — we will discuss what suits your session.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "planningStep2",
+        "key": "planningStep2",
+        "heading": "03 · Confirm together",
+        "eyebrow": "",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "b0",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "We reply with availability, materials, timing and costs. Your booking is confirmed once we agree the details with you.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "location",
+        "key": "location",
+        "heading": "",
+        "eyebrow": "",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "b0",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "The Ring Experience · Negombo",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "b1",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "63/1 Porutota Road, Negombo 11500, Sri Lanka",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "b2",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Have a flight or onward journey? Tell us before booking so we can advise on timing.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      }
+    ]
+  },
+  {
+    "_id": "client-page-gemstones",
+    "_type": "editorialPage",
+    "title": "Gemstones",
+    "path": "/gemstones",
+    "sections": [
+      {
+        "_key": "gem-buying",
+        "key": "gem-buying",
+        "heading": "A beautiful stone deserves a clear story.",
+        "eyebrow": "Sri Lankan gems · informed choices",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "p0",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Sri Lanka is known for sapphires and other coloured gems. The Ring Experience can discuss gemstone ideas for a custom ring in Negombo. Ask us about a specific stone and design; availability, sourcing, origin evidence and setting work are confirmed individually.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          }
+        ],
+        "links": [
+          {
+            "_key": "link0",
+            "label": "GIA sapphire buyer’s guide ↗",
+            "href": "https://www.gia.edu/sapphire/buyers-guide"
+          },
+          {
+            "_key": "link1",
+            "label": "GIA on Sri Lankan gems ↗",
+            "href": "https://www.gia.edu/sri-lanka-gemstones"
+          },
+          {
+            "_key": "link2",
+            "label": "Our sapphire buying guide ↗",
+            "href": "/journal/buying-ceylon-sapphire-sri-lanka"
+          },
+          {
+            "_key": "link3",
+            "label": "Discuss a custom ring ↗",
+            "href": "/custom-jewellery-sri-lanka"
+          }
+        ]
+      },
+      {
+        "_key": "gemQuestion0",
+        "key": "gemQuestion0",
+        "heading": "What is a “Ceylon sapphire”?",
+        "eyebrow": "",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "b0",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "It refers to sapphire attributed to Sri Lankan origin. A stone bought, cut or set here is not automatically mined here. For a valuable origin claim, ask for a report from an independent gem laboratory that states its opinion.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "gemQuestion1",
+        "key": "gemQuestion1",
+        "heading": "What should I ask before buying?",
+        "eyebrow": "",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "b0",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Request the identity, natural or laboratory-grown status, known treatments, measurements, price and any report for the exact stone. An origin opinion may not be possible for every gem. Keep the written details with your receipt.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      },
+      {
+        "_key": "gemQuestion2",
+        "key": "gemQuestion2",
+        "heading": "Can it go into my ring?",
+        "eyebrow": "",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "b0",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "The stone, cut, size, setting, chosen metal and available time all matter. An artisan may need to handle the setting. Send your ideas before booking so we can explain feasibility, involvement and cost.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": []
+      }
+    ]
+  },
+  {
+    "_id": "client-page-journal",
+    "_type": "editorialPage",
+    "title": "Journal",
+    "path": "/journal",
+    "sections": [
+      {
+        "_key": "hero",
+        "key": "hero",
+        "heading": "The Journal",
+        "eyebrow": "Stories from the workbench",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "p0",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Clear answers about silver, gold, gemstones, wedding and engagement rings, and making jewellery in Sri Lanka. Start with a question, then bring your ideas to the workbench.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          }
+        ],
+        "links": []
+      }
+    ]
+  },
+  {
+    "_id": "client-page-journalarticle",
+    "_type": "editorialPage",
+    "title": "JournalArticle",
+    "path": "/journal/:slug",
+    "sections": [
+      {
+        "_key": "related",
+        "key": "related",
+        "heading": "",
+        "eyebrow": "Continue reading",
+        "body": [],
+        "links": [
+          {
+            "_key": "l0",
+            "label": "Visitor guide to the workshop",
+            "href": "/ring-making-guide"
+          }
+        ]
+      },
+      {
+        "_key": "closing",
+        "key": "closing",
+        "heading": "Ready for the workbench?",
+        "eyebrow": "Make something personal",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "b0",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "s0",
+                "text": "Tell us when you will be in Negombo and what kind of ring you would like to make. We will help you choose a suitable session and confirm the details.",
+                "marks": []
+              }
+            ]
+          }
+        ],
+        "links": [
+          {
+            "_key": "l0",
+            "label": "Check availability",
+            "href": "/bookexperience"
+          }
+        ]
+      }
+    ]
+  }
+]

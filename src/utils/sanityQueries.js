@@ -1,6 +1,8 @@
 export const HOMEPAGE_QUERY = `
 *[_type == "homepage"][0]{
+  atAGlance,
   hero{
+    eyebrow, imageAlt, reviewsLabel, directionsLabel, scrollLabel,
     headline,
     subheadline,
     buttonLabel,
@@ -12,6 +14,7 @@ export const HOMEPAGE_QUERY = `
     "video": video.asset->url
   },
   aMoment{
+    caption, imageAlt, links[]{label,href},
     eyebrow,
     title,
     paragraphOne,
@@ -19,6 +22,7 @@ export const HOMEPAGE_QUERY = `
     "image": image.asset->url
   },
   theExperience{
+    description,
     eyebrow,
     title
   },
@@ -26,7 +30,7 @@ export const HOMEPAGE_QUERY = `
     key,
     title,
     lineOne,
-    lineTwo,
+    lineTwo, imageAlt,
     "image": image.asset->url
   },
   packagesPreview{
@@ -38,6 +42,7 @@ export const HOMEPAGE_QUERY = `
     ctaLink
   },
   values{
+    eyebrow, imageAlt,
     heading,
     "backgroundImage": backgroundImage.asset->url,
     items[]{
@@ -108,6 +113,7 @@ export const ABOUT_US_QUERY = `
 `;
 export const OFFERS_PAGE_QUERY = `
 *[_type == "offersPage"][0]{
+  pricingExplanation,
   hero{
     eyebrow,
     title,
@@ -180,6 +186,7 @@ export const CLIENT_GALLERY_QUERY = `
 `;
 export const BOOKING_PAGE_QUERY = `
 *[_type == "bookingPage"][0]{
+  locationLinkLabel,
   hero{
     eyebrow,
     title,
@@ -293,6 +300,7 @@ export const PAGE_CTA_QUERY = `
 `;
 export const FOOTER_QUERY = `
 *[_type == "footer"][0]{
+  studioLinks[]{label,to},
   subtitle,
   title,
   text,
@@ -303,11 +311,26 @@ export const FOOTER_QUERY = `
 `;
 export const NAVBAR_QUERY = `
 *[_type == "navbar"][0]{
+  primaryLinks[]{label,to}, studioLinks[]{label,to}, bookingLabel, bookingLink,
   "logoSvgUrl": logoSvg.asset->url
 }
 `;
 export const SITE_APPEARANCE_QUERY = `
 *[_type == "siteAppearance"][0]{
+  contactLinks{googleMapsUrl,whatsappUrl,instagramUrl},
   "globalBackgroundImage": globalBackgroundImage.asset->url
 }
 `;
+
+export const JOURNAL_POSTS_QUERY = `*[_type == "journalPost"] | order(published desc){
+  title, "slug": slug.current, description, category, readingTime, published, intro,
+  sections[]{heading, paragraphs, source{label, href}}, "related": related[]->slug.current
+}`;
+
+export const EDITORIAL_PAGES_QUERY = `*[_type in ["editorialPage", "homepage", "bookingPage", "gemstonesPage"]]{
+  _type, title, seoTitle, description, choices[]{key, label, options},
+  "path": select(_type == "homepage" => "/", _type == "bookingPage" => "/bookexperience", _type == "gemstonesPage" => "/gemstones", path),
+  sections[]{key, eyebrow, heading, body, "image": image.asset->url, imageAlt, caption, links[]{label, href}}
+}`;
+
+export const RESOURCE_LINKS_QUERY = `*[_type == "preferredResources"][0]{eyebrow, heading, links[]{label,href}}`;

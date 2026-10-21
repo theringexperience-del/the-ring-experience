@@ -1,5 +1,5 @@
 <template>
-  <main ref="pageRoot" class="w-full overflow-hidden bg-[#171210] text-[#F4EFE8]">
+  <main ref="pageRoot" class="w-full overflow-hidden bg-[#171210] text-(--color-lightbeige)">
     <section data-reveal class="w-full bg-(--color-lightbeige) pt-28 pb-20 text-(--color-brown) sm:pt-32 sm:pb-24 lg:pt-36 lg:pb-28">
       <div class="mx-auto w-11/12 text-center sm:w-10/12">
         <p class="text-xs tracking-[0.2em] text-(--color-mutedbrown) uppercase">Negombo - Sri Lanka</p>
@@ -92,7 +92,7 @@
           </div>
         </div>
 
-        <button type="button" class="w-full cursor-pointer bg-(--color-noisette) px-5 py-4 text-sm tracking-[0.18em] uppercase text-white disabled:cursor-not-allowed disabled:opacity-35" :disabled="!total" @click="fire">
+        <button type="button" class="ui-button ui-button-solid w-full px-5 py-4 disabled:cursor-not-allowed disabled:opacity-35" :disabled="!total" @click="fire">
           Fire the furnace
         </button>
         <button type="button" class="w-full cursor-pointer px-5 py-4 text-xs tracking-[0.15em] text-[#9E8D80] uppercase" @click="empty">

@@ -1,10 +1,10 @@
 <template>
   <section v-if="sectionEnabled" class="bg-[#FAF7F1] px-[6%] py-14 sm:py-18" aria-labelledby="home-faq-title">
-    <div class="mx-auto max-w-4xl"><p class="text-xs uppercase tracking-[.18em] text-[#80664A]">A little guidance</p><h2 id="home-faq-title" class="mt-4 font-display text-3xl text-[#38291F] sm:text-4xl">Before you visit.</h2>
-      <div class="mt-7 divide-y divide-[#D4C6B2] border-y border-[#D4C6B2]">
-        <details v-for="item in homepageItems" :key="item.question" class="group py-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-base font-medium text-[#38291F]"><span>{{ item.question }}</span><span class="text-xl text-[#80664A] group-open:rotate-45" aria-hidden="true">+</span></summary><p class="mt-4 max-w-3xl whitespace-pre-line text-sm leading-relaxed text-[#604B39]">{{ item.answer }}</p></details>
+    <div class="mx-auto max-w-4xl"><p class="text-xs uppercase tracking-[.18em] text-(--color-mutedbrown)">A little guidance</p><h2 id="home-faq-title" class="mt-4 font-display text-3xl text-(--color-darkbrown) sm:text-4xl">Before you visit.</h2>
+      <div class="mt-7 divide-y divide-(--color-border) border-y border-(--color-border)">
+        <details v-for="item in homepageItems" :key="item.question" class="group py-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-base font-medium text-(--color-darkbrown)"><span>{{ item.question }}</span><span class="text-xl text-(--color-mutedbrown) group-open:rotate-45" aria-hidden="true">+</span></summary><p class="mt-4 max-w-3xl whitespace-pre-line text-sm leading-relaxed text-(--color-mutedbrown)">{{ item.answer }}</p></details>
       </div>
-      <router-link :to="previewContent.ctaLink" class="mt-6 inline-flex min-h-11 items-center gap-6 text-sm text-[#755024]">All workshop FAQs <span aria-hidden="true">→</span></router-link>
+      <router-link :to="previewContent.ctaLink" class="mt-6 inline-flex min-h-11 items-center gap-6 text-sm text-(--color-action)">All workshop FAQs <span aria-hidden="true">→</span></router-link>
     </div>
   </section>
 </template>

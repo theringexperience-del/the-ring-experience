@@ -1,8 +1,10 @@
+import { navigationLinks } from './shared/navigationLinks';
 export default {
     name: 'footer',
     title: 'Footer',
     type: 'document',
     fields: [
+        navigationLinks('studioLinks','Studio navigation'),
         { name: 'subtitle', title: 'Subtitle', type: 'string' },
         { name: 'title', title: 'Title', type: 'string' },
         { name: 'text', title: 'Text', type: 'text', rows: 3 },

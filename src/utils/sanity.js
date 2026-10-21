@@ -1,4 +1,6 @@
 import { createClient } from '@sanity/client';
+import { withClientFallback } from './contentFallback.js';
+import clientImages from '../content/clientImages.json';
 import * as contentQueries from './sanityQueries.js';
 import { HOMEPAGE_QUERY, SOCIAL_QUERY, ABOUT_US_QUERY, OFFERS_PAGE_QUERY, GEMSTONES_PAGE_QUERY, CLIENT_GALLERY_QUERY, BOOKING_PAGE_QUERY, FAQ_PAGE_QUERY, CONTACT_FORM_QUERY, PAGE_CTA_QUERY, FOOTER_QUERY, NAVBAR_QUERY, SITE_APPEARANCE_QUERY } from './sanityQueries.js';
 
@@ -7,30 +9,39 @@ const SANITY_DATASET = import.meta.env.VITE_SANITY_DATASET;
 const SANITY_API_VERSION = import.meta.env.VITE_SANITY_API_VERSION || '2024-01-01';
 const SANITY_USE_CDN = String(import.meta.env.VITE_SANITY_USE_CDN || 'false').toLowerCase() === 'true';
 
-export const sanity = createClient({
+export const sanity = SANITY_PROJECT_ID && SANITY_DATASET ? createClient({
     projectId: SANITY_PROJECT_ID,
     dataset: SANITY_DATASET,
     apiVersion: SANITY_API_VERSION,
     useCdn: SANITY_USE_CDN
-});
+}) : null;
 
 export function toWebImage(url, options = {}) {
     if (!url || typeof url !== 'string') return '';
 
     const width = Number.isFinite(options.width) ? options.width : 1600;
     const quality = Number.isFinite(options.quality) ? options.quality : 80;
-    const separator = url.includes('?') ? '&' : '?';
-
-    return `${url}${separator}auto=format&fit=max&w=${width}&q=${quality}`;
+    if (!/^https?:\/\//i.test(url)) return url.replace(/\.(?:png|jpe?g)(?=[?#]|$)/i, '.webp');
+    const image = new URL(url);
+    const localImage = clientImages[`${image.origin}${image.pathname}`];
+    if (localImage) return localImage;
+    if (image.hostname !== 'cdn.sanity.io' || /\.svg$/i.test(image.pathname)) return url;
+    image.searchParams.delete('auto');
+    image.searchParams.set('fm', 'webp');
+    image.searchParams.set('fit', 'max');
+    image.searchParams.set('w', width);
+    image.searchParams.set('q', quality);
+    return image.href;
 }
 
 export function optimizeImageSource(url, options = {}) {
     if (!url || typeof url !== 'string') return '';
-    return /^https?:\/\//i.test(url) ? toWebImage(url, options) : url;
+    return toWebImage(url, options);
 }
 
 export function toImageSrcSet(url, widths = [], options = {}) {
     if (!url || typeof url !== 'string' || !/^https?:\/\//i.test(url)) return '';
+    if (toWebImage(url, options).startsWith('/uploads/')) return '';
 
     return widths
         .filter((width) => Number.isFinite(width) && width > 0)
@@ -38,33 +49,46 @@ export function toImageSrcSet(url, widths = [], options = {}) {
         .join(', ');
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-async function fetchFromSanity(query) {
-    if (!SANITY_PROJECT_ID || !SANITY_DATASET) {
-        console.warn('[sanity] Missing VITE_SANITY_PROJECT_ID or VITE_SANITY_DATASET. CMS content cannot be loaded.');
-        return null;
+const contentRequests = new Map();
+let bootstrap;
+export function initialContent(type) {
+    if (typeof document === 'undefined') return withClientFallback(type, globalThis.__CMS_CONTENT__?.[type]);
+    if (!bootstrap) {
+        try { bootstrap = JSON.parse(document.getElementById('cms-bootstrap')?.textContent || '{}'); }
+        catch { bootstrap = {}; }
     }
+    return withClientFallback(type, bootstrap[type]);
+}
+export function fetchContentByType(type) {
+    if (!Object.hasOwn(contentQueries, type)) throw new Error('Unknown content type');
+    return fetchFromSanity(contentQueries[type]);
+}
+function fetchFromSanity(query) {
+    const type = Object.entries(contentQueries).find(([, value]) => value === query)?.[0];
+    if (!contentRequests.has(query)) {
+        contentRequests.set(query, loadContent(query).then(result => {
+            if (result === null) contentRequests.delete(query);
+            return withClientFallback(type, result);
+        }));
+    }
+    return contentRequests.get(query);
+}
 
+async function loadContent(query) {
     try {
         const type = Object.entries(contentQueries).find(([, value]) => value === query)?.[0];
         if (type) {
-            const response = await fetch(`/api/content?type=${encodeURIComponent(type)}`);
-            if (response.ok) return (await response.json()).result ?? null;
+            try {
+                const response = await fetch(`/api/content?type=${encodeURIComponent(type)}`, { signal: AbortSignal.timeout(5000) });
+                if (response.ok && response.headers.get('content-type')?.includes('application/json')) {
+                    return (await response.json()).result ?? null;
+                }
+            } catch {
+                // Local previews and static hosts do not serve Pages Functions.
+            }
         }
         // Vite development does not serve Pages Functions.
-        return await sanity.fetch(query);
+        return sanity ? await sanity.fetch(query, {}, { signal: AbortSignal.timeout(8000) }) : null;
     } catch (error) {
         const message = error?.message || String(error);
         console.warn(`[sanity] Fetch failed (${SANITY_PROJECT_ID}/${SANITY_DATASET}): ${message}`);
