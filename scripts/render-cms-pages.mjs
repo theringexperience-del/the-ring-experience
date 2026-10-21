@@ -1,5 +1,6 @@
 import { loadEnv } from 'vite';
 import { mergeWorkshopFaqs } from '../src/content/workshopFaqs.js';
+import { currentWorkshopPackages, pricingExplanation } from '../src/content/workshopPackages.js';
 import * as queries from '../src/utils/sanityQueries.js';
 
 export async function getCmsPages(escape) {
@@ -26,7 +27,7 @@ export async function getCmsPages(escape) {
     {
       path: '/ouroffers', title: 'Jewellery & Ring-Making Workshops in Negombo | The Ring Experience',
       description: 'Compare private ring-making workshops in Negombo, Sri Lanka. Choose a session for beginners, couples, wedding bands or a personal custom ring.',
-      body: `<h1>${escape(offers.packagesSection?.heading || 'Ring-making workshops in Negombo')}</h1>${paragraphs(offers.packagesSection?.description)}${visible(offers.packages).map(pkg => `<section><p>${escape(pkg.tag || '')}</p><h2>${escape(pkg.name)}</h2><p>${escape(pkg.duration || '')}</p>${paragraphs(pkg.fullDescription || pkg.summary)}${pkg.idealFor ? `<p>Ideal for: ${escape(pkg.idealFor)}</p>` : ''}<ul>${(pkg.highlights || []).filter(Boolean).map(text => `<li>${escape(text)}</li>`).join('')}</ul><a href="/bookexperience?package=${encodeURIComponent(pkg.name)}">Check availability</a></section>`).join('')}<p>Confirm materials, gemstone options, extras and availability before booking. <a href="/design-your-ring">Plan your ring</a>.</p>`,
+      body: `<h1>${escape(offers.packagesSection?.heading || 'Ring-making workshops in Negombo')}</h1>${paragraphs(pricingExplanation)}${currentWorkshopPackages(offers.packages).map(pkg => `<section><p>${escape(pkg.tag)}</p><h2>${escape(pkg.name)}</h2><p>${escape(pkg.duration)}</p>${paragraphs(pkg.fullDescription)}<p>Ideal for: ${escape(pkg.idealFor)}</p><ul>${pkg.highlights.map(text => `<li>${escape(text)}</li>`).join('')}</ul><a href="/bookexperience?package=${encodeURIComponent(pkg.name)}">${escape(pkg.buttonLabel)}</a></section>`).join('')}<p>Confirm materials, gemstone options, extras and availability before booking. <a href="/design-your-ring">Plan your ring</a>.</p>`,
     },
     {
       path: '/faq', title: 'Jewellery Workshop FAQs: Rings, Gems & Booking | The Ring Experience',

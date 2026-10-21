@@ -69,7 +69,7 @@
                 <div class="mx-auto max-w-3xl text-center">
                     <p class="text-xs tracking-[0.2em] uppercase" style="opacity: 0.75;">{{ packagesPreviewContent.eyebrow }}</p>
                     <h2 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">{{ packagesPreviewContent.heading }}</h2>
-                    <p class="mx-auto mt-4 max-w-xl text-base leading-relaxed text-[#E9DED0]">A first ring, a more personal design, or a piece to mark a shared moment. We’ll help you find the right session.</p>
+                    <p class="mx-auto mt-4 max-w-xl text-base leading-relaxed text-[#E9DED0]">{{ pricingExplanation }}</p>
 
                 </div>
 
@@ -77,7 +77,7 @@
 
                 <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
                     <article v-for="pkg in homepagePackages" :key="pkg.key || pkg.name" class="workshop-card relative flex flex-col border p-7 sm:p-8"
-                        style="border-color: color-mix(in srgb, var(--color-lightbeige) 28%, transparent);">
+                        :style="{ borderColor: pkg.key === 'signature' ? '#CDA866' : 'color-mix(in srgb, var(--color-lightbeige) 28%, transparent)', background: pkg.key === 'signature' ? 'rgba(187,141,71,.12)' : undefined }">
 
                         <p class="text-xs tracking-[0.16em] uppercase text-[#D6BD8C]">{{ pkg.tag }}</p>
                         <h3 class="mt-3 font-display text-3xl leading-tight sm:text-4xl">{{ pkg.name }}</h3>
@@ -176,6 +176,8 @@ import Card from '../components/Card.vue';
 import PageCtaSection from '../components/PageCtaSection.vue';
 import PreferredResourcesSection from '../components/PreferredResourcesSection.vue';
 import { GOOGLE_MAPS_URL } from '../utils/businessProfile.js';
+import { currentWorkshopPackages, pricingExplanation } from '../content/workshopPackages.js';
+import { mergeWorkshopFaqs } from '../content/workshopFaqs.js';
 import FaqPreviewSection from '../components/FaqPreviewSection.vue';
 import SocialSection from '../components/SocialSection.vue';
 import {
@@ -239,13 +241,7 @@ const packagesPreviewContent = computed(() => ({
     ctaLink: cmsHomepageContent.value?.packagesPreview?.ctaLink ?? '/ouroffers'
 }));
 const homepagePackages = computed(() => (
-    (Array.isArray(cmsOffersContent.value?.packages) && cmsOffersContent.value.packages.length
-        ? cmsOffersContent.value.packages
-        : [
-            { key: 'essential', name: 'The Essential', tag: 'Your first ring', summary: 'A thoughtful introduction to shaping a ring at the workbench.' },
-            { key: 'signature', name: 'The Signature', tag: 'A personal design', summary: 'Explore the details that make a piece feel like your own.' },
-            { key: 'ceremony', name: 'The Ceremony', tag: 'Made together', summary: 'A meaningful way to mark your story side by side.' }
-        ]).filter((pkg) => pkg?.isVisible !== false)
+    currentWorkshopPackages(cmsOffersContent.value?.packages)
 ));
 const faqHomepagePreviewContent = computed(() => ({
     enabled: cmsFaqContent.value?.homepageSection?.enabled ?? true,
@@ -258,7 +254,7 @@ const faqHomepagePreviewContent = computed(() => ({
 }));
 const homepageFaqItems = computed(() => {
     const items = Array.isArray(cmsFaqContent.value?.items) ? cmsFaqContent.value.items : [];
-    return items
+    return mergeWorkshopFaqs(items)
         .filter((item) => item?.showOnHomepage && item?.question && item?.answer)
         .sort((a, b) => (a.homepageOrder ?? 999) - (b.homepageOrder ?? 999));
 });

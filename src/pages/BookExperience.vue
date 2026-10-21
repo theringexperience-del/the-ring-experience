@@ -59,12 +59,13 @@ import { computed, onMounted, reactive, ref } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 import { GOOGLE_MAPS_URL, WORKSHOP_WHATSAPP } from '../utils/businessProfile.js'
 import { clearRingBrief, readRingBrief } from '../utils/ringBrief.js'
+import { currentWorkshopPackages } from '../content/workshopPackages.js'
 import { submitLead } from '../utils/leads.js'
 import { fetchBookingPageContentFromSanity, fetchContactFormContentFromSanity, fetchOffersPageContentFromSanity } from '../utils/sanity.js'
 const route = useRoute()
 const cmsBooking = ref({}), cmsForm = ref({}), cmsOffers = ref({})
 const hero = computed(() => ({ eyebrow: cmsBooking.value.hero?.eyebrow || 'A private workshop in Negombo', title: cmsBooking.value.hero?.title || 'Make time to make something yours.', description: cmsBooking.value.hero?.description || 'Tell us when you are visiting and what you would love to create. We will help you choose a suitable ring-making session.' }))
-const packageOptions = computed(() => { const names = (cmsOffers.value.packages || []).filter(p => p.isVisible !== false).map(p => p.name).filter(Boolean); return names.length ? names : ['The Essential','The Signature','The Ceremony'] })
+const packageOptions = computed(() => currentWorkshopPackages(cmsOffers.value.packages).map(pkg => pkg.name))
 const calendlyEmbedUrl = computed(() => { const cal = cmsBooking.value.calendly; if (cal?.enabled === false || !/^https:\/\/calendly\.com\/.+/i.test(cal?.link || '')) return ''; const url = new URL(cal.link); url.searchParams.set('embed_domain','www.theringexperience.lk'); url.searchParams.set('hide_event_type_details','1'); return url.href })
 const isShortCalendar = computed(() => /\/30min(?:\/|$)/i.test(new URL(calendlyEmbedUrl.value || 'https://calendly.com/').pathname))
 const form = reactive({ packageName:'Help me choose',name:'',email:'',phone:'',preferredDate:'',makers:'1',message:'',newsletterConsent:false })
