@@ -177,6 +177,7 @@ import PageCtaSection from '../components/PageCtaSection.vue';
 import PreferredResourcesSection from '../components/PreferredResourcesSection.vue';
 import { GOOGLE_MAPS_URL } from '../utils/businessProfile.js';
 import { currentWorkshopPackages, pricingExplanation } from '../content/workshopPackages.js';
+import { mergeWorkshopFaqs } from '../content/workshopFaqs.js';
 import FaqPreviewSection from '../components/FaqPreviewSection.vue';
 import SocialSection from '../components/SocialSection.vue';
 import {
@@ -253,7 +254,7 @@ const faqHomepagePreviewContent = computed(() => ({
 }));
 const homepageFaqItems = computed(() => {
     const items = Array.isArray(cmsFaqContent.value?.items) ? cmsFaqContent.value.items : [];
-    return items
+    return mergeWorkshopFaqs(items)
         .filter((item) => item?.showOnHomepage && item?.question && item?.answer)
         .sort((a, b) => (a.homepageOrder ?? 999) - (b.homepageOrder ?? 999));
 });
