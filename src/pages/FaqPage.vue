@@ -56,7 +56,7 @@ const { setupRevealAnimations } = useRevealAnimations(faqRoot);
 const fallbackFaqItems = [
     {
         question: 'How long does the ring-making experience take?',
-        answer: 'The Essential is listed at 90–120 minutes, Signature at around three hours, and Ceremony at four hours or more. Confirm timing for your design when booking.'
+        answer: 'Essential takes approximately 1.5–2 hours, Signature Gem Discovery around 3 hours, and Ceremony 4 hours or more. Confirm timing for your design when booking.'
     },
     {
         question: 'Is the experience suitable for beginners?',

@@ -256,20 +256,20 @@ const packageCards = [
   {
     key: 'essential',
     label: 'Essential',
-    title: '2 Hour Ring',
-    description: 'Minimal, clean, beginner-friendly.',
+    title: 'Silver Ring · 1.5–2 Hours',
+    description: 'Simple, personal, beginner-friendly. 4g silver included.',
   },
   {
     key: 'signature',
-    label: 'Signature',
-    title: '3-4 Hour Ring',
-    description: 'Refined, detailed, and premium.',
+    label: 'Signature Gem Discovery',
+    title: 'Gemstone Ring · Around 3 Hours',
+    description: '6g silver, LKR 5,000 gemstone allowance and one standard setting included.',
   },
   {
     key: 'ceremony',
     label: 'Ceremony',
-    title: 'Symbolic Ring',
-    description: 'Meaningful, emotional, and ceremonial.',
+    title: 'Special Ring · 4+ Hours',
+    description: '8g silver, LKR 8,000 gemstone allowance, standard setting and engraving included.',
   },
 ]
 
@@ -300,7 +300,7 @@ const options = {
 const packageRules = {
   essential: {
     name: 'Essential Package',
-    time: 'Simple 2 hour handmade ring experience',
+    time: 'Simple 1.5–2 hour handmade ring experience; 4g silver included; gemstones, settings and extra silver cost extra',
     info: 'Minimal, clean, beginner-friendly rings. Best for simple bands, light texture, and very simple stone work.',
     complexity: 'simple, minimal, clean, beginner-friendly, realistic to handmake within 2 hours',
     allowed: `
@@ -333,10 +333,10 @@ Do not create large stone rings.
 Do not create advanced jewellery structures.`,
   },
   signature: {
-    name: 'Signature Package',
-    time: 'Refined 3-4 hour handmade ring experience',
+    name: 'Signature Gem Discovery Package',
+    time: 'Approximately 3 hour gemstone ring experience; 6g silver, LKR 5,000 gemstone allowance and one standard setting included',
     info: 'Refined artisan rings with stronger form, better texture, and one realistic premium stone setting.',
-    complexity: 'refined, handcrafted, elegant, premium, realistic to handmake within 3-4 hours',
+    complexity: 'refined, handcrafted, elegant, premium, realistic to handmake in approximately 3 hours',
     allowed: `
 - organic handmade bands
 - refined forged texture
@@ -365,13 +365,13 @@ Concept 2: Organic handmade artisan, forged texture, ancient jewellery feeling.
 Concept 3: Stone-focused refined ring, one gemstone as the hero.
 Concept 4: Artistic handmade form, controlled asymmetry, wearable and realistic.`,
     limits: `
-The design may feel premium, but it must still be possible in a 3-4 hour handmade workshop.
+    The design may feel premium, but it must still be possible in an approximately 3 hour handmade workshop.
 No casting-only forms.
 No extreme sculptural jewellery.`,
   },
   ceremony: {
     name: 'Ceremony Package',
-    time: 'Premium symbolic handmade ceremony ring experience',
+    time: 'Private 4+ hour ceremony ring experience; 8g silver, LKR 8,000 gemstone allowance, one standard setting and engraving included',
     info: 'Emotional, symbolic, and premium rings with ceremonial meaning while remaining traditionally handmade.',
     complexity: 'premium, symbolic, ceremonial, emotional, handcrafted, realistic through traditional jewellery techniques',
     allowed: `

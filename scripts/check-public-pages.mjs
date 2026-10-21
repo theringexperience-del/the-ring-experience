@@ -19,7 +19,7 @@ const faq = await readFile(new URL('faq/index.html', dist), 'utf8');
 assert.ok(faq.includes('wedding rings or marriage bands'), 'Wedding questions need to exist before JavaScript');
 assert.ok(faq.includes('63/1 Porutota Road'), 'Visit answers need the studio address');
 const offers = await readFile(new URL('ouroffers/index.html', dist), 'utf8');
-assert.ok(offers.includes('The Essential') && offers.includes('The Signature') && offers.includes('The Ceremony'), 'All current workshop options must be readable');
+assert.ok(offers.includes('The Essential') && offers.includes('Signature Gem Discovery') && offers.includes('The Ceremony'), 'All current workshop options must be readable');
 const feed = await readFile(new URL('journal/feed.xml', dist), 'utf8');
 assert.equal((feed.match(/<item>/g) || []).length, journalPosts.length, 'Feed should include every journal article');
 for (const post of journalPosts) {

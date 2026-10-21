@@ -14,7 +14,7 @@ export const workshopFaqs = [
   { question: 'Can I order a necklace, name pendant or chain?', answer: 'Rings are the focus of our hands-on workshop. You can send another jewellery idea for individual review. We will tell you whether an artisan can take it on, what the process involves and whether it is a custom order rather than a workshop project.' },
   { question: 'How soon can a custom ring be ready for a holiday or proposal?', answer: 'Tell us the exact date and your design. A simple band may fit a workshop session, while sourcing a gemstone, setting, engraving or other specialist work can take longer. We confirm a realistic handover date after reviewing the materials and design; an inquiry alone is not a completion promise.' },
   { question: 'How much does a custom ring or gemstone cost?', answer: 'The total depends on workshop choice, metal purity and weight, ring design, gemstone, setting, engraving and finishing. Ask for a written breakdown of inclusions and extras. We quote gold and individual gemstone options only after reviewing the design and available materials.' },
-  { question: 'Are gemstones, engraving and extra metal included?', answer: 'Inclusions depend on the workshop and design. Ask for a written breakdown of the metal allowance, stone, setting, engraving and any additional work. A reference photo helps us explain what your session will involve.' },
+  { question: 'Are gemstones, engraving and extra metal included?', answer: 'Essential includes 4g of sterling silver; gemstones and settings cost extra. Signature Gem Discovery includes 6g of silver, LKR 5,000 toward one gemstone and one standard setting. Ceremony includes 8g of silver, LKR 8,000 toward one gemstone, one standard setting and personalised engraving. Extra silver costs LKR 2,000 per gram in each package. You pay the difference for a gemstone above the allowance; advanced settings and gold are quoted before you agree.' },
   { question: 'Will I make the whole ring myself?', answer: 'Your involvement depends on the design, techniques and session. Tell us if doing as much as possible yourself is your priority. We can recommend a simpler project and explain which technical stages an artisan will handle for safety and accuracy.' },
   { question: 'Can I bring a gemstone or old ring to use in a new design?', answer: 'Send clear photos and any stone or metal documentation first. An artisan needs to review the condition, material and proposed design. Bringing a piece does not guarantee that it can be reused or set during your session.' },
   { question: 'How do I choose my ring size?', answer: 'The intended finger should be measured for the width and profile you want. Bring a well-fitting ring if useful, and tell us which sizing system you know. A home measurement is a starting point; confirm the fit with the artisan before making.' },
@@ -24,7 +24,15 @@ export const workshopFaqs = [
 ];
 
 export function mergeWorkshopFaqs(items = []) {
-  const valid = items.filter(item => item?.question && item?.answer);
+  const valid = items.filter(item => item?.question && item?.answer).map(item => {
+    if (item.question.trim().toLowerCase() === 'how long does a ring-making workshop take?') {
+      return { ...item, answer: 'Essential takes approximately 1.5–2 hours, Signature Gem Discovery around 3 hours, and Ceremony 4 hours or more. Your design and any gemstone work can affect the time needed. Confirm the session length when booking, especially if you have onward travel.' };
+    }
+    if (item.question.trim().toLowerCase() === 'can i add a gemstone to my handmade ring?') {
+      return { ...item, answer: 'Yes, if the stone and design are suitable. In Essential, the gemstone and setting cost extra. Signature Gem Discovery includes LKR 5,000 toward one gemstone and one standard setting; Ceremony includes LKR 8,000 toward one gemstone and one standard setting. You pay the difference for a pricier stone, and advanced settings can cost extra. We agree the price before making.' };
+    }
+    return item;
+  });
   const seen = new Set(valid.map(item => item.question.trim().toLowerCase()));
   return [...valid, ...workshopFaqs.filter(item => !seen.has(item.question.toLowerCase()))];
 }

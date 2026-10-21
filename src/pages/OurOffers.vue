@@ -15,7 +15,7 @@
                 <div class="mt-10 grid grid-cols-1 gap-6 lg:gap-8">
                     <article v-for="pkg in packagesContent" :key="pkg.key || pkg.name"
                         class="offer-card rounded-sm border bg-white/74 p-7 sm:p-8 lg:p-10"
-                        style="border-color: color-mix(in srgb, var(--color-darkbrown) 18%, transparent);">
+                        :style="{ borderColor: pkg.key === 'signature' ? '#B08942' : 'color-mix(in srgb, var(--color-darkbrown) 18%, transparent)', background: pkg.key === 'signature' ? '#FFF9ED' : undefined }">
                         <div class="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
                             <div class="max-w-[60ch]">
                                 <p class="text-xs tracking-[0.14em] text-(--color-mutedbrown) uppercase">{{ pkg.tag }}</p>
@@ -32,7 +32,7 @@
                                 </ul>
                             </div>
                             <div class="flex shrink-0 flex-col items-start gap-3 lg:items-end">
-                                <Button type="button" @click="focusFormForPackage(pkg.name)">Send request</Button>
+                                <Button type="button" @click="focusFormForPackage(pkg.name)">{{ pkg.buttonLabel }}</Button>
                                 <RouterLink :to="{ path: '/bookexperience', query: { package: pkg.name } }" class="inline-flex min-h-12 items-center justify-center border border-[#7B6248] px-6 py-3 text-sm uppercase tracking-[.12em] text-(--color-brown) hover:bg-[#EFE7DA]">Check availability</RouterLink>
                             </div>
                         </div>
@@ -122,6 +122,7 @@ import GemstonesOffersCallout from '../components/GemstonesOffersCallout.vue';
 import SocialSection from '../components/SocialSection.vue';
 import { useRevealAnimations } from '../composables/useRevealAnimations';
 import { submitLead } from '../utils/leads';
+import { currentWorkshopPackages, pricingExplanation } from '../content/workshopPackages.js';
 import { phoneCodes } from '../utils/phoneCodes';
 import { fetchContactFormContentFromSanity, fetchOffersPageContentFromSanity, fetchSocialContentFromSanity } from '../utils/sanity';
 
@@ -137,11 +138,11 @@ const cmsSocialContent = ref({});
 const packagesSectionContent = computed(() => ({
     eyebrow: cmsOffersContent.value?.packagesSection?.eyebrow ?? '',
     heading: cmsOffersContent.value?.packagesSection?.heading ?? '',
-    description: cmsOffersContent.value?.packagesSection?.description ?? ''
+    description: pricingExplanation
 }));
 
 const packagesContent = computed(() => (
-    (Array.isArray(cmsOffersContent.value?.packages) ? cmsOffersContent.value.packages : []).filter((pkg) => pkg?.isVisible !== false)
+    currentWorkshopPackages(cmsOffersContent.value?.packages)
 ));
 const packageOptions = computed(() => packagesContent.value.map((pkg) => pkg.name).filter(Boolean));
 const mergedFormContent = computed(() => ({
