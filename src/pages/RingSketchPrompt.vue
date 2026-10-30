@@ -200,6 +200,7 @@
 import { computed, nextTick, onMounted, reactive, ref, watch } from 'vue'
 import { RouterLink } from 'vue-router'
 import Button from '../components/Button.vue'
+import { currentWorkshopPackages } from '../content/workshopPackages.js'
 import { useRevealAnimations } from '../composables/useRevealAnimations'
 import { fetchFooterContentFromSanity, fetchSocialContentFromSanity, fetchOffersPageContentFromSanity, initialContent } from '../utils/sanity'
 
@@ -254,7 +255,7 @@ const activeStepCount = computed(() => {
   return 1
 })
 
-const packageCards = computed(() => (cmsOffers.value.packages ?? []).filter(pkg => pkg.isVisible !== false && ['essential','signature','ceremony'].includes(pkg.key)).map(pkg => ({key:pkg.key,label:pkg.name,title:pkg.duration,description:pkg.summary})));
+const packageCards = computed(() => currentWorkshopPackages(cmsOffers.value.packages).filter(pkg => ['essential','signature','ceremony'].includes(pkg.key)).map(pkg => ({key:pkg.key,label:pkg.name,title:pkg.duration,description:pkg.summary})));
 
 const options = {
   essential: {
@@ -283,7 +284,7 @@ const options = {
 const packageRules = {
   essential: {
     name: 'Essential Package',
-    time: 'Simple 1.5–2 hour handmade ring experience; 4g silver included; gemstones, settings and extra silver cost extra',
+    time: 'Simple 1.5–2 hour handmade ring experience; 3g silver included; gemstones, settings and extra silver cost extra',
     info: 'Minimal, clean, beginner-friendly rings. Best for simple bands, light texture, and very simple stone work.',
     complexity: 'simple, minimal, clean, beginner-friendly, realistic to handmake within 2 hours',
     allowed: `
@@ -317,7 +318,7 @@ Do not create advanced jewellery structures.`,
   },
   signature: {
     name: 'Signature Gem Discovery Package',
-    time: 'Approximately 3 hour gemstone ring experience; 6g silver, LKR 5,000 gemstone allowance and one standard setting included',
+    time: 'Approximately 3 hour gemstone ring experience; 5g silver, LKR 5,000 gemstone allowance and one standard setting included',
     info: 'Refined artisan rings with stronger form, better texture, and one realistic premium stone setting.',
     complexity: 'refined, handcrafted, elegant, premium, realistic to handmake in approximately 3 hours',
     allowed: `

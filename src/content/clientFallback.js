@@ -2352,7 +2352,7 @@ export const clientFallbacks = {
         "showOnHomepage": null
       },
       {
-        "answer": "Essential includes 4g of sterling silver; gemstones and settings cost extra. Signature Gem Discovery includes 6g of silver, LKR 5,000 toward one gemstone and one standard setting. Ceremony includes 8g of silver, LKR 8,000 toward one gemstone, one standard setting and personalised engraving. Extra silver costs LKR 2,000 per gram in each package. You pay the difference for a gemstone above the allowance; advanced settings and gold are quoted before you agree.",
+        "answer": "Essential includes 3g of sterling silver for simple ring designs; gemstones and settings cost extra. Signature Gem Discovery includes 5g of silver, LKR 5,000 toward one gemstone and one standard setting. Ceremony includes 8g of silver, LKR 8,000 toward one gemstone, one standard setting and personalised engraving. Extra silver costs LKR 2,000 per gram in each package. You pay the difference for a gemstone above the allowance; advanced settings and gold are quoted before you agree.",
         "homepageOrder": null,
         "question": "Are gemstones, engraving and extra metal included?",
         "showOnHomepage": null
@@ -3428,18 +3428,18 @@ export const clientFallbacks = {
         "duration": "Approximately 1.5–2 hours",
         "fullDescription": "Make your very own silver ring from scratch. Our friendly jeweller will guide you through every step, from shaping to polishing.",
         "highlights": [
-          "4g of sterling silver included.",
+          "3g of sterling silver included.",
           "Create your own simple ring design with your favourite textures and finishes.",
           "Professional jeweller guidance, tools and hands-on making.",
           "Take home the ring you created.",
           "Extra silver: LKR 2,000 per gram.",
           "Gemstones and gemstone settings cost extra. We quote these before you agree."
         ],
-        "idealFor": "Make your own silver ring.",
+        "idealFor": "Simple ring designs you make yourself.",
         "isVisible": null,
         "key": "essential",
         "name": "The Essential",
-        "summary": "Make your own silver ring. 4g of sterling silver and jeweller guidance included.",
+        "summary": "Make your own simple silver ring. 3g of sterling silver and jeweller guidance included.",
         "tag": "LKR 14,999 / person"
       },
       {
@@ -3447,7 +3447,7 @@ export const clientFallbacks = {
         "duration": "Approximately 3 hours",
         "fullDescription": "Discover Sri Lanka’s beautiful gemstones, choose your favourite and create a ring around it. Our skilled jeweller will help turn your idea into something truly personal.",
         "highlights": [
-          "6g of sterling silver included.",
+          "5g of sterling silver included.",
           "Create a simple or complex personalised design with a design consultation.",
           "Discover and choose from available natural gemstones.",
           "LKR 5,000 included toward one gemstone, plus one standard gemstone setting.",
@@ -3461,7 +3461,7 @@ export const clientFallbacks = {
         "isVisible": null,
         "key": "signature",
         "name": "Signature Gem Discovery",
-        "summary": "Make your own gemstone ring. 6g of silver, LKR 5,000 toward one gemstone and a standard setting included.",
+        "summary": "Make your own gemstone ring. 5g of silver, LKR 5,000 toward one gemstone and a standard setting included.",
         "tag": "LKR 29,999 / person · Our flagship"
       },
       {
