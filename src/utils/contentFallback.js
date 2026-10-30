@@ -1,4 +1,6 @@
 import { clientFallbacks } from '../content/clientFallback.js';
+import { currentWorkshopPackages } from '../content/workshopPackages.js';
+import { mergeWorkshopFaqs } from '../content/workshopFaqs.js';
 function fillMissing(fallback, value) {
   if (value === null || value === undefined) return fallback;
   if (fallback && value && typeof fallback === 'object' && typeof value === 'object' && !Array.isArray(fallback) && !Array.isArray(value)) {
@@ -6,7 +8,12 @@ function fillMissing(fallback, value) {
   }
   return value;
 }
-export const withClientFallback = (type, value) => fillMissing(clientFallbacks[type], value) ?? null;
+export const withClientFallback = (type, value) => {
+  const content = fillMissing(clientFallbacks[type], value);
+  if (type === 'OFFERS_PAGE_QUERY' && content) return { ...content, packages: currentWorkshopPackages(content.packages) };
+  if (type === 'FAQ_PAGE_QUERY' && content) return { ...content, items: mergeWorkshopFaqs(content.items) };
+  return content ?? null;
+};
 export function useClientImage(event, fallback) {
   const image = event.target;
   if (!fallback || !image) return;
