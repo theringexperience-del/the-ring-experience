@@ -17,6 +17,14 @@ for (const location of locations) {
   assert.ok(/<meta[^>]*name="description" content="[^"]+"/.test(html), `${pathname} needs a description`);
   for (const match of html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>(.*?)<\/script>/gs)) JSON.parse(match[1]);
 }
+const home = await readFile(new URL('index.html', dist), 'utf8');
+assert.ok(home.includes('Make Your Own Ring in Negombo, Sri Lanka'), 'Homepage must expose its descriptive H1 in static HTML');
+const offersPage = await readFile(new URL('ouroffers/index.html', dist), 'utf8');
+assert.ok(offersPage.includes('Make your own ring in Negombo, Sri Lanka'), 'Offers page must expose location-specific workshop text');
+assert.ok(offersPage.includes('href="/ring-making-guide"'), 'Offers page must link to the beginner guide');
+for (const pathname of ['/ring-making-guide', '/things-to-do-in-negombo', '/bookexperience']) {
+  assert.ok(locations.some(location => new URL(location).pathname === pathname), pathname + ' must appear in the sitemap');
+}
 const faq = await readFile(new URL('faq/index.html', dist), 'utf8');
 assert.ok(faq.includes('wedding rings or marriage bands'), 'Wedding questions need to exist before JavaScript');
 assert.ok(faq.includes('63/1 Porutota Road'), 'Visit answers need the studio address');
