@@ -11,8 +11,9 @@
                 <div class="hero-copy flex max-w-3xl flex-col items-start text-left text-white">
                     <p class="mb-3 text-[.65rem] tracking-[.22em] uppercase text-(--color-accent-light) sm:mb-6 sm:text-xs">{{ cmsHomepageContent.hero?.eyebrow }}</p>
                     <h1 class="hero-heading font-display font-medium text-(--color-lightbeige)">
-                        {{ heroContent.headline }}
+                        Make Your Own Ring in Negombo, Sri Lanka
                     </h1>
+                    <p class="mt-3 font-display text-xl italic text-[#F1E8DC] sm:text-2xl">{{ heroContent.headline }}</p>
                     <p class="mt-4 max-w-lg text-base leading-relaxed text-[#F1E8DC] sm:mt-6 sm:text-lg">
                         {{ heroContent.subheadline }}
                     </p>
