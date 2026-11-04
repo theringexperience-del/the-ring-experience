@@ -434,7 +434,7 @@ onBeforeUnmount(() => {
 .home-hero { min-height: min(860px, 100svh); padding-block: 10rem 8rem; }
 .hero-photo { object-position: center 46%; }
 .hero-shade { background: linear-gradient(90deg, rgba(24,21,17,.88), rgba(24,21,17,.52) 58%, rgba(24,21,17,.18)); }
-.hero-heading { max-width: 12ch; font-size: clamp(2.9rem, 6.4vw, 6.5rem); line-height: 1.02; letter-spacing: -.035em; }
+.hero-heading { max-width: 18ch; font-size: clamp(2.3rem, 5.3vw, 5.3rem); line-height: 1.08; letter-spacing: -.035em; text-wrap: balance; }
 .hero-secondary { backdrop-filter: blur(8px); }
 .craft-link { position: relative; }
 .craft-link::after { content: ''; position: absolute; inset: auto 0 -1px; height: 2px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .3s ease; }
