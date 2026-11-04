@@ -26,7 +26,7 @@ const routes = [
     component: Homepage,
     meta: {
       seo: {
-        title: 'Ring-Making Workshop in Negombo | The Ring Experience',
+        title: 'Ring Making Workshop in Negombo, Sri Lanka | The Ring Experience',
         description:
           'Make your own ring in a guided jewellery workshop in Negombo, Sri Lanka. Explore private sessions, silver designs and gemstone options.',
       },
@@ -148,7 +148,7 @@ const routes = [
     component: BookExperience,
     meta: {
       seo: {
-        title: 'Book The Experience | The Ring Experience Sri Lanka',
+        title: 'Book a Ring Making Workshop in Negombo | The Ring Experience',
         description:
           'Request a private ring-making workshop in Negombo, Sri Lanka. Share your date, number of makers and custom ring ideas, then confirm details with our artisan.',
       },

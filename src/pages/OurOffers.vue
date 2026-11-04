@@ -41,6 +41,11 @@
             </div>
         </section>
 
+        <section aria-label="Ring-making workshop in Negombo" class="mx-auto w-11/12 max-w-5xl py-12 text-(--color-darkbrown) sm:w-10/12">
+            <h2 class="font-display text-3xl">Make your own ring in Negombo, Sri Lanka</h2>
+            <p class="mt-4 leading-relaxed">Our private jewellery-making workshops welcome beginners, couples and travellers. Design a personal sterling-silver ring with guidance from a local artisan, explore optional gemstones, and take home your finished piece. Visit The Ring Experience at 63/1 Porutota Road, Negombo.</p>
+            <p class="mt-4 text-sm"><RouterLink to="/ring-making-guide" class="underline">How ring making works</RouterLink> · <RouterLink to="/things-to-do-in-negombo" class="underline">Explore Negombo activities</RouterLink> · <RouterLink to="/bookexperience" class="underline">Request a workshop</RouterLink></p>
+        </section>
         <section id="offers-form" data-reveal class="w-full bg-(--color-lightbeige) py-20 sm:py-24 lg:py-28">
             <div class="mx-auto w-11/12 sm:w-10/12">
                 <div class="mx-auto max-w-3xl text-center">
