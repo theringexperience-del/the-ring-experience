@@ -1,0 +1,21 @@
+name: SEO build validation
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Build and validate crawlable pages, canonical URLs and sitemap
+        run: npm run build:frontend
+      - name: Check Sanity content model
+        run: npm run check:cms
