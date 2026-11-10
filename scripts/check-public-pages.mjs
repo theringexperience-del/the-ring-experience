@@ -13,7 +13,7 @@ for (const location of locations) {
   const pageTitle = html.match(/<title[^>]*>([^<]+)<\/title>/)?.[1] ?? '';
   assert.ok(pageTitle.length > 0 && pageTitle.length <= 60, `${pathname} title must be descriptive and no longer than 60 characters (got ${pageTitle.length})`);
   if (['/gallery/', '/gemstones/', '/furnace/'].includes(pathname)) {
-    const headingLevels = [...html.matchAll(/<h([1-6])(?:\\s|>)/g)].map(match => Number(match[1]));
+    const headingLevels = [...html.matchAll(/<h([1-6])(?:\s|>)/g)].map(match => Number(match[1]));
     assert.ok(!headingLevels.some((level, index) => index > 0 && level > headingLevels[index - 1] + 1), `${pathname} must not skip heading levels`);
   }
   assert.ok(!html.includes('/src/assets/'), `${pathname} must use built asset URLs`);
