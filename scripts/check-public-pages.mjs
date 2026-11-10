@@ -28,6 +28,10 @@ assert.ok(missing.includes('name="robots" content="noindex, follow"'), 'Missing 
 assert.ok(missing.includes('Explore ring-making workshops'), '404 must help visitors find real pages');
 const home = await readFile(new URL('index.html', dist), 'utf8');
 assert.ok(home.includes('Make Your Own Ring in Negombo, Sri Lanka'), 'Homepage must expose its descriptive H1 in static HTML');
+// Google must be able to discover important workshop pages through real HTML links, not only the sitemap.
+for (const path of ['/ring-making-guide/', '/gemstones/', '/design-your-ring/', '/custom-jewellery-sri-lanka/', '/faq/', '/gallery/']) {
+  assert.ok(home.includes(`href="${path}"`), `Homepage must link to ${path} in its static HTML`);
+}
 const offersPage = await readFile(new URL('ouroffers/index.html', dist), 'utf8');
 assert.ok(offersPage.includes('Make your own ring in Negombo, Sri Lanka'), 'Offers page must expose location-specific workshop text');
 assert.ok(offersPage.includes('href="/ring-making-guide"'), 'Offers page must link to the beginner guide');
