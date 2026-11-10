@@ -21,7 +21,7 @@
                             class="gem-card-image h-64 w-full object-cover object-center">
                         <div class="p-6 sm:p-7">
                             <p class="text-xs tracking-[0.14em] text-(--color-mutedbrown) uppercase">{{ stone.origin }}</p>
-                            <h3 class="mt-2 font-display text-3xl leading-tight text-(--color-brown)">{{ stone.name }}</h3>
+                            <h2 class="mt-2 font-display text-3xl leading-tight text-(--color-brown)">{{ stone.name }}</h2>
                             <p class="mt-2 text-sm tracking-[0.08em] text-(--color-noisette) uppercase">{{ stone.cut }}</p>
                             <p v-if="stone.meaning" class="mt-4 text-sm text-(--color-mutedbrown)">
                                 Meaning: <span class="text-(--color-brown)">{{ stone.meaning }}</span>
