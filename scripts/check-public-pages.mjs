@@ -6,11 +6,14 @@ const { JOURNAL_POSTS_QUERY: journalPosts } = JSON.parse(await readFile(new URL(
 const sitemap = await readFile(new URL('sitemap.xml', dist), 'utf8');
 const locations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
 assert.equal(new Set(locations).size, locations.length, 'Sitemap must not repeat URLs');
+const seenTitles = new Map();
 for (const location of locations) {
   const { pathname } = new URL(location);
   const file = new URL(pathname === '/' ? 'index.html' : `.${pathname}index.html`, dist);
   const html = await readFile(file, 'utf8');
   const pageTitle = html.match(/<title[^>]*>([^<]+)<\/title>/)?.[1] ?? '';
+  assert.ok(!seenTitles.has(pageTitle), `${pathname} repeats the SEO title of ${seenTitles.get(pageTitle)}`);
+  seenTitles.set(pageTitle, pathname);
   assert.ok(pageTitle.length > 0 && pageTitle.length <= 60, `${pathname} title must be descriptive and no longer than 60 characters (got ${pageTitle.length})`);
   if (['/gallery/', '/gemstones/', '/furnace/'].includes(pathname)) {
     const headingLevels = [...html.matchAll(/<h([1-6])(?:\s|>)/g)].map(match => Number(match[1]));
