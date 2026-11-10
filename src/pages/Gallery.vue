@@ -21,7 +21,7 @@
                                 class="gallery-image aspect-[4/5] w-full object-cover">
                             <div class="p-5">
                                 <p class="text-sm tracking-[0.1em] text-(--color-mutedbrown) uppercase">{{ photo.dateLabel }}</p>
-                                <h3 class="mt-2 font-display text-2xl leading-tight text-(--color-brown)">{{ photo.caption }}</h3>
+                                <h2 class="mt-2 font-display text-2xl leading-tight text-(--color-brown)">{{ photo.caption }}</h2>
                                 <p class="mt-3 text-base leading-relaxed text-(--color-brown)" style="opacity: 0.86;">
                                     {{ photo.story }}
                                 </p>
