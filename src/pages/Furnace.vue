@@ -25,7 +25,7 @@
               ></i>
             </span>
           </button>
-          <h3 class="mt-2 font-display text-lg tracking-[0.12em] uppercase">{{ metal.name }}</h3>
+          <h2 class="mt-2 font-display text-lg tracking-[0.12em] uppercase">{{ metal.name }}</h2>
           <p class="mt-1 text-[0.62rem] tracking-[0.14em] text-(--color-noisette) uppercase">Purity {{ metal.purity }}</p>
           <p class="mt-1 text-[0.62rem] tracking-[0.14em] text-[#9E8D80] uppercase">{{ metal.symbol }} - melts {{ metal.melt }}</p>
           <div class="mt-4 flex items-center justify-center gap-3">
