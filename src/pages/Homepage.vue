@@ -163,6 +163,22 @@
             </div>
         </section>
 
+        <section class="bg-(--color-lightbeige) py-12 text-(--color-brown) sm:py-16" aria-labelledby="explore-workshop-guides">
+            <div class="mx-auto w-11/12 max-w-6xl sm:w-10/12">
+                <p class="text-xs uppercase tracking-[.2em] text-(--color-mutedbrown)">Plan your visit</p>
+                <h2 id="explore-workshop-guides" class="mt-3 font-display text-3xl sm:text-4xl">Explore the craft before you book</h2>
+                <p class="mt-3 max-w-2xl text-sm leading-relaxed text-(--color-mutedbrown) sm:text-base">Learn what happens at the workbench, discover gemstone choices, and find answers before creating your own ring in Negombo.</p>
+                <nav aria-label="Ring-making guides" class="mt-7 flex flex-wrap gap-x-7 gap-y-4 text-sm text-(--color-action)">
+                    <RouterLink to="/ring-making-guide/" class="underline underline-offset-4">How ring making works</RouterLink>
+                    <RouterLink to="/gemstones/" class="underline underline-offset-4">Gemstones for your ring</RouterLink>
+                    <RouterLink to="/design-your-ring/" class="underline underline-offset-4">Design your ring</RouterLink>
+                    <RouterLink to="/custom-jewellery-sri-lanka/" class="underline underline-offset-4">Custom jewellery in Sri Lanka</RouterLink>
+                    <RouterLink to="/faq/" class="underline underline-offset-4">Workshop questions and answers</RouterLink>
+                    <RouterLink to="/gallery/" class="underline underline-offset-4">Workshop gallery</RouterLink>
+                </nav>
+            </div>
+        </section>
+
         <PageCtaSection :content="closingInvitation" />
         <SocialSection :content="cmsSocialContent" />
     </div>
