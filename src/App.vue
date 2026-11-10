@@ -42,8 +42,10 @@ const seo = computed(() => article.value ? {
   title: `${article.value.title} | The Ring Experience`,
   description: article.value.description,
 } : (route.meta?.seo ?? {}))
-const canonicalPath = computed(() => (route.path === '/' ? '' : route.path.replace(/\/+$/, '')))
-const canonicalUrl = computed(() => route.path === '/' ? `${siteUrl}/` : `${siteUrl}${canonicalPath.value}`)
+// Cloudflare Pages serves prerendered /page/index.html at /page/.
+// Keep the canonical URL aligned with that public directory URL.
+const canonicalPath = computed(() => route.path === '/' ? '/' : `${route.path.replace(/\/+$/, '')}/`)
+const canonicalUrl = computed(() => `${siteUrl}${canonicalPath.value}`)
 const ogImage = computed(() => seo.value.image || defaultOgImage)
 const jsonLd = computed(() => JSON.stringify({ ...BUSINESS_SCHEMA, image: ogImage.value }))
 const articleLd = computed(() => article.value ? JSON.stringify({

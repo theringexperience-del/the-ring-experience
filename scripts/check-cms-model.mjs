@@ -3,7 +3,11 @@ import {createServer} from 'vite';
 import {currentWorkshopPackages} from '../src/content/workshopPackages.js';
 import {mergeWorkshopFaqs} from '../src/content/workshopFaqs.js';
 const pkg={key:'essential',name:'Editable offer',tag:'LKR 123',summary:'Edited in CMS'};
-assert.deepEqual(currentWorkshopPackages([pkg,{key:'hidden',isVisible:false}]),[pkg]);
+const visiblePackages=currentWorkshopPackages([pkg,{key:'hidden',isVisible:false}]);
+assert.equal(visiblePackages.length,1,'Hidden workshop offers must stay hidden');
+assert.equal(visiblePackages[0].name,pkg.name,'CMS must control package names');
+assert.equal(visiblePackages[0].tag,pkg.tag,'CMS must control package prices');
+assert.match(visiblePackages[0].summary,/3g of sterling silver/,'Essential workshop should show the current 3g inclusion');
 assert.deepEqual(mergeWorkshopFaqs([{question:'Can I add a gemstone to my handmade ring?',answer:'An editor changed this answer.'}]),[{question:'Can I add a gemstone to my handmade ring?',answer:'An editor changed this answer.'}]);
 const server=await createServer({configFile:false,server:{middlewareMode:true},optimizeDeps:{noDiscovery:true,entries:[]}});
 try{
