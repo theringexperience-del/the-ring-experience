@@ -29,6 +29,7 @@ const template=await readFile(new URL('index.html',dist),'utf8');
 const manifest=JSON.parse(await readFile(new URL('.vite/ssr-manifest.json',dist),'utf8'));
 const server=await createServer({server:{middlewareMode:true},appType:'custom',optimizeDeps:{noDiscovery:true,entries:[]}});
 const siteUrl='https://www.theringexperience.lk';
+const publicUrl=path=>path==='/' ? siteUrl+'/' : siteUrl+path.replace(/\\/+$/,'')+'/';
 const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 try {
  const {default:App}=await server.ssrLoadModule('/src/App.vue');
@@ -54,5 +55,8 @@ try {
  await writeFile(new URL('sitemap.xml',dist),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${routes.map(p=>`<url><loc>${siteUrl}${escape(p)}</loc></url>`).join('')}</urlset>`);
  await mkdir(new URL('journal/',dist),{recursive:true});
  await writeFile(new URL('journal/feed.xml',dist),`<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>The Ring Experience Journal</title><link>${siteUrl}/journal</link><description>Jewellery-making guides from Negombo, Sri Lanka</description><language>en</language>${posts.map(post=>`<item><title>${escape(post.title)}</title><link>${siteUrl}/journal/${escape(post.slug)}</link><guid>${siteUrl}/journal/${escape(post.slug)}</guid><description>${escape(post.description)}</description><pubDate>${new Date(post.published+'T12:00:00+05:30').toUTCString()}</pubDate></item>`).join('')}</channel></rss>`);
+ // A real 404.html prevents Cloudflare Pages from serving a 200 SPA fallback for unknown URLs.
+ // Only known, prerendered pages should be indexable.
+ await writeFile(new URL('404.html',dist), `<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, follow"><title>Page not found | The Ring Experience</title><style>body{margin:0;background:#f9f4ec;color:#30241b;font:18px/1.6 system-ui,sans-serif}main{max-width:700px;margin:12vh auto;padding:2rem}h1{font-family:Georgia,serif;font-size:clamp(2.5rem,6vw,4rem);line-height:1.15}a{color:#76532d;text-underline-offset:.25em}</style></head><body><main><p>THE RING EXPERIENCE · NEGOMBO</p><h1>We couldn't find this page.</h1><p>The link may have changed. Discover our jewellery-making experiences or return to the homepage.</p><p><a href="/ouroffers/">Explore ring-making workshops</a> · <a href="/">Back to homepage</a></p></main></body></html>`);
  console.log(`Rendered ${routes.length} pages from Vue templates and published CMS content.`);
 } finally {await server.close();delete globalThis.__CMS_CONTENT__;}
