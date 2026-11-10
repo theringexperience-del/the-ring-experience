@@ -6,7 +6,9 @@ import clientImages from '../src/content/clientImages.json' with { type: 'json' 
 import { readFile } from 'node:fs/promises';
 const edited={packages:[{key:'essential',tag:'New CMS price',isVisible:false}],pricingExplanation:''};
 const resolved=withClientFallback('OFFERS_PAGE_QUERY',edited);
-assert.deepEqual(resolved.packages,edited.packages,'CMS package changes and visibility take precedence');
+assert.deepEqual(resolved.packages,[],'CMS-hidden packages must not be shown');
+const visible=withClientFallback('OFFERS_PAGE_QUERY',{packages:[{key:'essential',tag:'New CMS price',isVisible:true}]});
+assert.equal(visible.packages[0].tag,'New CMS price','CMS price edits must take precedence');
 assert.equal(resolved.pricingExplanation,'','An intentionally empty CMS field stays empty');
 assert.equal(withClientFallback('HOMEPAGE_QUERY',{hero:{image:null}}).hero.image,'/uploads/negombo-workshop-hero.webp','Missing CMS photos use the original local client photo');
 assert.equal(withClientFallback('OFFERS_PAGE_QUERY',null).packages[0].tag,clientFallbacks.OFFERS_PAGE_QUERY.packages[0].tag);
