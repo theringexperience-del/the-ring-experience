@@ -37,9 +37,24 @@ const defaultTitle = 'The Ring Experience - Sri Lanka'
 const defaultDescription =
   'Create your own sterling silver ring in Sri Lanka with natural gemstones and local craftsmanship.'
 
+// Concise search snippets for published guides; visible article headings remain editorial.
+const journalSeoTitles = {
+  "buying-ceylon-sapphire-sri-lanka": "Buying Ceylon Sapphires | The Ring Experience",
+  "care-for-silver-gold-and-gemstone-rings": "How to Care for Gemstone Rings | The Ring Experience",
+  "commission-custom-jewellery-sri-lanka-travel": "Custom Jewellery on Your Trip | The Ring Experience",
+  "creative-things-to-do-in-negombo-ring-making": "Creative Things to Do in Negombo | The Ring Experience",
+  "creative-things-to-do-in-sri-lanka": "Creative Things to Do in Sri Lanka | The Ring Experience",
+  "engagement-ring-design-workshop-guide": "Engagement Ring Design Guide | The Ring Experience",
+  "make-a-silver-ring-in-negombo": "Make a Silver Ring in Negombo | The Ring Experience",
+  "make-your-own-wedding-rings-sri-lanka": "Make Wedding Rings in Sri Lanka | The Ring Experience",
+  "ring-size-and-fit-for-a-handmade-ring": "Handmade Ring Sizing Guide | The Ring Experience",
+  "silver-or-gold-for-a-handmade-ring": "Silver vs Gold Rings | The Ring Experience",
+  "sri-lankan-gemstones-for-rings": "Sri Lankan Gemstones for Rings | The Ring Experience",
+  "sri-lankan-jewellery-making-experience": "Jewellery Making in Sri Lanka | The Ring Experience"
+}
 const article = computed(() => route.name === 'journalArticle' ? getJournalPost(route.params.slug) : null)
 const seo = computed(() => article.value ? {
-  title: `${article.value.title} | The Ring Experience`,
+  title: journalSeoTitles[route.params.slug] || `${article.value.title} | The Ring Experience`,
   description: article.value.description,
 } : (route.meta?.seo ?? {}))
 // Cloudflare Pages serves prerendered /page/index.html at /page/.
