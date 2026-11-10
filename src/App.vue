@@ -49,7 +49,7 @@ const journalSeoTitles = {
   "make-your-own-wedding-rings-sri-lanka": "Make Wedding Rings in Sri Lanka | The Ring Experience",
   "ring-size-and-fit-for-a-handmade-ring": "Handmade Ring Sizing Guide | The Ring Experience",
   "silver-or-gold-for-a-handmade-ring": "Silver vs Gold Rings | The Ring Experience",
-  "sri-lankan-gemstones-for-rings": "Sri Lankan Gemstones for Rings | The Ring Experience",
+  "sri-lankan-gemstones-for-rings": "Ceylon Gemstone Buying Guide | The Ring Experience",
   "sri-lankan-jewellery-making-experience": "Jewellery Making in Sri Lanka | The Ring Experience"
 }
 const article = computed(() => route.name === 'journalArticle' ? getJournalPost(route.params.slug) : null)
